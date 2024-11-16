@@ -9,9 +9,11 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
 import net.tiramisu.noez.NOEZ;
+import net.tiramisu.noez.block.ModBlocks;
 
 public class ModCreativeModTabs {
-    public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, NOEZ.MOD_ID);
+    public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS =
+            DeferredRegister.create(Registries.CREATIVE_MODE_TAB, NOEZ.MOD_ID);
 
     public static final RegistryObject<CreativeModeTab> NOEZ_TAB = CREATIVE_MODE_TABS.register("noez_tab",
             () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModItems.SOUL.get()))
@@ -19,6 +21,7 @@ public class ModCreativeModTabs {
                     .displayItems((pParameters, pOutput) -> {
                         pOutput.accept(ModItems.SOUL.get());
                         pOutput.accept(ModItems.RUINOUSSOUL.get());
+                        pOutput.accept(ModBlocks.SOUL_BLOCK.get());
                     })
                     .build());
 

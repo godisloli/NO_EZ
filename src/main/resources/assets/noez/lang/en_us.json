@@ -1,5 +1,8 @@
 {
   "item.noez.soul": "Soul",
-  "item.noez.ruinioussoul": "Ruinious Soul",
+  "item.noez.ruinoussoul": "Ruinous Soul",
+
+  "block.noez.soul_block": "Block of Soul",
+
   "creativetab.noez_tab": "Souls"
 }
