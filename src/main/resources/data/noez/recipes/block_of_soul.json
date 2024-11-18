@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "noez:soul"
+    }
+  },
+  "result": {
+    "item": "noez:soul_block"
+  }
+}
