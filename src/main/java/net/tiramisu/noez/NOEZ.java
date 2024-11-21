@@ -17,6 +17,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.tiramisu.noez.block.ModBlocks;
+import net.tiramisu.noez.event.NoAttackWhenCooldown;
 import net.tiramisu.noez.item.ModCreativeModTabs;
 import net.tiramisu.noez.item.ModItems;
 import org.slf4j.Logger;
@@ -42,6 +43,8 @@ public class NOEZ
         MinecraftForge.EVENT_BUS.register(this);
 
         modEventBus.addListener(this::addCreative);
+
+        MinecraftForge.EVENT_BUS.register(new NoAttackWhenCooldown());
 
         context.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
     }
