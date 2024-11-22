@@ -7,7 +7,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.tiramisu.noez.NOEZ;
 
-public class ModItems {
+public class NoezItems {
     public static final DeferredRegister<Item> ITEMS =
             DeferredRegister.create(ForgeRegistries.ITEMS, NOEZ.MOD_ID);
     public static final RegistryObject<Item> SOUL = ITEMS.register("soul",
