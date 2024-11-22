@@ -11,10 +11,6 @@ public class NoezEffects {
     // Create a DeferredRegister for Mob Effects
     public static final DeferredRegister<MobEffect> EFFECTS = DeferredRegister.create(ForgeRegistries.MOB_EFFECTS, NOEZ.MOD_ID);
 
-    // Register your custom effect
-    public static final RegistryObject<MobEffect> ARMOR_CRUNCH = EFFECTS.register("armor_crunch",
-            ArmorCrunch::new // Red color
-    );
 
     // Method to register the effects with the event bus
     public static void register(IEventBus eventBus) {
