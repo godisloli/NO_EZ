@@ -19,10 +19,14 @@ import net.tiramisu.noez.event.*;
 import net.tiramisu.noez.item.NoezCreativeModTabs;
 import net.tiramisu.noez.item.NoezItems;
 import org.slf4j.Logger;
+import org.spongepowered.asm.mixin.Mixins;
 
 @Mod(NOEZ.MOD_ID)
 public class NOEZ
 {
+    static {
+        Mixins.addConfiguration("mixins.noez.json");
+    }
 
     public static final String MOD_ID = "noez";
 
@@ -53,6 +57,7 @@ public class NOEZ
         MinecraftForge.EVENT_BUS.register(new GlobalMobDrops());
 
         MinecraftForge.EVENT_BUS.register(new UndeadSurvival());
+
 
         context.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
     }
