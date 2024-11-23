@@ -48,6 +48,8 @@ public class NOEZ
 
         NoezEffects.register(modEventBus);
 
+        MinecraftForge.EVENT_BUS.register(new LineOfSight());
+
         MinecraftForge.EVENT_BUS.register(new NoAttackWhenCooldown());
 
         MinecraftForge.EVENT_BUS.register(new KnockBackResitant());

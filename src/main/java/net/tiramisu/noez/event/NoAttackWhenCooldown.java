@@ -10,9 +10,6 @@ import net.minecraftforge.fml.common.Mod;
 @Mod.EventBusSubscriber
 public class NoAttackWhenCooldown {
 
-    /**
-     * Prevents attacking entities if the attack cooldown is not fully charged.
-     */
     @SubscribeEvent
     public static void onAttackEntity(AttackEntityEvent event) {
         // Get the attacking player
@@ -25,9 +22,6 @@ public class NoAttackWhenCooldown {
         }
     }
 
-    /**
-     * Prevents attack input on client-side when cooldown is not fully charged.
-     */
     @SubscribeEvent
     public static void onClickEvent(InputEvent.InteractionKeyMappingTriggered event) {
         Minecraft mc = Minecraft.getInstance();
