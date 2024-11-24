@@ -4,7 +4,12 @@
   "package": "net.tiramisu.noez.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
-    "LivingEntityMixin"
+    "LivingEntityMixin",
+    "MinecraftMixin",
+    "MobMixin",
+    "MouseHandlerMixin",
+    "LocalPlayerMixin",
+    "ServerPlayerMixin"
   ],
   "injectors": {
     "defaultRequire": 1
