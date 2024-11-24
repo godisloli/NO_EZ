@@ -10,18 +10,4 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(Minecraft.class)
 public abstract class MinecraftMixin {
-    @Inject(method = "startAttack", at = @At("HEAD"), cancellable = true)
-    private void disableAttackWhileStunned(CallbackInfoReturnable<Boolean> ci) {
-        Minecraft mc = (Minecraft) (Object) this;
-        if (mc.player != null && mc.player.hasEffect(NoezEffects.STUN.get())) {
-            ci.cancel();
-        }
-    }
-    @Inject(method = "continueAttack", at = @At("HEAD"), cancellable = true)
-    private void disableAttackWhileStunned(CallbackInfo ci) {
-        Minecraft mc = (Minecraft) (Object) this;
-        if (mc.player != null && mc.player.hasEffect(NoezEffects.STUN.get())) {
-            ci.cancel();
-        }
-    }
 }
