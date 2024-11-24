@@ -18,6 +18,7 @@ import net.tiramisu.noez.effect.NoezEffects;
 import net.tiramisu.noez.event.*;
 import net.tiramisu.noez.item.NoezCreativeModTabs;
 import net.tiramisu.noez.item.NoezItems;
+import net.tiramisu.noez.mixin.LivingEntityMixin;
 import org.slf4j.Logger;
 import org.spongepowered.asm.mixin.Mixins;
 import net.tiramisu.noez.event.serverstarting.Starter;
@@ -28,8 +29,6 @@ public class NOEZ
     static {
         Mixins.addConfiguration("mixins.noez.json");
     }
-
-    public static final Starter starter = new Starter();
 
     public static final String MOD_ID = "noez";
 
@@ -61,7 +60,6 @@ public class NOEZ
 
         MinecraftForge.EVENT_BUS.register(new UndeadSurvival());
 
-
         context.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
     }
 
@@ -82,7 +80,7 @@ public class NOEZ
     @SubscribeEvent
     public void onServerStarting(ServerStartingEvent event)
     {
-        starter.DisableNaturalRegeneration(event,true);
+        new Starter().DisableNaturalRegeneration(event,true);
     }
 
     @Mod.EventBusSubscriber(modid = MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
