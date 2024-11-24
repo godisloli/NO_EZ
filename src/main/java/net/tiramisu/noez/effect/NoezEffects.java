@@ -13,6 +13,8 @@ public class NoezEffects {
 
     public static final RegistryObject<MobEffect> BLEED = EFFECTS.register("bleed",Bleed::new);
 
+    public static final RegistryObject<MobEffect> STUN = EFFECTS.register("stun",Stun::new);
+
     public static void register(IEventBus eventBus) {
         EFFECTS.register(eventBus);
     }
