@@ -21,6 +21,7 @@ public class NoezCreativeModTabs {
                         pOutput.accept(NoezItems.SOUL.get());
                         pOutput.accept(NoezItems.RUINOUSSOUL.get());
                         pOutput.accept(NoezBlocks.SOUL_BLOCK.get());
+                        pOutput.accept(NoezItems.RELOCATOR.get());
                     })
                     .build());
 

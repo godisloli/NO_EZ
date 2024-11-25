@@ -6,15 +6,20 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.tiramisu.noez.NOEZ;
+import net.tiramisu.noez.item.advanceditem.relocator;
 
 public class NoezItems {
     public static final DeferredRegister<Item> ITEMS =
             DeferredRegister.create(ForgeRegistries.ITEMS, NOEZ.MOD_ID);
+
     public static final RegistryObject<Item> SOUL = ITEMS.register("soul",
             () -> new Item(new Item.Properties().stacksTo(16)));
 
     public static final RegistryObject<Item> RUINOUSSOUL = ITEMS.register("ruinoussoul",
             () -> new Item(new Item.Properties().stacksTo(16)));
+
+    public static final RegistryObject<Item> RELOCATOR = ITEMS.register("relocator",
+            ()-> new relocator(new Item.Properties().stacksTo(1)));
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
