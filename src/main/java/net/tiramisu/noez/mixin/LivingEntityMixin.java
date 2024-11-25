@@ -19,11 +19,7 @@ public abstract class LivingEntityMixin extends Entity {
         super(entityType, world);
     }
     @Inject(at = @At("HEAD"), method = "hasLineOfSight", cancellable = true)
-
     void isLookingAtMe(Entity entity, CallbackInfoReturnable<Boolean> cir) {
-        if (entity.getType() != EntityType.IRON_GOLEM || entity.getType() != EntityType.WITHER || entity.getType() != EntityType.WARDEN || entity.getType() != EntityType.ENDER_DRAGON){
-            return;
-        }
         LivingEntity livingEntity = (LivingEntity)(Object)this;
         if (entity instanceof LivingEntity) {
             if (!LineOfSight.isLookingAtYou(livingEntity, (LivingEntity) entity)) {
