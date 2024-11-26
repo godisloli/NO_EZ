@@ -1,15 +1,17 @@
 {
   "item.noez.soul": "Soul",
   "item.noez.ruinoussoul": "Ruinous Soul",
-  "item.noez.relocator": "Relocator",
-  "item.noez.naturablade" :"Natura Blade",
+  "item.noez.relocator": "§5Relocator",
+  "item.noez.naturablade" :"§2Natura Blade",
 
   "block.noez.soul_block": "Block of Soul",
 
   "effect.noez.bleed": "Bleed",
   "effect.noez.stun": "Stun",
+  "effect.noez.root": "Root",
 
-  "tooltip.noez.relocator.tooltip": "On use: Teleport 4 blocks to where you facing, Cooldown: 10 seconds",
+  "noez.relocator.tooltip1": "§6On use: §rTeleport 4 blocks to where you facing",
+  "noez.relocator.tooltip2": "§6Cooldown: §r10 seconds",
 
   "creativetab.noez_tab": "Souls"
 }

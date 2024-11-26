@@ -1,4 +1,4 @@
-package net.tiramisu.noez.item.advanceditem;
+package net.tiramisu.noez.item.weaponstools;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
@@ -18,12 +18,15 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
+
 import java.util.List;
+import java.util.Random;
 
 public class Relocator extends Item {
 
     private static final int TELEPORT_DISTANCE = 4; // Max teleport distance
     private static final int COOLDOWN_SECONDS = 10; // Cooldown duration in seconds
+    private static final int FALL_DAMAGE_PROTECTION_TIME = 20; // 1 second = 20 ticks
 
     public Relocator(Properties properties) {
         super(properties);
@@ -31,7 +34,8 @@ public class Relocator extends Item {
 
     @Override
     public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
-        pTooltipComponents.add(Component.translatable("tooltip.noez.relocator.tooltip"));
+        pTooltipComponents.add(Component.translatable("noez.relocator.tooltip1"));
+        pTooltipComponents.add(Component.translatable("noez.relocator.tooltip2"));
         super.appendHoverText(pStack, pLevel, pTooltipComponents, pIsAdvanced);
     }
 
@@ -42,14 +46,11 @@ public class Relocator extends Item {
         }
 
         if (!world.isClientSide && player instanceof ServerPlayer serverPlayer) {
-            ItemStack stack = player.getItemInHand(hand);
 
-            // Get player's current position and look direction
-            Vec3 startPos = player.getEyePosition(); // Eye position
-            Vec3 lookVec = player.getLookAngle(); // Direction the player is looking
-            Vec3 endPos = startPos.add(lookVec.scale(TELEPORT_DISTANCE)); // End position
+            Vec3 startPos = player.getEyePosition();
+            Vec3 lookVec = player.getLookAngle();
+            Vec3 endPos = startPos.add(lookVec.scale(TELEPORT_DISTANCE));
 
-            // Perform ray tracing to find the nearest collision
             HitResult hitResult = world.clip(new ClipContext(
                     startPos,
                     endPos,
@@ -58,47 +59,48 @@ public class Relocator extends Item {
                     player
             ));
 
-            // Calculate the final teleportation position
             Vec3 teleportPos = (hitResult.getType() == HitResult.Type.BLOCK)
-                    ? hitResult.getLocation().subtract(lookVec.scale(0.5)) // Teleport just before the block
-                    : endPos; // Max range if no block is hit
+                    ? hitResult.getLocation().subtract(lookVec.scale(0.5))
+                    : endPos;
 
             BlockPos blockPos = new BlockPos((int)teleportPos.x(), (int)teleportPos.y(), (int)teleportPos.z());
 
             if (world.isEmptyBlock(blockPos) && world.isEmptyBlock(blockPos.above())) {
+                createTeleportEffects(world, teleportPos, serverPlayer);
                 serverPlayer.teleportTo(teleportPos.x(), teleportPos.y(), teleportPos.z());
-                createTeleportEffects(world, teleportPos);
-                // Add cooldown to the item
-                player.getCooldowns().addCooldown(this, COOLDOWN_SECONDS * 20); // 20 ticks per second
+                player.getCooldowns().addCooldown(this, COOLDOWN_SECONDS * 20);
+                player.getPersistentData().putLong("RelocatorTeleportTime", world.getGameTime());
             }
         }
         return InteractionResultHolder.sidedSuccess(player.getItemInHand(hand), world.isClientSide());
-
     }
-    private void createTeleportEffects(Level world, Vec3 position) {
+
+    private void createTeleportEffects(Level world, Vec3 position, Player player) {
         if (world instanceof ServerLevel serverWorld) {
-            // Play the Enderman teleport sound
             serverWorld.playSound(
-                    null, // Null source means all players will hear it
-                    new BlockPos((int)position.x(), (int)position.y(), (int)position.y()),
+                    null,
+                    new BlockPos((int) position.x(), (int) position.y(), (int) position.z()),
                     SoundEvents.ENDERMAN_TELEPORT,
                     SoundSource.PLAYERS,
                     1.0f, // Volume
                     1.0f  // Pitch
             );
 
-            // Spawn particles around the position
-            for (int i = 0; i < 32; i++) {
-                double offsetX = (world.random.nextDouble() - 0.5) * 2.0;
-                double offsetY = world.random.nextDouble() - 0.5;
-                double offsetZ = (world.random.nextDouble() - 0.5) * 2.0;
+            Random random = new Random();
+            int particleCount = 100;
+            double radius = 1;
+            for (int i = 0; i < particleCount; i++) {
+                double xOffset = (random.nextDouble() * 2 - 1) * radius;
+                double yOffset = (random.nextDouble() * 2 - 1) * radius;
+                double zOffset = (random.nextDouble() * 2 - 1) * radius;
+                Vec3 particlePos = new Vec3(player.getX() + xOffset, player.getY() + yOffset + 1.0, player.getZ() + zOffset);
 
                 serverWorld.sendParticles(
-                        ParticleTypes.PORTAL, // Portal particle type
-                        position.x, position.y, position.z, // Position
-                        15, // Count
-                        offsetX, offsetY, offsetZ, // Offset for particle spread
-                        0.6 // Speed
+                        ParticleTypes.PORTAL,
+                        particlePos.x(), particlePos.y(), particlePos.z(),
+                        3,
+                        0,0,0,
+                        0.1
                 );
             }
         }

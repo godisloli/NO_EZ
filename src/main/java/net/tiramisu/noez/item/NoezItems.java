@@ -2,15 +2,14 @@ package net.tiramisu.noez.item;
 
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.SwordItem;
-import net.minecraft.world.item.Tier;
 import net.minecraft.world.item.Tiers;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.tiramisu.noez.NOEZ;
-import net.tiramisu.noez.item.advanceditem.NaturaBlade;
-import net.tiramisu.noez.item.advanceditem.Relocator;
+import net.tiramisu.noez.item.weaponstools.NaturaBlade;
+import net.tiramisu.noez.item.weaponstools.Relocator;
 
 public class NoezItems {
     public static final DeferredRegister<Item> ITEMS =

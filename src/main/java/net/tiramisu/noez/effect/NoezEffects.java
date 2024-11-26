@@ -15,6 +15,8 @@ public class NoezEffects {
 
     public static final RegistryObject<MobEffect> STUN = EFFECTS.register("stun",Stun::new);
 
+    public static final RegistryObject<MobEffect> ROOT = EFFECTS.register("root", Root::new);
+
     public static void register(IEventBus eventBus) {
         EFFECTS.register(eventBus);
     }

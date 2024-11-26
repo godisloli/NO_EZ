@@ -15,10 +15,10 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.tiramisu.noez.block.NoezBlocks;
 import net.tiramisu.noez.effect.NoezEffects;
+import net.tiramisu.noez.entity.NoezEntities;
 import net.tiramisu.noez.event.*;
 import net.tiramisu.noez.item.NoezCreativeModTabs;
 import net.tiramisu.noez.item.NoezItems;
-import net.tiramisu.noez.mixin.LivingEntityMixin;
 import org.slf4j.Logger;
 import org.spongepowered.asm.mixin.Mixins;
 import net.tiramisu.noez.event.serverstarting.Starter;
@@ -43,6 +43,8 @@ public class NOEZ
         NoezItems.register(modEventBus);
 
         NoezBlocks.register(modEventBus);
+
+        NoezEntities.register(modEventBus);
 
         MinecraftForge.EVENT_BUS.register(this);
 

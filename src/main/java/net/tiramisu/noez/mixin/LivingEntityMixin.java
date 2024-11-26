@@ -1,5 +1,8 @@
 package net.tiramisu.noez.mixin;
 
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.block.state.BlockState;
 import net.tiramisu.noez.effect.NoezEffects;
 import net.tiramisu.noez.event.LineOfSight;
 import net.minecraft.world.entity.LivingEntity;
@@ -33,6 +36,23 @@ public abstract class LivingEntityMixin extends Entity {
         LivingEntity livingEntity = (LivingEntity)(Object)this;
         if (livingEntity.hasEffect(NoezEffects.STUN.get())){
             ci.cancel();
+        }
+    }
+
+    @Inject(method = "checkFallDamage", at = @At("HEAD"), cancellable = true)
+    public void onCheckFallDamage(double heightDifference, boolean onGround, BlockState blockState, BlockPos pos, CallbackInfo ci) {
+        LivingEntity entity = (LivingEntity) (Object) this;
+        Level world = entity.level();
+
+        // Check if the entity is a player and has the fall damage immunity tag
+        if (entity instanceof Player player) {
+            long lastTeleportTime = player.getPersistentData().getLong("RelocatorTeleportTime");
+
+            // If within the immunity window, cancel fall damage
+            if (world.getGameTime() - lastTeleportTime <= 20) { // 1 second (20 ticks)
+                player.fallDistance = 0; // Reset fall distance
+                ci.cancel(); // Cancel fall damage entirely
+            }
         }
     }
 }
