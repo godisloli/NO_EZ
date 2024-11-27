@@ -24,9 +24,8 @@ import java.util.Random;
 
 public class Relocator extends Item {
 
-    private static final int TELEPORT_DISTANCE = 4; // Max teleport distance
-    private static final int COOLDOWN_SECONDS = 10; // Cooldown duration in seconds
-    private static final int FALL_DAMAGE_PROTECTION_TIME = 20; // 1 second = 20 ticks
+    private static final int TELEPORT_DISTANCE = 5; // blocks
+    private static final int COOLDOWN_SECONDS = 8; // seconds
 
     public Relocator(Properties properties) {
         super(properties);
@@ -94,13 +93,12 @@ public class Relocator extends Item {
                 double yOffset = (random.nextDouble() * 2 - 1) * radius;
                 double zOffset = (random.nextDouble() * 2 - 1) * radius;
                 Vec3 particlePos = new Vec3(player.getX() + xOffset, player.getY() + yOffset + 1.0, player.getZ() + zOffset);
-
                 serverWorld.sendParticles(
                         ParticleTypes.PORTAL,
                         particlePos.x(), particlePos.y(), particlePos.z(),
                         3,
                         0,0,0,
-                        0.1
+                        0.01
                 );
             }
         }

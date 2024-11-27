@@ -10,8 +10,9 @@
   "effect.noez.stun": "Stun",
   "effect.noez.root": "Root",
 
-  "noez.relocator.tooltip1": "§6On use: §rTeleport 4 blocks to where you facing",
-  "noez.relocator.tooltip2": "§6Cooldown: §r10 seconds",
-
+  "noez.relocator.tooltip1": "§6On use: §rBlink to a few blocks where you facing",
+  "noez.relocator.tooltip2": "§6Cooldown: §r8 seconds",
+  "noez.natura_blade.tooltip1": "§6On attack: §rFire a beam travels throught walls dealing §44 damage, §eRoot §rtarget and gain you §dRegeneration",
+  "noez.natura_blade.tooltip2": "§6Cooldown: §r10 seconds",
   "creativetab.noez_tab": "Souls"
 }

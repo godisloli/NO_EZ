@@ -16,16 +16,16 @@ public class NoezItems {
             DeferredRegister.create(ForgeRegistries.ITEMS, NOEZ.MOD_ID);
 
     public static final RegistryObject<Item> SOUL = ITEMS.register("soul",
-            () -> new Item(new Item.Properties().stacksTo(16)));
+            () -> new Item(new Item.Properties().stacksTo(64)));
 
     public static final RegistryObject<Item> RUINOUSSOUL = ITEMS.register("ruinoussoul",
-            () -> new Item(new Item.Properties().stacksTo(16)));
+            () -> new Item(new Item.Properties().stacksTo(64)));
 
     public static final RegistryObject<Item> RELOCATOR = ITEMS.register("relocator",
-            ()-> new Relocator(new Item.Properties().stacksTo(1)));
+            ()-> new Relocator(new Item.Properties().stacksTo(1).durability(25)));
 
     public static final RegistryObject<SwordItem> NATURABLADE = ITEMS.register("naturablade",
-            ()-> new NaturaBlade(Tiers.NETHERITE,3,-2.4F, new Item.Properties()));
+            ()-> new NaturaBlade(Tiers.NETHERITE,3,-2.4F, new Item.Properties().durability(2500)));
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
