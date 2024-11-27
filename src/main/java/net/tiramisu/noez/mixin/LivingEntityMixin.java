@@ -43,14 +43,6 @@ public abstract class LivingEntityMixin extends Entity {
         }
     }
 
-    @Inject(method = "travel", at = @At("HEAD"), cancellable =  true)
-    private void DisableMovementWhileStunned(CallbackInfo ci){
-        LivingEntity livingEntity = (LivingEntity)(Object)this;
-        if (livingEntity.hasEffect(NoezEffects.STUN.get())){
-            ci.cancel();
-        }
-    }
-
     @Inject(method = "checkFallDamage", at = @At("HEAD"), cancellable = true)
     public void RelocatorNoFallDamage(double heightDifference, boolean onGround, BlockState blockState, BlockPos pos, CallbackInfo ci) {
         LivingEntity entity = (LivingEntity) (Object) this;

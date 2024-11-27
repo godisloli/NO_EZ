@@ -52,8 +52,8 @@ public class LineOfSight {
 
     public class LineOfSightConfig {// Configuration values
         public static int mobSpeed = 2;
-        public static float mobViewThreshold = 6.0F;
-        public static float mobDistanceThreshold = 6.0F;
+        public static float mobViewThreshold = 10.0F;
+        public static float mobDistanceThreshold = 10.0F;
 
         public LineOfSightConfig() {
         }
