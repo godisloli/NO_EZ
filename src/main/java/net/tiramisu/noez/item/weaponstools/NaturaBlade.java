@@ -9,7 +9,6 @@ import java.util.List;
 
 
 public class NaturaBlade extends SwordItem {
-    private static final int Cooldown = 5;
 
     public NaturaBlade(Tier tier, int attackDamage, float attackSpeed, Item.Properties properties) {
         super(tier, attackDamage, attackSpeed, properties);
