@@ -15,7 +15,8 @@ public class GlobalMobDrops {
     // Blacklisted mobs (by their registry name)
     private static final Set<String> BLACKLISTED_MOBS = Set.of(
             "minecraft:armor_stand",
-            "minecraft:iron_golem"
+            "minecraft:iron_golem",
+            "minecraft:slime"
     );
 
     @SubscribeEvent

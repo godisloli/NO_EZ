@@ -8,6 +8,10 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.animal.IronGolem;
+import net.minecraft.world.entity.boss.enderdragon.EnderDragon;
+import net.minecraft.world.entity.boss.wither.WitherBoss;
+import net.minecraft.world.entity.monster.warden.Warden;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
@@ -38,7 +42,8 @@ public abstract class LivingEntityMixin extends Entity {
         LivingEntity livingEntity = (LivingEntity)(Object)this;
         if (entity instanceof LivingEntity) {
             if (!LineOfSight.isLookingAtYou(livingEntity, (LivingEntity) entity)) {
-                cir.setReturnValue(false);
+                if (entity instanceof IronGolem || entity instanceof EnderDragon || entity instanceof WitherBoss || entity instanceof Warden)
+                    cir.setReturnValue(false);
             }
         }
     }
@@ -85,7 +90,7 @@ public abstract class LivingEntityMixin extends Entity {
 
     private void simulateProjectile(ServerLevel serverLevel, Player shooter, Vec3 startPos, Vec3 direction) {
         Vec3 currentPos = startPos;
-        double stepSize = 1;
+        double stepSize = 0.5;
         double maxDistance = NATURA_MAX_RANGE;
         double traveledDistance = 0;
         while (traveledDistance < maxDistance) {
@@ -93,10 +98,10 @@ public abstract class LivingEntityMixin extends Entity {
             traveledDistance += stepSize;
             if (!(traveledDistance <= 2))
                 serverLevel.sendParticles(
-                        ParticleTypes.HAPPY_VILLAGER,
+                        ParticleTypes.CHERRY_LEAVES,
                         currentPos.x, currentPos.y, currentPos.z,
-                        1,
-                        0, 0, 0,
+                        2,
+                        0.05, 0.05, 0,
                         0.001
                 );
 

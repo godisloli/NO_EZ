@@ -50,9 +50,8 @@ public class LineOfSight {
         return proximity > sensitivity;
     }
 
-    public class LineOfSightConfig {// Configuration values
-        public static int mobSpeed = 2;
-        public static float mobViewThreshold = 10.0F;
+    public class LineOfSightConfig {
+        public static float mobViewThreshold = 20.0F;
         public static float mobDistanceThreshold = 10.0F;
 
         public LineOfSightConfig() {
