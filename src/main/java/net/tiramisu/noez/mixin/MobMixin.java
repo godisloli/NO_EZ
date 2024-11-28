@@ -5,6 +5,7 @@ import net.minecraft.world.entity.monster.warden.Warden;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.tiramisu.noez.effect.NoezEffects;
+import net.tiramisu.noez.util.Tags;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -24,23 +25,18 @@ public abstract class MobMixin {
     private static final double CLOSE_RANGE = 4.0;
 
     @Inject(method = "tick", at = @At("HEAD"))
-    private void onTick(CallbackInfo info) {
-        // Cast this mixin's instance to Mob
+    private void MobListen(CallbackInfo info) {
         Mob mob = (Mob) (Object) this;
 
-        // Skip if the mob is targeting something already
         if (mob.getTarget() != null)
             return;
 
-        if (mob instanceof Warden)
+        if (mob.getType().is(Tags.Mobs.NO_LINE_OF_SIGHT))
             return;
 
-        // Get the world instance
         Level level = mob.level();
 
-        // Check for nearby players
         for (Player player : level.getEntitiesOfClass(Player.class, mob.getBoundingBox().inflate(MAX_RANGE))) {
-            // Skip dead players or spectators
             if (player.isSpectator() || player.isDeadOrDying()) {
                 continue;
             }
@@ -49,12 +45,10 @@ public abstract class MobMixin {
             boolean isSneaking = player.isCrouching();
 
             if (!isSneaking) {
-                // Player is not sneaking - always turn
                 turnMobToPlayer(mob, player);
                 return;
             } else {
-                // Player is sneaking - chance to turn
-                double chance = (distance <= CLOSE_RANGE) ? 0.02 : 0.005; // 40% for close range, 10% for max range
+                double chance = (distance <= CLOSE_RANGE) ? 0.05 : 0.01;
                 if (mob.getRandom().nextDouble() < chance) {
                     turnMobToPlayer(mob, player);
                     return;
