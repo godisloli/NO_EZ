@@ -18,9 +18,6 @@ public class NoezItems {
     public static final RegistryObject<Item> SOUL = ITEMS.register("soul",
             () -> new Item(new Item.Properties().stacksTo(64)));
 
-    public static final RegistryObject<Item> RUINOUSSOUL = ITEMS.register("ruinoussoul",
-            () -> new Item(new Item.Properties().stacksTo(64)));
-
     public static final RegistryObject<Item> RELOCATOR = ITEMS.register("relocator",
             ()-> new Relocator(new Item.Properties().stacksTo(1).durability(25)));
 

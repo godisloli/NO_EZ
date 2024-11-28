@@ -19,9 +19,9 @@ public class NoezCreativeModTabs {
                     .title(Component.translatable("creativetab.noez_tab"))
                     .displayItems((pParameters, pOutput) -> {
                         pOutput.accept(NoezItems.SOUL.get());
-                        pOutput.accept(NoezItems.RUINOUSSOUL.get());
                         pOutput.accept(NoezBlocks.SOUL_BLOCK.get());
                         pOutput.accept(NoezItems.RELOCATOR.get());
+                        pOutput.accept(NoezItems.NATURABLADE.get());
                     })
                     .build());
 

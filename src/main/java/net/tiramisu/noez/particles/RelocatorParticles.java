@@ -1,6 +1,4 @@
 package net.tiramisu.noez.particles;
 
-public class RelocatorParticles {
-
+public class RelocatorParticles{
 }
-

@@ -19,6 +19,7 @@ import net.tiramisu.noez.entity.NoezEntities;
 import net.tiramisu.noez.event.*;
 import net.tiramisu.noez.item.NoezCreativeModTabs;
 import net.tiramisu.noez.item.NoezItems;
+import net.tiramisu.noez.particles.NoezParticles;
 import org.slf4j.Logger;
 import org.spongepowered.asm.mixin.Mixins;
 import net.tiramisu.noez.event.serverstarting.Starter;
@@ -45,6 +46,8 @@ public class NOEZ
         NoezBlocks.register(modEventBus);
 
         NoezEntities.register(modEventBus);
+
+        NoezParticles.register(modEventBus);
 
         MinecraftForge.EVENT_BUS.register(this);
 
@@ -75,7 +78,6 @@ public class NOEZ
     {
         if (event.getTabKey() == CreativeModeTabs.INGREDIENTS) {
             event.accept(NoezItems.SOUL);
-            event.accept(NoezItems.RUINOUSSOUL);
         }
     }
 
