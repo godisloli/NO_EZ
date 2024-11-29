@@ -91,17 +91,22 @@ public class Relocator extends Item {
             double radius = 1;
             for (int i = 0; i < particleCount; i++) {
                 double xOffset = (random.nextDouble() * 2 - 1) * radius;
-                double yOffset = (random.nextDouble() * 2 - 1) * radius;
+                double yOffset = 0.0f;
                 double zOffset = (random.nextDouble() * 2 - 1) * radius;
 
-
+                double xVel = random.nextDouble() * 1.0 + 0.2;
+                double zVel = random.nextDouble() * 1.0 + 0.2;
+                double yVel = random.nextDouble() * 0.5 + 0.5;
+                if (random.nextBoolean()) {
+                    yVel = -yVel;
+                }
                 Vec3 particlePos = new Vec3(player.getX() + xOffset, player.getY() + yOffset + 1.0, player.getZ() + zOffset);
                 serverWorld.sendParticles(
                         NoezParticles.BUTTERFLY.get(),
                         particlePos.x(), particlePos.y(), particlePos.z(),
                         1,
-                        0.78,0.36,0.78,
-                        0.03
+                        xVel, yVel, zVel,
+                        0.1
                 );
             }
         }

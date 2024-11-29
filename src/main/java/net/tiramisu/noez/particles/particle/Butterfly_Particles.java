@@ -9,27 +9,40 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 public class Butterfly_Particles extends TextureSheetParticle {
     protected Butterfly_Particles(ClientLevel pLevel, double pX, double pY, double pZ,SpriteSet spriteSet, double pXSpeed, double pYSpeed, double pZSpeed) {
         super(pLevel, pX, pY, pZ, pXSpeed, pYSpeed, pZSpeed);
-        this.friction = 0.8f;
+        this.friction = 0.95f;
         this.xd = pXSpeed;
         this.yd = pYSpeed;
         this.zd = pZSpeed;
         this.quadSize *= 0.85f;
-        this.lifetime = 20 + level.random.nextInt(41);
+        this.lifetime = 10 + level.random.nextInt(41);
         this.setSpriteFromAge(spriteSet);
 
         this.rCol = 1f;
         this.gCol = 1f;
         this.bCol = 1f;
+
+        this.xd += (level.random.nextDouble() * 0.1) - 0.05;
+        this.yd += (level.random.nextDouble() * 0.1) - 0.05;
+        this.zd += (level.random.nextDouble() * 0.1) - 0.05;
     }
 
     @Override
     public void tick() {
         super.tick();
+        this.xd += (level.random.nextDouble() * 0.02) - 0.01;
+        this.yd += (level.random.nextDouble() * 0.02) - 0.01;
+        this.zd += (level.random.nextDouble() * 0.02) - 0.01;
+
+        // Gravity simulation: make the particle slowly drift downward over time
+        this.yd -= 0.002; // Add slight downward pull (gravity effect)
+
+        // Fade out effect based on age (more random fading)
+        FadeOut();
         FadeOut();
     }
 
     private void FadeOut(){
-        this.alpha = (-(1/(float)lifetime) * age +1);
+        this.alpha = (-(1f / (float) lifetime) * age + 1) * (0.5f + level.random.nextFloat() * 0.5f);
     }
 
     @Override
