@@ -25,11 +25,6 @@ public class InvisibleRework {
     }
 
     @SubscribeEvent
-    public void onSwing(PlayerInteractEvent.LeftClickEmpty event) {
-        handleInvisibility(event.getEntity());
-    }
-
-    @SubscribeEvent
     public static void onItemUse(PlayerInteractEvent.RightClickItem event) {
         handleInvisibility(event.getEntity());
     }
@@ -39,7 +34,7 @@ public class InvisibleRework {
             MobEffectInstance effectInstance = entity.getEffect(MobEffects.INVISIBILITY);
             if (effectInstance != null) {
                 int currentDuration = effectInstance.getDuration();
-                if (currentDuration > MIN_INVISIBLE_DURATION * 20) { // 20 ticks = 1 second
+                if (currentDuration > MIN_INVISIBLE_DURATION * 20) {
                     entity.removeEffect(MobEffects.INVISIBILITY);
                     entity.addEffect(new MobEffectInstance(
                             MobEffects.INVISIBILITY,
