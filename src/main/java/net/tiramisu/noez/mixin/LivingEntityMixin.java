@@ -17,6 +17,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import net.tiramisu.noez.effect.NoezEffects;
+import net.tiramisu.noez.event.InvisibleRework;
 import net.tiramisu.noez.event.LineOfSight;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Entity;
@@ -82,6 +83,12 @@ public abstract class LivingEntityMixin extends Entity {
         Level level = player.level();
         if (!level.isClientSide && level instanceof ServerLevel serverLevel) {
             if (player.getCooldowns().isOnCooldown(player.getMainHandItem().getItem())) return;
+            serverLevel.playSound(null,
+                    new BlockPos((int) player.getX(), (int) player.getY(), (int) player.getZ()),
+                    SoundEvents.CHERRY_LEAVES_BREAK,
+                    SoundSource.PLAYERS,
+                    2.0f,
+                    1.0f);
             Vec3 startPos = player.getEyePosition();
             Vec3 direction = player.getLookAngle().normalize();
             simulateProjectile(serverLevel, player, startPos, direction);
@@ -112,7 +119,7 @@ public abstract class LivingEntityMixin extends Entity {
                 livingEntity.addEffect(new MobEffectInstance(NoezEffects.ROOT.get(), NATURA_ROOT_DURATION));
                 shooter.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 40,2));
                 serverLevel.playSound(null, livingEntity.getX(), livingEntity.getY(), livingEntity.getZ(),
-                        SoundEvents.ARROW_HIT_PLAYER, SoundSource.PLAYERS, 1.0F, 0.25F);
+                        SoundEvents.CHERRY_LEAVES_BREAK, SoundSource.PLAYERS, 3.0F, 0.25F);
                 return;
             }
         }

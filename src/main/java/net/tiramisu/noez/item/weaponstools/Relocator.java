@@ -17,6 +17,7 @@ import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
+import net.tiramisu.noez.particles.NoezParticles;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
@@ -81,8 +82,8 @@ public class Relocator extends Item {
                     new BlockPos((int) position.x(), (int) position.y(), (int) position.z()),
                     SoundEvents.ENDERMAN_TELEPORT,
                     SoundSource.PLAYERS,
-                    1.0f, // Volume
-                    1.0f  // Pitch
+                    1.0f,
+                    1.0f
             );
 
             Random random = new Random();
@@ -92,13 +93,15 @@ public class Relocator extends Item {
                 double xOffset = (random.nextDouble() * 2 - 1) * radius;
                 double yOffset = (random.nextDouble() * 2 - 1) * radius;
                 double zOffset = (random.nextDouble() * 2 - 1) * radius;
+
+
                 Vec3 particlePos = new Vec3(player.getX() + xOffset, player.getY() + yOffset + 1.0, player.getZ() + zOffset);
                 serverWorld.sendParticles(
-                        ParticleTypes.PORTAL,
+                        NoezParticles.BUTTERFLY.get(),
                         particlePos.x(), particlePos.y(), particlePos.z(),
-                        3,
-                        0,0,0,
-                        0.01
+                        1,
+                        0.78,0.36,0.78,
+                        0.03
                 );
             }
         }

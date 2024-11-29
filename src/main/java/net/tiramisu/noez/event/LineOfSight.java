@@ -49,7 +49,7 @@ public class LineOfSight {
     }
 
     public class LineOfSightConfig {
-        public static float mobViewThreshold = 20.0F;
+        public static float mobViewThreshold = 40.0F;
         public static float mobDistanceThreshold = 10.0F;
 
         public LineOfSightConfig() {
