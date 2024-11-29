@@ -65,6 +65,8 @@ public class NOEZ
 
         MinecraftForge.EVENT_BUS.register(new UndeadSurvival());
 
+        MinecraftForge.EVENT_BUS.register(new InvisibleRework());
+
         context.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
     }
 

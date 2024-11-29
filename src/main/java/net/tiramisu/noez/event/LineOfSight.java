@@ -21,24 +21,20 @@ public class LineOfSight {
                 return false;
         }
 
-        // Get direction vectors
-        Vec3 entityLookDirection = entity.getViewVector(1.0F).normalize(); // Where the entity is looking
+        Vec3 entityLookDirection = entity.getViewVector(1.0F).normalize();
         Vec3 directionToTarget = new Vec3(
                 target.getX() - entity.getX(),
                 target.getY() - entity.getY(),
                 target.getZ() - entity.getZ()
-        ).normalize(); // Direction from entity to target
+        ).normalize();
 
-        // Calculate angle difference (dot product)
         double alignment = entityLookDirection.dot(directionToTarget);
         double angleDifference = alignment * largeAngle;
 
-        // If the target is outside the field of view, return false
         if (angleDifference > largeAngle) {
             return false;
         }
 
-        // Calculate dynamic distance threshold based on the angle
         double distanceThreshold;
         if (angleDifference < smallAngle) {
             distanceThreshold = farDistance;
@@ -46,10 +42,8 @@ public class LineOfSight {
             distanceThreshold = nearDistance + (farDistance - nearDistance) * (largeAngle - angleDifference) / (largeAngle - smallAngle);
         }
 
-        // Calculate proximity (distance from entity to target)
         double proximity = entityLookDirection.distanceTo(target.position()) / distanceThreshold;
 
-        // Check if the target is within the view threshold
         double sensitivity = LineOfSightConfig.mobViewThreshold;
         return proximity > sensitivity;
     }

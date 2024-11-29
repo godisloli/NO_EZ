@@ -9,7 +9,8 @@
     "MobMixin",
     "MouseHandlerMixin",
     "PlayerMixin",
-    "ServerPlayerMixin"
+    "ServerPlayerMixin",
+    "EntityMixin"
   ],
   "injectors": {
     "defaultRequire": 1
