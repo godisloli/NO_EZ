@@ -1,4 +1,4 @@
-package net.tiramisu.noez.event;
+package net.tiramisu.noez.event.global;
 
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;

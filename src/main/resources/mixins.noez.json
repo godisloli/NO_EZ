@@ -10,7 +10,11 @@
     "MouseHandlerMixin",
     "PlayerMixin",
     "ServerPlayerMixin",
-    "EntityMixin"
+    "EntityMixin",
+    "AnvilMenuMixin",
+    "EnchantmentHelperMixin",
+    "EnchantmentMenuMixin",
+    "VillagerTradeMixin"
   ],
   "injectors": {
     "defaultRequire": 1

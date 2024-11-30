@@ -1,4 +1,4 @@
-package net.tiramisu.noez.event;
+package net.tiramisu.noez.event.global;
 
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraftforge.event.entity.living.LivingKnockBackEvent;

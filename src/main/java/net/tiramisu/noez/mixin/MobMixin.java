@@ -1,8 +1,11 @@
 package net.tiramisu.noez.mixin;
 
 import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.monster.warden.Warden;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
 import net.tiramisu.noez.effect.NoezEffects;
 import net.tiramisu.noez.util.Tags;
@@ -60,4 +63,29 @@ public abstract class MobMixin {
     private void turnMobToPlayer(Mob mob, Player player) {
         mob.getLookControl().setLookAt(player, 30.0F, 30.0F);
     }
+
+    @Inject(method = "dropFromLootTable", at = @At("HEAD"))
+    private void removeEnchantmentsFromDrops(CallbackInfo ci) {
+        Mob mob = (Mob) (Object) this;
+
+        // Remove enchantments from equipment
+        for (ItemStack stack : mob.getHandSlots()) {
+            EnchantmentHelper.setEnchantments(null, stack);
+        }
+        for (ItemStack stack : mob.getArmorSlots()) {
+            EnchantmentHelper.setEnchantments(null, stack);
+        }
+    }
+
+    @Inject(method = "enchantSpawnedArmor", at = @At("HEAD"), cancellable = true)
+    private void removeEnchantArmorOnSpawn(CallbackInfo ci) {
+        ci.cancel();
+    }
+
+    @Inject(method = "enchantSpawnedWeapon", at = @At("HEAD"), cancellable = true)
+    private void removeEnchantWeaponSpawn(CallbackInfo ci) {
+        ci.cancel();
+    }
 }
+
+

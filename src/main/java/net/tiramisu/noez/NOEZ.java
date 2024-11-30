@@ -16,7 +16,7 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.tiramisu.noez.block.NoezBlocks;
 import net.tiramisu.noez.effect.NoezEffects;
 import net.tiramisu.noez.entity.NoezEntities;
-import net.tiramisu.noez.event.*;
+import net.tiramisu.noez.event.global.*;
 import net.tiramisu.noez.item.NoezCreativeModTabs;
 import net.tiramisu.noez.item.NoezItems;
 import net.tiramisu.noez.particles.NoezParticles;
