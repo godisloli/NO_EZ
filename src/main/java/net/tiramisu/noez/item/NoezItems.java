@@ -24,6 +24,9 @@ public class NoezItems {
     public static final RegistryObject<SwordItem> NATURABLADE = ITEMS.register("naturablade",
             ()-> new NaturaBlade(Tiers.NETHERITE,3,-2.4F, new Item.Properties().durability(2500)));
 
+    public static final RegistryObject<Item> INFUSED_COPPER = ITEMS.register("infused_copper",
+            () -> new Item(new Item.Properties().stacksTo(64)));
+
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
     }

@@ -22,6 +22,7 @@ public class NoezCreativeModTabs {
                         pOutput.accept(NoezBlocks.SOUL_BLOCK.get());
                         pOutput.accept(NoezItems.RELOCATOR.get());
                         pOutput.accept(NoezItems.NATURABLADE.get());
+                        pOutput.accept(NoezItems.INFUSED_COPPER.get());
                     })
                     .build());
 
