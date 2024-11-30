@@ -10,6 +10,8 @@ public class Starter {
             GameRules gameRules = event.getServer().getGameRules();
             GameRules.BooleanValue naturalRegenRule = gameRules.getRule(GameRules.RULE_NATURAL_REGENERATION);
             naturalRegenRule.set(false, event.getServer());
+            GameRules.BooleanValue keepInventoryRule = gameRules.getRule(GameRules.RULE_KEEPINVENTORY);
+            keepInventoryRule.set(true, event.getServer());
         }
     }
 }
