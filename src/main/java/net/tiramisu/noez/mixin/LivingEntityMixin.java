@@ -6,9 +6,11 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
@@ -67,9 +69,22 @@ public abstract class LivingEntityMixin extends Entity {
     private void onSwingNaturaBlade(InteractionHand hand, CallbackInfo ci) {
         if ((Object) this instanceof Player player) {
             if (player.getMainHandItem().getItem() instanceof NaturaBlade) {
-                if (!player.level().isClientSide) {
+                ItemStack weapon = player.getMainHandItem();
+                if (!player.level().isClientSide && !(weapon.getDamageValue() >= weapon.getMaxDamage() - 1)) {
                     fireProjectileNatura(player);
                 }
+            }
+        }
+    }
+
+    @Inject(method = "hurt", at = @At("HEAD"), cancellable = true)
+    private void reduceDamageOnLowDurability(DamageSource pSource, float pAmount, CallbackInfoReturnable<Boolean> cir) {
+        LivingEntity target = (LivingEntity) (Object) this;
+        if (pSource.getEntity() instanceof LivingEntity attacker) {
+            ItemStack weapon = attacker.getMainHandItem();
+            if (weapon.getDamageValue() >= weapon.getMaxDamage() - 1) {
+                target.hurt(target.damageSources().generic(), 1.0F);
+                cir.cancel();
             }
         }
     }

@@ -14,7 +14,8 @@
     "AnvilMenuMixin",
     "EnchantmentHelperMixin",
     "EnchantmentMenuMixin",
-    "VillagerTradeMixin"
+    "VillagerTradeMixin",
+    "ItemStackMixin"
   ],
   "injectors": {
     "defaultRequire": 1

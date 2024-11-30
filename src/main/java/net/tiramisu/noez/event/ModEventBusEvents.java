@@ -9,7 +9,6 @@ import net.tiramisu.noez.NOEZ;
 public class ModEventBusEvents {
     @SubscribeEvent
     public static void registerParticleFactories(final RegisterParticleProvidersEvent event) {
-        // Register the particle factory for the BUTTERFLY particle
         event.registerSpriteSet(
                 net.tiramisu.noez.particles.NoezParticles.BUTTERFLY.get(),
                 spriteSet -> new net.tiramisu.noez.particles.particle.Butterfly_Particles.Provider(spriteSet)
