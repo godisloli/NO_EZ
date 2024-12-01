@@ -7,12 +7,11 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 public class KnockBackResitant {
 
+    private float KNOCKBACK_MODIFIER = 3.5f; // % of original knockback
+
     @SubscribeEvent
     public void onLivingKnockBack(LivingKnockBackEvent event) {
-        // Get the entity experiencing knockback
         LivingEntity entity = event.getEntity();
-
-        // Apply knockback resistance on both sides
         if (entity.level().isClientSide()) {
             handleClientSideKnockBack(event, entity);
         } else {
@@ -21,25 +20,18 @@ public class KnockBackResitant {
     }
 
     private void handleClientSideKnockBack(LivingKnockBackEvent event, LivingEntity entity) {
-        // Reduce knockback for visual consistency on the client side
-        float reducedStrength = event.getStrength() * 0.35f; // Example: Reduce to 20% of normal
+        float reducedStrength = event.getStrength() * KNOCKBACK_MODIFIER;
         event.setStrength(reducedStrength);
-
-        double reducedX = event.getRatioX() * 0.35;
-        double reducedZ = event.getRatioZ() * 0.35;
+        double reducedX = event.getRatioX() * KNOCKBACK_MODIFIER;
+        double reducedZ = event.getRatioZ() * KNOCKBACK_MODIFIER;
 
         event.setRatioX(reducedX);
         event.setRatioZ(reducedZ);
     }
 
     private void handleServerSideKnockBack(LivingKnockBackEvent event, LivingEntity entity) {
-        // Reduce knockback logic on the server
-        float reducedStrength = event.getStrength() * 0.35f; // Example: Reduce to 20% of normal
-        event.setStrength(reducedStrength);
-
-        double reducedX = event.getRatioX() * 0.35;
-        double reducedZ = event.getRatioZ() * 0.35;
-
+        double reducedX = event.getRatioX() * KNOCKBACK_MODIFIER;
+        double reducedZ = event.getRatioZ() * KNOCKBACK_MODIFIER;
         event.setRatioX(reducedX);
         event.setRatioZ(reducedZ);
     }

@@ -24,8 +24,6 @@ import org.slf4j.Logger;
 import org.spongepowered.asm.mixin.Mixins;
 import net.tiramisu.noez.event.serverstarting.Starter;
 
-import javax.swing.text.html.MinimalHTMLWriter;
-
 @Mod(NOEZ.MOD_ID)
 public class NOEZ
 {

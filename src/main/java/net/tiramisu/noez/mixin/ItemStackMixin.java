@@ -24,10 +24,10 @@ public class ItemStackMixin {
     }
 
     @Inject(method = "use", at = @At("HEAD"), cancellable = true)
-    private void disableRightClick(Level level, Player player, InteractionHand hand, CallbackInfoReturnable<InteractionResultHolder<ItemStack>> cir) {
+    private void preventActionBrokenTool(Level level, Player player, InteractionHand hand, CallbackInfoReturnable<InteractionResultHolder<ItemStack>> cir) {
         ItemStack stack = (ItemStack) (Object) this;
         if (stack.getDamageValue() == stack.getMaxDamage() - 1) {
-            cir.setReturnValue(InteractionResultHolder.fail(stack)); // Disable right-click action
+            cir.setReturnValue(InteractionResultHolder.fail(stack));
         }
     }
 }

@@ -10,7 +10,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(value = SwordItem.class, remap = false)
-public class PlayerMixin{
+public class SwordItemMixin {
     @Inject(method = "canPerformAction", at = @At("HEAD"), cancellable = true)
     private void noSweepingAttack(ItemStack itemStack, ToolAction toolAction, CallbackInfoReturnable<Boolean> cir){
         if (toolAction == ToolActions.SWORD_SWEEP){

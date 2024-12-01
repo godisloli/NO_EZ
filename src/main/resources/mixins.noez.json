@@ -14,7 +14,7 @@
     "EnchantmentMenuMixin",
     "VillagerTradeMixin",
     "ItemStackMixin",
-    "PlayerMixin"
+    "SwordItemMixin"
   ],
   "injectors": {
     "defaultRequire": 1
