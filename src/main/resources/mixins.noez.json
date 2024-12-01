@@ -5,17 +5,16 @@
   "compatibilityLevel": "JAVA_17",
   "mixins": [
     "LivingEntityMixin",
-    "MinecraftMixin",
     "MobMixin",
     "MouseHandlerMixin",
-    "PlayerMixin",
     "ServerPlayerMixin",
     "EntityMixin",
     "AnvilMenuMixin",
     "EnchantmentHelperMixin",
     "EnchantmentMenuMixin",
     "VillagerTradeMixin",
-    "ItemStackMixin"
+    "ItemStackMixin",
+    "PlayerMixin"
   ],
   "injectors": {
     "defaultRequire": 1
