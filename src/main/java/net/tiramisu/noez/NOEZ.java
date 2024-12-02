@@ -20,6 +20,7 @@ import net.tiramisu.noez.event.global.*;
 import net.tiramisu.noez.item.NoezCreativeModTabs;
 import net.tiramisu.noez.item.NoezItems;
 import net.tiramisu.noez.particles.NoezParticles;
+import net.tiramisu.noez.util.NoezItemProperties;
 import org.slf4j.Logger;
 import org.spongepowered.asm.mixin.Mixins;
 import net.tiramisu.noez.event.serverstarting.Starter;
@@ -92,7 +93,7 @@ public class NOEZ
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event)
         {
-
+            NoezItemProperties.addCustomBowProperties(NoezItems.IRIDESCENT_BOW.get());
         }
     }
 }
