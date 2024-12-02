@@ -8,6 +8,7 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.tiramisu.noez.NOEZ;
+import net.tiramisu.noez.item.weaponstools.IridescentBow;
 import net.tiramisu.noez.item.weaponstools.NaturaBlade;
 import net.tiramisu.noez.item.weaponstools.Relocator;
 
@@ -22,13 +23,16 @@ public class NoezItems {
             ()-> new Relocator(new Item.Properties().stacksTo(1).durability(25)));
 
     public static final RegistryObject<SwordItem> NATURA_BLADE = ITEMS.register("naturablade",
-            ()-> new NaturaBlade(Tiers.NETHERITE,3,-2.4F, new Item.Properties().durability(2500)));
+            ()-> new NaturaBlade(Tiers.NETHERITE,3,-2.4F, new Item.Properties().durability(162)));
 
     public static final RegistryObject<Item> INFUSED_COPPER = ITEMS.register("infused_copper",
             () -> new Item(new Item.Properties().stacksTo(64)));
 
     public static final RegistryObject<Item> OBSIDIAN_SHARD = ITEMS.register("obsidian_shard",
             () -> new Item(new Item.Properties().stacksTo(64)));
+
+    public static final RegistryObject<Item> IRIDESCENT_BOW = ITEMS.register("iridescent_bow",
+            () -> new IridescentBow(new Item.Properties().stacksTo(1).durability(112)));
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);

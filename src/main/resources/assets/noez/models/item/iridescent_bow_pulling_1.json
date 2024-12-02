@@ -1,0 +1,6 @@
+{
+  "parent": "noez:item/iridescent_bow",
+  "textures": {
+    "layer0": "noez:item/iridescent_bow_pulling_1"
+  }
+}
