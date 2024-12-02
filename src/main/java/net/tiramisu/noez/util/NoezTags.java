@@ -10,7 +10,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.tiramisu.noez.NOEZ;
 
-public class Tags {
+public class NoezTags {
     public static class Blocks{
         public static TagKey<Block> BlockTag(String name){
             return BlockTags.create(new ResourceLocation(NOEZ.MOD_ID, name));

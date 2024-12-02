@@ -21,7 +21,7 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.level.Level;
 import net.tiramisu.noez.item.weaponstools.NaturaBlade;
-import net.tiramisu.noez.util.Tags;
+import net.tiramisu.noez.util.NoezTags;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -41,7 +41,7 @@ public abstract class LivingEntityMixin extends Entity {
         LivingEntity livingEntity = (LivingEntity)(Object)this;
         if (entity instanceof LivingEntity) {
             if (!LineOfSight.isLookingAtYou(livingEntity, (LivingEntity) entity)) {
-                if (entity.getType().is(Tags.Mobs.NO_LINE_OF_SIGHT))
+                if (entity.getType().is(NoezTags.Mobs.NO_LINE_OF_SIGHT))
                     cir.setReturnValue(false);
             }
         }

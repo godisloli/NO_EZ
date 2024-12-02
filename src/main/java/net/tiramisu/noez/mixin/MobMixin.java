@@ -6,7 +6,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
 import net.tiramisu.noez.effect.NoezEffects;
-import net.tiramisu.noez.util.Tags;
+import net.tiramisu.noez.util.NoezTags;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -32,7 +32,7 @@ public abstract class MobMixin {
         if (mob.getTarget() != null)
             return;
 
-        if (mob.getType().is(Tags.Mobs.NO_LINE_OF_SIGHT))
+        if (mob.getType().is(NoezTags.Mobs.NO_LINE_OF_SIGHT))
             return;
 
         Level level = mob.level();
