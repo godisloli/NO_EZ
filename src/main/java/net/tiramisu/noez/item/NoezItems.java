@@ -21,10 +21,13 @@ public class NoezItems {
     public static final RegistryObject<Item> RELOCATOR = ITEMS.register("relocator",
             ()-> new Relocator(new Item.Properties().stacksTo(1).durability(25)));
 
-    public static final RegistryObject<SwordItem> NATURABLADE = ITEMS.register("naturablade",
+    public static final RegistryObject<SwordItem> NATURA_BLADE = ITEMS.register("naturablade",
             ()-> new NaturaBlade(Tiers.NETHERITE,3,-2.4F, new Item.Properties().durability(2500)));
 
     public static final RegistryObject<Item> INFUSED_COPPER = ITEMS.register("infused_copper",
+            () -> new Item(new Item.Properties().stacksTo(64)));
+
+    public static final RegistryObject<Item> OBSIDIAN_SHARD = ITEMS.register("obsidian_shard",
             () -> new Item(new Item.Properties().stacksTo(64)));
 
     public static void register(IEventBus eventBus) {
