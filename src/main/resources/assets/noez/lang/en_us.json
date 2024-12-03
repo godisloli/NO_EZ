@@ -16,5 +16,8 @@
   "noez.relocator.tooltip2": "§6Cooldown: §r8 seconds",
   "noez.natura_blade.tooltip1": "§6On attack: §rFire a beam travels through walls dealing §44 Damage, §eRoot §rtarget and gain you §dRegeneration",
   "noez.natura_blade.tooltip2": "§6Cooldown: §r10 seconds",
+  "noez.iridescent_bow.tooltip1": "§6On shot: §rConvert any arrows into §bIridescent Arrows",
+  "noez.iridescent_bow.tooltip2": "§bIridescent Arrow§r: Not affected by gravity, pierces through targets and deals §7True Damage§r, stops when kill a target",
+
   "creativetab.noez_tab": "Souls"
 }
