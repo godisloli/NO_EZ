@@ -49,6 +49,7 @@ public class NOEZ
         NoezParticles.register(modEventBus);
         NoezEffects.register(modEventBus);
         MinecraftForge.EVENT_BUS.register(this);
+        MinecraftForge.EVENT_BUS.register(new NoMiningToolBreak());
         MinecraftForge.EVENT_BUS.register(new LineOfSight());
         MinecraftForge.EVENT_BUS.register(new NoAttackWhenCooldown());
         MinecraftForge.EVENT_BUS.register(new KnockBackResitant());
