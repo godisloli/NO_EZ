@@ -24,6 +24,7 @@ public class IridescentArrow extends AbstractArrow {
     public IridescentArrow(EntityType<? extends IridescentArrow> type, Level level) {
         super(type, level);
         this.setNoGravity(true);
+        this.setPierceLevel((byte) PIERCING_NUMBER);
     }
 
     public IridescentArrow(Level level, LivingEntity shooter) {

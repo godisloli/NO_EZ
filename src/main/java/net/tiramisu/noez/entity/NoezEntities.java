@@ -1,6 +1,5 @@
 package net.tiramisu.noez.entity;
 
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -9,6 +8,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.tiramisu.noez.NOEZ;
 import net.tiramisu.noez.entity.arrows.IridescentArrow;
+import net.tiramisu.noez.entity.arrows.RootProjectile;
 
 
 public class NoezEntities {
@@ -21,6 +21,13 @@ public class NoezEntities {
                     .clientTrackingRange(8)
                     .updateInterval(10)
                     .build(NOEZ.MOD_ID + ":iridescent_arrow"));
+
+    public static final RegistryObject<EntityType<RootProjectile>> ROOT_PROJECTILE = ENTITY_TYPES.register("root_projectile",
+            () -> EntityType.Builder.<RootProjectile>of(RootProjectile::new, MobCategory.MISC)
+                    .sized(0.5F, 0.5F)
+                    .clientTrackingRange(8)
+                    .updateInterval(10)
+                    .build(NOEZ.MOD_ID + ":root_projectile"));
 
     public static void register(IEventBus eventBus){
         ENTITY_TYPES.register(eventBus);

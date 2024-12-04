@@ -22,8 +22,7 @@ public class NoezItems {
     public static final RegistryObject<Item> RELOCATOR = ITEMS.register("relocator",
             ()-> new Relocator(new Item.Properties().stacksTo(1).durability(25)));
 
-    public static final RegistryObject<SwordItem> NATURA_BLADE = ITEMS.register("naturablade",
-            ()-> new NaturaBlade(Tiers.NETHERITE,3,-2.4F, new Item.Properties().durability(162)));
+    public static final RegistryObject<Item> NATURA_BLADE = ITEMS.register("natura_blade", NaturaBlade::new);
 
     public static final RegistryObject<Item> INFUSED_COPPER = ITEMS.register("infused_copper",
             () -> new Item(new Item.Properties().stacksTo(64)));

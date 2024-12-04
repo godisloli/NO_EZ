@@ -14,6 +14,16 @@ public class NoezArrowRenderer extends ArrowRenderer {
 
     @Override
     public ResourceLocation getTextureLocation(Entity pEntity) {
-        return new ResourceLocation(NOEZ.MOD_ID, "textures/entity/iridescent_arrow.png");
+        String textureName = Location(pEntity);
+        return new ResourceLocation(NOEZ.MOD_ID, "textures/entity/" + textureName + ".png");
+    }
+
+    private String Location(Entity entity){
+        if (entity.getType().toString().contains("iridescent_arrow")) {
+            return "iridescent_arrow";
+        } else if (entity.getType().toString().contains("root_projectile")) {
+            return "root_projectile";
+        }
+        return "default_arrow";
     }
 }

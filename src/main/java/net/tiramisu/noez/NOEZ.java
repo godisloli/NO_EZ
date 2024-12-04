@@ -100,6 +100,7 @@ public class NOEZ
         @SubscribeEvent
         public static void onRegisterRenderers(EntityRenderersEvent.RegisterRenderers event) {
             event.registerEntityRenderer(NoezEntities.IRIDESCENT_ARROW.get(),NoezArrowRenderer::new);
+            event.registerEntityRenderer(NoezEntities.ROOT_PROJECTILE.get(),NoezArrowRenderer::new);
         }
     }
 }
