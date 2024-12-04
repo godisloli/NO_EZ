@@ -1,19 +1,23 @@
 package net.tiramisu.noez.item;
 
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.SwordItem;
 import net.minecraft.world.item.Tiers;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.tiramisu.noez.network.NoezNetwork;
+import net.tiramisu.noez.network.SwingPacket;
 
 import java.util.function.BiConsumer;
 
 public abstract class ProjectileSword extends SwordItem {
-    private final int cooldownTicks; // Cooldown in ticks
+    private final int cooldownTicks;
     private final BiConsumer<Player, LivingEntity> onHitEffect;
 
     public ProjectileSword(Properties properties, int cooldownTicks, BiConsumer<Player, LivingEntity> onHitEffect) {
@@ -24,7 +28,7 @@ public abstract class ProjectileSword extends SwordItem {
         eventBus.register(this);
     }
 
-    protected abstract void onSwing(Player player, ItemStack stack);
+    public abstract void onSwing(Player player, ItemStack stack);
 
     @Override
     public boolean hurtEnemy(ItemStack stack, LivingEntity target, LivingEntity attacker) {
@@ -36,7 +40,19 @@ public abstract class ProjectileSword extends SwordItem {
 
     @SubscribeEvent
     public void onPlayerSwing(PlayerInteractEvent.LeftClickEmpty event) {
-        handleSwing(event);
+        if (event.getEntity().level().isClientSide) {
+            NoezNetwork.CHANNEL.sendToServer(new SwingPacket(cooldownTicks));
+        }
+    }
+
+    @SubscribeEvent
+    public void onHit(AttackEntityEvent event) {
+        Player player = event.getEntity();
+        ItemStack heldItem = player.getMainHandItem();
+        if (heldItem.getItem() instanceof ProjectileSword && !player.getCooldowns().isOnCooldown(this)) {
+            onSwing(player, heldItem);
+            player.getCooldowns().addCooldown(this, cooldownTicks);
+        }
     }
 
     @SubscribeEvent
@@ -47,9 +63,9 @@ public abstract class ProjectileSword extends SwordItem {
     private void handleSwing(PlayerInteractEvent event) {
         Player player = event.getEntity();
         ItemStack heldItem = player.getMainHandItem();
-        if (heldItem.getItem() instanceof ProjectileSword && !player.getCooldowns().isOnCooldown(this)) {
-            onSwing(player, heldItem);
-            player.getCooldowns().addCooldown(this, cooldownTicks);
+            if (heldItem.getItem() instanceof ProjectileSword && !player.getCooldowns().isOnCooldown(this)) {
+                onSwing(player, heldItem);
+                player.getCooldowns().addCooldown(this, cooldownTicks);
         }
     }
 

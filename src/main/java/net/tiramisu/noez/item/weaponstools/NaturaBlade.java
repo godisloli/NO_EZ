@@ -29,13 +29,13 @@ public class NaturaBlade extends ProjectileSword {
     }
 
     @Override
-    protected void onSwing(Player player, ItemStack stack) {
+    public void onSwing(Player player, ItemStack stack) {
         Level level = player.level();
         if (!level.isClientSide) {
             RootProjectile projectile = new RootProjectile(level, player);
             projectile.setOwner(player);
-            projectile.setPos(player.getX(), player.getEyeY() - 0.1F, player.getZ());
-            projectile.shootFromRotation(player, player.getXRot(), player.getYRot(), 0.0F,  2.5F, 1.0F);
+            projectile.setLifespan(40);
+            projectile.shootFromRotation(player, player.getXRot(), player.getYRot(), 0.0F,  2.0F, 1.0F);
             level.addFreshEntity(projectile);
             level.playSound(null, player.getX(), player.getY(), player.getZ(),
                     SoundEvents.CHERRY_LEAVES_BREAK, SoundSource.PLAYERS, 2.0F, 1.0F);

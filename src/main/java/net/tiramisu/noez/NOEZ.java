@@ -21,6 +21,7 @@ import net.tiramisu.noez.entity.NoezEntities;
 import net.tiramisu.noez.event.global.*;
 import net.tiramisu.noez.item.NoezCreativeModTabs;
 import net.tiramisu.noez.item.NoezItems;
+import net.tiramisu.noez.network.NoezNetwork;
 import net.tiramisu.noez.particles.NoezParticles;
 import net.tiramisu.noez.util.NoezItemProperties;
 import org.slf4j.Logger;
@@ -41,40 +42,28 @@ public class NOEZ
     public NOEZ(FMLJavaModLoadingContext context)
     {
         IEventBus modEventBus = context.getModEventBus();
-
         NoezCreativeModTabs.register(modEventBus);
-
         NoezItems.register(modEventBus);
-
         NoezBlocks.register(modEventBus);
-
         NoezEntities.register(modEventBus);
-
         NoezParticles.register(modEventBus);
-
-        MinecraftForge.EVENT_BUS.register(this);
-
-        modEventBus.addListener(this::addCreative);
-
         NoezEffects.register(modEventBus);
-
+        MinecraftForge.EVENT_BUS.register(this);
         MinecraftForge.EVENT_BUS.register(new LineOfSight());
-
         MinecraftForge.EVENT_BUS.register(new NoAttackWhenCooldown());
-
         MinecraftForge.EVENT_BUS.register(new KnockBackResitant());
-
         MinecraftForge.EVENT_BUS.register(new GlobalMobDrops());
-
         MinecraftForge.EVENT_BUS.register(new UndeadSurvival());
-
         MinecraftForge.EVENT_BUS.register(new InvisibleRework());
-
         context.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
+        modEventBus.addListener(this::addCreative);
+        modEventBus.addListener(this::commonSetup);
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
-
+        event.enqueueWork(() -> {
+            NoezNetwork.registerPackets();
+        });
     }
 
 

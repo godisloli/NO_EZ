@@ -37,7 +37,7 @@ public class IridescentBow extends BowItem {
                 float force = getPowerForTime(charge);
                 if (force >= 0.1F && !pLevel.isClientSide) {
                     IridescentArrow arrow = new IridescentArrow(pLevel, player);
-                    arrow.setBaseDamage(0.1f);
+                    arrow.setBaseDamage(force * 1F);
                     arrow.setTrueDamage(force * 3.0F);
                     arrow.shootFromRotation(player, player.getXRot(), player.getYRot(), 0.0F, force * 2.5F, 1.0F);
                     int lifespan = (int) (40 * force);

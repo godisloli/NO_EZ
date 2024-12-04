@@ -46,10 +46,15 @@ public class IridescentArrow extends AbstractArrow {
     @Override
     public void tick() {
         super.tick();
+        setNoPickUp();
         spawnArrowParticles();
         if (this.tickCount >= this.entityData.get(LIFESPAN)) {
             this.discard();
         }
+    }
+
+    private void setNoPickUp() {
+        this.pickup = Pickup.DISALLOWED;
     }
 
     public void setTrueDamage(float damage){
@@ -64,7 +69,6 @@ public class IridescentArrow extends AbstractArrow {
                     super.onHitEntity(hitResult);
                     return;
                 }
-            target.hurt(this.damageSources().generic(), 0.0f);
             try {
                 float newHealth = target.getHealth() - IRIDESCENT_DAMAGE;
                 if (newHealth < IRIDESCENT_DAMAGE) {

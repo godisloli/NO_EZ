@@ -24,7 +24,7 @@ public class NoezEntities {
 
     public static final RegistryObject<EntityType<RootProjectile>> ROOT_PROJECTILE = ENTITY_TYPES.register("root_projectile",
             () -> EntityType.Builder.<RootProjectile>of(RootProjectile::new, MobCategory.MISC)
-                    .sized(0.5F, 0.5F)
+                    .sized(0.2F, 0.2F)
                     .clientTrackingRange(8)
                     .updateInterval(10)
                     .build(NOEZ.MOD_ID + ":root_projectile"));

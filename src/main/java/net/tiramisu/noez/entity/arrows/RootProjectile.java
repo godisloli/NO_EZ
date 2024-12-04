@@ -24,6 +24,7 @@ public class RootProjectile extends AbstractArrow {
     private static final EntityDataAccessor<Integer> LIFESPAN = SynchedEntityData.defineId(RootProjectile.class, EntityDataSerializers.INT);
     private final float ROOT_PROJECTILE_DAMAGE = 4.0f;
     private final int ROOT_PROJECTILE_DURATION = 40; //ticks
+    private final int HEALING_DURATION = 30;
 
     public RootProjectile (EntityType<? extends RootProjectile> entityType, Level level){
         super(entityType, level);
@@ -43,9 +44,10 @@ public class RootProjectile extends AbstractArrow {
             target.hurt(this.damageSources().arrow(this, this.getOwner()), this.ROOT_PROJECTILE_DAMAGE);
             target.addEffect(new MobEffectInstance(NoezEffects.ROOT.get(), ROOT_PROJECTILE_DURATION));
             if (this.getOwner() != null && this.getOwner() instanceof LivingEntity shooter){
-                shooter.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 40));
+                shooter.addEffect(new MobEffectInstance(MobEffects.REGENERATION, HEALING_DURATION));
             }
         }
+        this.discard();
         super.onHitEntity(hitResult);
     }
 
@@ -62,10 +64,15 @@ public class RootProjectile extends AbstractArrow {
     @Override
     public void tick() {
         super.tick();
+        setNoPickUp();
         spawnArrowParticles();
         if (this.tickCount >= this.entityData.get(LIFESPAN)) {
             this.discard();
         }
+    }
+
+    private void setNoPickUp() {
+        this.pickup = Pickup.DISALLOWED;
     }
 
     private void spawnArrowParticles() {
