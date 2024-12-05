@@ -56,6 +56,7 @@ public class NOEZ
         MinecraftForge.EVENT_BUS.register(new GlobalMobDrops());
         MinecraftForge.EVENT_BUS.register(new UndeadSurvival());
         MinecraftForge.EVENT_BUS.register(new InvisibleRework());
+        MinecraftForge.EVENT_BUS.register(new EnemiesRegen());
         context.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
         modEventBus.addListener(this::addCreative);
         modEventBus.addListener(this::commonSetup);
