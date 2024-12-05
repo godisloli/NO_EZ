@@ -36,6 +36,7 @@ public abstract class LivingEntityMixin extends Entity {
     public LivingEntityMixin(EntityType<?> entityType, Level world) {
         super(entityType, world);
     }
+
     @Inject(at = @At("HEAD"), method = "hasLineOfSight", cancellable = true)
     void isLookingAtMe(Entity entity, CallbackInfoReturnable<Boolean> cir) {
         LivingEntity livingEntity = (LivingEntity)(Object)this;
