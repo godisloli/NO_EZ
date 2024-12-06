@@ -17,7 +17,7 @@ import java.util.List;
 public class NaturaBlade extends ProjectileSword {
     public NaturaBlade() {
         super(
-                new Properties().stacksTo(1),
+                new Properties().stacksTo(1).durability(190),
                 200, // Cooldown in ticks
                 null,
                 NoezToolTier.MEDIUM,
