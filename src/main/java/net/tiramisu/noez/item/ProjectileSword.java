@@ -19,8 +19,8 @@ public abstract class ProjectileSword extends SwordItem {
     private final int cooldownTicks;
     private final BiConsumer<Player, LivingEntity> onHitEffect;
 
-    public ProjectileSword(Properties properties, int cooldownTicks, BiConsumer<Player, LivingEntity> onHitEffect) {
-        super(Tiers.NETHERITE, 3, -2.4F, properties);
+    public ProjectileSword(Properties properties, int cooldownTicks, BiConsumer<Player, LivingEntity> onHitEffect, Tiers tiers, int Damage, float AtkSpeed) {
+        super(tiers, Damage, AtkSpeed, properties);
         this.cooldownTicks = cooldownTicks;
         this.onHitEffect = onHitEffect;
         IEventBus eventBus = MinecraftForge.EVENT_BUS;

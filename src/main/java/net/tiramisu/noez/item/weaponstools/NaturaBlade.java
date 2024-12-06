@@ -18,7 +18,10 @@ public class NaturaBlade extends ProjectileSword {
         super(
                 new Properties().stacksTo(1),
                 200, // Cooldown in ticks
-                null
+                null,
+                Tiers.NETHERITE,
+                3,
+                -2.4f
         );
     }
     @Override
