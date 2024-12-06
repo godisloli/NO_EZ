@@ -7,6 +7,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.Level;
 import net.tiramisu.noez.entity.arrows.RootProjectile;
+import net.tiramisu.noez.item.NoezToolTier;
 import net.tiramisu.noez.item.ProjectileSword;
 import org.jetbrains.annotations.Nullable;
 
@@ -19,7 +20,7 @@ public class NaturaBlade extends ProjectileSword {
                 new Properties().stacksTo(1),
                 200, // Cooldown in ticks
                 null,
-                Tiers.NETHERITE,
+                NoezToolTier.MEDIUM,
                 3,
                 -2.4f
         );

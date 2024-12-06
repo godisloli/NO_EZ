@@ -4,7 +4,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.SwordItem;
-import net.minecraft.world.item.Tiers;
+import net.minecraft.world.item.Tier;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
@@ -15,12 +15,12 @@ import net.tiramisu.noez.network.SwingPacket;
 
 import java.util.function.BiConsumer;
 
-public abstract class ProjectileSword extends SwordItem {
+public abstract class ProjectileSword extends SwordItem{
     private final int cooldownTicks;
     private final BiConsumer<Player, LivingEntity> onHitEffect;
 
-    public ProjectileSword(Properties properties, int cooldownTicks, BiConsumer<Player, LivingEntity> onHitEffect, Tiers tiers, int Damage, float AtkSpeed) {
-        super(tiers, Damage, AtkSpeed, properties);
+    public ProjectileSword(Properties properties, int cooldownTicks, BiConsumer<Player, LivingEntity> onHitEffect, Tier tier, int Damage, float AtkSpeed) {
+        super(tier, Damage, AtkSpeed, properties);
         this.cooldownTicks = cooldownTicks;
         this.onHitEffect = onHitEffect;
         IEventBus eventBus = MinecraftForge.EVENT_BUS;
