@@ -10,6 +10,7 @@ import net.minecraftforge.registries.RegistryObject;
 import net.tiramisu.noez.NOEZ;
 import net.tiramisu.noez.item.weaponstools.IridescentBow;
 import net.tiramisu.noez.item.weaponstools.NaturaBlade;
+import net.tiramisu.noez.item.weaponstools.ObsidianBlade;
 import net.tiramisu.noez.item.weaponstools.Relocator;
 
 public class NoezItems {
@@ -29,6 +30,9 @@ public class NoezItems {
 
     public static final RegistryObject<Item> OBSIDIAN_SHARD = ITEMS.register("obsidian_shard",
             () -> new Item(new Item.Properties().stacksTo(64)));
+
+    public static final RegistryObject<Item> OBSIDIAN_BLADE = ITEMS.register("obsidian_blade",
+            () -> new ObsidianBlade(NoezToolTier.HEAVY, 4, -3.5f, new Item.Properties().stacksTo(1).durability(250)));
 
     public static final RegistryObject<Item> IRIDESCENT_BOW = ITEMS.register("iridescent_bow",
             () -> new IridescentBow(new Item.Properties().stacksTo(1).durability(112)));

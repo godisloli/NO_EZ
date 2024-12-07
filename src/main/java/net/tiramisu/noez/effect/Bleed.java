@@ -11,10 +11,9 @@ public class Bleed extends MobEffect {
 
     @Override
     public void applyEffectTick(LivingEntity entity, int amplifier) {
-        // Apply damage over time every tick
         if (!entity.level().isClientSide) {
             double damage = getDamagePerLevel(amplifier);
-            entity.hurt(entity.damageSources().magic(), (float) damage);  // Apply magic damage
+            entity.hurt(entity.damageSources().magic(), (float) damage);
         }
     }
 
@@ -24,7 +23,6 @@ public class Bleed extends MobEffect {
     }
 
     private double getDamagePerLevel(int amplifier) {
-        // Return damage based on the level (amplifier)
         switch (amplifier) {
             case 0: return 1.0;
             case 1: return 1.5;
