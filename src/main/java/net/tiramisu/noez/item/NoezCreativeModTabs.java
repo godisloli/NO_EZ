@@ -22,6 +22,8 @@ public class NoezCreativeModTabs {
                         pOutput.accept(NoezBlocks.SOUL_BLOCK.get());
                         pOutput.accept(NoezItems.RELOCATOR.get());
                         pOutput.accept(NoezItems.NATURA_BLADE.get());
+                        pOutput.accept(NoezItems.OBSIDIAN_BLADE.get());
+                        pOutput.accept(NoezItems.HELLFIRE_SWORD.get());
                         pOutput.accept(NoezItems.INFUSED_COPPER.get());
                         pOutput.accept(NoezItems.OBSIDIAN_SHARD.get());
                         pOutput.accept(NoezItems.IRIDESCENT_BOW.get());

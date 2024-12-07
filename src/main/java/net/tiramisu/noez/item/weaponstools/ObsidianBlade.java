@@ -18,6 +18,7 @@ public class ObsidianBlade extends SwordItem {
     public ObsidianBlade(Tier tier, int Damage, float AttackSpeed, Properties properties){
         super(tier, Damage, AttackSpeed, properties);
     }
+
     @Override
     public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
         pTooltipComponents.add(Component.translatable("noez.obsidian_blade.tooltip1"));

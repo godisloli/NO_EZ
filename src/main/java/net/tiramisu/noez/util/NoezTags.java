@@ -29,6 +29,7 @@ public class NoezTags {
 
     public static class Mobs {
         public static final TagKey<EntityType<?>>  NO_LINE_OF_SIGHT = MobTag("no_line_of_sight");
+        public static final TagKey<EntityType<?>> CONSTRUCT_MOBS = MobTag("construct_mobs");
 
         public static TagKey<EntityType<?>> MobTag(String name) {
             return TagKey.create(BuiltInRegistries.ENTITY_TYPE.key(), new ResourceLocation(NOEZ.MOD_ID, name));

@@ -1,17 +1,12 @@
 package net.tiramisu.noez.item;
 
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.SwordItem;
-import net.minecraft.world.item.Tiers;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.tiramisu.noez.NOEZ;
-import net.tiramisu.noez.item.weaponstools.IridescentBow;
-import net.tiramisu.noez.item.weaponstools.NaturaBlade;
-import net.tiramisu.noez.item.weaponstools.ObsidianBlade;
-import net.tiramisu.noez.item.weaponstools.Relocator;
+import net.tiramisu.noez.item.weaponstools.*;
 
 public class NoezItems {
     public static final DeferredRegister<Item> ITEMS =
@@ -33,6 +28,9 @@ public class NoezItems {
 
     public static final RegistryObject<Item> OBSIDIAN_BLADE = ITEMS.register("obsidian_blade",
             () -> new ObsidianBlade(NoezToolTier.HEAVY, 4, -3.5f, new Item.Properties().stacksTo(1).durability(250)));
+
+    public static final RegistryObject<Item> HELLFIRE_SWORD = ITEMS.register("hellfire_sword",
+            () -> new HellfireSword(NoezToolTier.MEDIUM,2,-2.4f, new Item.Properties().stacksTo(1).durability(152)));
 
     public static final RegistryObject<Item> IRIDESCENT_BOW = ITEMS.register("iridescent_bow",
             () -> new IridescentBow(new Item.Properties().stacksTo(1).durability(112)));

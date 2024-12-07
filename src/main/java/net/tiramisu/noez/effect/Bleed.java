@@ -3,6 +3,7 @@ package net.tiramisu.noez.effect;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.LivingEntity;
+import net.tiramisu.noez.util.NoezTags;
 
 public class Bleed extends MobEffect {
     public Bleed(){
@@ -11,7 +12,7 @@ public class Bleed extends MobEffect {
 
     @Override
     public void applyEffectTick(LivingEntity entity, int amplifier) {
-        if (!entity.level().isClientSide) {
+        if (!entity.level().isClientSide & !entity.getType().is(NoezTags.Mobs.CONSTRUCT_MOBS)) {
             double damage = getDamagePerLevel(amplifier);
             entity.hurt(entity.damageSources().magic(), (float) damage);
         }
@@ -25,10 +26,10 @@ public class Bleed extends MobEffect {
     private double getDamagePerLevel(int amplifier) {
         switch (amplifier) {
             case 0: return 1.0;
-            case 1: return 1.5;
-            case 2: return 2.0;
-            case 3: return 2.5;
-            case 4: return 3.0;
+            case 1: return 1.25;
+            case 2: return 1.5;
+            case 3: return 2.0;
+            case 4: return 2.5;
             default: return 5.0; // Maximum damage if level > 4
         }
     }
