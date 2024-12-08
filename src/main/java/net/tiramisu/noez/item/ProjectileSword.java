@@ -2,6 +2,7 @@ package net.tiramisu.noez.item;
 
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.SwordItem;
 import net.minecraft.world.item.Tier;
@@ -29,8 +30,14 @@ public abstract class ProjectileSword extends SwordItem{
 
     public abstract void onSwing(Player player, ItemStack stack);
 
+    public boolean isBroken(ItemStack itemStack){
+        return itemStack.getDamageValue() == itemStack.getMaxDamage() - 1;
+    }
+
     @Override
     public boolean hurtEnemy(ItemStack stack, LivingEntity target, LivingEntity attacker) {
+        if (isBroken(stack))
+            return super.hurtEnemy(stack, target, attacker);
         if (attacker instanceof Player player && onHitEffect != null) {
             onHitEffect.accept(player, target);
         }
@@ -39,6 +46,8 @@ public abstract class ProjectileSword extends SwordItem{
 
     @SubscribeEvent
     public void onPlayerSwing(PlayerInteractEvent.LeftClickEmpty event) {
+        if (isBroken(event.getItemStack()))
+            return;
         if (event.getEntity().level().isClientSide) {
             NoezNetwork.CHANNEL.sendToServer(new SwingPacket(cooldownTicks));
         }
@@ -48,6 +57,8 @@ public abstract class ProjectileSword extends SwordItem{
     public void onHit(AttackEntityEvent event) {
         Player player = event.getEntity();
         ItemStack heldItem = player.getMainHandItem();
+        if (isBroken(heldItem))
+            return;
         if (heldItem.getItem() instanceof ProjectileSword && !player.getCooldowns().isOnCooldown(this)) {
             onSwing(player, heldItem);
             player.getCooldowns().addCooldown(this, cooldownTicks);
@@ -55,16 +66,14 @@ public abstract class ProjectileSword extends SwordItem{
     }
 
     @SubscribeEvent
-    public void onPlayerSwingBlock(PlayerInteractEvent.LeftClickBlock event) {
-        handleSwing(event);
-    }
-
-    private void handleSwing(PlayerInteractEvent event) {
+    public void onHitBlock(PlayerInteractEvent.LeftClickBlock event) {
         Player player = event.getEntity();
         ItemStack heldItem = player.getMainHandItem();
-            if (heldItem.getItem() instanceof ProjectileSword && !player.getCooldowns().isOnCooldown(this)) {
-                onSwing(player, heldItem);
-                player.getCooldowns().addCooldown(this, cooldownTicks);
+        if (isBroken(heldItem))
+            return;
+        if (heldItem.getItem() instanceof ProjectileSword && !player.getCooldowns().isOnCooldown(this)) {
+            onSwing(player, heldItem);
+            player.getCooldowns().addCooldown(this, cooldownTicks);
         }
     }
 

@@ -10,7 +10,6 @@ import net.tiramisu.noez.entity.arrows.RootProjectile;
 import net.tiramisu.noez.item.NoezToolTier;
 import net.tiramisu.noez.item.ProjectileSword;
 import org.jetbrains.annotations.Nullable;
-
 import java.util.List;
 
 

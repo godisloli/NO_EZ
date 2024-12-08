@@ -22,7 +22,8 @@
   "noez.iridescent_bow.tooltip2": "§bIridescent Arrow§r: Not affected by gravity, pierces through targets and deals §7True Damage§r, stops when kill a target",
   "noez.obsidian_blade.tooltip1": "§6On attack: §4Bleed§r target",
   "noez.obsidian_blade.tooltip2": "§6Cooldown: §r12 seconds",
-  "noez.hellfire_sword.tooltip1": "§6On attack: §rSet target on fire",
+  "noez.hellfire_sword.tooltip1": "§6Passive: §rSet target on fire. For each target set on fire by this sword, you gain %s bonus damage (Max: %s).",
+  "noez.hellfire_sword.tooltip2": "§7Lose all Bonus Damage if you stop attacking for %s §7seconds",
 
   "creativetab.noez_tab": "Souls"
 }
