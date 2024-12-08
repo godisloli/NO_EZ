@@ -33,6 +33,11 @@ public class ObsidianBlade extends SwordItem {
                 target.addEffect(new MobEffectInstance(NoezEffects.BLEED.get(), BLEED_DURATION * 20, 2));
                 player.getCooldowns().addCooldown(this, COOLDOWN * 20);
             }
+            float baseDamage = (float) this.getDamage();
+            float ignoredArmor = target.getArmorValue() * 0.3f; // 30% of armor
+            float armorReduction = ignoredArmor / 2; // Each point of armor reduces damage by 0.5 (vanilla formula)
+            float finalDamage = baseDamage + armorReduction;
+            target.hurt(attacker.damageSources().mobAttack(attacker), finalDamage);
         }
         return super.hurtEnemy(stack, target, attacker);
     }

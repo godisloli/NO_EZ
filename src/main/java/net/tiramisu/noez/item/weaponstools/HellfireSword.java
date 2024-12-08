@@ -1,6 +1,8 @@
 package net.tiramisu.noez.item.weaponstools;
 
 import net.minecraft.network.chat.Component;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
@@ -41,6 +43,14 @@ public class HellfireSword extends SwordItem {
     public boolean hurtEnemy(ItemStack pStack, LivingEntity pTarget, LivingEntity pAttacker) {
         if (!(pStack.getDamageValue() == pStack.getMaxDamage() - 1) && !pTarget.fireImmune()) {
             if (!pTarget.level().isClientSide()) {
+                pAttacker.level().playSound(
+                        null,
+                        pTarget.getX(),pTarget.getY(),pTarget.getZ(),
+                        SoundEvents.FIRECHARGE_USE,
+                        SoundSource.PLAYERS,
+                        1.0f,
+                        1.0f
+                );
                 pTarget.setSecondsOnFire(4);
                 applyDamageBoost(pAttacker, pTarget);
                 lastAttackTime = pAttacker.level().getGameTime();
@@ -55,9 +65,7 @@ public class HellfireSword extends SwordItem {
             affectedTargets.add(targetUUID);
             AttributeModifier existingModifier = pAttacker.getAttribute(Attributes.ATTACK_DAMAGE)
                     .getModifier(DAMAGE_BOOST_UUID);
-
             double currentBoost = existingModifier != null ? existingModifier.getAmount() : 0.0;
-
             if (currentBoost < MAX_DAMAGE_BOOST) {
                 double newBoost = Math.min(currentBoost + DAMAGE_BOOST_PER_TARGET, MAX_DAMAGE_BOOST);
                 if (existingModifier != null) {
@@ -96,7 +104,6 @@ public class HellfireSword extends SwordItem {
     private void removeDamageBoost(LivingEntity pAttacker) {
         AttributeModifier existingModifier = pAttacker.getAttribute(Attributes.ATTACK_DAMAGE)
                 .getModifier(DAMAGE_BOOST_UUID);
-
         if (existingModifier != null) {
             pAttacker.getAttribute(Attributes.ATTACK_DAMAGE).removeModifier(DAMAGE_BOOST_UUID);
         }

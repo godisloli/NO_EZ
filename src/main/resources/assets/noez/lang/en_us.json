@@ -7,6 +7,7 @@
   "item.noez.iridescent_bow": "§dIridescent Bow",
   "item.noez.obsidian_blade": "Obsidian Blade",
   "item.noez.hellfire_sword": "§cHellfire Sword",
+  "item.noez.frostbane_sword": "§bFrostbane Sword",
 
   "block.noez.soul_block": "Block of Soul",
 
@@ -24,6 +25,8 @@
   "noez.obsidian_blade.tooltip2": "§6Cooldown: §r12 seconds",
   "noez.hellfire_sword.tooltip1": "§6Passive: §rSet target on fire. For each target set on fire by this sword, you gain %s bonus damage (Max: %s).",
   "noez.hellfire_sword.tooltip2": "§7Lose all Bonus Damage if you stop attacking for %s §7seconds",
+  "noez.frostbane_sword.tooltip1": "§6Passive: §rFroze target. This sword deals more damage and increase frost duration to target that immune to fire",
+  "noez.frostbane_sword.tooltip2": "",
 
   "creativetab.noez_tab": "Souls"
 }

@@ -32,6 +32,9 @@ public class NoezItems {
     public static final RegistryObject<Item> HELLFIRE_SWORD = ITEMS.register("hellfire_sword",
             () -> new HellfireSword(NoezToolTier.MEDIUM,2,-2.4f, new Item.Properties().stacksTo(1).durability(152)));
 
+    public static final RegistryObject<Item> FROSTBANE_SWORD = ITEMS.register("frostbane_sword",
+            () -> new FrostbaneSword(NoezToolTier.MEDIUM,2,-2.4f, new Item.Properties().stacksTo(1).durability(152)));
+
     public static final RegistryObject<Item> IRIDESCENT_BOW = ITEMS.register("iridescent_bow",
             () -> new IridescentBow(new Item.Properties().stacksTo(1).durability(112)));
 
