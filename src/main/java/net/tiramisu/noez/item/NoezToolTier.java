@@ -4,7 +4,7 @@ import net.minecraft.world.item.Tier;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.tiramisu.noez.util.NoezTags;
 
-public enum NoezToolTier implements Tier {
+public enum NoezToolTier implements Tier{
     LIGHT(2, 89, 12.0F, 2.0F, 22, Ingredient.of(NoezTags.Items.LIGHT_WEAPON_REPAIRABLE)),
     MEDIUM(3,125, 10.0F, 3.5F, 22, Ingredient.of(NoezTags.Items.MEDIUM_WEAPON_REPAIRABLE)),
     HEAVY(4,172, 10.0F, 5F, 22, Ingredient.of(NoezTags.Items.HEAVY_WEAPON_REPAIRABLE));

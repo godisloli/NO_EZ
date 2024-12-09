@@ -66,7 +66,7 @@ public abstract class LivingEntityMixin extends Entity {
         LivingEntity target = (LivingEntity) (Object) this;
         if (pSource.getEntity() instanceof LivingEntity attacker) {
             ItemStack weapon = attacker.getMainHandItem();
-            if (weapon.getDamageValue() >= weapon.getMaxDamage() - 1) {
+            if (weapon.getDamageValue() >= weapon.getMaxDamage() - 1 && weapon.getMaxDamage() > 1) {
                 target.hurt(target.damageSources().generic(), 1.0F);
                 if (attacker instanceof Player){
                     attacker.level().playSound(null, attacker.getX(), attacker.getY(), attacker.getZ(),

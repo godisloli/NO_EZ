@@ -12,11 +12,12 @@ import net.minecraft.world.item.SwordItem;
 import net.minecraft.world.item.Tier;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
+import net.tiramisu.noez.item.Critable;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.*;
 
-public class HellfireSword extends SwordItem {
+public class HellfireSword extends SwordItem implements Critable {
 
     private static final UUID DAMAGE_BOOST_UUID = UUID.fromString("e2b10e7f-7b55-4a76-b3d5-95e5d9f7ea27");
     private static final double DAMAGE_BOOST_PER_TARGET = 1.25; // bonus attack damage per unique target
@@ -24,6 +25,8 @@ public class HellfireSword extends SwordItem {
     private static final int BONUS_REMOVAL_DELAY = 100;        // ticks
     private final Set<UUID> affectedTargets = new HashSet<>();
     private long lastAttackTime = 0;
+    private static final double CRIT_CHANCE = 0.15;
+    private static final double CRIT_DAMAGE = 1.5;
 
     public HellfireSword(Tier tier, int Damage, float AttackSpeed, Properties properties) {
         super(tier, Damage, AttackSpeed, properties);
@@ -34,6 +37,16 @@ public class HellfireSword extends SwordItem {
         pTooltipComponents.add(Component.translatable("noez.hellfire_sword.tooltip1", DAMAGE_BOOST_PER_TARGET, MAX_DAMAGE_BOOST));
         pTooltipComponents.add(Component.translatable("noez.hellfire_sword.tooltip2", BONUS_REMOVAL_DELAY / 20));
         super.appendHoverText(pStack, pLevel, pTooltipComponents, pIsAdvanced);
+    }
+
+    @Override
+    public double getCritChance() {
+        return CRIT_CHANCE;
+    }
+
+    @Override
+    public double getCritDamageAmplifier() {
+        return CRIT_DAMAGE;
     }
 
     @Override

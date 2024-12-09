@@ -19,9 +19,7 @@ public class GlobalMobDrops {
 
     @SubscribeEvent
     public void onLivingDrops(LivingDropsEvent event) {
-        // Get the entity that died
         LivingEntity entity = event.getEntity();
-
         String entityId = entity.getType().builtInRegistryHolder().key().location().toString();
         if (BLACKLISTED_MOBS.contains(entityId)) {
             return;

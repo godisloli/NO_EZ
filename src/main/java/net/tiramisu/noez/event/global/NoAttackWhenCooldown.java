@@ -12,11 +12,8 @@ public class NoAttackWhenCooldown {
 
     @SubscribeEvent
     public static void onAttackEntity(AttackEntityEvent event) {
-        // Get the attacking player
         if (event.getEntity() instanceof LocalPlayer player) {
-            // Check the attack cooldown
             if (player.getAttackStrengthScale(0.0F) < 1.0F) {
-                // Cancel the attack if cooldown is not fully charged
                 event.setCanceled(true);
             }
         }
@@ -28,8 +25,8 @@ public class NoAttackWhenCooldown {
         LocalPlayer player = mc.player;
         if (player != null && event.isAttack()) {
             if (player.getAttackStrengthScale(0.0F) < 1.0F) {
-                event.setSwingHand(false); // Prevent the attack swing animation
-                event.setCanceled(true);  // Cancel the attack
+                event.setSwingHand(false);
+                event.setCanceled(true);
             }
         }
     }

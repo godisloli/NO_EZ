@@ -7,13 +7,16 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.Level;
 import net.tiramisu.noez.effect.NoezEffects;
+import net.tiramisu.noez.item.Critable;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class ObsidianBlade extends SwordItem {
+public class ObsidianBlade extends SwordItem implements Critable {
     private final int BLEED_DURATION = 3; // seconds
     private final int COOLDOWN = 12;
+    private static final double CRIT_CHANCE = 0.35;
+    private static final double CRIT_DAMAGE = 1.75;
 
     public ObsidianBlade(Tier tier, int Damage, float AttackSpeed, Properties properties){
         super(tier, Damage, AttackSpeed, properties);
@@ -40,5 +43,15 @@ public class ObsidianBlade extends SwordItem {
             target.hurt(attacker.damageSources().mobAttack(attacker), finalDamage);
         }
         return super.hurtEnemy(stack, target, attacker);
+    }
+
+    @Override
+    public double getCritChance() {
+        return CRIT_CHANCE;
+    }
+
+    @Override
+    public double getCritDamageAmplifier() {
+        return CRIT_DAMAGE;
     }
 }

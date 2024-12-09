@@ -16,7 +16,7 @@ import net.tiramisu.noez.network.SwingPacket;
 
 import java.util.function.BiConsumer;
 
-public abstract class ProjectileSword extends SwordItem{
+public abstract class ProjectileSword extends SwordItem implements Critable{
     private final int cooldownTicks;
     private final BiConsumer<Player, LivingEntity> onHitEffect;
 

@@ -14,6 +14,9 @@ import java.util.List;
 
 
 public class NaturaBlade extends ProjectileSword {
+    private static final double CRIT_CHANCE = 0.15;
+    private static final double CRIT_DAMAGE = 1.5;
+
     public NaturaBlade() {
         super(
                 new Properties().stacksTo(1).durability(190),
@@ -43,5 +46,15 @@ public class NaturaBlade extends ProjectileSword {
             level.playSound(null, player.getX(), player.getY(), player.getZ(),
                     SoundEvents.CHERRY_LEAVES_BREAK, SoundSource.PLAYERS, 2.0F, 1.0F);
         }
+    }
+
+    @Override
+    public double getCritChance() {
+        return CRIT_CHANCE;
+    }
+
+    @Override
+    public double getCritDamageAmplifier() {
+        return CRIT_DAMAGE;
     }
 }

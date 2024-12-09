@@ -11,16 +11,29 @@ import net.minecraft.world.item.Tier;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import net.tiramisu.noez.effect.NoezEffects;
+import net.tiramisu.noez.item.Critable;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class FrostbaneSword extends SwordItem {
+public class FrostbaneSword extends SwordItem implements Critable {
 
     private final int FROST_DURATION = 3; //seconds
+    private static final double CRIT_CHANCE = 0.15;
+    private static final double CRIT_DAMAGE = 1.5;
 
     public FrostbaneSword(Tier tier, int Damage, float AttackSpeed, Properties properties) {
         super(tier, Damage, AttackSpeed, properties);
+    }
+
+    @Override
+    public double getCritChance() {
+        return CRIT_CHANCE;
+    }
+
+    @Override
+    public double getCritDamageAmplifier() {
+        return CRIT_DAMAGE;
     }
 
     @Override

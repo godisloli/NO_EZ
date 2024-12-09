@@ -15,6 +15,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraftforge.network.NetworkHooks;
 import net.tiramisu.noez.effect.NoezEffects;
@@ -38,16 +39,19 @@ public class RootProjectile extends AbstractArrow {
 
     @Override
     protected void onHitEntity(EntityHitResult hitResult) {
-        if (hitResult.getEntity() instanceof LivingEntity target) {
-            this.level().playSound(null, target.getX(), target.getY(), target.getZ(),
-                    SoundEvents.CHERRY_LEAVES_BREAK, SoundSource.PLAYERS, 2.0F, 1.0F);
-            target.hurt(this.damageSources().arrow(this, this.getOwner()), this.ROOT_PROJECTILE_DAMAGE);
-            target.addEffect(new MobEffectInstance(NoezEffects.ROOT.get(), ROOT_PROJECTILE_DURATION));
-            if (this.getOwner() != null && this.getOwner() instanceof LivingEntity shooter){
-                shooter.addEffect(new MobEffectInstance(MobEffects.REGENERATION, HEALING_DURATION));
+        Level level = hitResult.getEntity().level();
+        if (!level.isClientSide()) {
+            if (hitResult.getEntity() instanceof LivingEntity target && target != this.getOwner()) {
+                this.level().playSound(null, target.getX(), target.getY(), target.getZ(),
+                        SoundEvents.CHERRY_LEAVES_BREAK, SoundSource.PLAYERS, 2.0F, 1.0F);
+                target.hurt(this.damageSources().arrow(this, this.getOwner()), this.ROOT_PROJECTILE_DAMAGE);
+                target.addEffect(new MobEffectInstance(NoezEffects.ROOT.get(), ROOT_PROJECTILE_DURATION));
+                if (this.getOwner() != null && this.getOwner() instanceof LivingEntity shooter) {
+                    shooter.addEffect(new MobEffectInstance(MobEffects.REGENERATION, HEALING_DURATION));
+                }
+                this.discard();
             }
         }
-        this.discard();
         super.onHitEntity(hitResult);
     }
 
@@ -104,4 +108,10 @@ public class RootProjectile extends AbstractArrow {
     public boolean isNoGravity() {
         return true;
     }
+
+    @Override
+    protected void onHitBlock(BlockHitResult blockHitResult) {
+        this.discard();
+    }
+
 }
