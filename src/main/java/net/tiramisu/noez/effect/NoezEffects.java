@@ -17,6 +17,8 @@ public class NoezEffects {
 
     public static final RegistryObject<MobEffect> ROOT = EFFECTS.register("root", Root::new);
 
+    public static final RegistryObject<MobEffect> FROSTBITE = EFFECTS.register("frostbite", Frostbite::new);
+
     public static void register(IEventBus eventBus) {
         EFFECTS.register(eventBus);
     }

@@ -18,6 +18,7 @@ public class Root extends MobEffect {
         if (entity instanceof Player player) {
             player.setJumping(false);
             player.getAbilities().flying = false;
+            player.setSwimming(false);
         }
         entity.hurtMarked = true;
     }
