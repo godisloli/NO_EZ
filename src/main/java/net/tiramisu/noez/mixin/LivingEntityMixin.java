@@ -10,6 +10,7 @@ import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
@@ -73,6 +74,17 @@ public abstract class LivingEntityMixin extends Entity {
                             SoundEvents.ITEM_BREAK, SoundSource.PLAYERS, 1.0F, 1.0F);
                 }
                 cir.cancel();
+            }
+        }
+    }
+
+    @Inject(method = "getArmorValue", at = @At("HEAD"), cancellable = true)
+    private void reduceArmorPointOnLowDurability(CallbackInfoReturnable<Integer> cir) {
+        LivingEntity livingEntity = (LivingEntity) (Object) this;
+        for (ItemStack armorPiece : livingEntity.getArmorSlots()) {
+            if (armorPiece.getItem() instanceof ArmorItem && armorPiece.getDamageValue() >= armorPiece.getMaxDamage() - 1) {
+                cir.setReturnValue(0);
+                return;
             }
         }
     }

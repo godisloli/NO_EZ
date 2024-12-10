@@ -5,6 +5,7 @@ import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
@@ -12,6 +13,7 @@ import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.EntityHitResult;
+import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.network.NetworkHooks;
 import net.tiramisu.noez.entity.NoezEntities;
 import net.tiramisu.noez.particles.NoezParticles;
@@ -63,23 +65,26 @@ public class IridescentArrow extends AbstractArrow {
 
     @Override
     protected void onHitEntity(EntityHitResult hitResult) {
+        Vec3 vec3 = this.getDeltaMovement();
         if (hitResult.getEntity() instanceof LivingEntity target) {
             if (target instanceof Player player)
                 if (player.isCreative()) {
                     super.onHitEntity(hitResult);
                     return;
                 }
-            try {
-                float newHealth = target.getHealth() - IRIDESCENT_DAMAGE;
-                if (newHealth < IRIDESCENT_DAMAGE) {
-                    target.setHealth(0.0f);
-                    this.discard();
-                } else {
-                    target.setHealth(newHealth);
+            if (target.getAttribute(net.minecraft.world.entity.ai.attributes.Attributes.MAX_HEALTH) != null) {
+                if (!target.level().isClientSide()) {
+                    float newHealth = target.getHealth() - IRIDESCENT_DAMAGE;
+                    if (newHealth < IRIDESCENT_DAMAGE) {
+                        super.onHitEntity(hitResult);
+                        target.setHealth(0.0f);
+                        this.setDeltaMovement(vec3.scale(1));
+                        this.setYRot(this.getYRot() + 180.0F);
+                        return;
+                    } else {
+                        target.setHealth(newHealth);
+                    }
                 }
-            }
-            catch (Exception exception){
-                return;
             }
         }
         super.onHitEntity(hitResult);

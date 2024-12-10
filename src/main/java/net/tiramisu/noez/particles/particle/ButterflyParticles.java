@@ -6,8 +6,8 @@ import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
-public class Butterfly_Particles extends TextureSheetParticle {
-    protected Butterfly_Particles(ClientLevel pLevel, double pX, double pY, double pZ,SpriteSet spriteSet, double pXSpeed, double pYSpeed, double pZSpeed) {
+public class ButterflyParticles extends TextureSheetParticle {
+    protected ButterflyParticles(ClientLevel pLevel, double pX, double pY, double pZ, SpriteSet spriteSet, double pXSpeed, double pYSpeed, double pZSpeed) {
         super(pLevel, pX, pY, pZ, pXSpeed, pYSpeed, pZSpeed);
         this.friction = 0.95f;
         this.xd = pXSpeed;
@@ -32,12 +32,7 @@ public class Butterfly_Particles extends TextureSheetParticle {
         this.xd += (level.random.nextDouble() * 0.02) - 0.01;
         this.yd += (level.random.nextDouble() * 0.02) - 0.01;
         this.zd += (level.random.nextDouble() * 0.02) - 0.01;
-
-        // Gravity simulation: make the particle slowly drift downward over time
-        this.yd -= 0.002; // Add slight downward pull (gravity effect)
-
-        // Fade out effect based on age (more random fading)
-        FadeOut();
+        this.yd -= 0.002;
         FadeOut();
     }
 
@@ -59,7 +54,7 @@ public class Butterfly_Particles extends TextureSheetParticle {
         }
 
         public Particle createParticle(SimpleParticleType particleType, ClientLevel level, double x, double y, double z, double dx, double dy, double dz){
-            return new Butterfly_Particles(level, x, y, z, this.spriteSet, dx, dy, dz);
+            return new ButterflyParticles(level, x, y, z, this.spriteSet, dx, dy, dz);
         }
     }
 }

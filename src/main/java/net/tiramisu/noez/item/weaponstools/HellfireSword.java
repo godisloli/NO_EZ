@@ -1,6 +1,8 @@
 package net.tiramisu.noez.item.weaponstools;
 
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.Entity;
@@ -13,6 +15,7 @@ import net.minecraft.world.item.Tier;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import net.tiramisu.noez.item.Critable;
+import net.tiramisu.noez.particles.NoezParticles;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.*;
@@ -63,15 +66,28 @@ public class HellfireSword extends SwordItem implements Critable {
     @Override
     public boolean hurtEnemy(ItemStack pStack, LivingEntity pTarget, LivingEntity pAttacker) {
         if (!(pStack.getDamageValue() == pStack.getMaxDamage() - 1) && !pTarget.fireImmune()) {
-            if (!pTarget.level().isClientSide()) {
-                pAttacker.level().playSound(
-                        null,
-                        pTarget.getX(),pTarget.getY(),pTarget.getZ(),
-                        SoundEvents.FIRECHARGE_USE,
-                        SoundSource.PLAYERS,
-                        1.0f,
-                        1.0f
-                );
+            if (!pTarget.level().isClientSide() && pTarget.level() instanceof  ServerLevel serverLevel) {
+                if (!pTarget.isOnFire()) {
+                    pAttacker.level().playSound(
+                            null,
+                            pTarget.getX(), pTarget.getY(), pTarget.getZ(),
+                            SoundEvents.FIRECHARGE_USE,
+                            SoundSource.PLAYERS,
+                            1.0f,
+                            1.0f
+                    );
+                    for (int i = 0; i < 10; i++) {
+                        serverLevel.sendParticles(
+                                ParticleTypes.FLAME,
+                                pTarget.getX(),
+                                pTarget.getY() + 1,
+                                pTarget.getZ(),
+                                5,
+                                0, 0, 0,
+                                0.05
+                        );
+                    }
+                }
                 pTarget.setSecondsOnFire(4);
                 applyDamageBoost(pAttacker, pTarget);
                 lastAttackTime = pAttacker.level().getGameTime();
