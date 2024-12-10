@@ -26,8 +26,9 @@
   "noez.obsidian_blade.tooltip2": "§6Cooldown: §r12 seconds",
   "noez.hellfire_sword.tooltip1": "§6Passive: §rSet target on fire. For each target set on fire by this sword, you gain %s bonus damage (Max: %s).",
   "noez.hellfire_sword.tooltip2": "§7Lose all Bonus Damage if you stop attacking for %s §7seconds",
-  "noez.frostbane_sword.tooltip1": "§6Passive: §rInflict §bFrostbite to target. This sword deals more damage to target that's immune to fire",
-  "noez.frostbane_sword.tooltip2": "",
+  "noez.frostbane_sword.tooltip1": "§6Passive: §rDeals more damage to targets immune to fire.",
+  "noez.frostbane_sword.tooltip2": "§6On attack: §rInflict §bFrostbite§r to target. ",
+  "noez.frostbane_sword.tooltip3": "§6Cooldown: §r15 seconds",
 
   "creativetab.noez_tab": "Souls"
 }

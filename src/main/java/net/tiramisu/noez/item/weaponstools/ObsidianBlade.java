@@ -18,6 +18,7 @@ public class ObsidianBlade extends SwordItem implements Critable {
     private static final double CRIT_CHANCE = 0.35;
     private static final double CRIT_DAMAGE = 1.75;
     private boolean ALWAYS_CRIT = false;
+    private static float ARMOR_PIERCE = 0.3f;
 
     public ObsidianBlade(Tier tier, int Damage, float AttackSpeed, Properties properties){
         super(tier, Damage, AttackSpeed, properties);
@@ -38,7 +39,7 @@ public class ObsidianBlade extends SwordItem implements Critable {
                 player.getCooldowns().addCooldown(this, COOLDOWN * 20);
             }
             float baseDamage = (float) this.getDamage();
-            float ignoredArmor = target.getArmorValue() * 0.3f; // 30% of armor
+            float ignoredArmor = target.getArmorValue() * ARMOR_PIERCE;
             float armorReduction = ignoredArmor / 2; // Each point of armor reduces damage by 0.5 (vanilla formula)
             float finalDamage = baseDamage + armorReduction;
             target.hurt(attacker.damageSources().mobAttack(attacker), finalDamage);

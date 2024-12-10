@@ -5,6 +5,7 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.SwordItem;
 import net.minecraft.world.item.Tier;
@@ -22,6 +23,7 @@ public class FrostbaneSword extends SwordItem implements Critable {
     private static final double CRIT_CHANCE = 0.15;
     private static final double CRIT_DAMAGE = 1.5;
     private static boolean ALWAYS_CRIT = false;
+    private static int COOLDOWN = 15;
 
     public FrostbaneSword(Tier tier, int Damage, float AttackSpeed, Properties properties) {
         super(tier, Damage, AttackSpeed, properties);
@@ -51,6 +53,7 @@ public class FrostbaneSword extends SwordItem implements Critable {
     public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
         pTooltipComponents.add(Component.translatable("noez.frostbane_sword.tooltip1"));
         pTooltipComponents.add(Component.translatable("noez.frostbane_sword.tooltip2"));
+        pTooltipComponents.add(Component.translatable("noez.frostbane_sword.tooltip3"));
         super.appendHoverText(pStack, pLevel, pTooltipComponents, pIsAdvanced);
     }
 
@@ -70,7 +73,11 @@ public class FrostbaneSword extends SwordItem implements Critable {
             if (pTarget.fireImmune() || pTarget.isOnFire()) {
                 pTarget.hurt(pAttacker.damageSources().mobAttack(pAttacker), super.getDamage() * 1.5f);
             } else {
-                pTarget.addEffect(new MobEffectInstance(NoezEffects.FROSTBITE.get(), FROST_DURATION * 20, 1));
+                if (pAttacker instanceof Player player && !player.getCooldowns().isOnCooldown(this)) {
+                    pTarget.addEffect(new MobEffectInstance(NoezEffects.FROSTBITE.get(), FROST_DURATION * 20, 1));
+                    player.getCooldowns().addCooldown(this, COOLDOWN * 20);
+                }
+
             }
         }
         return super.hurtEnemy(pStack, pTarget, pAttacker);
