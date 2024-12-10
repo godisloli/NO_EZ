@@ -10,6 +10,7 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.tiramisu.noez.effect.NoezEffects;
 import net.tiramisu.noez.item.Critable;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -28,7 +29,7 @@ public class PlayerMixin {
             if (mainHandItem instanceof Critable) {
                 double critChance = ((Critable) mainHandItem).getCritChance() + 0.15;
                 double random = player.level().getRandom().nextDouble();
-                if (random < critChance) {
+                if (random < critChance || ((Critable) mainHandItem).isAlwaysCrit() || ((LivingEntity) target).hasEffect(NoezEffects.FROSTBITE.get())) {
                     float baseDamage = (float) player.getAttribute(net.minecraft.world.entity.ai.attributes.Attributes.ATTACK_DAMAGE).getValue();
                     float critDamage = baseDamage * (float)((Critable) mainHandItem).getCritDamageAmplifier();
                     targetEntity.hurt(player.damageSources().playerAttack(player), critDamage);

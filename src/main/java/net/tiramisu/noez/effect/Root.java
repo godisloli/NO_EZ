@@ -13,8 +13,10 @@ public class Root extends MobEffect {
     @Override
     public void applyEffectTick(LivingEntity entity, int amplifier) {
         super.applyEffectTick(entity, amplifier);
+        if (entity.level().isClientSide) {
+            return;
+        }
         entity.setDeltaMovement(0.0, Math.min(0.0, entity.getDeltaMovement().y), 0.0);
-
         if (entity instanceof Player player) {
             player.setJumping(false);
             player.getAbilities().flying = false;

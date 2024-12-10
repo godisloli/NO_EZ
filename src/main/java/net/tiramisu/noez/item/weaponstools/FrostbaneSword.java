@@ -21,6 +21,7 @@ public class FrostbaneSword extends SwordItem implements Critable {
     private final int FROST_DURATION = 3; //seconds
     private static final double CRIT_CHANCE = 0.15;
     private static final double CRIT_DAMAGE = 1.5;
+    private static boolean ALWAYS_CRIT = false;
 
     public FrostbaneSword(Tier tier, int Damage, float AttackSpeed, Properties properties) {
         super(tier, Damage, AttackSpeed, properties);
@@ -37,6 +38,16 @@ public class FrostbaneSword extends SwordItem implements Critable {
     }
 
     @Override
+    public boolean isAlwaysCrit(){
+        return ALWAYS_CRIT;
+    }
+
+    @Override
+    public void setAlwaysCrit(boolean value){
+        this.ALWAYS_CRIT = value;
+    }
+
+    @Override
     public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
         pTooltipComponents.add(Component.translatable("noez.frostbane_sword.tooltip1"));
         pTooltipComponents.add(Component.translatable("noez.frostbane_sword.tooltip2"));
@@ -45,7 +56,7 @@ public class FrostbaneSword extends SwordItem implements Critable {
 
     @Override
     public boolean hurtEnemy(ItemStack pStack, LivingEntity pTarget, LivingEntity pAttacker) {
-        if (!pTarget.level().isClientSide() && !(pStack.getDamageValue() == pStack.getMaxDamage() - 1)){
+        if (!pTarget.level().isClientSide() && !(pStack.getDamageValue() == pStack.getMaxDamage() - 1)) {
 //            pAttacker.level().playSound(
 //                    null,
 //                    pTarget.getX(),

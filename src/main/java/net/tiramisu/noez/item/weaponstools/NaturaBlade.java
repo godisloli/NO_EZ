@@ -7,15 +7,17 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.Level;
 import net.tiramisu.noez.entity.arrows.RootProjectile;
+import net.tiramisu.noez.item.Critable;
 import net.tiramisu.noez.item.NoezToolTier;
 import net.tiramisu.noez.item.ProjectileSword;
 import org.jetbrains.annotations.Nullable;
 import java.util.List;
 
 
-public class NaturaBlade extends ProjectileSword {
+public class NaturaBlade extends ProjectileSword implements Critable {
     private static final double CRIT_CHANCE = 0.15;
     private static final double CRIT_DAMAGE = 1.5;
+    private boolean ALWAYS_CRIT = false;
 
     public NaturaBlade() {
         super(
@@ -56,5 +58,15 @@ public class NaturaBlade extends ProjectileSword {
     @Override
     public double getCritDamageAmplifier() {
         return CRIT_DAMAGE;
+    }
+
+    @Override
+    public boolean isAlwaysCrit(){
+        return ALWAYS_CRIT;
+    }
+
+    @Override
+    public void setAlwaysCrit(boolean value){
+        this.ALWAYS_CRIT = value;
     }
 }

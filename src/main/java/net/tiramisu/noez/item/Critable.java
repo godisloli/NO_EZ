@@ -3,4 +3,6 @@ package net.tiramisu.noez.item;
 public interface Critable {
     public double getCritChance();
     public double getCritDamageAmplifier();
+    public boolean isAlwaysCrit();
+    public void setAlwaysCrit(boolean value);
 }
