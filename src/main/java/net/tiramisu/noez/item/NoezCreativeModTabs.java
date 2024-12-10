@@ -31,6 +31,14 @@ public class NoezCreativeModTabs {
                     })
                     .build());
 
+    public static final RegistryObject<CreativeModeTab> NOEZ_TAB_FOOD = CREATIVE_MODE_TABS.register("noez_tab_food",
+            () -> CreativeModeTab.builder().icon(() -> new ItemStack(NoezItems.FRUIT_OF_DECEPTION.get()))
+                    .title(Component.translatable("creativetab.noez_tab_food"))
+                    .displayItems((pParameters, pOutput) -> {
+                        pOutput.accept(NoezItems.FRUIT_OF_DECEPTION.get());
+                    })
+                    .build());
+
     public static void register(IEventBus eventBus) {
         CREATIVE_MODE_TABS.register(eventBus);
     }

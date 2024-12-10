@@ -8,6 +8,7 @@ import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.tiramisu.noez.item.NoezItems;
 
 
 @Mod.EventBusSubscriber
@@ -26,6 +27,8 @@ public class InvisibleRework {
 
     @SubscribeEvent
     public static void onItemUse(PlayerInteractEvent.RightClickItem event) {
+        if (event.getItemStack().getItem() == NoezItems.FRUIT_OF_DECEPTION.get())
+            return;
         handleInvisibility(event.getEntity());
     }
 

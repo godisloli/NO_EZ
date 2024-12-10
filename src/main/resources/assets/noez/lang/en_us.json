@@ -1,5 +1,6 @@
 {
   "item.noez.soul": "Soul",
+  "item.noez.fruit_of_deception": "§dFruit of Deception",
   "item.noez.infused_copper": "§bInfused Copper Bar",
   "item.noez.relocator": "§5Relocator",
   "item.noez.natura_blade" :"§2Natura Blade",
@@ -30,5 +31,6 @@
   "noez.frostbane_sword.tooltip2": "§6On attack: §rInflict §bFrostbite§r to target. ",
   "noez.frostbane_sword.tooltip3": "§6Cooldown: §r%s seconds",
 
-  "creativetab.noez_tab": "Souls"
+  "creativetab.noez_tab": "Souls",
+  "creativetab.noez_tab_food": "Foods"
 }
