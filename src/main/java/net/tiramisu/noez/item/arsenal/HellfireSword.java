@@ -38,7 +38,7 @@ public class HellfireSword extends SwordItem implements Critable {
     @Override
     public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
         pTooltipComponents.add(Component.translatable("noez.hellfire_sword.tooltip1", DAMAGE_BOOST_PER_TARGET, MAX_DAMAGE_BOOST));
-        pTooltipComponents.add(Component.translatable("noez.hellfire_sword.tooltip2", BONUS_REMOVAL_DELAY / 20));
+        pTooltipComponents.add(Component.translatable("noez.hellfire_sword.tooltip2"));
         super.appendHoverText(pStack, pLevel, pTooltipComponents, pIsAdvanced);
     }
 

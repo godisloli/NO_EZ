@@ -1,0 +1,38 @@
+{
+  "windbreaker_hit": {
+    "sounds": [
+      {
+        "name": "noez:windbreaker_hit_1",
+        "weight": 1
+      },
+      {
+        "name": "noez:windbreaker_hit_2",
+        "weight": 1
+      },
+      {
+        "name": "noez:windbreaker_hit_3",
+        "weight": 1
+      }
+    ]
+  },
+  "windbreaker_slam": {
+    "sounds": [
+      {
+        "name": "noez:windbreaker_slam_1",
+        "weight": 1
+      },
+      {
+        "name": "noez:windbreaker_slam_2",
+        "weight": 1
+      },
+      {
+        "name": "noez:windbreaker_slam_3",
+        "weight": 1
+      },
+      {
+        "name": "noez:windbreaker_slam_4",
+        "weight": 1
+      }
+    ]
+  }
+}

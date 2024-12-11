@@ -1,6 +1,18 @@
 {
-  "parent": "item/handheld",
-  "textures": {
-    "layer0": "noez:item/windbreaker"
+  "parent": "minecraft:item/handheld",
+  "loader": "forge:separate_transforms",
+  "base": {
+    "parent": "noez:item/windbreaker_3d"
+  },
+  "perspectives": {
+    "gui": {
+      "parent": "noez:item/windbreaker_2d"
+    },
+    "ground": {
+      "parent": "noez:item/windbreaker_2d"
+    },
+    "fixed": {
+      "parent": "noez:item/windbreaker_2d"
+    }
   }
 }
