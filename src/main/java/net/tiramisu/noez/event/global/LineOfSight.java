@@ -14,7 +14,7 @@ public class LineOfSight {
         float nearDistance = LineOfSightConfig.mobDistanceThreshold;
         double farDistance = entity.getAttribute(Attributes.FOLLOW_RANGE).getValue();
         float largeAngle = 83.0F; // Outer boundary of vision cone
-        float smallAngle = 30.0F; // Inner boundary of vision cone
+        float smallAngle = 50.0F; // Inner boundary of vision cone
 
         if (target instanceof LivingEntity livingEntity){
             if (livingEntity.hasEffect(MobEffects.INVISIBILITY))
@@ -49,10 +49,7 @@ public class LineOfSight {
     }
 
     public class LineOfSightConfig {
-        public static float mobViewThreshold = 40.0F;
-        public static float mobDistanceThreshold = 10.0F;
-
-        public LineOfSightConfig() {
-        }
+        public static float mobViewThreshold = 20.0F;
+        public static float mobDistanceThreshold = 5.0F;
     }
 }

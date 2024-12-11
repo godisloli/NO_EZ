@@ -13,7 +13,7 @@ public class AthropodsThorn {
     public void ThornyAthropods(LivingHurtEvent event){
         LivingEntity target = event.getEntity();
         Entity attacker = event.getSource().getEntity();
-        if (attacker != null && attacker instanceof LivingEntity)
+        if (attacker instanceof LivingEntity)
             if (!target.level().isClientSide() && target.getMobType() == MobType.ARTHROPOD){
                 float reflectDamage = event.getAmount() * 0.2f;
                 attacker.hurt(target.damageSources().thorns(target), reflectDamage);

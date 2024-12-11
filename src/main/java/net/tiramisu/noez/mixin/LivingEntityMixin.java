@@ -8,6 +8,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.BlockState;
+import net.tiramisu.noez.effect.NoezEffects;
 import net.tiramisu.noez.event.global.LineOfSight;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Entity;
@@ -31,7 +32,7 @@ public abstract class LivingEntityMixin extends Entity {
     void isLookingAtMe(Entity entity, CallbackInfoReturnable<Boolean> cir) {
         LivingEntity livingEntity = (LivingEntity)(Object)this;
         if (entity instanceof LivingEntity) {
-            if (!LineOfSight.isLookingAtYou(livingEntity, (LivingEntity) entity)) {
+            if (!LineOfSight.isLookingAtYou(livingEntity, entity)) {
                 if (entity.getType().is(NoezTags.Mobs.NO_LINE_OF_SIGHT))
                     cir.setReturnValue(false);
             }
@@ -68,13 +69,45 @@ public abstract class LivingEntityMixin extends Entity {
     }
 
     @Inject(method = "getArmorValue", at = @At("HEAD"), cancellable = true)
-    private void reduceArmorPointOnLowDurability(CallbackInfoReturnable<Integer> cir) {
+    private void modifyArmorValue(CallbackInfoReturnable<Integer> cir) {
         LivingEntity livingEntity = (LivingEntity) (Object) this;
+
+        int totalReducedArmor = 0;
+
+        // Reduce armor based on low durability (near broken)
         for (ItemStack armorPiece : livingEntity.getArmorSlots()) {
-            if (armorPiece.getItem() instanceof ArmorItem && armorPiece.getDamageValue() >= armorPiece.getMaxDamage() - 1) {
-                cir.setReturnValue(0);
-                return;
+            if (armorPiece.getItem() instanceof ArmorItem armorItem &&
+                    armorPiece.getDamageValue() >= armorPiece.getMaxDamage() - 1) {
+                totalReducedArmor += armorItem.getDefense();
             }
         }
+
+        // Apply additional reduction from ArmorCrunch effect
+        if (livingEntity.hasEffect(NoezEffects.ARMOR_CRUNCH.get())) {
+            int reducedArmor;
+            switch (livingEntity.getEffect(NoezEffects.ARMOR_CRUNCH.get()).getAmplifier()) {
+                case 0 -> reducedArmor = 2;
+                case 1 -> reducedArmor = 4;
+                case 2 -> reducedArmor = 6;
+                case 3 -> reducedArmor = 8;
+                case 4 -> reducedArmor = 10;
+                default -> reducedArmor = 15;
+            }
+            totalReducedArmor += reducedArmor;
+        }
+
+        // Calculate the base armor value directly
+        int baseArmorValue = 0;
+        for (ItemStack armorPiece : livingEntity.getArmorSlots()) {
+            if (armorPiece.getItem() instanceof ArmorItem armorItem) {
+                baseArmorValue += armorItem.getDefense();
+            }
+        }
+
+        // Final armor value, ensuring it doesn't go below 0
+        int finalArmorValue = Math.max(0, baseArmorValue - totalReducedArmor);
+
+        // Set the modified armor value
+        cir.setReturnValue(finalArmorValue);
     }
 }
