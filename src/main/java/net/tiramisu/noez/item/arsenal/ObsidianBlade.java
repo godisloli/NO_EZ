@@ -13,12 +13,12 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 
 public class ObsidianBlade extends SwordItem implements Critable {
-    private final int BLEED_DURATION = 3; // seconds
-    private final int COOLDOWN = 12;
-    private static final double CRIT_CHANCE = 0.35;
-    private static final double CRIT_DAMAGE = 1.75;
+    private final static int BLEED_DURATION = 3; // seconds
+    private final static int COOLDOWN = 12;
+    private final static double CRIT_CHANCE = 0.35;
+    private final static double CRIT_DAMAGE = 1.75;
     private boolean ALWAYS_CRIT = false;
-    private static float ARMOR_PIERCE = 0.15f;
+    private final static float ARMOR_PIERCE = 0.15f;
 
     public ObsidianBlade(Tier tier, int Damage, float AttackSpeed, Properties properties){
         super(tier, Damage, AttackSpeed, properties);
