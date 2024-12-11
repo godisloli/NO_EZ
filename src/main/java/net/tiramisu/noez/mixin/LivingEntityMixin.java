@@ -71,10 +71,7 @@ public abstract class LivingEntityMixin extends Entity {
     @Inject(method = "getArmorValue", at = @At("HEAD"), cancellable = true)
     private void modifyArmorValue(CallbackInfoReturnable<Integer> cir) {
         LivingEntity livingEntity = (LivingEntity) (Object) this;
-
         int totalReducedArmor = 0;
-
-        // Reduce armor based on low durability (near broken)
         for (ItemStack armorPiece : livingEntity.getArmorSlots()) {
             if (armorPiece.getItem() instanceof ArmorItem armorItem &&
                     armorPiece.getDamageValue() >= armorPiece.getMaxDamage() - 1) {
@@ -82,7 +79,6 @@ public abstract class LivingEntityMixin extends Entity {
             }
         }
 
-        // Apply additional reduction from ArmorCrunch effect
         if (livingEntity.hasEffect(NoezEffects.ARMOR_CRUNCH.get())) {
             int reducedArmor;
             switch (livingEntity.getEffect(NoezEffects.ARMOR_CRUNCH.get()).getAmplifier()) {
@@ -96,18 +92,13 @@ public abstract class LivingEntityMixin extends Entity {
             totalReducedArmor += reducedArmor;
         }
 
-        // Calculate the base armor value directly
         int baseArmorValue = 0;
         for (ItemStack armorPiece : livingEntity.getArmorSlots()) {
             if (armorPiece.getItem() instanceof ArmorItem armorItem) {
                 baseArmorValue += armorItem.getDefense();
             }
         }
-
-        // Final armor value, ensuring it doesn't go below 0
         int finalArmorValue = Math.max(0, baseArmorValue - totalReducedArmor);
-
-        // Set the modified armor value
         cir.setReturnValue(finalArmorValue);
     }
 }
