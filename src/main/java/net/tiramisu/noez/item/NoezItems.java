@@ -6,7 +6,8 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.tiramisu.noez.NOEZ;
-import net.tiramisu.noez.item.weaponstools.*;
+import net.tiramisu.noez.item.arsenal.*;
+import net.tiramisu.noez.item.consumables.NoezFoods;
 
 public class NoezItems {
     public static final DeferredRegister<Item> ITEMS =

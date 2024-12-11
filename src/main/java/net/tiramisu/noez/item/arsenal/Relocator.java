@@ -1,7 +1,6 @@
-package net.tiramisu.noez.item.weaponstools;
+package net.tiramisu.noez.item.arsenal;
 
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;

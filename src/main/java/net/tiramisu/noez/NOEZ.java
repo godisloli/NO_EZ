@@ -55,6 +55,7 @@ public class NOEZ
         MinecraftForge.EVENT_BUS.register(new KnockBackResitant());
         MinecraftForge.EVENT_BUS.register(new GlobalMobDrops());
         MinecraftForge.EVENT_BUS.register(new UndeadSurvival());
+        MinecraftForge.EVENT_BUS.register(new AthropodsThorn());
         MinecraftForge.EVENT_BUS.register(new InvisibleRework());
         MinecraftForge.EVENT_BUS.register(new EnemiesRegen());
         context.registerConfig(ModConfig.Type.COMMON, Config.SPEC);

@@ -1,4 +1,4 @@
-package net.tiramisu.noez.item.weaponstools;
+package net.tiramisu.noez.item.arsenal;
 
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.LivingEntity;

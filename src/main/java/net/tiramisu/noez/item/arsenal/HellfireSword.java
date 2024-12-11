@@ -1,4 +1,4 @@
-package net.tiramisu.noez.item.weaponstools;
+package net.tiramisu.noez.item.arsenal;
 
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
@@ -15,7 +15,6 @@ import net.minecraft.world.item.Tier;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import net.tiramisu.noez.item.Critable;
-import net.tiramisu.noez.particles.NoezParticles;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.*;

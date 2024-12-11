@@ -15,7 +15,8 @@
     "VillagerTradeMixin",
     "ItemStackMixin",
     "SwordItemMixin",
-    "PlayerMixin"
+    "PlayerMixin",
+    "MilkBucketMixin"
   ],
   "injectors": {
     "defaultRequire": 1
