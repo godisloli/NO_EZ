@@ -1,7 +1,9 @@
 package net.tiramisu.noez.item.arsenal;
 
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
@@ -14,6 +16,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
 import net.tiramisu.noez.effect.NoezEffects;
 import net.tiramisu.noez.item.Critable;
+import net.tiramisu.noez.particles.NoezParticles;
 import net.tiramisu.noez.sound.NoezSounds;
 import org.jetbrains.annotations.Nullable;
 
@@ -57,13 +60,12 @@ public class WindBreaker extends SwordItem implements Critable {
     @Override
     public boolean hurtEnemy(ItemStack pStack, LivingEntity pTarget, LivingEntity pAttacker) {
         boolean result = super.hurtEnemy(pStack, pTarget, pAttacker);
-        if (pAttacker instanceof Player) {
-            Player player = (Player) pAttacker;
+        if (pAttacker instanceof Player player && player.level() instanceof ServerLevel serverLevel) {
             double fallDistance = player.fallDistance;
             if (fallDistance > 2) {
                 int bonusDamage = Math.min((int) fallDistance + 2, 25);
                 if (fallDistance > 10) {
-                    pTarget.level().playSound(
+                    serverLevel.playSound(
                             null,
                             pTarget.getX(),
                             pTarget.getY(),
@@ -76,33 +78,33 @@ public class WindBreaker extends SwordItem implements Critable {
                     double AoeDamage = (fallDistance - 10);
                     pTarget.addEffect(new MobEffectInstance(NoezEffects.ARMOR_CRUNCH.get(), (int) AoeDamage * 20 + 180, 3));
                     double radius = 3.0;
-                    AABB aoeBox = new AABB(pTarget.getX() - radius, pTarget.getY() - radius, pTarget.getZ() - radius,
-                            pTarget.getX() + radius, pTarget.getY() + radius, pTarget.getZ() + radius);
+                    AABB aoeBox = new AABB(
+                            pTarget.getX() - radius, pTarget.getY() - radius, pTarget.getZ() - radius,
+                            pTarget.getX() + radius, pTarget.getY() + radius, pTarget.getZ() + radius
+                    );
                     List<LivingEntity> nearbyEntities = player.level().getEntitiesOfClass(
                             LivingEntity.class, aoeBox, entity -> entity != player && entity != pTarget && entity.isAlive()
                     );
                     for (LivingEntity entity : nearbyEntities) {
                         entity.hurt(player.damageSources().mobAttack(player), (float) AoeDamage);
                     }
-                    if (player.level() instanceof ServerLevel serverLevel){
-                        for (int i = 0; i < 50; i++) {
-                            double angle = Math.random() * 2 * Math.PI;
-                            double speed = 0.1 + Math.random() * 0.15;
-                            double xVelocity = Math.cos(angle) * speed;
-                            double zVelocity = Math.sin(angle) * speed;
-                            serverLevel.sendParticles(
-                                    net.minecraft.core.particles.ParticleTypes.CLOUD,
-                                    pTarget.getX(),
-                                    pTarget.getY() + 1,
-                                    pTarget.getZ(),
-                                    1,
-                                    xVelocity, 0, zVelocity,
-                                    0.01
-                            );
-                        }
+                    for (int i = 0; i < 20; i++) {
+                        double angle = Math.random() * 2 * Math.PI;
+                        double distance = Math.random() * radius;
+                        double xOffset = Math.cos(angle) * distance;
+                        double zOffset = Math.sin(angle) * distance;
+                        serverLevel.sendParticles(
+                                NoezParticles.WINDBLOW.get(),
+                                pTarget.getX() + xOffset,
+                                pTarget.getY() + 1,
+                                pTarget.getZ() + zOffset,
+                                1,
+                                0, 0, 0,
+                                1
+                        );
                     }
                 } else {
-                    pTarget.level().playSound(
+                    serverLevel.playSound(
                             null,
                             pTarget.getX(),
                             pTarget.getY(),
@@ -114,6 +116,7 @@ public class WindBreaker extends SwordItem implements Critable {
                     );
                 }
                 pTarget.hurt(player.damageSources().mobAttack(player), bonusDamage);
+                player.resetFallDistance();
             }
         }
         return result;

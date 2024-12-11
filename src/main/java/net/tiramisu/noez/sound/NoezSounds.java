@@ -14,12 +14,12 @@ public class NoezSounds {
     public static final RegistryObject<SoundEvent> WINDBREAKER_SLAM = registerSoundEvent("windbreaker_slam");
 
 
+
     private static RegistryObject<SoundEvent> registerSoundEvent(String name) {
-        return SOUND_EVENTS.register(name, () -> SoundEvent.createVariableRangeEvent(new ResourceLocation("noez", "sounds")));
+        return SOUND_EVENTS.register(name, () -> SoundEvent.createVariableRangeEvent(new ResourceLocation("noez", name)));
     }
 
-        public static void registerSounds(IEventBus eventBus) {
+    public static void register(IEventBus eventBus) {
         SOUND_EVENTS.register(eventBus);
     }
-
 }

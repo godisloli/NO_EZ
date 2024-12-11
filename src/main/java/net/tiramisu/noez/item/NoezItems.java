@@ -37,7 +37,7 @@ public class NoezItems {
             () -> new FrostbaneSword(NoezToolTier.MEDIUM,2,-2.4f, new Item.Properties().stacksTo(1).durability(152)));
 
     public static final RegistryObject<Item> WINDBREAKER = ITEMS.register("windbreaker",
-            () -> new WindBreaker(NoezToolTier.MEDIUM,1,-3f,new Item.Properties().stacksTo(1).durability(55)));
+            () -> new WindBreaker(NoezToolTier.MEDIUM,1,-3.2f,new Item.Properties().stacksTo(1).durability(55)));
 
     public static final RegistryObject<Item> IRIDESCENT_BOW = ITEMS.register("iridescent_bow",
             () -> new IridescentBow(new Item.Properties().stacksTo(1).durability(112)));

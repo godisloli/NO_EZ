@@ -23,6 +23,7 @@ import net.tiramisu.noez.item.NoezCreativeModTabs;
 import net.tiramisu.noez.item.NoezItems;
 import net.tiramisu.noez.network.NoezNetwork;
 import net.tiramisu.noez.particles.NoezParticles;
+import net.tiramisu.noez.sound.NoezSounds;
 import net.tiramisu.noez.util.NoezItemProperties;
 import org.slf4j.Logger;
 import org.spongepowered.asm.mixin.Mixins;
@@ -41,13 +42,14 @@ public class NOEZ
 
     public NOEZ(FMLJavaModLoadingContext context)
     {
-        IEventBus modEventBus = context.getModEventBus();
-        NoezCreativeModTabs.register(modEventBus);
-        NoezItems.register(modEventBus);
-        NoezBlocks.register(modEventBus);
-        NoezEntities.register(modEventBus);
-        NoezParticles.register(modEventBus);
-        NoezEffects.register(modEventBus);
+        IEventBus NoezEventBus = context.getModEventBus();
+        NoezCreativeModTabs.register(NoezEventBus);
+        NoezItems.register(NoezEventBus);
+        NoezBlocks.register(NoezEventBus);
+        NoezEntities.register(NoezEventBus);
+        NoezParticles.register(NoezEventBus);
+        NoezEffects.register(NoezEventBus);
+        NoezSounds.register(NoezEventBus);
         MinecraftForge.EVENT_BUS.register(this);
         MinecraftForge.EVENT_BUS.register(new NoMiningToolBreak());
         MinecraftForge.EVENT_BUS.register(new LineOfSight());
@@ -59,8 +61,8 @@ public class NOEZ
         MinecraftForge.EVENT_BUS.register(new InvisibleRework());
         MinecraftForge.EVENT_BUS.register(new EnemiesRegen());
         context.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
-        modEventBus.addListener(this::addCreative);
-        modEventBus.addListener(this::commonSetup);
+        NoezEventBus.addListener(this::addCreative);
+        NoezEventBus.addListener(this::commonSetup);
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
