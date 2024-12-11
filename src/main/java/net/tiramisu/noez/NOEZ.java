@@ -64,9 +64,7 @@ public class NOEZ
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
-        event.enqueueWork(() -> {
-            NoezNetwork.registerPackets();
-        });
+        event.enqueueWork(NoezNetwork::registerPackets);
     }
 
 
