@@ -13,8 +13,8 @@ public class WindBlowParticles extends TextureSheetParticle {
         this.xd = (level.random.nextDouble() - 0.5) * 0.5;
         this.yd = (level.random.nextDouble() - 0.5) * 0.2;
         this.zd = (level.random.nextDouble() - 0.5) * 0.5;
-        this.quadSize *= 15f + level.random.nextFloat() * 25f;
-        this.lifetime = 20;
+        this.quadSize *= 0.5f + level.random.nextFloat() * 2f;
+        this.lifetime = 5 * 2;
         this.setSpriteFromAge(spriteSet);
         this.rCol = 1.0f;
         this.gCol = 1.0f;

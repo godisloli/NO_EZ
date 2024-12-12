@@ -1,9 +1,7 @@
 package net.tiramisu.noez.item.arsenal;
 
-import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
@@ -49,7 +47,8 @@ public class WindBreaker extends SwordItem implements Critable {
 
     @Override
     public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
-        pTooltipComponents.add(Component.translatable("wip"));
+        pTooltipComponents.add(Component.translatable("noez.windbreaker.tooltip1"));
+        pTooltipComponents.add(Component.translatable("noez.windbreaker.tooltip2"));
         super.appendHoverText(pStack, pLevel, pTooltipComponents, pIsAdvanced);
     }
 
@@ -88,7 +87,7 @@ public class WindBreaker extends SwordItem implements Critable {
                     for (LivingEntity entity : nearbyEntities) {
                         entity.hurt(player.damageSources().mobAttack(player), (float) AoeDamage);
                     }
-                    for (int i = 0; i < 20; i++) {
+                    for (int i = 0; i < 30; i++) {
                         double angle = Math.random() * 2 * Math.PI;
                         double distance = Math.random() * (radius + 1);
                         double xOffset = Math.cos(angle) * distance;
@@ -98,7 +97,7 @@ public class WindBreaker extends SwordItem implements Critable {
                                 pTarget.getX() + xOffset,
                                 pTarget.getY() + 0.5,
                                 pTarget.getZ() + zOffset,
-                                1,
+                                3,
                                 0, 0, 0,
                                 0
                         );
