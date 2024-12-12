@@ -51,7 +51,6 @@ public class NOEZ
         NoezParticles.register(NoezEventBus);
         NoezEffects.register(NoezEventBus);
         NoezSounds.register(NoezEventBus);
-        MinecraftForge.EVENT_BUS.register(NoezAttribute.class);
         MinecraftForge.EVENT_BUS.register(this);
         MinecraftForge.EVENT_BUS.register(new NoMiningToolBreak());
         MinecraftForge.EVENT_BUS.register(new LineOfSight());

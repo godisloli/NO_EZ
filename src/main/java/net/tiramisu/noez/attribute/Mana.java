@@ -1,5 +1,9 @@
 package net.tiramisu.noez.attribute;
 
+import net.minecraft.nbt.CompoundTag;
+import net.minecraftforge.common.capabilities.AutoRegisterCapability;
+
+@AutoRegisterCapability
 public class Mana {
     private int mana;
     private int maxMana;
@@ -30,5 +34,17 @@ public class Mana {
 
     public void setMaxMana(int maxMana) {
         this.maxMana = maxMana;
+    }
+
+    public void copyFrom(Mana source){
+        this.mana = source.mana;
+    }
+
+    public void saveNBTData(CompoundTag nbt){
+        nbt.putInt("mana", mana);
+    }
+
+    public void loadNBTData(CompoundTag nbt){
+        mana = nbt.getInt("mana");
     }
 }
