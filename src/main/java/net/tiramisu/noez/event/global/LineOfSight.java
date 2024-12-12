@@ -11,10 +11,16 @@ import net.minecraftforge.fml.common.Mod;
 public class LineOfSight {
 
     public static boolean isLookingAtYou(LivingEntity entity, Entity target) {
-        float nearDistance = LineOfSightConfig.mobDistanceThreshold;
-        double farDistance = entity.getAttribute(Attributes.FOLLOW_RANGE).getValue();
+        float nearDistance = 5.0F;
+        double farDistance;
+        try {
+            farDistance = entity.getAttribute(Attributes.FOLLOW_RANGE).getValue();
+        } catch (Exception e){
+            farDistance = 10f;
+        }
         float largeAngle = 83.0F; // Outer boundary of vision cone
         float smallAngle = 50.0F; // Inner boundary of vision cone
+        float mobViewThreshold = 20.0F;
 
         if (target instanceof LivingEntity livingEntity){
             if (livingEntity.hasEffect(MobEffects.INVISIBILITY))
@@ -44,12 +50,7 @@ public class LineOfSight {
 
         double proximity = entityLookDirection.distanceTo(target.position()) / distanceThreshold;
 
-        double sensitivity = LineOfSightConfig.mobViewThreshold;
+        double sensitivity = mobViewThreshold;
         return proximity > sensitivity;
-    }
-
-    public class LineOfSightConfig {
-        public static float mobViewThreshold = 20.0F;
-        public static float mobDistanceThreshold = 5.0F;
     }
 }

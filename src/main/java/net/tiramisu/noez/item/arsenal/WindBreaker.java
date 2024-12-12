@@ -90,17 +90,17 @@ public class WindBreaker extends SwordItem implements Critable {
                     }
                     for (int i = 0; i < 20; i++) {
                         double angle = Math.random() * 2 * Math.PI;
-                        double distance = Math.random() * radius;
+                        double distance = Math.random() * (radius + 1);
                         double xOffset = Math.cos(angle) * distance;
                         double zOffset = Math.sin(angle) * distance;
                         serverLevel.sendParticles(
                                 NoezParticles.WINDBLOW.get(),
                                 pTarget.getX() + xOffset,
-                                pTarget.getY() + 1,
+                                pTarget.getY() + 0.5,
                                 pTarget.getZ() + zOffset,
                                 1,
                                 0, 0, 0,
-                                1
+                                0
                         );
                     }
                 } else {
