@@ -2,7 +2,6 @@ package net.tiramisu.noez.item;
 
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.SwordItem;
 import net.minecraft.world.item.Tier;
@@ -12,7 +11,7 @@ import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.tiramisu.noez.network.NoezNetwork;
-import net.tiramisu.noez.network.SwingPacket;
+import net.tiramisu.noez.network.packet.SwingC2SPacket;
 
 import java.util.function.BiConsumer;
 
@@ -49,7 +48,7 @@ public abstract class ProjectileSword extends SwordItem{
         if (isBroken(event.getItemStack()))
             return;
         if (event.getEntity().level().isClientSide) {
-            NoezNetwork.CHANNEL.sendToServer(new SwingPacket(cooldownTicks));
+            NoezNetwork.CHANNEL.sendToServer(new SwingC2SPacket(cooldownTicks));
         }
     }
 

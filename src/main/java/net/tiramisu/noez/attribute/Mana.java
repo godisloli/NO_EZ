@@ -1,15 +1,32 @@
 package net.tiramisu.noez.attribute;
 
 import net.minecraft.nbt.CompoundTag;
-import net.minecraftforge.common.capabilities.AutoRegisterCapability;
+import net.minecraft.server.level.ServerPlayer;
+import net.tiramisu.noez.network.packet.ManaDataSyncS2CPacket;
+import net.tiramisu.noez.network.NoezNetwork;
 
-@AutoRegisterCapability
 public class Mana {
     private int mana;
     private int maxMana;
+    private ServerPlayer owner; // To track the owning player
+
     public Mana() {
-        this.mana = 20; // Default mana value
-        this.maxMana = 20; // Default maximum mana
+        this.mana = 20;
+        this.maxMana = 20;
+    }
+
+    public void setOwner(ServerPlayer owner) {
+        this.owner = owner;
+    }
+
+    private void syncMana() {
+        if (owner != null && !owner.level().isClientSide) {
+            NoezNetwork.sendDataToClient(owner, new ManaDataSyncS2CPacket(mana));
+        }
+    }
+
+    public boolean isEmpty() {
+        return mana == 0;
     }
 
     public int getMana() {
@@ -17,15 +34,16 @@ public class Mana {
     }
 
     public void setMana(int mana) {
-        this.mana = Math.max(0, Math.min(mana, maxMana)); // Clamp between 0 and maxMana
+        this.mana = Math.max(0, Math.min(mana, maxMana));
+        syncMana();
     }
 
     public void addMana(int amount) {
-        setMana(this.mana + amount);
+        setMana(Math.min(maxMana, this.mana + amount));
     }
 
     public void consumeMana(int amount) {
-        setMana(this.mana - amount);
+        setMana(Math.max(0, this.mana - amount));
     }
 
     public int getMaxMana() {
@@ -36,15 +54,16 @@ public class Mana {
         this.maxMana = maxMana;
     }
 
-    public void copyFrom(Mana source){
+    public void copyFrom(Mana source) {
         this.mana = source.mana;
+        this.maxMana = source.maxMana;
     }
 
-    public void saveNBTData(CompoundTag nbt){
+    public void saveNBTData(CompoundTag nbt) {
         nbt.putInt("mana", mana);
     }
 
-    public void loadNBTData(CompoundTag nbt){
+    public void loadNBTData(CompoundTag nbt) {
         mana = nbt.getInt("mana");
     }
 }

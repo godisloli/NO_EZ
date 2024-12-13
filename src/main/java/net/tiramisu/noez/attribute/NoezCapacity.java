@@ -8,7 +8,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber
-public class NoezAttribute {
+public class NoezCapacity {
     public static final Capability<Mana> MANA = CapabilityManager.get(new CapabilityToken<>() {
     });
 

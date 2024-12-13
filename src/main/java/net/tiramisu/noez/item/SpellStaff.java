@@ -16,7 +16,7 @@ import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.tiramisu.noez.network.NoezNetwork;
-import net.tiramisu.noez.network.SwingPacket;
+import net.tiramisu.noez.network.packet.SwingC2SPacket;
 
 import javax.annotation.Nullable;
 import java.util.UUID;
@@ -92,7 +92,7 @@ public abstract class SpellStaff extends Item {
         if (!(heldItem.getItem() instanceof SpellStaff)) return;
         if (isBroken(heldItem)) return;
         if (!player.level().isClientSide && heldItem.getItem() instanceof SpellStaff spellStaff) {
-            NoezNetwork.CHANNEL.sendToServer(new SwingPacket(0));
+            NoezNetwork.CHANNEL.sendToServer(new SwingC2SPacket(0));
         }
     }
 

@@ -1,4 +1,4 @@
-package net.tiramisu.noez.network;
+package net.tiramisu.noez.network.packet;
 
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.server.level.ServerPlayer;
@@ -9,24 +9,24 @@ import net.tiramisu.noez.item.SpellStaff;
 
 import java.util.function.Supplier;
 
-public class SwingPacket {
+public class SwingC2SPacket {
     private static int cooldownTicks;
 
-    public SwingPacket() {
+    public SwingC2SPacket() {
     }
 
-    public SwingPacket(int cooldownTicks){
+    public SwingC2SPacket(int cooldownTicks){
         this.cooldownTicks = cooldownTicks;
     }
 
-    public static void encode(SwingPacket msg, FriendlyByteBuf buf) {
+    public static void encode(SwingC2SPacket msg, FriendlyByteBuf buf) {
     }
 
-    public static SwingPacket decode(FriendlyByteBuf buf) {
-        return new SwingPacket();
+    public static SwingC2SPacket decode(FriendlyByteBuf buf) {
+        return new SwingC2SPacket();
     }
 
-    public static void handle(SwingPacket msg, Supplier<NetworkEvent.Context> ctx) {
+    public static void handle(SwingC2SPacket msg, Supplier<NetworkEvent.Context> ctx) {
         ctx.get().enqueueWork(() -> {
             ServerPlayer player = ctx.get().getSender();
             if (player != null) {
