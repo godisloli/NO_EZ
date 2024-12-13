@@ -29,6 +29,7 @@ public class NaturaBlade extends ProjectileSword implements Critable {
                 -2.4f
         );
     }
+
     @Override
     public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
         pTooltipComponents.add(Component.translatable("noez.natura_blade.tooltip1"));

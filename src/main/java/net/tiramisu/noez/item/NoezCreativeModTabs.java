@@ -20,6 +20,7 @@ public class NoezCreativeModTabs {
                     .displayItems((pParameters, pOutput) -> {
                         pOutput.accept(NoezItems.SOUL.get());
                         pOutput.accept(NoezBlocks.SOUL_BLOCK.get());
+                        pOutput.accept(NoezItems.STAFF_OF_ARBOR_2.get());
                         pOutput.accept(NoezItems.NATURA_BLADE.get());
                         pOutput.accept(NoezItems.OBSIDIAN_BLADE.get());
                         pOutput.accept(NoezItems.HELLFIRE_SWORD.get());

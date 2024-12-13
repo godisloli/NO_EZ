@@ -5,6 +5,7 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.network.NetworkEvent;
 import net.tiramisu.noez.item.ProjectileSword;
+import net.tiramisu.noez.item.SpellStaff;
 
 import java.util.function.Supplier;
 
@@ -33,6 +34,9 @@ public class SwingPacket {
                 if (item instanceof ProjectileSword sword && !player.getCooldowns().isOnCooldown(item)) {
                     sword.onSwing(player, player.getMainHandItem());
                     player.getCooldowns().addCooldown(item, cooldownTicks);
+                }
+                if (item instanceof SpellStaff spellStaff){
+                    spellStaff.onSwing(player, player.getMainHandItem());
                 }
             }
         });

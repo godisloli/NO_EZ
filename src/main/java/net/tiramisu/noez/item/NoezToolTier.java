@@ -7,8 +7,8 @@ import net.tiramisu.noez.util.NoezTags;
 public enum NoezToolTier implements Tier{
     LIGHT(1, 89, 12.0F, 2.0F, 22, Ingredient.of(NoezTags.Items.LIGHT_WEAPON_REPAIRABLE)),
     MEDIUM(2,125, 10.0F, 3F, 22, Ingredient.of(NoezTags.Items.MEDIUM_WEAPON_REPAIRABLE)),
-    HEAVY(4,172, 10.0F, 5F, 22, Ingredient.of(NoezTags.Items.HEAVY_WEAPON_REPAIRABLE)),
-    STAFF(0,68, 5.0F, 0.0F, 22, Ingredient.of(NoezTags.Items.LIGHT_WEAPON_REPAIRABLE));
+    HEAVY(4,172, 10.0F, 5F, 22, Ingredient.of(NoezTags.Items.HEAVY_WEAPON_REPAIRABLE));
+
 
 
     private final int harvestLevel;
