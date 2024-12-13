@@ -1,6 +1,6 @@
 {
   "parent": "item/handheld",
   "textures": {
-    "layer0": "noez:item/staff_of_arbor_2"
+    "layer0": "noez:item/druvis_staff"
   }
 }

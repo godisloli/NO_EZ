@@ -13,10 +13,10 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class ArborStaff2 extends SpellStaff {
+public class DruvisStaff extends SpellStaff {
     private final static int cooldownTicks = 15 * 20;
 
-    public ArborStaff2(){
+    public DruvisStaff(){
         super(
                 new Properties().stacksTo(1).durability(134),
                 1,

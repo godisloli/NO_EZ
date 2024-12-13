@@ -45,7 +45,7 @@ public class NoezItems {
     public static final RegistryObject<Item> FRUIT_OF_DECEPTION = ITEMS.register("fruit_of_deception",
             () -> new NoezFoods(new Item.Properties().food(NoezFoods.FRUIT_OF_DECEPTION).stacksTo(64)).setFOIL(true));
 
-    public static final RegistryObject<Item> STAFF_OF_ARBOR_2 = ITEMS.register("staff_of_arbor_2", ArborStaff2::new);
+    public static final RegistryObject<Item> DRUVISSTAFF = ITEMS.register("druvis_staff", DruvisStaff::new);
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
