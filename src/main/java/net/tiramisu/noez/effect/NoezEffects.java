@@ -1,5 +1,4 @@
 package net.tiramisu.noez.effect;
-import com.mojang.blaze3d.shaders.Effect;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
@@ -19,7 +18,9 @@ public class NoezEffects {
 
     public static final RegistryObject<MobEffect> FROSTBITE = EFFECTS.register("frostbite", Frostbite::new);
 
-    public static final RegistryObject<MobEffect> ARMOR_CRUNCH = EFFECTS.register("armor_crunch", ArmorCrunch::new);
+    public static final RegistryObject<MobEffect> CORRUPTED = EFFECTS.register("corrupted", Corruption::new);
+
+    public static final RegistryObject<MobEffect> INSTANT_MANA = EFFECTS.register("instant_mana", InstantMana::new);
 
     public static void register(IEventBus eventBus) {
         EFFECTS.register(eventBus);

@@ -20,7 +20,7 @@ public class NoezCreativeModTabs {
                     .displayItems((pParameters, pOutput) -> {
                         pOutput.accept(NoezItems.SOUL.get());
                         pOutput.accept(NoezBlocks.SOUL_BLOCK.get());
-                        pOutput.accept(NoezItems.DRUVISSTAFF.get());
+                        pOutput.accept(NoezItems.DRUVIS_STAFF.get());
                         pOutput.accept(NoezItems.NATURA_BLADE.get());
                         pOutput.accept(NoezItems.OBSIDIAN_BLADE.get());
                         pOutput.accept(NoezItems.HELLFIRE_SWORD.get());
@@ -38,6 +38,7 @@ public class NoezCreativeModTabs {
                     .title(Component.translatable("creativetab.noez_tab_food"))
                     .displayItems((pParameters, pOutput) -> {
                         pOutput.accept(NoezItems.FRUIT_OF_DECEPTION.get());
+                        pOutput.accept(NoezItems.MANA_POTION.get());
                     })
                     .build());
 

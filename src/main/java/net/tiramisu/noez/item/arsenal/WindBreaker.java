@@ -75,7 +75,7 @@ public class WindBreaker extends SwordItem implements Critable {
                             1f
                     );
                     double AoeDamage = (fallDistance - 10);
-                    pTarget.addEffect(new MobEffectInstance(NoezEffects.ARMOR_CRUNCH.get(), (int) AoeDamage * 20 + 180, 3));
+                    pTarget.addEffect(new MobEffectInstance(NoezEffects.CORRUPTED.get(), (int) AoeDamage * 20 + 180, 3));
                     double radius = 3.0;
                     AABB aoeBox = new AABB(
                             pTarget.getX() - radius, pTarget.getY() - radius, pTarget.getZ() - radius,

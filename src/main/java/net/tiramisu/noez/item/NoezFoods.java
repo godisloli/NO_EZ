@@ -1,4 +1,4 @@
-package net.tiramisu.noez.item.consumables;
+package net.tiramisu.noez.item;
 
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;

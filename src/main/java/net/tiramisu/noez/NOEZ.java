@@ -21,6 +21,7 @@ import net.tiramisu.noez.entity.NoezEntities;
 import net.tiramisu.noez.event.global.*;
 import net.tiramisu.noez.item.NoezCreativeModTabs;
 import net.tiramisu.noez.item.NoezItems;
+import net.tiramisu.noez.item.NoezPotions;
 import net.tiramisu.noez.network.NoezNetwork;
 import net.tiramisu.noez.particles.NoezParticles;
 import net.tiramisu.noez.sound.NoezSounds;
@@ -50,6 +51,7 @@ public class NOEZ
         NoezParticles.register(NoezEventBus);
         NoezEffects.register(NoezEventBus);
         NoezSounds.register(NoezEventBus);
+        NoezPotions.register(NoezEventBus);
         MinecraftForge.EVENT_BUS.register(this);
         MinecraftForge.EVENT_BUS.register(new NoMiningToolBreak());
         MinecraftForge.EVENT_BUS.register(new LineOfSight());

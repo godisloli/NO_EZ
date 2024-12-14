@@ -19,7 +19,7 @@
   "effect.noez.stun": "Stun",
   "effect.noez.root": "Root",
   "effect.noez.frostbite": "Frostbite",
-  "effect.noez.armor_crunch": "Armor Crunch",
+  "effect.noez.corrupted": "Corrupted",
 
   "noez.relocator.tooltip1": "§6On use: §rBlink to a short distance where you facing",
   "noez.relocator.tooltip2": "§6Cooldown: §r8 seconds",
@@ -36,6 +36,7 @@
   "noez.frostbane_sword.tooltip3": "§6Cooldown: §r%s seconds",
   "noez.windbreaker.tooltip1": "§6Passive: §rDeal more damage depends on your falling distance up to 25 blocks",
   "noez.windbreaker.tooltip2": "If your falling distance is 10 blocks or more, inflict §4Armor Crunch §rto target and deal damage to all creatures around",
+  "item.noez.mana_potion.tooltip": "Gain 2 mana",
 
   "creativetab.noez_tab": "Souls",
   "creativetab.noez_tab_food": "Foods",

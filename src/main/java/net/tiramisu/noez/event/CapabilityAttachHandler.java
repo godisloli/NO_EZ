@@ -21,7 +21,7 @@ public class CapabilityAttachHandler {
     public static void onAttachCapabilities(AttachCapabilitiesEvent<Entity> event) {
         if (event.getObject() instanceof Player player) {
             ManaPlayer manaProvider = new ManaPlayer();
-            manaProvider.setOwner(player); // Assign the owning player
+            manaProvider.setOwner(player);
             event.addCapability(new ResourceLocation(NOEZ.MOD_ID, "properties"), manaProvider);
         }
     }

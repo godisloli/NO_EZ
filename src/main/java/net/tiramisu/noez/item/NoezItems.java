@@ -7,7 +7,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.tiramisu.noez.NOEZ;
 import net.tiramisu.noez.item.arsenal.*;
-import net.tiramisu.noez.item.consumables.NoezFoods;
+import net.tiramisu.noez.item.consumables.ManaPotion;
 
 public class NoezItems {
     public static final DeferredRegister<Item> ITEMS =
@@ -45,7 +45,10 @@ public class NoezItems {
     public static final RegistryObject<Item> FRUIT_OF_DECEPTION = ITEMS.register("fruit_of_deception",
             () -> new NoezFoods(new Item.Properties().food(NoezFoods.FRUIT_OF_DECEPTION).stacksTo(64)).setFOIL(true));
 
-    public static final RegistryObject<Item> DRUVISSTAFF = ITEMS.register("druvis_staff", DruvisStaff::new);
+    public static final RegistryObject<Item> MANA_POTION = ITEMS.register("mana_potion",
+            () -> new ManaPotion(new Item.Properties().stacksTo(64)));
+
+    public static final RegistryObject<Item> DRUVIS_STAFF = ITEMS.register("druvis_staff", DruvisStaff::new);
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
