@@ -1,15 +1,12 @@
 package net.tiramisu.noez.item.consumables;
 
+
 import net.minecraft.network.chat.Component;
-import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.PotionItem;
-import net.minecraft.world.item.TooltipFlag;
-import net.minecraft.world.item.UseAnim;
+import net.minecraft.world.item.*;
 import net.minecraft.world.level.Level;
-import net.tiramisu.noez.effect.NoezEffects;
+import net.tiramisu.noez.attribute.ManaPlayer;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -21,7 +18,7 @@ public class ManaPotion extends PotionItem {
 
     @Override
     public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> tooltip, TooltipFlag flag){
-        tooltip.add(Component.translatable("item.noez.mana_potion.tooltip").withStyle(net.minecraft.ChatFormatting.BLUE));
+        tooltip.add(Component.translatable("item.noez.mana_potion.tooltip"));
     }
 
     @Override
@@ -31,12 +28,13 @@ public class ManaPotion extends PotionItem {
 
     @Override
     public ItemStack finishUsingItem(ItemStack stack, Level world, LivingEntity entity) {
-        if (!world.isClientSide) {
-            entity.addEffect(new MobEffectInstance(NoezEffects.INSTANT_MANA.get(), 1, 0));
-        }
-        if (entity instanceof Player player)
+        if (entity instanceof ServerPlayer player)
             if (!player.getAbilities().instabuild) {
+                player.getCapability(ManaPlayer.MANA).ifPresent(mana -> {
+                    mana.addMana(5);
+                });
                 stack.shrink(1);
+                player.getInventory().add(new ItemStack(Items.GLASS_BOTTLE));
         }
         return stack;
     }

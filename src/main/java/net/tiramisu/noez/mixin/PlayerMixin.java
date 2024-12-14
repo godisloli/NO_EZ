@@ -21,8 +21,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(Player.class)
 public class PlayerMixin {
-    Player player = (Player) (Object) this;
-    double originalBaseDamage =  player.getAttribute(Attributes.ATTACK_DAMAGE).getBaseValue();
+    //Player player = (Player) (Object) this;
+    //double originalBaseDamage =  player.getAttribute(Attributes.ATTACK_DAMAGE).getBaseValue();
 
     @Inject(method = "attack", at = @At("HEAD"))
     private void NoezCritLogic(Entity target, CallbackInfo ci) {
@@ -39,7 +39,8 @@ public class PlayerMixin {
                 if (isCrit) {
                     float baseDamage = (float) player.getAttribute(net.minecraft.world.entity.ai.attributes.Attributes.ATTACK_DAMAGE).getValue();
                     float critDamage = baseDamage * (float) ((Critable) mainHandItem).getCritDamageAmplifier();
-                    player.getAttribute(net.minecraft.world.entity.ai.attributes.Attributes.ATTACK_DAMAGE).setBaseValue(critDamage);
+                    //player.getAttribute(net.minecraft.world.entity.ai.attributes.Attributes.ATTACK_DAMAGE).setBaseValue(critDamage);
+                    targetEntity.hurt(player.damageSources().playerAttack(player), critDamage);
                     player.level().playSound(null, player.getX(), player.getY(), player.getZ(),
                             SoundEvents.PLAYER_ATTACK_CRIT, SoundSource.PLAYERS, 1.0f, 1.0f);
                     Level level = player.level();
@@ -64,11 +65,11 @@ public class PlayerMixin {
         }
     }
 
-    @Inject(method = "attack", at = @At("RETURN"))
-    private void restoreBaseDamage(Entity target, CallbackInfo ci) {
-        Player player = (Player) (Object) this;
-        player.getAttribute(net.minecraft.world.entity.ai.attributes.Attributes.ATTACK_DAMAGE).setBaseValue(originalBaseDamage);
-    }
+//    @Inject(method = "attack", at = @At("RETURN"))
+//    private void restoreBaseDamage(Entity target, CallbackInfo ci) {
+//        Player player = (Player) (Object) this;
+//        player.getAttribute(net.minecraft.world.entity.ai.attributes.Attributes.ATTACK_DAMAGE).setBaseValue(originalBaseDamage);
+//    }
 
     @ModifyVariable(
             method = {"attack"},

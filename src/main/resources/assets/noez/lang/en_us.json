@@ -12,6 +12,7 @@
   "item.noez.frostbane_sword": "§bFrostbane Sword",
   "item.noez.windbreaker": "Windbreaker",
   "item.noez.druvis_staff": "Druvis Staff",
+  "item.noez.mana_potion.effect.empty": "Mana Potion",
 
   "block.noez.soul_block": "Block of Soul",
 
@@ -20,6 +21,7 @@
   "effect.noez.root": "Root",
   "effect.noez.frostbite": "Frostbite",
   "effect.noez.corrupted": "Corrupted",
+  "effect.noez.surge": "Surge",
 
   "noez.relocator.tooltip1": "§6On use: §rBlink to a short distance where you facing",
   "noez.relocator.tooltip2": "§6Cooldown: §r8 seconds",
@@ -36,7 +38,9 @@
   "noez.frostbane_sword.tooltip3": "§6Cooldown: §r%s seconds",
   "noez.windbreaker.tooltip1": "§6Passive: §rDeal more damage depends on your falling distance up to 25 blocks",
   "noez.windbreaker.tooltip2": "If your falling distance is 10 blocks or more, inflict §4Armor Crunch §rto target and deal damage to all creatures around",
-  "item.noez.mana_potion.tooltip": "Gain 2 mana",
+  "item.noez.mana_potion.tooltip": "Gain 5 mana",
+  "tooltip.noez.crit_damage": " %s Crit Damage",
+  "tooltip.noez.crit_chance": " %s Crit Chance",
 
   "creativetab.noez_tab": "Souls",
   "creativetab.noez_tab_food": "Foods",

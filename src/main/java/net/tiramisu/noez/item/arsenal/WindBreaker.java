@@ -63,7 +63,7 @@ public class WindBreaker extends SwordItem implements Critable {
             double fallDistance = player.fallDistance;
             if (fallDistance > 2) {
                 int bonusDamage = Math.min((int) fallDistance + 2, 25);
-                if (fallDistance > 10) {
+                if (fallDistance > 15) {
                     serverLevel.playSound(
                             null,
                             pTarget.getX(),
@@ -74,7 +74,7 @@ public class WindBreaker extends SwordItem implements Critable {
                             1f,
                             1f
                     );
-                    double AoeDamage = (fallDistance - 10);
+                    double AoeDamage = Math.min((fallDistance - 10), 10);
                     pTarget.addEffect(new MobEffectInstance(NoezEffects.CORRUPTED.get(), (int) AoeDamage * 20 + 180, 3));
                     double radius = 3.0;
                     AABB aoeBox = new AABB(
@@ -87,17 +87,13 @@ public class WindBreaker extends SwordItem implements Critable {
                     for (LivingEntity entity : nearbyEntities) {
                         entity.hurt(player.damageSources().mobAttack(player), (float) AoeDamage);
                     }
-                    for (int i = 0; i < 30; i++) {
-                        double angle = Math.random() * 2 * Math.PI;
-                        double distance = Math.random() * (radius + 1);
-                        double xOffset = Math.cos(angle) * distance;
-                        double zOffset = Math.sin(angle) * distance;
+                    for (int i = 0; i < Math.min(50, AoeDamage * 5); i++) {
                         serverLevel.sendParticles(
                                 NoezParticles.WINDBLOW.get(),
-                                pTarget.getX() + xOffset,
-                                pTarget.getY() + 0.5,
-                                pTarget.getZ() + zOffset,
-                                3,
+                                pTarget.getX(),
+                                pTarget.getY() +0.5f,
+                                pTarget.getZ(),
+                                5,
                                 0, 0, 0,
                                 0
                         );

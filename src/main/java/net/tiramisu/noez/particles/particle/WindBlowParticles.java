@@ -10,15 +10,17 @@ public class WindBlowParticles extends TextureSheetParticle {
 
     protected WindBlowParticles(ClientLevel level, double x, double y, double z, SpriteSet spriteSet, double xSpeed, double ySpeed, double zSpeed) {
         super(level, x, y, z, xSpeed, ySpeed, zSpeed);
-        this.xd = (level.random.nextDouble() - 0.5) * 0.5;
-        this.yd = (level.random.nextDouble() - 0.5) * 0.2;
-        this.zd = (level.random.nextDouble() - 0.5) * 0.5;
-        this.quadSize *= 0.5f + level.random.nextFloat() * 2f;
-        this.lifetime = 5 * 2;
+        this.xd = (level.random.nextDouble() - 0.5) * 2.0;
+        this.yd = level.random.nextDouble() * 1.5;
+        this.zd = (level.random.nextDouble() - 0.5) * 2.0;
+        this.quadSize *= 0.5f + level.random.nextFloat();
+        this.lifetime = 10 + level.random.nextInt(10);
+
         this.setSpriteFromAge(spriteSet);
-        this.rCol = 1.0f;
-        this.gCol = 1.0f;
-        this.bCol = 1.0f;
+        this.rCol = 0.8f + level.random.nextFloat() * 0.2f;
+        this.gCol = 0.8f;
+        this.bCol = 0.8f;
+        this.gravity = 0.1f;
     }
 
     @Override

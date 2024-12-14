@@ -11,6 +11,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
+import net.tiramisu.noez.item.Critable;
 import net.tiramisu.noez.item.SpellStaff;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -50,7 +51,7 @@ public class ItemStackMixin {
     }
 
     @Inject(method = "getTooltipLines", at = @At("RETURN"), cancellable = true)
-    private void modifyTooltip(@Nullable Player pPlayer, TooltipFlag pIsAdvanced, CallbackInfoReturnable<List<Component>> cir) {
+    private void staffTooltip(@Nullable Player pPlayer, TooltipFlag pIsAdvanced, CallbackInfoReturnable<List<Component>> cir) {
         ItemStack stack = (ItemStack) (Object) this;
         if (stack.getItem() instanceof SpellStaff spellStaff) {
             List<Component> tooltip = cir.getReturnValue();
@@ -77,5 +78,27 @@ public class ItemStackMixin {
             cir.setReturnValue(tooltip);
         }
     }
+
+    @Inject(method = "getTooltipLines", at = @At("RETURN"), cancellable = true)
+    private void critableTooltip(@Nullable Player pPlayer, TooltipFlag pIsAdvanced, CallbackInfoReturnable<List<Component>> cir) {
+        ItemStack stack = (ItemStack) (Object) this;
+        if (stack.getItem() instanceof Critable critable) {
+            List<Component> tooltip = cir.getReturnValue();
+            double critChance = critable.getCritChance() * 100;
+            double critDamageAmplifier = critable.getCritDamageAmplifier() * 100;
+            for (int i = 0; i < tooltip.size(); i++) {
+                Component line = tooltip.get(i);
+                if (line.getString().contains("When in Main Hand:")) {
+                    tooltip.add(i + 3, Component.translatable("tooltip.noez.crit_chance", String.format("%.0f%%", critChance))
+                            .withStyle(style -> style.withColor(ChatFormatting.RED)));
+                    tooltip.add(i + 4, Component.translatable("tooltip.noez.crit_damage", String.format("%.0f%%", critDamageAmplifier))
+                            .withStyle(style -> style.withColor(ChatFormatting.RED)));
+                    break;
+                }
+            }
+            cir.setReturnValue(tooltip);
+        }
+    }
+
 }
 
