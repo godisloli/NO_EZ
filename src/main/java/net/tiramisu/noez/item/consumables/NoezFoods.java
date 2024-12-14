@@ -14,6 +14,7 @@ public class NoezFoods extends Item {
             .effect(() -> new MobEffectInstance(MobEffects.INVISIBILITY, 60 * 20),1f)
             .effect(() -> new MobEffectInstance(MobEffects.DOLPHINS_GRACE, 30 * 20, 2), 1f)
             .effect(() -> new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 30 * 20, 2), 1f)
+            .effect(() -> new MobEffectInstance(MobEffects.ABSORPTION, 2400, 3), 1.0F)
             .build();
     private boolean isFOIL = false;
 
