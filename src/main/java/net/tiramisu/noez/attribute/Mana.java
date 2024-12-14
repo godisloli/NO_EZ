@@ -8,7 +8,7 @@ import net.tiramisu.noez.network.NoezNetwork;
 public class Mana {
     private int mana;
     private int maxMana;
-    private ServerPlayer owner; // To track the owning player
+    private ServerPlayer owner;
 
     public Mana() {
         this.mana = 20;

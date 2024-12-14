@@ -42,6 +42,14 @@ public abstract class SpellStaff extends Item {
         eventBus.register(this);
     }
 
+    public double getAttackSpeed(){
+        return this.attackSpeed;
+    }
+
+    public double getAttackDamage(){
+        return this.attackDamage;
+    }
+
     @Override
     public Multimap<Attribute, AttributeModifier> getAttributeModifiers(EquipmentSlot slot, ItemStack stack) {
         if (slot == EquipmentSlot.MAINHAND) {
