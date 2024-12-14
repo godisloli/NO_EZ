@@ -41,6 +41,7 @@ public class DruvisStaff extends SpellStaff {
             if (mana.isEmpty())
                 return;
             mana.consumeMana(manaCostAttack);
+            stack.hurt(1, RandomSource.create(), null);
             Level level = player.level();
             if (!level.isClientSide) {
                 RootProjectile projectile = new RootProjectile(level, player);
@@ -52,7 +53,6 @@ public class DruvisStaff extends SpellStaff {
                         SoundEvents.CHERRY_LEAVES_BREAK, SoundSource.PLAYERS, 2.0F, 1.0F);
             }
         });
-        stack.hurt(1, RandomSource.create(), null);
     }
 
     @Override
