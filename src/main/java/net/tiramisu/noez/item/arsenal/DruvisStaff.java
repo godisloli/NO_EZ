@@ -3,6 +3,7 @@ package net.tiramisu.noez.item.arsenal;
 import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
@@ -51,6 +52,7 @@ public class DruvisStaff extends SpellStaff {
                         SoundEvents.CHERRY_LEAVES_BREAK, SoundSource.PLAYERS, 2.0F, 1.0F);
             }
         });
+        stack.hurt(1, RandomSource.create(), null);
     }
 
     @Override

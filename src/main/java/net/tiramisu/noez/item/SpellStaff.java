@@ -56,6 +56,12 @@ public abstract class SpellStaff extends Item {
         return super.getDefaultAttributeModifiers(slot);
     }
 
+    @Override
+    public boolean hurtEnemy(ItemStack stack, net.minecraft.world.entity.LivingEntity target, net.minecraft.world.entity.LivingEntity attacker) {
+        stack.hurtAndBreak(1, attacker, (entity) -> entity.broadcastBreakEvent(EquipmentSlot.MAINHAND));
+        return true;
+    }
+
     public abstract void onSwing(Player player, ItemStack stack);
     public abstract void onActivate(Player player, ItemStack stack, int cooldownTicks);
 
