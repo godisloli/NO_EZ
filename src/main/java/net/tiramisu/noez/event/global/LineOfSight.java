@@ -6,21 +6,27 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.fml.common.Mod;
+import net.tiramisu.noez.util.NoezTags;
 
 @Mod.EventBusSubscriber()
 public class LineOfSight {
 
     public static boolean isLookingAtYou(LivingEntity entity, Entity target) {
+
+        if (entity.getType().is(NoezTags.Mobs.NO_LINE_OF_SIGHT))
+            return true;
+
         float nearDistance = 5.0F;
         double farDistance;
         try {
             farDistance = entity.getAttribute(Attributes.FOLLOW_RANGE).getValue();
         } catch (Exception e){
-            farDistance = 10f;
+            farDistance = 16f;
         }
+
         float largeAngle = 83.0F; // Outer boundary of vision cone
-        float smallAngle = 50.0F; // Inner boundary of vision cone
-        float mobViewThreshold = 20.0F;
+        float smallAngle = 30.0F; // Inner boundary of vision cone
+        float mobViewThreshold = 10.0F;
 
         if (target instanceof LivingEntity livingEntity){
             if (livingEntity.hasEffect(MobEffects.INVISIBILITY))
@@ -47,10 +53,7 @@ public class LineOfSight {
         } else {
             distanceThreshold = nearDistance + (farDistance - nearDistance) * (largeAngle - angleDifference) / (largeAngle - smallAngle);
         }
-
         double proximity = entityLookDirection.distanceTo(target.position()) / distanceThreshold;
-
-        double sensitivity = mobViewThreshold;
-        return proximity > sensitivity;
+        return proximity > mobViewThreshold;
     }
 }

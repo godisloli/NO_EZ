@@ -9,8 +9,6 @@ public enum NoezToolTier implements Tier{
     MEDIUM(2,125, 10.0F, 3F, 22, Ingredient.of(NoezTags.Items.MEDIUM_WEAPON_REPAIRABLE)),
     HEAVY(4,172, 10.0F, 5F, 22, Ingredient.of(NoezTags.Items.HEAVY_WEAPON_REPAIRABLE));
 
-
-
     private final int harvestLevel;
     // 0: Can mine basic blocks (wood, coal ore).
     // 1: Can mine stone-tier blocks (iron ore).

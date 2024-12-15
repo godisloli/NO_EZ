@@ -30,6 +30,7 @@ public class NoezCreativeModTabs {
                         pOutput.accept(NoezItems.IRIDESCENT_BOW.get());
                         pOutput.accept(NoezItems.RELOCATOR.get());
                         pOutput.accept(NoezItems.WINDBREAKER.get());
+                        pOutput.accept(NoezItems.BAMBOO_SWORD.get());
                     })
                     .build());
 

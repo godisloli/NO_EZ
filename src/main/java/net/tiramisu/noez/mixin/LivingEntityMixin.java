@@ -30,11 +30,12 @@ public abstract class LivingEntityMixin extends Entity {
 
     @Inject(at = @At("HEAD"), method = "hasLineOfSight", cancellable = true)
     void isLookingAtMe(Entity entity, CallbackInfoReturnable<Boolean> cir) {
+        if (entity instanceof Player)
+            return;
         LivingEntity livingEntity = (LivingEntity)(Object)this;
         if (entity instanceof LivingEntity) {
             if (!LineOfSight.isLookingAtYou(livingEntity, entity)) {
-                if (entity.getType().is(NoezTags.Mobs.NO_LINE_OF_SIGHT))
-                    cir.setReturnValue(false);
+                cir.setReturnValue(false);
             }
         }
     }
@@ -45,7 +46,7 @@ public abstract class LivingEntityMixin extends Entity {
         Level world = entity.level();
         if (entity instanceof Player player) {
             long lastTeleportTime = player.getPersistentData().getLong("RelocatorTeleportTime");
-            if (world.getGameTime() - lastTeleportTime <= 20) { // 1 second (20 ticks)
+            if (world.getGameTime() - lastTeleportTime <= 20) {
                 player.fallDistance = 0;
                 ci.cancel();
             }

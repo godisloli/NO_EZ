@@ -14,16 +14,14 @@ import net.minecraft.world.level.Level;
 import net.tiramisu.noez.effect.NoezEffects;
 import net.tiramisu.noez.item.Critable;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.ModifyVariable;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(Player.class)
-public class PlayerMixin {
-    //Player player = (Player) (Object) this;
-    //double originalBaseDamage =  player.getAttribute(Attributes.ATTACK_DAMAGE).getBaseValue();
-
+public abstract class PlayerMixin {
     @Inject(method = "attack", at = @At("HEAD"))
     private void NoezCritLogic(Entity target, CallbackInfo ci) {
         if (target instanceof LivingEntity targetEntity) {
@@ -31,15 +29,12 @@ public class PlayerMixin {
             ItemStack mainHandStack = player.getMainHandItem();
             Item mainHandItem = mainHandStack.getItem();
             if (mainHandItem instanceof Critable) {
-                double critChance = ((Critable) mainHandItem).getCritChance() + 0.15;
-                if (critChance <= 0)
-                    critChance = 0;
+                double critChance = Math.max(0,((Critable) mainHandItem).getCritChance() + 0.15);
                 double random = player.level().getRandom().nextDouble();
                 boolean isCrit = random < critChance || ((Critable) mainHandItem).isAlwaysCrit() || targetEntity.hasEffect(NoezEffects.FROSTBITE.get());
                 if (isCrit) {
                     float baseDamage = (float) player.getAttribute(net.minecraft.world.entity.ai.attributes.Attributes.ATTACK_DAMAGE).getValue();
-                    float critDamage = baseDamage * (float) ((Critable) mainHandItem).getCritDamageAmplifier();
-                    //player.getAttribute(net.minecraft.world.entity.ai.attributes.Attributes.ATTACK_DAMAGE).setBaseValue(critDamage);
+                    float critDamage = baseDamage * (float) ((Critable) mainHandItem).getCritDamageAmplifier() - baseDamage;
                     targetEntity.hurt(player.damageSources().playerAttack(player), critDamage);
                     player.level().playSound(null, player.getX(), player.getY(), player.getZ(),
                             SoundEvents.PLAYER_ATTACK_CRIT, SoundSource.PLAYERS, 1.0f, 1.0f);
@@ -60,16 +55,13 @@ public class PlayerMixin {
                             );
                         }
                     }
+                    if (mainHandItem instanceof Critable) {
+                        mainHandItem.hurtEnemy(mainHandStack, targetEntity, player);
+                    }
                 }
             }
         }
     }
-
-//    @Inject(method = "attack", at = @At("RETURN"))
-//    private void restoreBaseDamage(Entity target, CallbackInfo ci) {
-//        Player player = (Player) (Object) this;
-//        player.getAttribute(net.minecraft.world.entity.ai.attributes.Attributes.ATTACK_DAMAGE).setBaseValue(originalBaseDamage);
-//    }
 
     @ModifyVariable(
             method = {"attack"},
