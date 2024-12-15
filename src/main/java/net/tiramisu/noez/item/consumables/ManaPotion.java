@@ -1,6 +1,5 @@
 package net.tiramisu.noez.item.consumables;
 
-
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.LivingEntity;

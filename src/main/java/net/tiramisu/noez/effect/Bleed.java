@@ -30,7 +30,7 @@ public class Bleed extends MobEffect {
             case 2: return 1.5;
             case 3: return 2.0;
             case 4: return 2.5;
-            default: return 5.0; // Maximum damage if level > 4
+            default: return 4.0;
         }
     }
 }
