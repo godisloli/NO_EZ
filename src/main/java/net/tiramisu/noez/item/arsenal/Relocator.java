@@ -24,7 +24,7 @@ import java.util.Random;
 
 public class Relocator extends Item {
 
-    private static final int TELEPORT_DISTANCE = 5; // blocks
+    private static final int TELEPORT_DISTANCE = 10; // blocks
     private static final int COOLDOWN_SECONDS = 8; // seconds
 
     public Relocator(Properties properties) {
