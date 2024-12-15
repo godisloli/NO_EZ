@@ -1,13 +1,10 @@
 package net.tiramisu.noez.item;
 
-import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.item.alchemy.Potion;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.RegistryObject;
 import net.tiramisu.noez.NOEZ;
-import net.tiramisu.noez.effect.NoezEffects;
 
 public class NoezPotions {
     public static final DeferredRegister<Potion> POTIONS = DeferredRegister.create(ForgeRegistries.POTIONS, NOEZ.MOD_ID);

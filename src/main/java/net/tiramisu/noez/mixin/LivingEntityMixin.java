@@ -79,9 +79,9 @@ public abstract class LivingEntityMixin extends Entity {
             }
         }
 
-        if (livingEntity.hasEffect(NoezEffects.CORRUPTED.get())) {
+        if (livingEntity.hasEffect(NoezEffects.CORRUPTION.get())) {
             int reducedArmor;
-            switch (livingEntity.getEffect(NoezEffects.CORRUPTED.get()).getAmplifier()) {
+            switch (livingEntity.getEffect(NoezEffects.CORRUPTION.get()).getAmplifier()) {
                 case 0 -> reducedArmor = 3;
                 case 1 -> reducedArmor = 5;
                 case 2 -> reducedArmor = 7;

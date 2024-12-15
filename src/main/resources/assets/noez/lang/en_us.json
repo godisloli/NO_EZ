@@ -20,8 +20,9 @@
   "effect.noez.stun": "Stun",
   "effect.noez.root": "Root",
   "effect.noez.frostbite": "Frostbite",
-  "effect.noez.corrupted": "Corrupted",
+  "effect.noez.corruption": "Corruption",
   "effect.noez.surge": "Surge",
+  "effect.noez.regain": "Regain",
 
   "noez.relocator.tooltip1": "§6On use: §rBlink to a short distance where you facing",
   "noez.relocator.tooltip2": "§6Cooldown: §r8 seconds",

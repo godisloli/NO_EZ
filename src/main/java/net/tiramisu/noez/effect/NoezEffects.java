@@ -18,9 +18,11 @@ public class NoezEffects {
 
     public static final RegistryObject<MobEffect> FROSTBITE = EFFECTS.register("frostbite", Frostbite::new);
 
-    public static final RegistryObject<MobEffect> CORRUPTED = EFFECTS.register("corrupted", Corruption::new);
+    public static final RegistryObject<MobEffect> CORRUPTION = EFFECTS.register("corruption", Corruption::new);
 
     public static final RegistryObject<MobEffect> SURGE = EFFECTS.register("surge", Surge::new);
+
+    public static final RegistryObject<MobEffect> REGAIN = EFFECTS.register("regain", Regain::new);
 
     public static void register(IEventBus eventBus) {
         EFFECTS.register(eventBus);
