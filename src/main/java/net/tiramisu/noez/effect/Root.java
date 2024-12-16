@@ -1,5 +1,6 @@
 package net.tiramisu.noez.effect;
 
+import net.minecraft.world.damagesource.DamageSources;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.LivingEntity;
@@ -15,6 +16,10 @@ public class Root extends MobEffect {
         super.applyEffectTick(entity, amplifier);
         if (entity.level().isClientSide) {
             return;
+        }
+        boolean isTryingToMove = Math.abs(entity.xxa) > 0.01 || Math.abs(entity.zza) > 0.01;
+        if (isTryingToMove){
+            entity.hurt(entity.damageSources().cactus(), 0.5f * amplifier);
         }
         entity.setDeltaMovement(0.0, Math.min(0.0, entity.getDeltaMovement().y), 0.0);
         if (entity instanceof Player player) {

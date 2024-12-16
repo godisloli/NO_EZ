@@ -24,6 +24,8 @@ public class NoezEffects {
 
     public static final RegistryObject<MobEffect> REGAIN = EFFECTS.register("regain", Regain::new);
 
+    public static final RegistryObject<MobEffect> ADRENALINE_RUSH = EFFECTS.register("andrenaline_rush", AdrenalineRush::new);
+
     public static void register(IEventBus eventBus) {
         EFFECTS.register(eventBus);
     }
