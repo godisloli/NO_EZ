@@ -37,10 +37,10 @@ public class NoezItems {
             () -> new FrostbaneSword(NoezToolTier.MEDIUM,2,-2.4f, new Item.Properties().stacksTo(1).durability(152)));
 
     public static final RegistryObject<Item> WINDBREAKER = ITEMS.register("windbreaker",
-            () -> new WindBreaker(NoezToolTier.MEDIUM,1,-3.2f,new Item.Properties().stacksTo(1).durability(55)));
+            () -> new WindBreaker(NoezToolTier.MEDIUM,1,-3.2f,new Item.Properties().stacksTo(1).durability(142)));
 
     public static final RegistryObject<Item> BAMBOO_SWORD = ITEMS.register("bamboo_sword",
-            () -> new BambooSword(NoezToolTier.LIGHT, 1, -2f, new Item.Properties().stacksTo(1).durability(35)));
+            () -> new BambooSword(NoezToolTier.LIGHT, 1, -2f, new Item.Properties().stacksTo(1).durability(58)));
 
     public static final RegistryObject<Item> IRIDESCENT_BOW = ITEMS.register("iridescent_bow",
             () -> new IridescentBow(new Item.Properties().stacksTo(1).durability(112)));

@@ -1,4 +1,5 @@
 package net.tiramisu.noez.effect;
+
 import net.minecraft.world.effect.MobEffect;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
@@ -24,7 +25,7 @@ public class NoezEffects {
 
     public static final RegistryObject<MobEffect> REGAIN = EFFECTS.register("regain", Regain::new);
 
-    public static final RegistryObject<MobEffect> ADRENALINE_RUSH = EFFECTS.register("andrenaline_rush", AdrenalineRush::new);
+    public static final RegistryObject<MobEffect> ADRENALINE_RUSH = EFFECTS.register("adrenaline_rush", AdrenalineRush::new);
 
     public static void register(IEventBus eventBus) {
         EFFECTS.register(eventBus);

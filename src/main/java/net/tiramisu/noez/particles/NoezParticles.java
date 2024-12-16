@@ -18,7 +18,10 @@ public class NoezParticles {
     public static final RegistryObject<SimpleParticleType> SNOWFLAKE = PARTICLES.register("snowflake",
             () -> new SimpleParticleType(true));
 
-    public static final RegistryObject<SimpleParticleType> WINDBLOW= PARTICLES.register("windblow",
+    public static final RegistryObject<SimpleParticleType> WINDBLOW = PARTICLES.register("windblow",
+            () -> new SimpleParticleType(true));
+
+    public static final RegistryObject<SimpleParticleType> IRIDESCENT_HEART = PARTICLES.register("iridescent_heart",
             () -> new SimpleParticleType(true));
 
     public static void register(IEventBus eventBus) {

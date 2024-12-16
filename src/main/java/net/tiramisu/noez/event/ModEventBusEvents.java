@@ -10,6 +10,7 @@ import net.tiramisu.noez.attribute.ManaPlayer;
 import net.tiramisu.noez.network.NoezNetwork;
 import net.tiramisu.noez.particles.NoezParticles;
 import net.tiramisu.noez.particles.particle.ButterflyParticles;
+import net.tiramisu.noez.particles.particle.IridescentHeart;
 import net.tiramisu.noez.particles.particle.SnowFlakeParticles;
 import net.tiramisu.noez.particles.particle.WindBlowParticles;
 
@@ -21,6 +22,7 @@ public class ModEventBusEvents {
                 NoezParticles.BUTTERFLY.get(),
                 spriteSet -> new ButterflyParticles.Provider(spriteSet)
         );
+
         event.registerSpriteSet(
                 NoezParticles.SNOWFLAKE.get(),
                 spriteSet -> new SnowFlakeParticles.Provider(spriteSet)
@@ -29,6 +31,11 @@ public class ModEventBusEvents {
         event.registerSpriteSet(
                 NoezParticles.WINDBLOW.get(),
                 spriteSet -> new WindBlowParticles.Provider(spriteSet)
+        );
+
+        event.registerSpriteSet(
+                NoezParticles.IRIDESCENT_HEART.get(),
+                spriteSet -> new IridescentHeart.Provider(spriteSet)
         );
     }
 
