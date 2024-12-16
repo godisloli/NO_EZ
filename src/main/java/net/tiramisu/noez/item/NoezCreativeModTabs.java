@@ -14,23 +14,14 @@ public class NoezCreativeModTabs {
     public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS =
             DeferredRegister.create(Registries.CREATIVE_MODE_TAB, NOEZ.MOD_ID);
 
-    public static final RegistryObject<CreativeModeTab> NOEZ_TAB = CREATIVE_MODE_TABS.register("noez_tab",
+    public static final RegistryObject<CreativeModeTab> NOEZ_TAB = CREATIVE_MODE_TABS.register("noez_tab_misc",
             () -> CreativeModeTab.builder().icon(() -> new ItemStack(NoezItems.SOUL.get()))
-                    .title(Component.translatable("creativetab.noez_tab"))
+                    .title(Component.translatable("creativetab.noez_tab_misc"))
                     .displayItems((pParameters, pOutput) -> {
                         pOutput.accept(NoezItems.SOUL.get());
                         pOutput.accept(NoezBlocks.SOUL_BLOCK.get());
-                        pOutput.accept(NoezItems.DRUVIS_STAFF.get());
-                        pOutput.accept(NoezItems.NATURA_BLADE.get());
-                        pOutput.accept(NoezItems.OBSIDIAN_BLADE.get());
-                        pOutput.accept(NoezItems.HELLFIRE_SWORD.get());
-                        pOutput.accept(NoezItems.FROSTBANE_SWORD.get());
                         pOutput.accept(NoezItems.INFUSED_COPPER.get());
                         pOutput.accept(NoezItems.OBSIDIAN_SHARD.get());
-                        pOutput.accept(NoezItems.IRIDESCENT_BOW.get());
-                        pOutput.accept(NoezItems.RELOCATOR.get());
-                        pOutput.accept(NoezItems.WINDBREAKER.get());
-                        pOutput.accept(NoezItems.BAMBOO_SWORD.get());
                     })
                     .build());
 
@@ -40,6 +31,23 @@ public class NoezCreativeModTabs {
                     .displayItems((pParameters, pOutput) -> {
                         pOutput.accept(NoezItems.FRUIT_OF_DECEPTION.get());
                         pOutput.accept(NoezItems.MANA_POTION.get());
+                    })
+                    .build());
+
+    public static final RegistryObject<CreativeModeTab> NOEZ_TAB_COMBAT = CREATIVE_MODE_TABS.register("noez_tab_combat",
+            () -> CreativeModeTab.builder().icon(() -> new ItemStack(NoezItems.WINDBREAKER.get()))
+                    .title(Component.translatable("creativetab.noez_tab_combat"))
+                    .displayItems((pParameters, pOutput) -> {
+                        pOutput.accept(NoezItems.DRUVIS_STAFF.get());
+                        pOutput.accept(NoezItems.NATURA_BLADE.get());
+                        pOutput.accept(NoezItems.OBSIDIAN_BLADE.get());
+                        pOutput.accept(NoezItems.HELLFIRE_SWORD.get());
+                        pOutput.accept(NoezItems.FROSTBANE_SWORD.get());
+                        pOutput.accept(NoezItems.IRIDESCENT_BOW.get());
+                        pOutput.accept(NoezItems.RELOCATOR.get());
+                        pOutput.accept(NoezItems.WINDBREAKER.get());
+                        pOutput.accept(NoezItems.BAMBOO_SWORD.get());
+                        pOutput.accept(NoezItems.DARK_DEVASTATION.get());
                     })
                     .build());
 
