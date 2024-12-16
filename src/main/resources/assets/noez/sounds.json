@@ -34,5 +34,21 @@
         "weight": 1
       }
     ]
+  },
+  "armor_shred": {
+    "sounds": [
+      {
+        "name": "noez:armor_shred_1",
+        "weight": 1
+      },
+      {
+        "name": "noez:armor_shred_2",
+        "weight": 1
+      },
+      {
+        "name": "noez:armor_shred_3",
+        "weight": 1
+      }
+    ]
   }
 }

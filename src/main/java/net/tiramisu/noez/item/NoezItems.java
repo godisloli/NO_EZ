@@ -30,6 +30,9 @@ public class NoezItems {
     public static final RegistryObject<Item> OBSIDIAN_BLADE = ITEMS.register("obsidian_blade",
             () -> new ObsidianBlade(NoezToolTier.HEAVY, 4, -3.5f, new Item.Properties().stacksTo(1).durability(250)));
 
+    public static final RegistryObject<Item> DARK_DEVASTATION = ITEMS.register("dark_devastation",
+            () -> new DarkDevastation(NoezToolTier.HEAVY, 3, -3.2f, new Item.Properties().stacksTo(1).durability(212)));
+
     public static final RegistryObject<Item> HELLFIRE_SWORD = ITEMS.register("hellfire_sword",
             () -> new HellfireSword(NoezToolTier.MEDIUM,2,-2.4f, new Item.Properties().stacksTo(1).durability(152)));
 

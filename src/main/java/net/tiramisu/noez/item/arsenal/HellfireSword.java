@@ -29,7 +29,7 @@ public class HellfireSword extends SwordItem implements Critable {
     private long lastAttackTime = 0;
     private static final double CRIT_CHANCE = 0.15;
     private static final double CRIT_DAMAGE = 1.5;
-    private static boolean ALWAYS_CRIT = false;
+    private boolean ALWAYS_CRIT = false;
 
     public HellfireSword(Tier tier, int Damage, float AttackSpeed, Properties properties) {
         super(tier, Damage, AttackSpeed, properties);

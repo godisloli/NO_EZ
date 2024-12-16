@@ -12,7 +12,7 @@ public class NoezSounds {
 
     public static final RegistryObject<SoundEvent> WINDBREAKER_HIT = registerSoundEvent("windbreaker_hit");
     public static final RegistryObject<SoundEvent> WINDBREAKER_SLAM = registerSoundEvent("windbreaker_slam");
-
+    public static final RegistryObject<SoundEvent> ARMOR_SHRED = registerSoundEvent("armor_shred");
 
 
     private static RegistryObject<SoundEvent> registerSoundEvent(String name) {

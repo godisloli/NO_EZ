@@ -55,9 +55,6 @@ public abstract class PlayerMixin {
                             );
                         }
                     }
-                    if (mainHandItem instanceof Critable) {
-                        mainHandItem.hurtEnemy(mainHandStack, targetEntity, player);
-                    }
                 }
             }
         }
