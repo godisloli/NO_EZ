@@ -49,6 +49,7 @@ public class NoezCreativeModTabs {
                         pOutput.accept(NoezItems.BAMBOO_SWORD.get());
                         pOutput.accept(NoezItems.DARK_DEVASTATION.get());
                         pOutput.accept(NoezItems.MOONSILVER_SWORD.get());
+                        pOutput.accept(NoezItems.BLOOD_SACRIFICE.get());
                     })
                     .build());
 

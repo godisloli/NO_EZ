@@ -6,6 +6,7 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ArmorItem;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.BlockState;
 import net.tiramisu.noez.effect.NoezEffects;
@@ -14,6 +15,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.level.Level;
+import net.tiramisu.noez.item.LifeStealable;
 import net.tiramisu.noez.util.NoezTags;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -23,6 +25,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(LivingEntity.class)
 public abstract class LivingEntityMixin extends Entity {
+    private float preDamageHealth;
 
     public LivingEntityMixin(EntityType<?> entityType, Level world) {
         super(entityType, world);
@@ -101,5 +104,27 @@ public abstract class LivingEntityMixin extends Entity {
         }
         int finalArmorValue = Math.max(0, baseArmorValue - totalReducedArmor);
         cir.setReturnValue(finalArmorValue);
+    }
+
+    @Inject(method = "hurt", at = @At("HEAD"))
+    private void damageCalculate(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
+        preDamageHealth = ((LivingEntity) (Object) this).getHealth();
+    }
+
+    @Inject(method = "hurt", at = @At("RETURN"))
+    private void captureDamageValue(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
+        LivingEntity target = (LivingEntity) (Object) this;
+        if (source.getEntity() instanceof Player player) {
+            float postDamageHealth = target.getHealth();
+            float actualDamageDealt = preDamageHealth - postDamageHealth;
+
+            if (actualDamageDealt > 0) {
+                ItemStack itemStack = player.getMainHandItem();
+                if (itemStack.getItem() instanceof LifeStealable lifeStealable) {
+                    float lifeStealAmount = (float) (actualDamageDealt * lifeStealable.getLifeStealAmount());
+                    player.heal(lifeStealAmount);
+                }
+            }
+        }
     }
 }

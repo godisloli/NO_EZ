@@ -6,6 +6,7 @@ import net.minecraftforge.network.NetworkRegistry;
 import net.minecraftforge.network.PacketDistributor;
 import net.minecraftforge.network.simple.SimpleChannel;
 import net.tiramisu.noez.network.packet.ManaDataSyncS2CPacket;
+import net.tiramisu.noez.network.packet.SlashEffectS2CPacket;
 import net.tiramisu.noez.network.packet.SwingC2SPacket;
 import org.lwjgl.system.windows.MSG;
 
@@ -33,6 +34,13 @@ public class NoezNetwork {
                 ManaDataSyncS2CPacket::toBytes,
                 ManaDataSyncS2CPacket::new, // Constructor for decoding
                 ManaDataSyncS2CPacket::handle
+        );
+        CHANNEL.registerMessage(
+                packetId++,
+                SlashEffectS2CPacket.class,
+                SlashEffectS2CPacket::encode,
+                SlashEffectS2CPacket::decode,
+                SlashEffectS2CPacket::handle
         );
     }
 

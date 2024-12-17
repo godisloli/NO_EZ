@@ -34,7 +34,7 @@ public abstract class PlayerMixin {
                 boolean isCrit = random < critChance || ((Critable) mainHandItem).isAlwaysCrit() || targetEntity.hasEffect(NoezEffects.FROSTBITE.get());
                 if (isCrit) {
                     float baseDamage = (float) player.getAttribute(net.minecraft.world.entity.ai.attributes.Attributes.ATTACK_DAMAGE).getValue();
-                    float critDamage = baseDamage * (float) ((Critable) mainHandItem).getCritDamageAmplifier() - baseDamage;
+                    float critDamage = baseDamage * (float) ((Critable) mainHandItem).getCritDamageAmplifier();
                     targetEntity.hurt(player.damageSources().playerAttack(player), critDamage);
                     player.level().playSound(null, player.getX(), player.getY(), player.getZ(),
                             SoundEvents.PLAYER_ATTACK_CRIT, SoundSource.PLAYERS, 1.0f, 1.0f);
