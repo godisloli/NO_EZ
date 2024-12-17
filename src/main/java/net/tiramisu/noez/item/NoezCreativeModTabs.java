@@ -48,6 +48,7 @@ public class NoezCreativeModTabs {
                         pOutput.accept(NoezItems.WINDBREAKER.get());
                         pOutput.accept(NoezItems.BAMBOO_SWORD.get());
                         pOutput.accept(NoezItems.DARK_DEVASTATION.get());
+                        pOutput.accept(NoezItems.MOONSILVER_SWORD.get());
                     })
                     .build());
 

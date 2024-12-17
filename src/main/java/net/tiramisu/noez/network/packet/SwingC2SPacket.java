@@ -5,7 +5,7 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.network.NetworkEvent;
 import net.tiramisu.noez.item.ProjectileSword;
-import net.tiramisu.noez.item.SpellStaff;
+import net.tiramisu.noez.item.SpellCaster;
 
 import java.util.function.Supplier;
 
@@ -35,8 +35,8 @@ public class SwingC2SPacket {
                     sword.onSwing(player, player.getMainHandItem());
                     player.getCooldowns().addCooldown(item, cooldownTicks);
                 }
-                if (item instanceof SpellStaff spellStaff){
-                    spellStaff.onSwing(player, player.getMainHandItem());
+                if (item instanceof SpellCaster spellCaster){
+                    spellCaster.onSwing(player, player.getMainHandItem());
                 }
             }
         });

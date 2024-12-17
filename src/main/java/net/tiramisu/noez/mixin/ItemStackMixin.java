@@ -3,7 +3,6 @@ package net.tiramisu.noez.mixin;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
-import net.minecraft.network.chat.TextColor;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
@@ -12,11 +11,10 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.tiramisu.noez.item.Critable;
-import net.tiramisu.noez.item.SpellStaff;
+import net.tiramisu.noez.item.SpellCaster;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import javax.annotation.Nullable;
@@ -53,10 +51,10 @@ public class ItemStackMixin {
     @Inject(method = "getTooltipLines", at = @At("RETURN"), cancellable = true)
     private void staffTooltip(@Nullable Player pPlayer, TooltipFlag pIsAdvanced, CallbackInfoReturnable<List<Component>> cir) {
         ItemStack stack = (ItemStack) (Object) this;
-        if (stack.getItem() instanceof SpellStaff spellStaff) {
+        if (stack.getItem() instanceof SpellCaster spellCaster) {
             List<Component> tooltip = cir.getReturnValue();
-            double attackSpeed = 4 + spellStaff.getAttackSpeed();
-            double attackDamage = spellStaff.getAttackDamage();
+            double attackSpeed = 4 + spellCaster.getAttackSpeed();
+            double attackDamage = spellCaster.getAttackDamage();
             for (int i = 0; i < tooltip.size(); i++) {
                 Component line = tooltip.get(i);
                 if (line.getString().contains("Attack Damage")) {
@@ -99,6 +97,5 @@ public class ItemStackMixin {
             cir.setReturnValue(tooltip);
         }
     }
-
 }
 

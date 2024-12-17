@@ -10,12 +10,12 @@ import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import net.tiramisu.noez.attribute.NoezCapacity;
 import net.tiramisu.noez.entity.arrows.RootProjectile;
-import net.tiramisu.noez.item.SpellStaff;
+import net.tiramisu.noez.item.SpellCaster;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class DruvisStaff extends SpellStaff {
+public class DruvisStaff extends SpellCaster {
     private final static int cooldownTicks = 15 * 20;
     private final static int manaCostAttack = 1;
 

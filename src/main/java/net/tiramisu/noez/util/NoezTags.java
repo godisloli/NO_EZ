@@ -21,7 +21,7 @@ public class NoezTags {
         public static final TagKey<Item> LIGHT_WEAPON_REPAIRABLE = ItemTag("light_weapon_repairable");
         public static final TagKey<Item> MEDIUM_WEAPON_REPAIRABLE = ItemTag("medium_weapon_repairable");
         public static final TagKey<Item> HEAVY_WEAPON_REPAIRABLE = ItemTag("heavy_weapon_repairable");
-
+        public static final TagKey<Item> UNDEAD_SLAYING = ItemTag("undead_slaying");
         public static TagKey<Item> ItemTag(String name){
             return ItemTags.create(new ResourceLocation(NOEZ.MOD_ID, name));
         }

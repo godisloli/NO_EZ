@@ -45,6 +45,9 @@ public class NoezItems {
     public static final RegistryObject<Item> BAMBOO_SWORD = ITEMS.register("bamboo_sword",
             () -> new BambooSword(NoezToolTier.LIGHT, 1, -2f, new Item.Properties().stacksTo(1).durability(58)));
 
+    public static final RegistryObject<Item> MOONSILVER_SWORD = ITEMS.register("moonsilver_sword",
+            () -> new MoonsilverSword(NoezToolTier.MEDIUM, 2, -2.4f, new Item.Properties().stacksTo(1).durability(121)));
+
     public static final RegistryObject<Item> IRIDESCENT_BOW = ITEMS.register("iridescent_bow",
             () -> new IridescentBow(new Item.Properties().stacksTo(1).durability(112)));
 

@@ -22,7 +22,7 @@ import javax.annotation.Nullable;
 import java.util.UUID;
 import java.util.function.BiConsumer;
 
-public abstract class SpellStaff extends Item {
+public abstract class SpellCaster extends Item {
 
     private static final UUID ATTACK_DAMAGE_MODIFIER = UUID.fromString("FA233E1C-4180-4865-B01B-BCCE9785ACA3");
     private static final UUID ATTACK_SPEED_MODIFIER = UUID.fromString("CB3F55D3-645C-4F38-A497-9C13A33DB5CF");
@@ -32,7 +32,7 @@ public abstract class SpellStaff extends Item {
     private final int cooldownTicks;
     private final BiConsumer<Player, LivingEntity> onHitEffect;
 
-    public SpellStaff(Properties properties, double attackDamage, double attackSpeed, int cooldownTicks, @Nullable BiConsumer<Player, LivingEntity> onHitEffect) {
+    public SpellCaster(Properties properties, double attackDamage, double attackSpeed, int cooldownTicks, @Nullable BiConsumer<Player, LivingEntity> onHitEffect) {
         super(properties);
         this.attackDamage = attackDamage;
         this.attackSpeed = attackSpeed;
@@ -81,7 +81,7 @@ public abstract class SpellStaff extends Item {
     public void onHitEntity(AttackEntityEvent event) {
         Player player = event.getEntity();
         ItemStack heldItem = player.getMainHandItem();
-        if (!(heldItem.getItem() instanceof SpellStaff)) return;
+        if (!(heldItem.getItem() instanceof SpellCaster)) return;
         if (isBroken(heldItem)) return;
         LivingEntity target = event.getTarget() instanceof LivingEntity ? (LivingEntity) event.getTarget() : null;
         if (target != null && onHitEffect != null) {
@@ -94,7 +94,7 @@ public abstract class SpellStaff extends Item {
     public void onLeftClickBlock(PlayerInteractEvent.LeftClickBlock event) {
         Player player = event.getEntity();
         ItemStack heldItem = player.getMainHandItem();
-        if (!(heldItem.getItem() instanceof SpellStaff)) return;
+        if (!(heldItem.getItem() instanceof SpellCaster)) return;
         if (isBroken(heldItem)) return;
         onSwing(player, heldItem);
     }
@@ -103,9 +103,9 @@ public abstract class SpellStaff extends Item {
     public void onLeftClickEmpty(PlayerInteractEvent.LeftClickEmpty event) {
         Player player = event.getEntity();
         ItemStack heldItem = event.getItemStack();
-        if (!(heldItem.getItem() instanceof SpellStaff)) return;
+        if (!(heldItem.getItem() instanceof SpellCaster)) return;
         if (isBroken(heldItem)) return;
-        if (!player.level().isClientSide && heldItem.getItem() instanceof SpellStaff spellStaff) {
+        if (!player.level().isClientSide && heldItem.getItem() instanceof SpellCaster spellCaster) {
             NoezNetwork.CHANNEL.sendToServer(new SwingC2SPacket(0));
         }
     }
@@ -115,7 +115,7 @@ public abstract class SpellStaff extends Item {
         Player player = event.getEntity();
         ItemStack itemStack = player.getUseItem();
         ItemStack heldItem = event.getItemStack();
-        if (!(heldItem.getItem() instanceof SpellStaff)) return;
+        if (!(heldItem.getItem() instanceof SpellCaster)) return;
         if (isBroken(heldItem)) return;
         onActivate(player, itemStack, this.cooldownTicks);
     }
