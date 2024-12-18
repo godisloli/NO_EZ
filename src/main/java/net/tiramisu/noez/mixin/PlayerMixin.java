@@ -33,6 +33,7 @@ public abstract class PlayerMixin {
                 double random = player.level().getRandom().nextDouble();
                 boolean isCrit = random < critChance || ((Critable) mainHandItem).isAlwaysCrit() || targetEntity.hasEffect(NoezEffects.FROSTBITE.get());
                 if (isCrit) {
+                    mainHandItem.hurtEnemy(mainHandStack, targetEntity, player);
                     float baseDamage = (float) player.getAttribute(net.minecraft.world.entity.ai.attributes.Attributes.ATTACK_DAMAGE).getValue();
                     float critDamage = baseDamage * (float) ((Critable) mainHandItem).getCritDamageAmplifier();
                     targetEntity.hurt(player.damageSources().playerAttack(player), critDamage);
@@ -57,6 +58,7 @@ public abstract class PlayerMixin {
                     }
                 }
             }
+            System.out.println("Health: " + ((LivingEntity) target).getHealth());
         }
     }
 

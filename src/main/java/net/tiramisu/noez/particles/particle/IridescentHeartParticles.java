@@ -6,8 +6,8 @@ import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
-public class IridescentHeart extends TextureSheetParticle {
-    protected IridescentHeart(ClientLevel pLevel, double pX, double pY, double pZ, SpriteSet spriteSet, double pXSpeed, double pYSpeed, double pZSpeed) {
+public class IridescentHeartParticles extends TextureSheetParticle {
+    protected IridescentHeartParticles(ClientLevel pLevel, double pX, double pY, double pZ, SpriteSet spriteSet, double pXSpeed, double pYSpeed, double pZSpeed) {
         super(pLevel, pX, pY, pZ, pXSpeed, pYSpeed, pZSpeed);
         this.friction = 0.75f;
         this.xd = pXSpeed;
@@ -53,7 +53,7 @@ public class IridescentHeart extends TextureSheetParticle {
         }
 
         public Particle createParticle(SimpleParticleType particleType, ClientLevel level, double x, double y, double z, double dx, double dy, double dz){
-            return new IridescentHeart(level, x, y, z, this.spriteSet, dx, dy, dz);
+            return new IridescentHeartParticles(level, x, y, z, this.spriteSet, dx, dy, dz);
         }
     }
 }

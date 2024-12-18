@@ -112,17 +112,17 @@ public abstract class LivingEntityMixin extends Entity {
     }
 
     @Inject(method = "hurt", at = @At("RETURN"))
-    private void captureDamageValue(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
+    private void lifeStealLogic(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
         LivingEntity target = (LivingEntity) (Object) this;
         if (source.getEntity() instanceof Player player) {
             float postDamageHealth = target.getHealth();
             float actualDamageDealt = preDamageHealth - postDamageHealth;
-
             if (actualDamageDealt > 0) {
                 ItemStack itemStack = player.getMainHandItem();
                 if (itemStack.getItem() instanceof LifeStealable lifeStealable) {
                     float lifeStealAmount = (float) (actualDamageDealt * lifeStealable.getLifeStealAmount());
                     player.heal(lifeStealAmount);
+                    System.out.println("Healed: " + lifeStealAmount);
                 }
             }
         }

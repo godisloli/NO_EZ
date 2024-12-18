@@ -24,6 +24,9 @@ public class NoezParticles {
     public static final RegistryObject<SimpleParticleType> IRIDESCENT_HEART = PARTICLES.register("iridescent_heart",
             () -> new SimpleParticleType(true));
 
+    public static final RegistryObject<SimpleParticleType> BLOOD_SLASH = PARTICLES.register("blood_sacrifice_aoe",
+            () -> new SimpleParticleType(true));
+
     public static void register(IEventBus eventBus) {
         PARTICLES.register(eventBus);
     }

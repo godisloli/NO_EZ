@@ -11,6 +11,7 @@ import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import net.tiramisu.noez.item.Critable;
 import net.tiramisu.noez.item.LifeStealable;
+import net.tiramisu.noez.particles.NoezParticles;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
@@ -70,6 +71,15 @@ public class BloodSacrifice extends SwordItem implements Critable, LifeStealable
             for (LivingEntity entity : entities) {
                 entity.hurt(pAttacker.damageSources().playerAttack((Player) pAttacker), AOE_DAMAGE);
             }
+            serverLevel.sendParticles(
+                    NoezParticles.BLOOD_SLASH.get(),
+                    pTarget.getX(),
+                    pTarget.getY() + 0.2,
+                    pTarget.getZ(),
+                    1,
+                    0,0,0,
+                    0
+            );
         }
         return super.hurtEnemy(pStack, pTarget, pAttacker);
     }

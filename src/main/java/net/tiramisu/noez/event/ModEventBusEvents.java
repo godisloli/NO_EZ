@@ -9,10 +9,7 @@ import net.tiramisu.noez.NOEZ;
 import net.tiramisu.noez.attribute.ManaPlayer;
 import net.tiramisu.noez.network.NoezNetwork;
 import net.tiramisu.noez.particles.NoezParticles;
-import net.tiramisu.noez.particles.particle.ButterflyParticles;
-import net.tiramisu.noez.particles.particle.IridescentHeart;
-import net.tiramisu.noez.particles.particle.SnowFlakeParticles;
-import net.tiramisu.noez.particles.particle.WindBlowParticles;
+import net.tiramisu.noez.particles.particle.*;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD, modid = NOEZ.MOD_ID)
 public class ModEventBusEvents {
@@ -35,7 +32,12 @@ public class ModEventBusEvents {
 
         event.registerSpriteSet(
                 NoezParticles.IRIDESCENT_HEART.get(),
-                spriteSet -> new IridescentHeart.Provider(spriteSet)
+                spriteSet -> new IridescentHeartParticles.Provider(spriteSet)
+        );
+
+        event.registerSpriteSet(
+                NoezParticles.BLOOD_SLASH.get(),
+                spriteSet -> new BloodSlash.Provider(spriteSet)
         );
     }
 
