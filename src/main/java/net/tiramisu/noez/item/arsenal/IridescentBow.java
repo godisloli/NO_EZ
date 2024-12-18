@@ -27,7 +27,6 @@ public class IridescentBow extends BowItem {
         return 72000;
     }
 
-
     @Override
     public void releaseUsing(ItemStack pStack, Level pLevel, LivingEntity pEntityLiving, int pTimeLeft) {
         if (pEntityLiving instanceof Player player) {

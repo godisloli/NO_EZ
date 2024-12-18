@@ -88,7 +88,7 @@ public class NOEZ
     public static class ClientModEvents {
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event) {
-            NoezItemProperties.addCustomBowProperties(NoezItems.IRIDESCENT_BOW.get());
+            NoezItemProperties.itemTexturesRenderer(NoezItems.IRIDESCENT_BOW.get());
         }
 
         @SubscribeEvent
