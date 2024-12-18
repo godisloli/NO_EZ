@@ -11,6 +11,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.tiramisu.noez.item.Critable;
+import net.tiramisu.noez.item.LifeStealable;
 import net.tiramisu.noez.item.SpellCaster;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -91,6 +92,11 @@ public class ItemStackMixin {
                             .withStyle(style -> style.withColor(ChatFormatting.RED)));
                     tooltip.add(i + 4, Component.translatable("tooltip.noez.crit_damage", String.format("%.0f%%", critDamageAmplifier))
                             .withStyle(style -> style.withColor(ChatFormatting.RED)));
+                    if (stack.getItem() instanceof LifeStealable) {
+                        double lifeSteal = ((LifeStealable) stack.getItem()).getLifeStealAmount() * 100;;
+                        tooltip.add(i + 5, Component.translatable("tooltip.noez.life_steal", String.format("%.0f%%", lifeSteal))
+                                .withStyle(style -> style.withColor(ChatFormatting.DARK_RED)));
+                    }
                     break;
                 }
             }

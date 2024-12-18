@@ -14,6 +14,7 @@
   "item.noez.frostbane_sword": "§bFrostbane Sword",
   "item.noez.windbreaker": "Windbreaker",
   "item.noez.bamboo_sword": "Bamboo Sword",
+  "item.noez.blood_sacrifice": "§4Blood Sacrifice",
   "item.noez.druvis_staff": "Druvis Staff",
   "item.noez.mana_potion.effect.empty": "Mana Potion",
 
@@ -47,9 +48,11 @@
   "noez.windbreaker.tooltip2": "If your falling distance is 10 blocks or more, inflict §4Armor Crunch §rto target and deal damage to all creatures around",
   "noez.dark_devastation.tooltip1": "§6On attack: §rInflict §8Corruption§r to target. If target already had the effect, increase the amplify by 1 (Up to: 5 stacks)",
   "item.noez.mana_potion.tooltip": "Gain 5 mana",
+  "noez.blood_sacrifice.tooltip1": "§6On attack: §rDeals small damage to all entities around",
 
   "tooltip.noez.crit_damage": " %s Crit Damage",
   "tooltip.noez.crit_chance": " %s Crit Chance",
+  "tooltip.noez.life_steal": " %s Life Steal",
   "noez.undeadslayer": "§5Undead Slayer:§r Bypass undead invulnerable",
 
   "creativetab.noez_tab_misc": "Ingredients",
