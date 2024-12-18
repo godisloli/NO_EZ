@@ -122,7 +122,6 @@ public abstract class LivingEntityMixin extends Entity {
                 if (itemStack.getItem() instanceof LifeStealable lifeStealable) {
                     float lifeStealAmount = (float) (actualDamageDealt * lifeStealable.getLifeStealAmount());
                     player.heal(lifeStealAmount);
-                    System.out.println("Healed: " + lifeStealAmount);
                 }
             }
         }

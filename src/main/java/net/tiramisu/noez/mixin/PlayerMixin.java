@@ -58,7 +58,6 @@ public abstract class PlayerMixin {
                     }
                 }
             }
-            System.out.println("Health: " + ((LivingEntity) target).getHealth());
         }
     }
 
