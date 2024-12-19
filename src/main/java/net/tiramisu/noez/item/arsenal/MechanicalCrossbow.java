@@ -3,6 +3,8 @@ package net.tiramisu.noez.item.arsenal;
 
 import com.google.common.collect.Lists;
 import java.util.List;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
 import java.util.function.Predicate;
 import javax.annotation.Nullable;
 import net.minecraft.ChatFormatting;
@@ -36,7 +38,7 @@ import net.minecraftforge.event.ForgeEventFactory;
 import org.joml.Quaternionf;
 import org.joml.Vector3f;
 
-public class MechanicalCrossbow extends ProjectileWeaponItem implements Vanishable {
+public class MechanicalCrossbow extends CrossbowItem implements Vanishable {
     private static final String TAG_CHARGED = "Charged";
     private static final String TAG_CHARGED_PROJECTILES = "ChargedProjectiles";
     private static final int MAX_CHARGE_DURATION = 50;
@@ -45,8 +47,10 @@ public class MechanicalCrossbow extends ProjectileWeaponItem implements Vanishab
     private boolean midLoadSoundPlayed = false;
     private static final float START_SOUND_PERCENT = 0.2F;
     private static final float MID_SOUND_PERCENT = 0.5F;
-    private static final float ARROW_POWER = 3.15F;
-    private static final float FIREWORK_POWER = 1.6F;
+    private static final float ARROW_POWER = 2F;
+    private static final float FIREWORK_POWER = 1.5F;
+    private static final ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
+
 
     public MechanicalCrossbow(Item.Properties pProperties) {
         super(pProperties);
@@ -90,31 +94,33 @@ public class MechanicalCrossbow extends ProjectileWeaponItem implements Vanishab
         if (f >= 1.0F && !isCharged(pStack) && tryLoadProjectiles(pEntityLiving, pStack)) {
             setCharged(pStack, true);
             SoundSource soundsource = pEntityLiving instanceof Player ? SoundSource.PLAYERS : SoundSource.HOSTILE;
-            pLevel.playSound((Player)null, pEntityLiving.getX(), pEntityLiving.getY(), pEntityLiving.getZ(), SoundEvents.CROSSBOW_LOADING_END, soundsource, 1.0F, 1.0F / (pLevel.getRandom().nextFloat() * 0.5F + 1.0F) + 0.2F);
+            pLevel.playSound(null, pEntityLiving.getX(), pEntityLiving.getY(), pEntityLiving.getZ(), SoundEvents.CROSSBOW_LOADING_END, soundsource, 1.0F, 1.0F / (pLevel.getRandom().nextFloat() * MID_SOUND_PERCENT + 1.0F) + START_SOUND_PERCENT);
         }
     }
 
     private static boolean tryLoadProjectiles(LivingEntity pShooter, ItemStack pCrossbowStack) {
         int maxProjectiles = 4;
-        boolean flag = pShooter instanceof Player && ((Player)pShooter).getAbilities().instabuild;
+        boolean flag = pShooter instanceof Player && ((Player) pShooter).getAbilities().instabuild;
+        List<ItemStack> projectilesToLoad = Lists.newArrayList();
+
         ItemStack itemstack = pShooter.getProjectile(pCrossbowStack);
-        ItemStack itemstack1 = itemstack.copy();
-
-        for (int k = 0; k < maxProjectiles; ++k) {
-            if (k > 0) {
-                itemstack = itemstack1.copy();
-            }
-
-            if (itemstack.isEmpty() && flag) {
-                itemstack = new ItemStack(Items.ARROW);
-                itemstack1 = itemstack.copy();
-            }
-
-            if (!loadProjectile(pShooter, pCrossbowStack, itemstack, k > 0, flag)) {
-                return k > 0;
+        while (!itemstack.isEmpty() && projectilesToLoad.size() < maxProjectiles) {
+            projectilesToLoad.add(itemstack.copy());
+            if (!flag) {
+                itemstack.shrink(1);
+                if (itemstack.isEmpty() && pShooter instanceof Player) {
+                    ((Player) pShooter).getInventory().removeItem(itemstack);
+                }
             }
         }
-
+        if (projectilesToLoad.isEmpty()) {
+            return false;
+        }
+        for (int i = 0; i < projectilesToLoad.size(); i++) {
+            if (!loadProjectile(pShooter, pCrossbowStack, projectilesToLoad.get(i), i > 0, flag)) {
+                return i > 0;
+            }
+        }
         return true;
     }
 
@@ -126,13 +132,9 @@ public class MechanicalCrossbow extends ProjectileWeaponItem implements Vanishab
             ItemStack itemstack;
             if (!flag && !pIsCreative && !pHasAmmo) {
                 itemstack = pAmmoStack.split(1);
-                if (pAmmoStack.isEmpty() && pShooter instanceof Player) {
-                    ((Player)pShooter).getInventory().removeItem(pAmmoStack);
-                }
             } else {
                 itemstack = pAmmoStack.copy();
             }
-
             addChargedProjectile(pCrossbowStack, itemstack);
             return true;
         }
@@ -151,16 +153,20 @@ public class MechanicalCrossbow extends ProjectileWeaponItem implements Vanishab
     private static void addChargedProjectile(ItemStack pCrossbowStack, ItemStack pAmmoStack) {
         CompoundTag compoundtag = pCrossbowStack.getOrCreateTag();
         ListTag listtag;
-        if (compoundtag.contains("ChargedProjectiles", 9)) {
-            listtag = compoundtag.getList("ChargedProjectiles", 10);
+        if (compoundtag.contains(TAG_CHARGED_PROJECTILES, 9)) {
+            listtag = compoundtag.getList(TAG_CHARGED_PROJECTILES, 10);
         } else {
             listtag = new ListTag();
         }
-
         CompoundTag compoundtag1 = new CompoundTag();
         pAmmoStack.save(compoundtag1);
         listtag.add(compoundtag1);
-        compoundtag.put("ChargedProjectiles", listtag);
+        compoundtag.put(TAG_CHARGED_PROJECTILES, listtag);
+        if (pAmmoStack.is(Items.FIREWORK_ROCKET)) {
+            compoundtag.putBoolean("Firework", true);
+        } else {
+            compoundtag.putBoolean("Firework", false);
+        }
     }
 
     private static List<ItemStack> getChargedProjectiles(ItemStack pCrossbowStack) {
@@ -168,14 +174,11 @@ public class MechanicalCrossbow extends ProjectileWeaponItem implements Vanishab
         CompoundTag compoundtag = pCrossbowStack.getTag();
         if (compoundtag != null && compoundtag.contains(TAG_CHARGED_PROJECTILES, 9)) {
             ListTag listtag = compoundtag.getList(TAG_CHARGED_PROJECTILES, 10);
-            if (listtag != null) {
-                for(int i = 0; i < listtag.size(); ++i) {
-                    CompoundTag compoundtag1 = listtag.getCompound(i);
-                    list.add(ItemStack.of(compoundtag1));
-                }
+            for (int i = 0; i < listtag.size(); ++i) {
+                CompoundTag compoundtag1 = listtag.getCompound(i);
+                list.add(ItemStack.of(compoundtag1));
             }
         }
-
         return list;
     }
 
@@ -183,9 +186,9 @@ public class MechanicalCrossbow extends ProjectileWeaponItem implements Vanishab
     private static void clearChargedProjectiles(ItemStack pCrossbowStack) {
         CompoundTag compoundtag = pCrossbowStack.getTag();
         if (compoundtag != null) {
-            ListTag listtag = compoundtag.getList("ChargedProjectiles", 9);
+            ListTag listtag = compoundtag.getList(TAG_CHARGED_PROJECTILES, 9);
             listtag.clear();
-            compoundtag.put("ChargedProjectiles", listtag);
+            compoundtag.put(TAG_CHARGED_PROJECTILES, listtag);
         }
 
     }
@@ -207,20 +210,19 @@ public class MechanicalCrossbow extends ProjectileWeaponItem implements Vanishab
                 }
             }
 
-            if (pShooter instanceof CrossbowAttackMob) {
-                CrossbowAttackMob crossbowattackmob = (CrossbowAttackMob)pShooter;
-                crossbowattackmob.shootCrossbowProjectile(crossbowattackmob.getTarget(), pCrossbowStack, projectile, pProjectileAngle);
+            if (pShooter instanceof CrossbowAttackMob crossbowAttackMob) {
+                crossbowAttackMob.shootCrossbowProjectile(crossbowAttackMob.getTarget(), pCrossbowStack, projectile, pProjectileAngle);
             } else {
                 Vec3 vec31 = pShooter.getUpVector(1.0F);
-                Quaternionf quaternionf = (new Quaternionf()).setAngleAxis((double)(pProjectileAngle * ((float)Math.PI / 180F)), vec31.x, vec31.y, vec31.z);
+                Quaternionf quaternionf = (new Quaternionf()).setAngleAxis(pProjectileAngle * ((float)Math.PI / 180F), vec31.x, vec31.y, vec31.z);
                 Vec3 vec3 = pShooter.getViewVector(1.0F);
                 Vector3f vector3f = vec3.toVector3f().rotate(quaternionf);
-                projectile.shoot((double)vector3f.x(), (double)vector3f.y(), (double)vector3f.z(), pVelocity, pInaccuracy);
+                projectile.shoot(vector3f.x(), vector3f.y(), vector3f.z(), pVelocity, pInaccuracy);
             }
 
-            pCrossbowStack.hurtAndBreak(flag ? 3 : 1, pShooter, (livingEntity) -> livingEntity.broadcastBreakEvent(pHand));
+            pCrossbowStack.hurtAndBreak(1, pShooter, (livingEntity) -> livingEntity.broadcastBreakEvent(pHand));
             pLevel.addFreshEntity(projectile);
-            pLevel.playSound((Player)null, pShooter.getX(), pShooter.getY(), pShooter.getZ(), SoundEvents.CROSSBOW_SHOOT, SoundSource.PLAYERS, 1.0F, pSoundPitch);
+            pLevel.playSound(null, pShooter.getX(), pShooter.getY(), pShooter.getZ(), SoundEvents.CROSSBOW_SHOOT, SoundSource.PLAYERS, 1.0F, pSoundPitch);
         }
 
     }
@@ -231,14 +233,8 @@ public class MechanicalCrossbow extends ProjectileWeaponItem implements Vanishab
         if (pLivingEntity instanceof Player) {
             abstractarrow.setCritArrow(true);
         }
-
         abstractarrow.setSoundEvent(SoundEvents.CROSSBOW_HIT);
         abstractarrow.setShotFromCrossbow(true);
-        int i = EnchantmentHelper.getItemEnchantmentLevel(Enchantments.PIERCING, pCrossbowStack);
-        if (i > 0) {
-            abstractarrow.setPierceLevel((byte)i);
-        }
-
         return abstractarrow;
     }
 
@@ -249,16 +245,26 @@ public class MechanicalCrossbow extends ProjectileWeaponItem implements Vanishab
             }
         }
 
-        List<ItemStack> list = getChargedProjectiles(pCrossbowStack);
-        for (int i = 0; i < list.size(); ++i) {
-            ItemStack itemstack = list.get(i);
-            boolean flag = pShooter instanceof Player && ((Player)pShooter).getAbilities().instabuild;
-            if (!itemstack.isEmpty()) {
-                float delay = 0.2F * i;
-                shootProjectile(pLevel, pShooter, pUsedHand, pCrossbowStack, itemstack, 1.0F, flag, pVelocity * 2,  pInaccuracy * 0.3f, 0.0F);
-            }
+        List<ItemStack> projectiles = getChargedProjectiles(pCrossbowStack);
+        int delayPerShot = 2;
+
+        for (int i = 0; i < projectiles.size(); i++) {
+            final int index = i;
+            final ItemStack itemstack = projectiles.get(i);
+            final boolean isCreativeMode = pShooter instanceof Player && ((Player) pShooter).getAbilities().instabuild;
+            final int delayTicks = index * delayPerShot;
+
+            scheduler.schedule(() -> {
+                if (!itemstack.isEmpty()) {
+                    shootProjectile(pLevel, pShooter, pUsedHand, pCrossbowStack, itemstack, 1.0F, isCreativeMode, pVelocity, pInaccuracy, 0.0F);
+                }
+
+                if (index == projectiles.size() - 1) {
+                    onCrossbowShot(pLevel, pShooter, pCrossbowStack);
+                    pLevel.playSound(null, pShooter.getX(), pShooter.getY(), pShooter. getZ(), SoundEvents.CROSSBOW_SHOOT, SoundSource.PLAYERS, 1, 1);
+                }
+            }, delayTicks * 50L, java.util.concurrent.TimeUnit.MILLISECONDS);
         }
-        onCrossbowShot(pLevel, pShooter, pCrossbowStack);
     }
 
     private static float[] getShotPitches(RandomSource pRandom) {
@@ -276,7 +282,6 @@ public class MechanicalCrossbow extends ProjectileWeaponItem implements Vanishab
             if (!pLevel.isClientSide) {
                 CriteriaTriggers.SHOT_CROSSBOW.trigger(serverplayer, pCrossbowStack);
             }
-
             serverplayer.awardStat(Stats.ITEM_USED.get(pCrossbowStack.getItem()));
         }
 
@@ -289,22 +294,21 @@ public class MechanicalCrossbow extends ProjectileWeaponItem implements Vanishab
             SoundEvent soundevent = this.getStartSound(i);
             SoundEvent soundevent1 = i == 0 ? SoundEvents.CROSSBOW_LOADING_MIDDLE : null;
             float f = (float)(pStack.getUseDuration() - pCount) / (float)getChargeDuration(pStack);
-            if (f < 0.2F) {
+            if (f < 0.4F) {
                 this.startSoundPlayed = false;
                 this.midLoadSoundPlayed = false;
             }
 
-            if (f >= 0.2F && !this.startSoundPlayed) {
+            if (f >= 0.4F && !this.startSoundPlayed) {
                 this.startSoundPlayed = true;
-                pLevel.playSound((Player)null, pLivingEntity.getX(), pLivingEntity.getY(), pLivingEntity.getZ(), soundevent, SoundSource.PLAYERS, 0.5F, 1.0F);
+                pLevel.playSound(null, pLivingEntity.getX(), pLivingEntity.getY(), pLivingEntity.getZ(), soundevent, SoundSource.PLAYERS, 0.5F, 1.0F);
             }
 
-            if (f >= 0.5F && soundevent1 != null && !this.midLoadSoundPlayed) {
+            if (f >= 1F && soundevent1 != null && !this.midLoadSoundPlayed) {
                 this.midLoadSoundPlayed = true;
-                pLevel.playSound((Player)null, pLivingEntity.getX(), pLivingEntity.getY(), pLivingEntity.getZ(), soundevent1, SoundSource.PLAYERS, 0.5F, 1.0F);
+                pLevel.playSound(null, pLivingEntity.getX(), pLivingEntity.getY(), pLivingEntity.getZ(), soundevent1, SoundSource.PLAYERS, 0.5F, 1.0F);
             }
         }
-
     }
 
     public int getUseDuration(ItemStack pStack) {
@@ -313,7 +317,7 @@ public class MechanicalCrossbow extends ProjectileWeaponItem implements Vanishab
 
     public static int getChargeDuration(ItemStack pCrossbowStack) {
         int i = EnchantmentHelper.getItemEnchantmentLevel(Enchantments.QUICK_CHARGE, pCrossbowStack);
-        return i == 0 ? 25 : 25 - 5 * i;
+        return MAX_CHARGE_DURATION;
     }
 
     public UseAnim getUseAnimation(ItemStack pStack) {
@@ -342,28 +346,25 @@ public class MechanicalCrossbow extends ProjectileWeaponItem implements Vanishab
         if (f > 1.0F) {
             f = 1.0F;
         }
-
         return f;
     }
 
     public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltip, TooltipFlag pFlag) {
         List<ItemStack> list = getChargedProjectiles(pStack);
         if (isCharged(pStack) && !list.isEmpty()) {
-            ItemStack itemstack = (ItemStack)list.get(0);
+            ItemStack itemstack = list.get(0);
             pTooltip.add(Component.translatable("item.minecraft.crossbow.projectile").append(CommonComponents.SPACE).append(itemstack.getDisplayName()));
             if (pFlag.isAdvanced() && itemstack.is(Items.FIREWORK_ROCKET)) {
                 List<Component> list1 = Lists.newArrayList();
                 Items.FIREWORK_ROCKET.appendHoverText(itemstack, pLevel, list1, pFlag);
                 if (!list1.isEmpty()) {
-                    for(int i = 0; i < list1.size(); ++i) {
-                        list1.set(i, Component.literal("  ").append((Component)list1.get(i)).withStyle(ChatFormatting.GRAY));
-                    }
-
+                    list1.replaceAll(component -> Component.literal("  ").append(component).withStyle(ChatFormatting.GRAY));
                     pTooltip.addAll(list1);
                 }
             }
         }
-
+        pTooltip.add(Component.translatable("noez.mechanical_crossbow.tooltip1"));
+        pTooltip.add(Component.translatable("noez.mechanical_crossbow.tooltip2"));
     }
 
     public boolean useOnRelease(ItemStack pStack) {
@@ -371,6 +372,6 @@ public class MechanicalCrossbow extends ProjectileWeaponItem implements Vanishab
     }
 
     public int getDefaultProjectileRange() {
-        return 8;
+        return DEFAULT_RANGE;
     }
 }

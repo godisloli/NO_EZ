@@ -5,6 +5,8 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.projectile.AbstractArrow;
+import net.minecraft.world.entity.projectile.FireworkRocketEntity;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -18,6 +20,7 @@ import net.minecraft.world.level.Level;
 import net.tiramisu.noez.item.LifeStealable;
 import net.tiramisu.noez.util.NoezTags;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
@@ -29,6 +32,20 @@ public abstract class LivingEntityMixin extends Entity {
 
     public LivingEntityMixin(EntityType<?> entityType, Level world) {
         super(entityType, world);
+    }
+
+    @Inject(method = "hurt", at = @At("HEAD"), cancellable = true)
+    private void reduceIFrames(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
+        if (source.getDirectEntity() instanceof AbstractArrow arrow) {
+            if (arrow.getOwner() instanceof LivingEntity) {
+                this.invulnerableTime = 1;
+            }
+        }
+        if (source.getDirectEntity() instanceof FireworkRocketEntity fireworkRocketEntity) {
+            if (fireworkRocketEntity.getOwner() instanceof LivingEntity) {
+                this.invulnerableTime = 1;
+            }
+        }
     }
 
     @Inject(at = @At("HEAD"), method = "hasLineOfSight", cancellable = true)

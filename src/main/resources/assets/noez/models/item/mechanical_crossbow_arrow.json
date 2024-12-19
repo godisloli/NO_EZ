@@ -1,5 +1,5 @@
 {
-    "parent": "item/crossbow",
+    "parent": "noez:item/mechanical_crossbow",
     "textures": {
         "layer0": "noez:item/mechanical_crossbow_arrow"
     }
