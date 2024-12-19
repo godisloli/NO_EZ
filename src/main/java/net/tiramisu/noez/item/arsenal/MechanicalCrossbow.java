@@ -11,6 +11,7 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.network.chat.CommonComponents;
 import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
@@ -38,7 +39,7 @@ import org.joml.Vector3f;
 public class MechanicalCrossbow extends ProjectileWeaponItem implements Vanishable {
     private static final String TAG_CHARGED = "Charged";
     private static final String TAG_CHARGED_PROJECTILES = "ChargedProjectiles";
-    private static final int MAX_CHARGE_DURATION = 25;
+    private static final int MAX_CHARGE_DURATION = 50;
     public static final int DEFAULT_RANGE = 8;
     private boolean startSoundPlayed = false;
     private boolean midLoadSoundPlayed = false;
@@ -58,6 +59,7 @@ public class MechanicalCrossbow extends ProjectileWeaponItem implements Vanishab
     public Predicate<ItemStack> getAllSupportedProjectiles() {
         return ARROW_ONLY;
     }
+
 
     public InteractionResultHolder<ItemStack> use(Level pLevel, Player pPlayer, InteractionHand pHand) {
         ItemStack itemstack = pPlayer.getItemInHand(pHand);
@@ -79,7 +81,7 @@ public class MechanicalCrossbow extends ProjectileWeaponItem implements Vanishab
     }
 
     private static float getShootingPower(ItemStack pCrossbowStack) {
-        return containsChargedProjectile(pCrossbowStack, Items.FIREWORK_ROCKET) ? 1.6F : 3.15F;
+        return containsChargedProjectile(pCrossbowStack, Items.FIREWORK_ROCKET) ? FIREWORK_POWER : ARROW_POWER;
     }
 
     public void releaseUsing(ItemStack pStack, Level pLevel, LivingEntity pEntityLiving, int pTimeLeft) {
@@ -93,13 +95,12 @@ public class MechanicalCrossbow extends ProjectileWeaponItem implements Vanishab
     }
 
     private static boolean tryLoadProjectiles(LivingEntity pShooter, ItemStack pCrossbowStack) {
-        int i = EnchantmentHelper.getItemEnchantmentLevel(Enchantments.MULTISHOT, pCrossbowStack);
-        int j = i == 0 ? 1 : 3;
+        int maxProjectiles = 4;
         boolean flag = pShooter instanceof Player && ((Player)pShooter).getAbilities().instabuild;
         ItemStack itemstack = pShooter.getProjectile(pCrossbowStack);
         ItemStack itemstack1 = itemstack.copy();
 
-        for(int k = 0; k < j; ++k) {
+        for (int k = 0; k < maxProjectiles; ++k) {
             if (k > 0) {
                 itemstack = itemstack1.copy();
             }
@@ -110,7 +111,7 @@ public class MechanicalCrossbow extends ProjectileWeaponItem implements Vanishab
             }
 
             if (!loadProjectile(pShooter, pCrossbowStack, itemstack, k > 0, flag)) {
-                return false;
+                return k > 0;
             }
         }
 
@@ -139,12 +140,12 @@ public class MechanicalCrossbow extends ProjectileWeaponItem implements Vanishab
 
     public static boolean isCharged(ItemStack pCrossbowStack) {
         CompoundTag compoundtag = pCrossbowStack.getTag();
-        return compoundtag != null && compoundtag.getBoolean("Charged");
+        return compoundtag != null && compoundtag.getBoolean(TAG_CHARGED);
     }
 
     public static void setCharged(ItemStack pCrossbowStack, boolean pIsCharged) {
         CompoundTag compoundtag = pCrossbowStack.getOrCreateTag();
-        compoundtag.putBoolean("Charged", pIsCharged);
+        compoundtag.putBoolean(TAG_CHARGED, pIsCharged);
     }
 
     private static void addChargedProjectile(ItemStack pCrossbowStack, ItemStack pAmmoStack) {
@@ -165,8 +166,8 @@ public class MechanicalCrossbow extends ProjectileWeaponItem implements Vanishab
     private static List<ItemStack> getChargedProjectiles(ItemStack pCrossbowStack) {
         List<ItemStack> list = Lists.newArrayList();
         CompoundTag compoundtag = pCrossbowStack.getTag();
-        if (compoundtag != null && compoundtag.contains("ChargedProjectiles", 9)) {
-            ListTag listtag = compoundtag.getList("ChargedProjectiles", 10);
+        if (compoundtag != null && compoundtag.contains(TAG_CHARGED_PROJECTILES, 9)) {
+            ListTag listtag = compoundtag.getList(TAG_CHARGED_PROJECTILES, 10);
             if (listtag != null) {
                 for(int i = 0; i < listtag.size(); ++i) {
                     CompoundTag compoundtag1 = listtag.getCompound(i);
@@ -177,6 +178,7 @@ public class MechanicalCrossbow extends ProjectileWeaponItem implements Vanishab
 
         return list;
     }
+
 
     private static void clearChargedProjectiles(ItemStack pCrossbowStack) {
         CompoundTag compoundtag = pCrossbowStack.getTag();
@@ -189,7 +191,7 @@ public class MechanicalCrossbow extends ProjectileWeaponItem implements Vanishab
     }
 
     public static boolean containsChargedProjectile(ItemStack pCrossbowStack, Item pAmmoItem) {
-        return getChargedProjectiles(pCrossbowStack).stream().anyMatch((p_40870_) -> p_40870_.is(pAmmoItem));
+        return getChargedProjectiles(pCrossbowStack).stream().anyMatch((itemStack) -> itemStack.is(pAmmoItem));
     }
 
     private static void shootProjectile(Level pLevel, LivingEntity pShooter, InteractionHand pHand, ItemStack pCrossbowStack, ItemStack pAmmoStack, float pSoundPitch, boolean pIsCreativeMode, float pVelocity, float pInaccuracy, float pProjectileAngle) {
@@ -216,7 +218,7 @@ public class MechanicalCrossbow extends ProjectileWeaponItem implements Vanishab
                 projectile.shoot((double)vector3f.x(), (double)vector3f.y(), (double)vector3f.z(), pVelocity, pInaccuracy);
             }
 
-            pCrossbowStack.hurtAndBreak(flag ? 3 : 1, pShooter, (p_40858_) -> p_40858_.broadcastBreakEvent(pHand));
+            pCrossbowStack.hurtAndBreak(flag ? 3 : 1, pShooter, (livingEntity) -> livingEntity.broadcastBreakEvent(pHand));
             pLevel.addFreshEntity(projectile);
             pLevel.playSound((Player)null, pShooter.getX(), pShooter.getY(), pShooter.getZ(), SoundEvents.CROSSBOW_SHOOT, SoundSource.PLAYERS, 1.0F, pSoundPitch);
         }
@@ -241,29 +243,21 @@ public class MechanicalCrossbow extends ProjectileWeaponItem implements Vanishab
     }
 
     public static void performShooting(Level pLevel, LivingEntity pShooter, InteractionHand pUsedHand, ItemStack pCrossbowStack, float pVelocity, float pInaccuracy) {
-        if (pShooter instanceof Player player) {
+        if (pShooter instanceof Player player && pLevel instanceof ServerLevel) {
             if (ForgeEventFactory.onArrowLoose(pCrossbowStack, pShooter.level(), player, 1, true) < 0) {
                 return;
             }
         }
 
         List<ItemStack> list = getChargedProjectiles(pCrossbowStack);
-        float[] afloat = getShotPitches(pShooter.getRandom());
-
-        for(int i = 0; i < list.size(); ++i) {
-            ItemStack itemstack = (ItemStack)list.get(i);
+        for (int i = 0; i < list.size(); ++i) {
+            ItemStack itemstack = list.get(i);
             boolean flag = pShooter instanceof Player && ((Player)pShooter).getAbilities().instabuild;
             if (!itemstack.isEmpty()) {
-                if (i == 0) {
-                    shootProjectile(pLevel, pShooter, pUsedHand, pCrossbowStack, itemstack, afloat[i], flag, pVelocity, pInaccuracy, 0.0F);
-                } else if (i == 1) {
-                    shootProjectile(pLevel, pShooter, pUsedHand, pCrossbowStack, itemstack, afloat[i], flag, pVelocity, pInaccuracy, -10.0F);
-                } else if (i == 2) {
-                    shootProjectile(pLevel, pShooter, pUsedHand, pCrossbowStack, itemstack, afloat[i], flag, pVelocity, pInaccuracy, 10.0F);
-                }
+                float delay = 0.2F * i;
+                shootProjectile(pLevel, pShooter, pUsedHand, pCrossbowStack, itemstack, 1.0F, flag, pVelocity * 2,  pInaccuracy * 0.3f, 0.0F);
             }
         }
-
         onCrossbowShot(pLevel, pShooter, pCrossbowStack);
     }
 
@@ -314,7 +308,7 @@ public class MechanicalCrossbow extends ProjectileWeaponItem implements Vanishab
     }
 
     public int getUseDuration(ItemStack pStack) {
-        return getChargeDuration(pStack) + 3;
+        return MAX_CHARGE_DURATION;
     }
 
     public static int getChargeDuration(ItemStack pCrossbowStack) {

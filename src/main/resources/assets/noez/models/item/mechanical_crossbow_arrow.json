@@ -1,0 +1,6 @@
+{
+    "parent": "item/crossbow",
+    "textures": {
+        "layer0": "noez:item/mechanical_crossbow_arrow"
+    }
+}

@@ -55,7 +55,6 @@ public class BloodSacrifice extends SwordItem implements Critable, LifeStealable
     @Override
     public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
         pTooltipComponents.add(Component.translatable("noez.blood_sacrifice.tooltip1"));
-        pTooltipComponents.add(Component.translatable("wip"));
         super.appendHoverText(pStack, pLevel, pTooltipComponents, pIsAdvanced);
 
     }

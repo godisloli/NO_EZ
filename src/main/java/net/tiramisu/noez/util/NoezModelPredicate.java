@@ -4,7 +4,7 @@ import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 
-public class NoezItemProperties {
+public class NoezModelPredicate {
     public static void itemTexturesRenderer(Item item) {
         ItemProperties.register(item, new ResourceLocation("pull"), (stack, world, entity, seed) -> {
             if (entity == null) {

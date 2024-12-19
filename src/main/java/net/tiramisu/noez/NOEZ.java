@@ -25,7 +25,7 @@ import net.tiramisu.noez.item.NoezPotions;
 import net.tiramisu.noez.network.NoezNetwork;
 import net.tiramisu.noez.particles.NoezParticles;
 import net.tiramisu.noez.sound.NoezSounds;
-import net.tiramisu.noez.util.NoezItemProperties;
+import net.tiramisu.noez.util.NoezModelPredicate;
 import org.slf4j.Logger;
 import org.spongepowered.asm.mixin.Mixins;
 import net.tiramisu.noez.event.serverstarting.Starter;
@@ -88,7 +88,7 @@ public class NOEZ
     public static class ClientModEvents {
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event) {
-            NoezItemProperties.itemTexturesRenderer(NoezItems.IRIDESCENT_BOW.get());
+            NoezModelPredicate.itemTexturesRenderer(NoezItems.IRIDESCENT_BOW.get());
         }
 
         @SubscribeEvent
