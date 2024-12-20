@@ -35,7 +35,7 @@ public class NoezEntities {
                     .sized(0.18F, 0.18F)
                     .clientTrackingRange(8)
                     .updateInterval(10)
-                    .build("grass_spell_shot"));
+                    .build(NOEZ.MOD_ID + ":grass_spell_shot"));
 
     public static void register(IEventBus eventBus){
         ENTITY_TYPES.register(eventBus);

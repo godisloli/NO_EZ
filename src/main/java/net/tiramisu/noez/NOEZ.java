@@ -18,8 +18,7 @@ import net.tiramisu.noez.block.NoezBlocks;
 import net.tiramisu.noez.effect.NoezEffects;
 import net.tiramisu.noez.entity.NoezArrowRenderer;
 import net.tiramisu.noez.entity.NoezEntities;
-import net.tiramisu.noez.entity.nonarrows.GrassSpellShot;
-import net.tiramisu.noez.entity.nonarrows.NoezNonArrowRenderer;
+import net.tiramisu.noez.entity.NoezNonArrowRenderer;
 import net.tiramisu.noez.event.global.*;
 import net.tiramisu.noez.item.NoezCreativeModTabs;
 import net.tiramisu.noez.item.NoezItems;
@@ -96,8 +95,8 @@ public class NOEZ
 
         @SubscribeEvent
         public static void onRegisterRenderers(EntityRenderersEvent.RegisterRenderers event) {
-            event.registerEntityRenderer(NoezEntities.IRIDESCENT_ARROW.get(),NoezArrowRenderer::new);
-            event.registerEntityRenderer(NoezEntities.ROOT_PROJECTILE.get(),NoezArrowRenderer::new);
+            event.registerEntityRenderer(NoezEntities.IRIDESCENT_ARROW.get(), NoezArrowRenderer::new);
+            event.registerEntityRenderer(NoezEntities.ROOT_PROJECTILE.get(), NoezArrowRenderer::new);
             event.registerEntityRenderer(NoezEntities.GRASS_SPELL_SHOT.get(), NoezNonArrowRenderer::new);
         }
     }

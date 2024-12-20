@@ -20,8 +20,9 @@ import net.tiramisu.noez.effect.NoezEffects;
 import net.tiramisu.noez.item.SpellCaster;
 
 public class GrassSpellShot extends ThrowableProjectile {
-    private static final int DURATION = 2;
+    private static final int DURATION = 4;
     private static final double ROOT_CHANCE = 0.2;
+    private static final float AMPLIFIER = 1.5f;
     private static final EntityDataAccessor<Integer> LIFESPAN = SynchedEntityData.defineId(GrassSpellShot.class, EntityDataSerializers.INT);
 
     public GrassSpellShot(EntityType<? extends ThrowableProjectile> pEntityType, Level pLevel) {
@@ -44,14 +45,16 @@ public class GrassSpellShot extends ThrowableProjectile {
             if (itemStack.getItem() instanceof SpellCaster spellCaster){
                 if (!this.level().isClientSide()) {
                     Entity target = result.getEntity();
-                    target.hurt(this.getOwner().damageSources().magic(),(float) spellCaster.getMagicDamage());
-                    double random = this.getOwner().level().getRandom().nextDouble();
-                    boolean isCrit = random < ROOT_CHANCE;
-                    if (target instanceof LivingEntity livingTarget && isCrit) {
-                        livingTarget.addEffect(new MobEffectInstance(NoezEffects.ROOT.get(), DURATION * 20, 0));
+                    if (target instanceof LivingEntity livingTarget) {
+                        livingTarget.hurt(this.getOwner().damageSources().magic(), livingTarget.hurt(this.getOwner().damageSources().magic(), (float) spellCaster.getMagicDamage()) ? (float) spellCaster.getMagicDamage() : (float) spellCaster.getMagicDamage() * AMPLIFIER) ;
+                        double random = this.getOwner().level().getRandom().nextDouble();
+                        boolean flag = random < ROOT_CHANCE;
+                        if (flag && !livingTarget.hasEffect(NoezEffects.ROOT.get())) {
+                            livingTarget.addEffect(new MobEffectInstance(NoezEffects.ROOT.get(), DURATION * 20, 0));
+                        }
+                        this.playSound(SoundEvents.GRASS_BREAK, 1.0F, 1.0F);
+                        this.discard();
                     }
-                    this.playSound(SoundEvents.GRASS_BREAK, 1.0F, 1.0F);
-                    this.discard();
                 }
             }
         }

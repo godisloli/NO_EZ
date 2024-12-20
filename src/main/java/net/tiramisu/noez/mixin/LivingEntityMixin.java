@@ -41,11 +41,6 @@ public abstract class LivingEntityMixin extends Entity {
                 this.invulnerableTime = 1;
             }
         }
-        if (source.getDirectEntity() instanceof FireworkRocketEntity fireworkRocketEntity) {
-            if (fireworkRocketEntity.getOwner() instanceof LivingEntity) {
-                this.invulnerableTime = 1;
-            }
-        }
     }
 
     @Inject(at = @At("HEAD"), method = "hasLineOfSight", cancellable = true)

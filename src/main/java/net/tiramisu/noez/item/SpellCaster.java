@@ -96,15 +96,6 @@ public abstract class SpellCaster extends Item {
     }
 
     @SubscribeEvent
-    public void onLeftClickBlock(PlayerInteractEvent.LeftClickBlock event) {
-        Player player = event.getEntity();
-        ItemStack heldItem = player.getMainHandItem();
-        if (!(heldItem.getItem() instanceof SpellCaster)) return;
-        if (isBroken(heldItem)) return;
-        onSwing(player, heldItem);
-    }
-
-    @SubscribeEvent
     public void onLeftClickEmpty(PlayerInteractEvent.LeftClickEmpty event) {
         Player player = event.getEntity();
         ItemStack heldItem = event.getItemStack();
@@ -120,8 +111,7 @@ public abstract class SpellCaster extends Item {
         Player player = event.getEntity();
         ItemStack itemStack = player.getUseItem();
         ItemStack heldItem = event.getItemStack();
-        if (!(heldItem.getItem() instanceof SpellCaster)) return;
-        if (isBroken(heldItem)) return;
+        if (!(heldItem.getItem() instanceof SpellCaster) || isBroken(heldItem)) return;
         onActivate(player, itemStack, this.cooldownTicks);
     }
 

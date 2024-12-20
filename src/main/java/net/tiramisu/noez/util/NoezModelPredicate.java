@@ -6,13 +6,17 @@ import net.minecraft.world.item.Item;
 
 public class NoezModelPredicate {
     public static void itemBowTexturesRenderer(Item item) {
-        ItemProperties.register(item, new ResourceLocation("pull"), (stack, world, entity, seed) -> {
+        ItemProperties.register(item, new ResourceLocation("noez","bow_pull"), (stack, world, entity, seed) -> {
             if (entity == null) {
                 return 0.0F;
             } else {
                 return entity.getUseItem() != stack ? 0.0F :
                         (float) (stack.getUseDuration() - entity.getUseItemRemainingTicks()) / 20.0F;
             }
+        });
+
+        ItemProperties.register(item, new ResourceLocation("noez", "bow_pulling"), (stack, world, entity, seed) -> {
+            return entity != null && entity.isUsingItem() && entity.getUseItem() == stack ? 1.0F : 0.0F;
         });
     }
 
