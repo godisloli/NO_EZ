@@ -17,7 +17,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 
 public class BloodSacrifice extends SwordItem implements Critable, LifeStealable {
-    private static final double CRIT_CHANCE = 0.1;
+    private static final double CRIT_CHANCE = 0.08;
     private static final double CRIT_DAMAGE = 1.5;
     private static final double LIFESTEAL = 0.12;
     private static final float AOE_DAMAGE = 2;

@@ -45,7 +45,7 @@ public class Relocator extends Item {
             return InteractionResultHolder.fail(player.getItemInHand(hand));
         }
         ItemStack itemStack = player.getItemInHand(hand);
-        if (itemStack.getItem() instanceof Relocator)
+        if (itemStack.getItem() instanceof Relocator && !player.getAbilities().instabuild)
             itemStack.hurt(1, RandomSource.create(), null);
         if (!world.isClientSide && player instanceof ServerPlayer serverPlayer) {
             Vec3 startPos = player.getEyePosition();

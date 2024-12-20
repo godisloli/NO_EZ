@@ -16,8 +16,10 @@
   "item.noez.bamboo_sword": "Bamboo Sword",
   "item.noez.blood_sacrifice": "§4Blood Sacrifice",
   "item.noez.druvis_staff": "Druvis Staff",
-  "item.noez.mana_potion.effect.empty": "Mana Potion",
   "item.noez.mechanical_crossbow": "§4Mechanical Crossbow",
+
+  "item.noez.mana_potion.effect.empty": "Mana Potion",
+  "item.noez.vital_wrap": "Vital Wrap",
 
   "block.noez.soul_block": "Block of Soul",
 
@@ -49,6 +51,7 @@
   "noez.windbreaker.tooltip2": "If your falling distance is 10 blocks or more, inflict §4Armor Crunch §rto target and deal damage to all creatures around",
   "noez.dark_devastation.tooltip1": "§6On attack: §rInflict §8Corruption§r to target. If target already had the effect, increase the amplify by 1 (Up to: 5 stacks)",
   "item.noez.mana_potion.tooltip": "Gain 5 mana",
+  "noez.vital_wrap.tooltip": "Remove §4Bleed§r and §4Wound§r, instantly regenerate 4 health",
   "noez.blood_sacrifice.tooltip1": "§6On attack: §rDeals small damage to all entities around",
   "noez.mechanical_crossbow.tooltip1" : "§6Passive: §rReload up to 4 projectiles of the same type simultaneously.",
   "noez.mechanical_crossbow.tooltip2": "§6On shot: §rFire all loaded projectiles",

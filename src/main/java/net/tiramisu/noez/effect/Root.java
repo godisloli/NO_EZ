@@ -5,6 +5,7 @@ import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.phys.Vec3;
 
 public class Root extends MobEffect {
     public Root(){
@@ -17,16 +18,16 @@ public class Root extends MobEffect {
         if (entity.level().isClientSide) {
             return;
         }
-        boolean isTryingToMove = Math.abs(entity.xxa) > 0.01 || Math.abs(entity.zza) > 0.01;
+        boolean isTryingToMove = Math.abs(entity.xxa) != 0 || Math.abs(entity.zza) != 0;
         if (isTryingToMove){
             entity.hurt(entity.damageSources().cactus(), 0.5f * amplifier);
         }
-        entity.setDeltaMovement(0.0, Math.min(0.0, entity.getDeltaMovement().y), 0.0);
         if (entity instanceof Player player) {
             player.setJumping(false);
             player.getAbilities().flying = false;
             player.setSwimming(false);
         }
+        entity.setDeltaMovement(0.0, Math.min(0.0, entity.getDeltaMovement().y), 0.0);
         entity.hurtMarked = true;
     }
 

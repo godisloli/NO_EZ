@@ -8,6 +8,7 @@ import net.minecraftforge.registries.RegistryObject;
 import net.tiramisu.noez.NOEZ;
 import net.tiramisu.noez.item.arsenal.*;
 import net.tiramisu.noez.item.consumables.ManaPotion;
+import net.tiramisu.noez.item.consumables.VitalWrap;
 
 public class NoezItems {
     public static final DeferredRegister<Item> ITEMS =
@@ -64,6 +65,9 @@ public class NoezItems {
             () -> new ManaPotion(new Item.Properties().stacksTo(64)));
 
     public static final RegistryObject<Item> DRUVIS_STAFF = ITEMS.register("druvis_staff", DruvisStaff::new);
+
+    public static final RegistryObject<Item> VITAL_WRAP = ITEMS.register("vital_wrap",
+            () -> new VitalWrap(new Item.Properties().stacksTo(64)));
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
