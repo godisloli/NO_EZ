@@ -26,14 +26,15 @@ public abstract class SpellCaster extends Item {
 
     private static final UUID ATTACK_DAMAGE_MODIFIER = UUID.fromString("FA233E1C-4180-4865-B01B-BCCE9785ACA3");
     private static final UUID ATTACK_SPEED_MODIFIER = UUID.fromString("CB3F55D3-645C-4F38-A497-9C13A33DB5CF");
-
+    private final double magicDamage;
     private final double attackDamage;
     private final double attackSpeed;
     private final int cooldownTicks;
     private final BiConsumer<Player, LivingEntity> onHitEffect;
 
-    public SpellCaster(Properties properties, double attackDamage, double attackSpeed, int cooldownTicks, @Nullable BiConsumer<Player, LivingEntity> onHitEffect) {
+    public SpellCaster(Properties properties, double attackDamage, double attackSpeed, int cooldownTicks, @Nullable BiConsumer<Player, LivingEntity> onHitEffect, double magicDamage) {
         super(properties);
+        this.magicDamage = magicDamage;
         this.attackDamage = attackDamage;
         this.attackSpeed = attackSpeed;
         this.cooldownTicks = cooldownTicks;
@@ -48,6 +49,10 @@ public abstract class SpellCaster extends Item {
 
     public double getAttackDamage(){
         return this.attackDamage;
+    }
+
+    public double getMagicDamage() {
+        return magicDamage;
     }
 
     @Override

@@ -9,6 +9,7 @@ import net.minecraftforge.registries.RegistryObject;
 import net.tiramisu.noez.NOEZ;
 import net.tiramisu.noez.entity.arrows.IridescentArrow;
 import net.tiramisu.noez.entity.arrows.RootProjectile;
+import net.tiramisu.noez.entity.nonarrows.GrassSpellShot;
 
 
 public class NoezEntities {
@@ -28,6 +29,13 @@ public class NoezEntities {
                     .clientTrackingRange(8)
                     .updateInterval(10)
                     .build(NOEZ.MOD_ID + ":root_projectile"));
+
+    public static final RegistryObject<EntityType<GrassSpellShot>> GRASS_SPELL_SHOT = ENTITY_TYPES.register("grass_spell_shot",
+            () -> EntityType.Builder.<GrassSpellShot>of(GrassSpellShot::new, MobCategory.MISC)
+                    .sized(0.18F, 0.18F)
+                    .clientTrackingRange(8)
+                    .updateInterval(10)
+                    .build("grass_spell_shot"));
 
     public static void register(IEventBus eventBus){
         ENTITY_TYPES.register(eventBus);
