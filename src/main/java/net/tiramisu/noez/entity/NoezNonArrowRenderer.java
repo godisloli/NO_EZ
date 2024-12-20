@@ -27,17 +27,15 @@ public class NoezNonArrowRenderer extends EntityRenderer<GrassSpellShot> {
 
     @Override
     public void render(GrassSpellShot entity, float entityYaw, float partialTicks, PoseStack poseStack, MultiBufferSource buffer, int packedLight) {
-//        super.render(entity, entityYaw, partialTicks, poseStack, buffer, packedLight);
         poseStack.pushPose();
-        poseStack.translate(-0.5, -0.5, -0.5); // Centering the quad
+        poseStack.translate(-0.09, -0.09, -0.09);
+        poseStack.scale(0.18F, 0.18F, 0.18F);
         VertexConsumer vertexConsumer = buffer.getBuffer(RenderType.entityCutout(TEXTURE));
         Matrix4f matrix = poseStack.last().pose();
-
         vertexConsumer.vertex(matrix, 0, 0, 0).color(255, 255, 255, 255).uv(0, 0).overlayCoords(OverlayTexture.NO_OVERLAY).uv2(packedLight).normal(0, 1, 0).endVertex();
         vertexConsumer.vertex(matrix, 1, 0, 0).color(255, 255, 255, 255).uv(1, 0).overlayCoords(OverlayTexture.NO_OVERLAY).uv2(packedLight).normal(0, 1, 0).endVertex();
         vertexConsumer.vertex(matrix, 1, 1, 0).color(255, 255, 255, 255).uv(1, 1).overlayCoords(OverlayTexture.NO_OVERLAY).uv2(packedLight).normal(0, 1, 0).endVertex();
         vertexConsumer.vertex(matrix, 0, 1, 0).color(255, 255, 255, 255).uv(0, 1).overlayCoords(OverlayTexture.NO_OVERLAY).uv2(packedLight).normal(0, 1, 0).endVertex();
-
         poseStack.popPose();
     }
 }

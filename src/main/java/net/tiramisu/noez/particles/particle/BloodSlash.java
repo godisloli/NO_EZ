@@ -18,7 +18,7 @@ public class BloodSlash extends TextureSheetParticle {
         super(pLevel, pX, pY, pZ, pXSpeed, pYSpeed, pZSpeed);
         this.age = 0;
         this.lifetime = 13;
-        this.quadSize = 3.5F;
+        this.quadSize = 2.5F;
         this.spriteSet = spriteSet;
         this.rCol = 1f;
         this.gCol = 1f;

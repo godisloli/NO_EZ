@@ -6,6 +6,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.player.Player;
@@ -24,8 +25,8 @@ import java.util.Random;
 
 public class Relocator extends Item {
 
-    private static final int TELEPORT_DISTANCE = 10; // blocks
-    private static final int COOLDOWN_SECONDS = 8; // seconds
+    private static final int TELEPORT_DISTANCE = 10;
+    private static final int COOLDOWN_SECONDS = 8;
 
     public Relocator(Properties properties) {
         super(properties);
@@ -43,9 +44,10 @@ public class Relocator extends Item {
         if (player.getCooldowns().isOnCooldown(this)) {
             return InteractionResultHolder.fail(player.getItemInHand(hand));
         }
-
+        ItemStack itemStack = player.getItemInHand(hand);
+        if (itemStack.getItem() instanceof Relocator)
+            itemStack.hurt(1, RandomSource.create(), null);
         if (!world.isClientSide && player instanceof ServerPlayer serverPlayer) {
-
             Vec3 startPos = player.getEyePosition();
             Vec3 lookVec = player.getLookAngle();
             Vec3 endPos = startPos.add(lookVec.scale(TELEPORT_DISTANCE));
