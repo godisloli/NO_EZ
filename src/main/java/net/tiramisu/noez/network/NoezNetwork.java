@@ -30,7 +30,7 @@ public class NoezNetwork {
                 packetId++,
                 ManaDataSyncS2CPacket.class,
                 ManaDataSyncS2CPacket::toBytes,
-                ManaDataSyncS2CPacket::new, // Constructor for decoding
+                ManaDataSyncS2CPacket::new,
                 ManaDataSyncS2CPacket::handle
         );
     }

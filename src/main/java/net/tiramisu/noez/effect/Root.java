@@ -1,12 +1,10 @@
 package net.tiramisu.noez.effect;
 
-import net.minecraft.world.damagesource.DamageSources;
+import net.minecraft.client.gui.screens.controls.KeyBindsList;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.phys.Vec3;
-
 public class Root extends MobEffect {
     public Root(){
         super(MobEffectCategory.HARMFUL, 0xFFFF00);
@@ -14,20 +12,24 @@ public class Root extends MobEffect {
 
     @Override
     public void applyEffectTick(LivingEntity entity, int amplifier) {
-        super.applyEffectTick(entity, amplifier);
         if (entity.level().isClientSide) {
             return;
         }
-        boolean isTryingToMove = Math.abs(entity.xxa) != 0 || Math.abs(entity.zza) != 0;
-        if (isTryingToMove){
-            entity.hurt(entity.damageSources().cactus(), 0.5f * amplifier);
-        }
-        if (entity instanceof Player player) {
+        if (!(entity instanceof Player player)) {
+            boolean isTryingToMove = Math.abs(entity.xxa) != 0 || Math.abs(entity.zza) != 0;
+            if (isTryingToMove) {
+                entity.hurt(entity.damageSources().cactus(), 0.5f * amplifier);
+            }
+            entity.setDeltaMovement(0.0, Math.min(0.0, entity.getDeltaMovement().y), 0.0);
+        } else {
             player.setJumping(false);
             player.getAbilities().flying = false;
             player.setSwimming(false);
+            if (player.getDeltaMovement().x != 0.0 || player.getDeltaMovement().z != 0.0)
+                player.hurt(player.damageSources().cactus(), 0.5f * amplifier);
+            System.out.println("x = " + player.getDeltaMovement().x + " y = " + player.getDeltaMovement().y + " z = " + player.getDeltaMovement().z);
+            System.out.println("xxa = " + player.xxa + " zza = " + player.zza);
         }
-        entity.setDeltaMovement(0.0, Math.min(0.0, entity.getDeltaMovement().y), 0.0);
         entity.hurtMarked = true;
     }
 
