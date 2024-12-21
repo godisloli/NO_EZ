@@ -1,6 +1,5 @@
 package net.tiramisu.noez.effect;
 
-import net.minecraft.client.gui.screens.controls.KeyBindsList;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.LivingEntity;
@@ -21,16 +20,12 @@ public class Root extends MobEffect {
                 entity.hurt(entity.damageSources().cactus(), 0.5f * amplifier);
             }
             entity.setDeltaMovement(0.0, Math.min(0.0, entity.getDeltaMovement().y), 0.0);
+            entity.hurtMarked = true;
         } else {
             player.setJumping(false);
             player.getAbilities().flying = false;
             player.setSwimming(false);
-            if (player.getDeltaMovement().x != 0.0 || player.getDeltaMovement().z != 0.0)
-                player.hurt(player.damageSources().cactus(), 0.5f * amplifier);
-            System.out.println("x = " + player.getDeltaMovement().x + " y = " + player.getDeltaMovement().y + " z = " + player.getDeltaMovement().z);
-            System.out.println("xxa = " + player.xxa + " zza = " + player.zza);
         }
-        entity.hurtMarked = true;
     }
 
     @Override

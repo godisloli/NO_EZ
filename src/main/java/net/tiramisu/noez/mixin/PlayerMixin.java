@@ -29,7 +29,7 @@ public abstract class PlayerMixin {
             ItemStack mainHandStack = player.getMainHandItem();
             Item mainHandItem = mainHandStack.getItem();
             if (mainHandItem instanceof Critable) {
-                double critChance = Math.max(0,((Critable) mainHandItem).getCritChance() + 0.15);
+                double critChance = Math.max(0,((Critable) mainHandItem).getCritChance() + 0.7);
                 double random = player.level().getRandom().nextDouble();
                 boolean isCrit = random < critChance || ((Critable) mainHandItem).isAlwaysCrit() || targetEntity.hasEffect(NoezEffects.FROSTBITE.get());
                 if (isCrit) {
