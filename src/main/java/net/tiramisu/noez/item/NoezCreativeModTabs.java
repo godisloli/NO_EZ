@@ -4,6 +4,7 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
@@ -30,6 +31,7 @@ public class NoezCreativeModTabs {
                     .title(Component.translatable("creativetab.noez_tab_food"))
                     .displayItems((pParameters, pOutput) -> {
                         pOutput.accept(NoezItems.FRUIT_OF_DECEPTION.get());
+                        pOutput.accept(Items.ENCHANTED_GOLDEN_APPLE);
                         pOutput.accept(NoezItems.MANA_POTION.get());
                         pOutput.accept(NoezItems.VITAL_WRAP.get());
                     })

@@ -48,15 +48,18 @@ public class ImperialiteSword extends ProjectileSword implements Critable {
     public void onSwing(Player player, ItemStack stack) {
         Level level = player.level();
         if (!level.isClientSide) {
-
+            player.getCapability(NoezCapacity.MANA).ifPresent(mana -> {
+                if (!(mana.getMana() < ONHIT_MANA_CONSUME && !player.getAbilities().instabuild)) {
+                    mana.consumeMana(ONHIT_MANA_CONSUME);
+                }
+            });
         }
     }
 
     @Override
     public boolean hurtEnemy(ItemStack stack, LivingEntity target, LivingEntity attacker) {
         attacker.getCapability(NoezCapacity.MANA).ifPresent(mana -> {
-            if (!mana.isEmpty() || !(mana.getMana() < ONHIT_MANA_CONSUME)) {
-                mana.consumeMana(ONHIT_MANA_CONSUME);
+            if (!(mana.isEmpty())) {
                 target.hurt(attacker.damageSources().magic(), ONHIT_DAMAGE);
             }
         });

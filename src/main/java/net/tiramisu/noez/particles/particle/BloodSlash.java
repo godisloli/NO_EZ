@@ -60,7 +60,7 @@ public class BloodSlash extends TextureSheetParticle {
         }
 
         for (int i = 0; i < 4; ++i) {
-            Vector3f corner = corners[3 - i]; // Reverse corner order for correct winding
+            Vector3f corner = corners[3 - i];
             vertexConsumer.vertex(x + corner.x(), y + corner.y(), z + corner.z())
                     .uv(i < 2 ? u0 : u1, (i == 0 || i == 3) ? v0 : v1)
                     .color(this.rCol, this.gCol, this.bCol, this.alpha)

@@ -17,7 +17,7 @@ public class Root extends MobEffect {
         if (!(entity instanceof Player player)) {
             boolean isTryingToMove = Math.abs(entity.xxa) != 0 || Math.abs(entity.zza) != 0;
             if (isTryingToMove) {
-                entity.hurt(entity.damageSources().cactus(), 0.5f * amplifier);
+                entity.hurt(entity.damageSources().sweetBerryBush(), 0.5f * amplifier);
             }
             entity.setDeltaMovement(0.0, Math.min(0.0, entity.getDeltaMovement().y), 0.0);
             entity.hurtMarked = true;
