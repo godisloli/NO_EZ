@@ -19,9 +19,6 @@ public class NoezBlocks {
     public static final DeferredRegister<Block> BLOCKS =
             DeferredRegister.create(ForgeRegistries.BLOCKS, NOEZ.MOD_ID);
 
-    public static final RegistryObject<Block> SOUL_BLOCK = registerBlock("soul_block",
-            () -> new Block(BlockBehaviour.Properties.copy(Blocks.SOUL_SAND).sound(SoundType.SNOW)));
-
     private static <T extends Block> RegistryObject<T> registerBlock(String name, final Supplier<T> block) {
         RegistryObject<T> toReturn = BLOCKS.register(name, block);
         registerBlockItem(name, toReturn);

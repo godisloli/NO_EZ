@@ -19,9 +19,9 @@ public class NoezCreativeModTabs {
                     .title(Component.translatable("creativetab.noez_tab_misc"))
                     .displayItems((pParameters, pOutput) -> {
                         pOutput.accept(NoezItems.SOUL.get());
-                        pOutput.accept(NoezBlocks.SOUL_BLOCK.get());
                         pOutput.accept(NoezItems.INFUSED_COPPER.get());
                         pOutput.accept(NoezItems.OBSIDIAN_SHARD.get());
+                        pOutput.accept(NoezItems.IMPERIALITE.get());
                     })
                     .build());
 
@@ -40,6 +40,7 @@ public class NoezCreativeModTabs {
                     .title(Component.translatable("creativetab.noez_tab_combat"))
                     .displayItems((pParameters, pOutput) -> {
                         pOutput.accept(NoezItems.DRUVIS_STAFF.get());
+                        pOutput.accept(NoezItems.IMPERIALITE_SWORD.get());
                         pOutput.accept(NoezItems.NATURA_BLADE.get());
                         pOutput.accept(NoezItems.OBSIDIAN_BLADE.get());
                         pOutput.accept(NoezItems.HELLFIRE_SWORD.get());

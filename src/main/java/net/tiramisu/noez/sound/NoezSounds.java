@@ -14,7 +14,6 @@ public class NoezSounds {
     public static final RegistryObject<SoundEvent> WINDBREAKER_SLAM = registerSoundEvent("windbreaker_slam");
     public static final RegistryObject<SoundEvent> ARMOR_SHRED = registerSoundEvent("armor_shred");
 
-
     private static RegistryObject<SoundEvent> registerSoundEvent(String name) {
         return SOUND_EVENTS.register(name, () -> SoundEvent.createVariableRangeEvent(new ResourceLocation("noez", name)));
     }

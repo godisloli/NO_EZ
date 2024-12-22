@@ -1,32 +1,32 @@
 {
   "parent": "item/handheld",
   "textures": {
-    "layer0": "noez:item/obsidian_blade"
+    "layer0": "noez:item/imperialite_sword"
   },
   "display": {
     "thirdperson_righthand": {
       "rotation": [0, -90, 55],
-      "translation": [0, 9, 0],
-      "scale": [2.0, 2.0, 2.0]
+      "translation": [0, 7.7, 0],
+      "scale": [1.25, 1.25, 1.25]
     },
     "thirdperson_lefthand": {
       "rotation": [0, 90, -55],
-      "translation": [0, 9, 0],
-      "scale": [2.0, 2.0, 2.0]
+      "translation": [0, 7.7, 0],
+      "scale": [1.25, 1.25, 1.25]
     },
     "firstperson_righthand": {
       "rotation": [0, -90, 25],
       "translation": [1.13, 4, 1.13],
-      "scale": [1.25, 1.25, 1.25]
+      "scale": [1, 1, 1]
     },
     "firstperson_lefthand": {
       "rotation": [0, 90, -25],
       "translation": [1.13, 4, 1.13],
-      "scale": [1.25, 1.25, 1.25]
+      "scale": [1, 1, 1]
     },
     "ground": {
       "translation": [0, 3, 0],
-      "scale": [2.0, 2.0, 2.0]
+      "scale": [1.25, 1.25, 1.25]
     }
   }
 }

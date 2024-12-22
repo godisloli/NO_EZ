@@ -35,18 +35,21 @@ public class BloodSlash extends TextureSheetParticle {
         float y = (float) (Mth.lerp(partialTicks, this.yo, this.y) - camera.getPosition().y());
         float z = (float) (Mth.lerp(partialTicks, this.zo, this.z) - camera.getPosition().z());
         float scale = this.getQuadSize(partialTicks);
+
         Vector3f[] corners = new Vector3f[] {
                 new Vector3f(-scale, 0, -scale),
                 new Vector3f(-scale, 0, scale),
                 new Vector3f(scale, 0, scale),
                 new Vector3f(scale, 0, -scale)
         };
+
         int light = this.getLightColor(partialTicks);
         this.setSpriteFromAge(this.spriteSet);
         float u0 = this.getU0();
         float u1 = this.getU1();
         float v0 = this.getV0();
         float v1 = this.getV1();
+
         for (int i = 0; i < 4; ++i) {
             Vector3f corner = corners[i];
             vertexConsumer.vertex(x + corner.x(), y + corner.y(), z + corner.z())
@@ -55,7 +58,17 @@ public class BloodSlash extends TextureSheetParticle {
                     .uv2(light)
                     .endVertex();
         }
+
+        for (int i = 0; i < 4; ++i) {
+            Vector3f corner = corners[3 - i]; // Reverse corner order for correct winding
+            vertexConsumer.vertex(x + corner.x(), y + corner.y(), z + corner.z())
+                    .uv(i < 2 ? u0 : u1, (i == 0 || i == 3) ? v0 : v1)
+                    .color(this.rCol, this.gCol, this.bCol, this.alpha)
+                    .uv2(light)
+                    .endVertex();
+        }
     }
+
 
     @Override
     public ParticleRenderType getRenderType() {

@@ -8,6 +8,8 @@
   "item.noez.moonsilver_sword": "Moonsilver Sword",
   "item.noez.natura_blade" :"§2Natura Blade",
   "item.noez.obsidian_shard": "Obsidian Shard",
+  "item.noez.imperialite": "§5Imperialite",
+  "item.noez.imperialite_sword": "§5Imperialite Sword",
   "item.noez.iridescent_bow": "§dIridescent Bow",
   "item.noez.obsidian_blade": "Obsidian Blade",
   "item.noez.hellfire_sword": "§cHellfire Sword",
@@ -20,8 +22,6 @@
 
   "item.noez.mana_potion.effect.empty": "Mana Potion",
   "item.noez.vital_wrap": "Vital Wrap",
-
-  "block.noez.soul_block": "Block of Soul",
 
   "effect.noez.bleed": "Bleed",
   "effect.noez.stun": "Stun",

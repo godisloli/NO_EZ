@@ -22,12 +22,17 @@ public class NaturaBlade extends ProjectileSword implements Critable {
     public NaturaBlade() {
         super(
                 new Properties().stacksTo(1).durability(190),
-                200, // Cooldown in ticks
+                200,
                 null,
                 NoezToolTier.MEDIUM,
                 3,
                 -2.4f
         );
+    }
+
+    @Override
+    public boolean matches(ItemStack stack) {
+        return stack.getItem() instanceof NaturaBlade;
     }
 
     @Override

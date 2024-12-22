@@ -40,6 +40,11 @@ public class DruvisStaff extends SpellCaster {
     }
 
     @Override
+    public boolean matches(ItemStack stack) {
+        return stack.getItem() instanceof DruvisStaff;
+    }
+
+    @Override
     public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
         pTooltipComponents.add(Component.translatable("wip"));
         super.appendHoverText(pStack, pLevel, pTooltipComponents, pIsAdvanced);

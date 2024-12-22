@@ -28,6 +28,9 @@ public class NoezItems {
     public static final RegistryObject<Item> OBSIDIAN_SHARD = ITEMS.register("obsidian_shard",
             () -> new Item(new Item.Properties().stacksTo(64)));
 
+    public static final RegistryObject<Item> IMPERIALITE = ITEMS.register("imperialite",
+            () -> new Item(new Item.Properties().stacksTo(64).fireResistant()));
+
     public static final RegistryObject<Item> OBSIDIAN_BLADE = ITEMS.register("obsidian_blade",
             () -> new ObsidianBlade(NoezToolTier.HEAVY, 4, -3.5f, new Item.Properties().stacksTo(1).durability(250)));
 
@@ -52,6 +55,8 @@ public class NoezItems {
     public static final RegistryObject<Item> MOONSILVER_SWORD = ITEMS.register("moonsilver_sword",
             () -> new MoonsilverSword(NoezToolTier.MEDIUM, 2, -2.4f, new Item.Properties().stacksTo(1).durability(121)));
 
+    public static final RegistryObject<Item> IMPERIALITE_SWORD = ITEMS.register("imperialite_sword", ImperialiteSword::new);
+
     public static final RegistryObject<Item> IRIDESCENT_BOW = ITEMS.register("iridescent_bow",
             () -> new IridescentBow(new Item.Properties().stacksTo(1).durability(112)));
 
@@ -68,6 +73,7 @@ public class NoezItems {
 
     public static final RegistryObject<Item> VITAL_WRAP = ITEMS.register("vital_wrap",
             () -> new VitalWrap(new Item.Properties().stacksTo(64)));
+
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);

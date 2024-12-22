@@ -75,6 +75,7 @@ public abstract class SpellCaster extends Item {
         return true;
     }
 
+    public abstract boolean matches(ItemStack stack);
     public abstract void onSwing(Player player, ItemStack stack);
     public abstract void onActivate(Player player, ItemStack stack, int cooldownTicks);
 
@@ -87,7 +88,7 @@ public abstract class SpellCaster extends Item {
         Player player = event.getEntity();
         ItemStack heldItem = player.getMainHandItem();
         if (!(heldItem.getItem() instanceof SpellCaster)) return;
-        if (isBroken(heldItem)) return;
+        if (isBroken(heldItem) || !matches(heldItem)) return;
         LivingEntity target = event.getTarget() instanceof LivingEntity ? (LivingEntity) event.getTarget() : null;
         if (target != null && onHitEffect != null) {
             onHitEffect.accept(player, target);
