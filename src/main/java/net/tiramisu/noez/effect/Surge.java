@@ -26,7 +26,6 @@ public class Surge extends MobEffect {
                 int amplifier = attacker.getEffect(NoezEffects.SURGE.get()).getAmplifier() + 1;
                 float boostedDamage = event.getAmount() + event.getAmount() * DAMAGE_PER_LEVEL * amplifier;
                 event.setAmount(boostedDamage);
-                System.out.println(boostedDamage);
             }
         }
     }
