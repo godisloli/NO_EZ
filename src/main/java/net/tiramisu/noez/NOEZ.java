@@ -16,6 +16,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.tiramisu.noez.block.NoezBlocks;
 import net.tiramisu.noez.effect.NoezEffects;
+import net.tiramisu.noez.effect.Surge;
 import net.tiramisu.noez.entity.NoezArrowRenderer;
 import net.tiramisu.noez.entity.NoezEntities;
 import net.tiramisu.noez.entity.NoezNonArrowRenderer;
@@ -63,6 +64,7 @@ public class NOEZ
         MinecraftForge.EVENT_BUS.register(new AthropodsThorn());
         MinecraftForge.EVENT_BUS.register(new InvisibleRework());
         MinecraftForge.EVENT_BUS.register(new EnemiesRegen());
+        MinecraftForge.EVENT_BUS.register(new Surge());
         context.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
         NoezEventBus.addListener(this::addCreative);
         NoezEventBus.addListener(this::commonSetup);
