@@ -32,6 +32,7 @@ public class NoezCreativeModTabs {
                     .displayItems((pParameters, pOutput) -> {
                         pOutput.accept(NoezItems.FRUIT_OF_DECEPTION.get());
                         pOutput.accept(Items.ENCHANTED_GOLDEN_APPLE);
+                        pOutput.accept(NoezItems.FRUIT_OF_ENLIGHTENMENT.get());
                         pOutput.accept(NoezItems.MANA_POTION.get());
                         pOutput.accept(NoezItems.VITAL_WRAP.get());
                     })

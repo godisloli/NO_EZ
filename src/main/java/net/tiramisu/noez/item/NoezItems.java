@@ -66,6 +66,9 @@ public class NoezItems {
     public static final RegistryObject<Item> FRUIT_OF_DECEPTION = ITEMS.register("fruit_of_deception",
             () -> new NoezFoods(new Item.Properties().food(NoezFoods.FRUIT_OF_DECEPTION).stacksTo(64)).setFOIL(true));
 
+    public static final RegistryObject<Item> FRUIT_OF_ENLIGHTENMENT = ITEMS.register("fruit_of_enlightenment",
+            () -> new NoezFoods(new Item.Properties().food(NoezFoods.FRUIT_OF_ENLIGHTENMENT).stacksTo(64)).setFOIL(true));
+
     public static final RegistryObject<Item> MANA_POTION = ITEMS.register("mana_potion",
             () -> new ManaPotion(new Item.Properties().stacksTo(64)));
 
