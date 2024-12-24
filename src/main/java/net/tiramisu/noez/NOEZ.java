@@ -15,6 +15,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.tiramisu.noez.block.NoezBlocks;
+import net.tiramisu.noez.effect.MagicResistant;
 import net.tiramisu.noez.effect.NoezEffects;
 import net.tiramisu.noez.effect.Surge;
 import net.tiramisu.noez.entity.NoezArrowRenderer;
@@ -65,6 +66,7 @@ public class NOEZ
         MinecraftForge.EVENT_BUS.register(new InvisibleRework());
         MinecraftForge.EVENT_BUS.register(new EnemiesRegen());
         MinecraftForge.EVENT_BUS.register(new Surge());
+        MinecraftForge.EVENT_BUS.register(new MagicResistant());
         context.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
         NoezEventBus.addListener(this::addCreative);
         NoezEventBus.addListener(this::commonSetup);
