@@ -31,6 +31,11 @@ public class NoezEffects {
 
     public static final RegistryObject<MobEffect> MAGIC_RESISTANT = EFFECTS.register("magic_resistant", MagicResistant::new);
 
+    public static final RegistryObject<MobEffect> PRESSURE = EFFECTS.register("pressure", Pressure::new);
+
+    public static final RegistryObject<MobEffect> NECROSIS = EFFECTS.register("necrosis", Necrosis::new);
+
+
     public static void register(IEventBus eventBus) {
         EFFECTS.register(eventBus);
     }

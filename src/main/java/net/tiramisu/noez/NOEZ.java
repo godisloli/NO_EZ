@@ -17,6 +17,7 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.tiramisu.noez.block.NoezBlocks;
 import net.tiramisu.noez.effect.MagicResistant;
 import net.tiramisu.noez.effect.NoezEffects;
+import net.tiramisu.noez.effect.Pressure;
 import net.tiramisu.noez.effect.Surge;
 import net.tiramisu.noez.entity.NoezArrowRenderer;
 import net.tiramisu.noez.entity.NoezEntities;
