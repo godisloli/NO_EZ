@@ -24,9 +24,18 @@ public class NoezFoods extends Item {
             .saturationMod(1.2f)
             .effect(() -> new MobEffectInstance(NoezEffects.SURGE.get(), 60 * 20, 1), 1f)
             .effect(() -> new MobEffectInstance(NoezEffects.REGAIN.get(), 30 * 20,1),1f)
-            .effect(() -> new MobEffectInstance(MobEffects.ABSORPTION, 2400, 3), 1.0F)
+            .effect(() -> new MobEffectInstance(MobEffects.ABSORPTION, 2400, 3), 1f)
             .build();
 
+    public static final FoodProperties FRUIT_OF_MADNESS = new FoodProperties.Builder()
+            .alwaysEat()
+            .nutrition(4)
+            .saturationMod(1.2f)
+            .effect(() -> new MobEffectInstance(MobEffects.DAMAGE_BOOST, 30 * 20, 1),1f)
+            .effect(() -> new MobEffectInstance((NoezEffects.ADRENALINE_RUSH.get()), 30 * 20, 1), 1f)
+            .effect(() -> new MobEffectInstance(NoezEffects.MAGIC_RESISTANT.get(), 2400, 1), 1f)
+            .effect(() -> new MobEffectInstance(MobEffects.ABSORPTION, 2400, 3), 1.0F)
+            .build();
 
     private boolean isFOIL = false;
 

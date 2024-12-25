@@ -28,6 +28,9 @@ public class NoezItems {
     public static final RegistryObject<Item> OBSIDIAN_SHARD = ITEMS.register("obsidian_shard",
             () -> new Item(new Item.Properties().stacksTo(64)));
 
+    public static final RegistryObject<Item> ROSEGOLD_INGOT = ITEMS.register("rosegold_ingot",
+            () -> new Item(new Item.Properties().stacksTo(64)));
+
     public static final RegistryObject<Item> IMPERIALITE = ITEMS.register("imperialite",
             () -> new Item(new Item.Properties().stacksTo(64).fireResistant()));
 
@@ -52,6 +55,9 @@ public class NoezItems {
     public static final RegistryObject<Item> BAMBOO_SWORD = ITEMS.register("bamboo_sword",
             () -> new BambooSword(NoezToolTier.LIGHT, 1, -2f, new Item.Properties().stacksTo(1).durability(58)));
 
+    public static final RegistryObject<Item> MOONSILVER_INGOT = ITEMS.register("moonsilver_ingot",
+            () -> new Item(new Item.Properties().stacksTo(64)));
+
     public static final RegistryObject<Item> MOONSILVER_SWORD = ITEMS.register("moonsilver_sword",
             () -> new MoonsilverSword(NoezToolTier.MEDIUM, 2, -2.4f, new Item.Properties().stacksTo(1).durability(121)));
 
@@ -68,6 +74,9 @@ public class NoezItems {
 
     public static final RegistryObject<Item> FRUIT_OF_ENLIGHTENMENT = ITEMS.register("fruit_of_enlightenment",
             () -> new NoezFoods(new Item.Properties().food(NoezFoods.FRUIT_OF_ENLIGHTENMENT).stacksTo(64)).setFOIL(true));
+
+    public static final RegistryObject<Item> FRUIT_OF_MADNESS = ITEMS.register("fruit_of_madness",
+            () -> new NoezFoods(new Item.Properties().food(NoezFoods.FRUIT_OF_MADNESS).stacksTo(64)).setFOIL(true));
 
     public static final RegistryObject<Item> MANA_POTION = ITEMS.register("mana_potion",
             () -> new ManaPotion(new Item.Properties().stacksTo(64)));

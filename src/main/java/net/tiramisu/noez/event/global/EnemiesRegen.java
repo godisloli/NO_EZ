@@ -14,8 +14,8 @@ import java.util.Map;
 @Mod.EventBusSubscriber
 public class EnemiesRegen {
     private static final Map<LivingEntity, Long> lastDamageMap = new HashMap<>();
-    private static final int DAMAGE_TIMEOUT_MS = 20 * 1000; // 20 seconds
-    private static final float HEAL_PERCENTAGE = 0.05f; // Heal 5% of max health per second
+    private static final int DAMAGE_TIMEOUT_MS = 20 * 1000;
+    private static final float HEAL_PERCENTAGE = 0.05f;
 
     @SubscribeEvent
     public static void onLivingHurt(LivingHurtEvent event) {

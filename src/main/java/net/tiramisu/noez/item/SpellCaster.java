@@ -100,9 +100,8 @@ public abstract class SpellCaster extends Item {
     public void onLeftClickEmpty(PlayerInteractEvent.LeftClickEmpty event) {
         Player player = event.getEntity();
         ItemStack heldItem = event.getItemStack();
-        if (!(heldItem.getItem() instanceof SpellCaster)) return;
-        if (isBroken(heldItem)) return;
-        if (!player.level().isClientSide && heldItem.getItem() instanceof SpellCaster spellCaster) {
+        if (isBroken(heldItem) || !matches(heldItem)) return;
+        if (player.level().isClientSide) {
             NoezNetwork.CHANNEL.sendToServer(new SwingC2SPacket(0));
         }
     }

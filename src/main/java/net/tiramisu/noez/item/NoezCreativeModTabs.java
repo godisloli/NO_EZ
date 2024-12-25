@@ -20,6 +20,8 @@ public class NoezCreativeModTabs {
                     .title(Component.translatable("creativetab.noez_tab_misc"))
                     .displayItems((pParameters, pOutput) -> {
                         pOutput.accept(NoezItems.SOUL.get());
+                        pOutput.accept(NoezItems.MOONSILVER_INGOT.get());
+                        pOutput.accept(NoezItems.ROSEGOLD_INGOT.get());
                         pOutput.accept(NoezItems.INFUSED_COPPER.get());
                         pOutput.accept(NoezItems.OBSIDIAN_SHARD.get());
                         pOutput.accept(NoezItems.IMPERIALITE.get());
@@ -32,6 +34,7 @@ public class NoezCreativeModTabs {
                     .displayItems((pParameters, pOutput) -> {
                         pOutput.accept(NoezItems.FRUIT_OF_DECEPTION.get());
                         pOutput.accept(Items.ENCHANTED_GOLDEN_APPLE);
+                        pOutput.accept(NoezItems.FRUIT_OF_MADNESS.get());
                         pOutput.accept(NoezItems.FRUIT_OF_ENLIGHTENMENT.get());
                         pOutput.accept(NoezItems.MANA_POTION.get());
                         pOutput.accept(NoezItems.VITAL_WRAP.get());

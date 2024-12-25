@@ -60,9 +60,7 @@ public abstract class ProjectileSword extends SwordItem {
     public void onHit(AttackEntityEvent event) {
         Player player = event.getEntity();
         ItemStack stack = player.getMainHandItem();
-
         if (isBroken(stack) || !matches(stack)) return;
-
         if (!player.getCooldowns().isOnCooldown(stack.getItem())) {
             onSwing(player, stack);
             player.getCooldowns().addCooldown(stack.getItem(), cooldownTicks);

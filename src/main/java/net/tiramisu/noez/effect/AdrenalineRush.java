@@ -18,7 +18,7 @@ public class AdrenalineRush extends MobEffect {
     @Override
     public void applyEffectTick(LivingEntity livingEntity, int amplifier) {
         if (!livingEntity.level().isClientSide) {
-            double attackSpeedBonus = amplifier >= 0 ? (10 + 8 * amplifier) / 100.0 : 0.45;
+            double attackSpeedBonus = amplifier >= 0 ? (15 + 15 * amplifier) / 100.0 : 0.75;
             if (livingEntity.getAttribute(Attributes.ATTACK_SPEED)
                     .getModifier(ATTACK_SPEED_MODIFIER_UUID) == null) {
                 livingEntity.getAttribute(Attributes.ATTACK_SPEED).addPermanentModifier(

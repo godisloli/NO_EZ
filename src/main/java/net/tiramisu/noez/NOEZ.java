@@ -86,7 +86,7 @@ public class NOEZ
     @SubscribeEvent
     public void onServerStarting(ServerStartingEvent event)
     {
-        new Starter().DisableNaturalRegeneration(event,true);
+        new Starter().onServerStart(event,true);
     }
 
     @Mod.EventBusSubscriber(modid = MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
