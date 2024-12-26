@@ -79,5 +79,12 @@
   "creativetab.noez_tab_combat": "Arsenal",
   "creativetab.noez_tab_armor": "Armors",
 
+  "noez.echo_none.tooltip1": "§6Half Set:§7 ",
+  "noez.echo_none.tooltip2": "§6Full Set:§7 Reveal all entities around you",
+  "noez.echo_half.tooltip1": "§6Half Set:§2 ",
+  "noez.echo_half.tooltip2": "§6Full Set:§7 Reveal all entities around you",
+  "noez.echo_full.tooltip1": "§6Half Set:§2 ",
+  "noez.echo_full.tooltip2": "§6Full Set:§2 Reveal all entities around you",
+
   "wip": "§7========WORK IN PROGRESS========"
 }
