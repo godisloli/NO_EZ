@@ -20,6 +20,7 @@ public class NoezCreativeModTabs {
                     .title(Component.translatable("creativetab.noez_tab_misc"))
                     .displayItems((pParameters, pOutput) -> {
                         pOutput.accept(NoezItems.SOUL.get());
+                        pOutput.accept(NoezItems.WARDEN_HEART.get());
                         pOutput.accept(NoezItems.MOONSILVER_INGOT.get());
                         pOutput.accept(NoezItems.ROSEGOLD_INGOT.get());
                         pOutput.accept(NoezItems.INFUSED_COPPER.get());
@@ -59,6 +60,17 @@ public class NoezCreativeModTabs {
                         pOutput.accept(NoezItems.MOONSILVER_SWORD.get());
                         pOutput.accept(NoezItems.BLOOD_SACRIFICE.get());
                         pOutput.accept(NoezItems.MECHANICAL_CROSSBOW.get());
+                    })
+                    .build());
+
+    public static final RegistryObject<CreativeModeTab> NOEZ_TAB_ARMOR = CREATIVE_MODE_TABS.register("noez_tab_armor",
+            () -> CreativeModeTab.builder().icon(() -> new ItemStack(NoezItems.ECHO_HELMET.get()))
+                    .title(Component.translatable("creativetab.noez_tab_armor"))
+                    .displayItems((pParameters, pOutput) -> {
+                        pOutput.accept(NoezItems.ECHO_HELMET.get());
+                        pOutput.accept(NoezItems.ECHO_CHESTPLATE.get());
+                        pOutput.accept(NoezItems.ECHO_LEGGINGS.get());
+                        pOutput.accept(NoezItems.ECHO_BOOTS.get());
                     })
                     .build());
 

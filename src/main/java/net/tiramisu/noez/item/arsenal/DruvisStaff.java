@@ -53,9 +53,7 @@ public class DruvisStaff extends SpellCaster {
     @Override
     public void onSwing(Player player, ItemStack stack){
         player.getCapability(NoezCapacity.MANA).ifPresent(mana -> {
-            if (mana.getMana() < manaCostAttack)
-                return;
-            if (!player.getAbilities().instabuild) {
+            if (!player.getAbilities().instabuild && !(mana.getMana() < manaCostAttack)) {
                 mana.consumeMana(manaCostAttack);
                 stack.hurt(1, RandomSource.create(), null);
             }

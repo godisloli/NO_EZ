@@ -19,7 +19,7 @@ public class MagicResistant extends MobEffect {
     }
 
     @SubscribeEvent
-    public void magicResist (LivingHurtEvent event) {
+    public static void magicResist (LivingHurtEvent event) {
         Entity entity = event.getEntity();
         DamageSource source = event.getSource();
         if (entity instanceof LivingEntity livingEntity && livingEntity.hasEffect(NoezEffects.MAGIC_RESISTANT.get())) {
@@ -31,7 +31,7 @@ public class MagicResistant extends MobEffect {
         }
     }
 
-    private boolean isMagic(DamageSource source) {
+    private static boolean isMagic(DamageSource source) {
         return source.getMsgId().equals("magic") || source.getMsgId().equals("indirectMagic");
     }
 }

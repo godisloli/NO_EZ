@@ -1,5 +1,6 @@
 {
   "item.noez.soul": "Soul",
+  "item.noez.warden_heart": "§3Warden Heart",
   "item.noez.fruit_of_deception": "§dFruit of Deception",
   "item.noez.fruit_of_enlightenment": "§dFruit of Enlightenment",
   "item.noez.fruit_of_madness": "§dFruit of Madness",
@@ -71,6 +72,7 @@
   "creativetab.noez_tab_misc": "Ingredients",
   "creativetab.noez_tab_food": "Foods",
   "creativetab.noez_tab_combat": "Arsenal",
+  "creativetab.noez_tab_armor": "Armors",
 
   "wip": "§7========WORK IN PROGRESS========"
 }

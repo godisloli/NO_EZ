@@ -9,7 +9,7 @@ import net.tiramisu.noez.util.NoezTags;
 public class ConstructResistant {
 
     @SubscribeEvent
-    public void ConstructDamageReduce(LivingHurtEvent event) {
+    public static void ConstructDamageReduce(LivingHurtEvent event) {
         if (event.getEntity().getType().is(NoezTags.Mobs.CONSTRUCT_MOBS)) {
             event.setAmount(event.getAmount() * 0.8f);
         }

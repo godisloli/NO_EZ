@@ -1,5 +1,6 @@
 package net.tiramisu.noez.item;
 
+import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
@@ -16,6 +17,9 @@ public class NoezItems {
 
     public static final RegistryObject<Item> SOUL = ITEMS.register("soul",
             () -> new Item(new Item.Properties().stacksTo(64)));
+
+    public static final RegistryObject<Item> WARDEN_HEART = ITEMS.register("warden_heart",
+            () -> new Item(new Item.Properties().stacksTo(1).fireResistant()));
 
     public static final RegistryObject<Item> RELOCATOR = ITEMS.register("relocator",
             ()-> new Relocator(new Item.Properties().stacksTo(1).durability(25)));
@@ -86,6 +90,17 @@ public class NoezItems {
     public static final RegistryObject<Item> VITAL_WRAP = ITEMS.register("vital_wrap",
             () -> new VitalWrap(new Item.Properties().stacksTo(64)));
 
+    public static final RegistryObject<Item> ECHO_HELMET = ITEMS.register("echo_helmet",
+            () -> new ArmorItem(NoezArmorTier.ECHO, ArmorItem.Type.HELMET, new Item.Properties()));
+
+    public static final RegistryObject<Item> ECHO_CHESTPLATE = ITEMS.register("echo_chestplate",
+            () -> new ArmorItem(NoezArmorTier.ECHO, ArmorItem.Type.CHESTPLATE, new Item.Properties()));
+
+    public static final RegistryObject<Item> ECHO_LEGGINGS = ITEMS.register("echo_leggings",
+            () -> new ArmorItem(NoezArmorTier.ECHO, ArmorItem.Type.LEGGINGS, new Item.Properties()));
+
+    public static final RegistryObject<Item> ECHO_BOOTS = ITEMS.register("echo_boots",
+            () -> new ArmorItem(NoezArmorTier.ECHO, ArmorItem.Type.BOOTS, new Item.Properties()));
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);

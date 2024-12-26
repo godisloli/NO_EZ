@@ -12,7 +12,7 @@ import net.tiramisu.noez.util.NoezTags;
 @Mod.EventBusSubscriber
 public class UndeadSurvival {
     @SubscribeEvent
-    public void onLivingHurt(LivingHurtEvent event) {
+    public static void undeadProtection(LivingHurtEvent event) {
         LivingEntity entity = event.getEntity();
         Entity attacker =  event.getSource().getEntity();
         if (!entity.level().isClientSide) {

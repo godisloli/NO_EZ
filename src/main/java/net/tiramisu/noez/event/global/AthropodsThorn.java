@@ -10,7 +10,7 @@ import net.minecraftforge.fml.common.Mod;
 @Mod.EventBusSubscriber
 public class AthropodsThorn {
     @SubscribeEvent
-    public void ThornyAthropods(LivingHurtEvent event){
+    public static void ThornyAthropods(LivingHurtEvent event){
         LivingEntity target = event.getEntity();
         Entity attacker = event.getSource().getEntity();
         if (attacker instanceof LivingEntity)

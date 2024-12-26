@@ -18,7 +18,7 @@ public class Surge extends MobEffect {
     }
 
     @SubscribeEvent
-    public void mamgicSurge(LivingHurtEvent event) {
+    public static void mamgicSurge(LivingHurtEvent event) {
         DamageSource source = event.getSource();
         Entity attackerEntity = source.getEntity();
         if (isMagicDamage(source)) {
@@ -30,7 +30,7 @@ public class Surge extends MobEffect {
         }
     }
 
-    private boolean isMagicDamage(DamageSource source) {
+    private static boolean isMagicDamage(DamageSource source) {
         return source.getMsgId().equals("magic") || source.getMsgId().equals("indirectMagic");
     }
 }

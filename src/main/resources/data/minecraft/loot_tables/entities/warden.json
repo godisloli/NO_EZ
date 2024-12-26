@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:entity",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:sculk_catalyst"
+        }
+      ],
+      "rolls": 1.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "noez:warden_heart",
+          "conditions": [
+            {
+              "condition": "minecraft:killed_by_player"
+            }
+          ]
+        }
+      ],
+      "rolls": 1.0
+    }
+  ]
+}

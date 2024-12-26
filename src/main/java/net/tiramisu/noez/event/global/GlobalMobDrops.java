@@ -6,10 +6,12 @@ import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 import net.tiramisu.noez.item.NoezItems;
 
 import java.util.Set;
 
+@Mod.EventBusSubscriber
 public class GlobalMobDrops {
     private static final Set<String> BLACKLISTED_MOBS = Set.of(
             "minecraft:armor_stand",
@@ -18,7 +20,7 @@ public class GlobalMobDrops {
     );
 
     @SubscribeEvent
-    public void onLivingDrops(LivingDropsEvent event) {
+    public static void onLivingDrops(LivingDropsEvent event) {
         LivingEntity entity = event.getEntity();
         String entityId = entity.getType().builtInRegistryHolder().key().location().toString();
         if (BLACKLISTED_MOBS.contains(entityId)) {

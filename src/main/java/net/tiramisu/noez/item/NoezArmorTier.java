@@ -1,0 +1,77 @@
+package net.tiramisu.noez.item;
+
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.world.item.ArmorItem;
+import net.minecraft.world.item.ArmorMaterial;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.tiramisu.noez.NOEZ;
+
+import java.util.function.Supplier;
+
+public enum NoezArmorTier implements ArmorMaterial {
+    ECHO("echo", 25, new int[]{4, 9, 7, 3}, 15,
+            SoundEvents.ARMOR_EQUIP_NETHERITE, 2.0F, 0.0F, () -> Ingredient.of(NoezItems.WARDEN_HEART.get()));
+
+    private static final int[] BASE_DURABILITY = {13, 15, 16, 11};
+    private final String name;
+    private final int durabilityMultiplier;
+    private final int[] defensePoints;
+    private final int enchantability;
+    private final SoundEvent equipSound;
+    private final float toughness;
+    private final float knockbackResistance;
+    private final Supplier<Ingredient> repairIngredient;
+
+    NoezArmorTier(String name, int durabilityMultiplier, int[] defensePoints, int enchantability, SoundEvent equipSound, float toughness, float knockbackResistance, Supplier<Ingredient> repairIngredient) {
+        this.name = name;
+        this.durabilityMultiplier = durabilityMultiplier;
+        this.defensePoints = defensePoints;
+        this.enchantability = enchantability;
+        this.equipSound = equipSound;
+        this.toughness = toughness;
+        this.knockbackResistance = knockbackResistance;
+        this.repairIngredient = repairIngredient;
+    }
+
+    @Override
+    public int getDurabilityForType(ArmorItem.Type type) {
+        return BASE_DURABILITY[type.ordinal()] * this.durabilityMultiplier;
+    }
+
+    @Override
+    public int getDefenseForType(ArmorItem.Type type) {
+        return this.defensePoints[type.ordinal()];
+    }
+
+    @Override
+    public int getEnchantmentValue() {
+        return this.enchantability;
+    }
+
+    @Override
+    public SoundEvent getEquipSound() {
+        return this.equipSound;
+    }
+
+    @Override
+    public Ingredient getRepairIngredient() {
+        return this.repairIngredient.get();
+    }
+
+    @Override
+    public String getName() {
+        return NOEZ.MOD_ID + ":" + this.name;
+    }
+
+    @Override
+    public float getToughness() {
+        return this.toughness;
+    }
+
+    @Override
+    public float getKnockbackResistance() {
+        return this.knockbackResistance;
+    }
+}
+
