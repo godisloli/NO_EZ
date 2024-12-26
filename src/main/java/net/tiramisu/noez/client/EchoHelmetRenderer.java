@@ -10,15 +10,15 @@ import net.minecraft.client.renderer.entity.RenderLayerParent;
 import net.minecraft.client.renderer.entity.layers.RenderLayer;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.entity.EquipmentSlot;
+import net.tiramisu.noez.NOEZ;
 import net.tiramisu.noez.item.NoezItems;
 
 public class EchoHelmetRenderer<E extends LivingEntity, M extends HumanoidModel<E>> extends RenderLayer<E, M> {
-    private static final ResourceLocation TEXTURE_LAYER_1 = new ResourceLocation("noez", "textures/models/armor/echo_layer_1.png");
-    private static final ResourceLocation TEXTURE_LAYER_3 = new ResourceLocation("noez", "textures/models/armor/echo_layer3.png");
-    public static final ModelLayerLocation MODEL = new ModelLayerLocation(new ResourceLocation("noez", "echo_helmet"), "main");
+    public static final ModelLayerLocation MODEL = new ModelLayerLocation(new ResourceLocation(NOEZ.MOD_ID, "echo"), "3");
+    private static final ResourceLocation TEXTURE_LAYER = new ResourceLocation(NOEZ.MOD_ID, "textures/models/armor/echo_layer_3.png");
 
     private final EntityModelSet modelSet;
 
@@ -33,9 +33,9 @@ public class EchoHelmetRenderer<E extends LivingEntity, M extends HumanoidModel<
         if (stack.getItem() == NoezItems.ECHO_HELMET.get()) {
             poseStack.pushPose();
             poseStack.scale(1.0F, 1.0F, 1.0F);
+            this.getParentModel().getHead().translateAndRotate(poseStack);
             EchoHelmetModel<E> helmetModel = new EchoHelmetModel<>(this.modelSet.bakeLayer(MODEL));
-            helmetModel.renderToBuffer(poseStack, buffer.getBuffer(RenderType.entityCutout(TEXTURE_LAYER_1)), packedLight, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
-            helmetModel.renderToBuffer(poseStack, buffer.getBuffer(RenderType.entityCutout(TEXTURE_LAYER_3)), packedLight, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
+            helmetModel.renderToBuffer(poseStack, buffer.getBuffer(RenderType.entityCutout(TEXTURE_LAYER)), packedLight, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
             poseStack.popPose();
         }
     }

@@ -4,6 +4,7 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.logging.LogUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.HumanoidModel;
+import net.minecraft.client.model.geom.EntityModelSet;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.client.renderer.entity.LivingEntityRenderer;
@@ -100,6 +101,19 @@ public class NOEZ
             event.registerEntityRenderer(NoezEntities.IRIDESCENT_ARROW.get(), NoezArrowRenderer::new);
             event.registerEntityRenderer(NoezEntities.ROOT_PROJECTILE.get(), NoezArrowRenderer::new);
             event.registerEntityRenderer(NoezEntities.GRASS_SPELL_SHOT.get(), NoezNonArrowRenderer::new);
+        }
+
+        @SubscribeEvent
+        public static void onRegisterLayers(EntityRenderersEvent.RegisterLayerDefinitions event) {
+            event.registerLayerDefinition(EchoHelmetRenderer.MODEL, EchoHelmetModel::createBodyModel);
+        }
+
+        @SubscribeEvent
+        public static void onAddLayers(EntityRenderersEvent.AddLayers event) {
+            event.getSkins().forEach(skin -> {
+                LivingEntityRenderer<Player, HumanoidModel<Player>> renderer = event.getSkin(skin);
+                renderer.addLayer(new EchoHelmetRenderer<>(renderer, event.getEntityModels()));
+            });
         }
     }
 }

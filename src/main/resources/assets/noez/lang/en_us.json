@@ -41,6 +41,11 @@
   "effect.noez.pressure": "Pressure",
   "effect.noez.necrosis": "Necrosis",
 
+  "item.noez.echo_helmet": "§3Echo Helmet",
+  "item.noez.echo_chestplate": "§3Echo Chestplate",
+  "item.noez.echo_leggings": "§3Echo Leggings",
+  "item.noez.echo_boots": "§3Echo Boots",
+
   "noez.relocator.tooltip1": "§6On use: §rBlink to a short distance where you facing",
   "noez.relocator.tooltip2": "§6Cooldown: §r8 seconds",
   "noez.moonsilver_sword.tooltip1": "§6Passive: §rDeal extra Magic Damage to undead",
