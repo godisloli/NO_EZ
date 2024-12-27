@@ -373,7 +373,7 @@ java.lang.IllegalAccessException: class io.netty.util.internal.PlatformDependent
 [25Dec2024 13:55:36.527] [modloading-worker-0/DEBUG] [net.minecraftforge.fml.javafmlmod.AutomaticEventSubscriber/LOADING]: Auto-subscribing net.tiramisu.noez.datagen.NoezDataGenerators to FORGE
 [25Dec2024 13:55:36.527] [modloading-worker-0/DEBUG] [net.minecraftforge.fml.javafmlmod.AutomaticEventSubscriber/LOADING]: Auto-subscribing net.tiramisu.noez.effect.MagicResistant to FORGE
 [25Dec2024 13:55:36.527] [modloading-worker-0/DEBUG] [net.minecraftforge.fml.javafmlmod.AutomaticEventSubscriber/LOADING]: Auto-subscribing net.tiramisu.noez.effect.Surge to FORGE
-[25Dec2024 13:55:36.585] [modloading-worker-0/DEBUG] [net.minecraftforge.fml.javafmlmod.AutomaticEventSubscriber/LOADING]: Auto-subscribing net.tiramisu.noez.event.CapabilityAttachHandler to FORGE
+[25Dec2024 13:55:36.585] [modloading-worker-0/DEBUG] [net.minecraftforge.fml.javafmlmod.AutomaticEventSubscriber/LOADING]: Auto-subscribing net.tiramisu.noez.event.PlayerAttachHandler to FORGE
 [25Dec2024 13:55:36.616] [modloading-worker-0/DEBUG] [net.minecraftforge.fml.javafmlmod.AutomaticEventSubscriber/LOADING]: Auto-subscribing net.tiramisu.noez.event.global.AthropodsThorn to FORGE
 [25Dec2024 13:55:36.616] [modloading-worker-0/DEBUG] [net.minecraftforge.fml.javafmlmod.AutomaticEventSubscriber/LOADING]: Auto-subscribing net.tiramisu.noez.event.global.ConstructResistant to FORGE
 [25Dec2024 13:55:36.616] [modloading-worker-0/DEBUG] [net.minecraftforge.fml.javafmlmod.AutomaticEventSubscriber/LOADING]: Auto-subscribing net.tiramisu.noez.event.global.EnemiesRegen to FORGE

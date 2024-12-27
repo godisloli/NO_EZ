@@ -1,5 +1,6 @@
 package net.tiramisu.noez.event.global;
 
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.food.FoodData;
@@ -19,15 +20,19 @@ public class HungerDrain {
     public static void drainHungerPoint(TickEvent.PlayerTickEvent event) {
         if (event.phase != TickEvent.Phase.END || event.player.level().isClientSide()) return;
         Player player = event.player;
-        FoodData foodData = player.getFoodData();
-        playerTimers.putIfAbsent(player, 0);
-        int timer = playerTimers.get(player) + 1;
-        playerTimers.put(player, timer);
-        Difficulty difficulty = player.level().getDifficulty();
-        int interval = getIntervalForDifficulty(difficulty);
-        if (timer >= interval) {
-            foodData.setFoodLevel(Math.max(foodData.getFoodLevel() - 1, 0));
-            playerTimers.put(player, 0);
+        if (player instanceof ServerPlayer) {
+            FoodData foodData = player.getFoodData();
+            playerTimers.putIfAbsent(player, 0);
+            int timer = playerTimers.get(player) + 1;
+            playerTimers.put(player, timer);
+            Difficulty difficulty = player.level().getDifficulty();
+            int interval = getIntervalForDifficulty(difficulty);
+            if (interval > 999)
+                return;
+            if (timer >= interval) {
+                foodData.setFoodLevel(Math.max(foodData.getFoodLevel() - 1, 0));
+                playerTimers.put(player, 0);
+            }
         }
     }
 
@@ -36,7 +41,7 @@ public class HungerDrain {
             case EASY -> EASY_INTERVAL;
             case NORMAL -> NORMAL_INTERVAL;
             case HARD -> HARD_INTERVAL;
-            default -> EASY_INTERVAL;
+            default -> 99999;
         };
     }
 }

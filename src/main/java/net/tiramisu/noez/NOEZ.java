@@ -24,6 +24,7 @@ import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.tiramisu.noez.attribute.NoezAttributes;
 import net.tiramisu.noez.block.NoezBlocks;
 import net.tiramisu.noez.client.EchoHelmetModel;
 import net.tiramisu.noez.client.EchoHelmetRenderer;
@@ -65,7 +66,9 @@ public class NOEZ
         NoezEffects.register(NoezEventBus);
         NoezSounds.register(NoezEventBus);
         NoezPotions.register(NoezEventBus);
+        NoezAttributes.register(NoezEventBus);
         MinecraftForge.EVENT_BUS.register(this);
+        MinecraftForge.EVENT_BUS.register(NoezAttributes.class);
         context.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
         NoezEventBus.addListener(this::addCreative);
         NoezEventBus.addListener(this::commonSetup);

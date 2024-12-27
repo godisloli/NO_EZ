@@ -4,6 +4,8 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.entity.projectile.FireworkRocketEntity;
@@ -11,6 +13,7 @@ import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.BlockState;
+import net.tiramisu.noez.attribute.NoezAttributes;
 import net.tiramisu.noez.effect.NoezEffects;
 import net.tiramisu.noez.event.global.LineOfSight;
 import net.minecraft.world.entity.LivingEntity;
@@ -20,6 +23,7 @@ import net.minecraft.world.level.Level;
 import net.tiramisu.noez.item.LifeStealable;
 import net.tiramisu.noez.util.NoezTags;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -137,5 +141,12 @@ public abstract class LivingEntityMixin extends Entity {
                 }
             }
         }
+    }
+
+    @Inject(method = "createLivingAttributes", at = @At("RETURN"), cancellable = true)
+    private static void addCustomAttributes(CallbackInfoReturnable<AttributeSupplier.Builder> cir) {
+        AttributeSupplier.Builder builder = cir.getReturnValue();
+        builder.add(NoezAttributes.MAGIC_REDUCTION.get()).add(NoezAttributes.PROJECTILE_REDUCTION.get());
+        cir.setReturnValue(builder);
     }
 }

@@ -5,7 +5,6 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
-import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -16,7 +15,7 @@ import net.tiramisu.noez.network.NoezNetwork;
 import net.tiramisu.noez.network.packet.ManaDataSyncS2CPacket;
 
 @Mod.EventBusSubscriber
-public class CapabilityAttachHandler {
+public class PlayerAttachHandler {
     @SubscribeEvent
     public static void onAttachCapabilities(AttachCapabilitiesEvent<Entity> event) {
         if (event.getObject() instanceof Player player) {
@@ -25,7 +24,6 @@ public class CapabilityAttachHandler {
             event.addCapability(new ResourceLocation(NOEZ.MOD_ID, "properties"), manaProvider);
         }
     }
-
 
     @SubscribeEvent
     public static void onRespawn(PlayerEvent.Clone event){
