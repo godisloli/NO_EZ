@@ -10,6 +10,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
+import net.tiramisu.noez.item.ArmorAttribute;
 import net.tiramisu.noez.item.Critable;
 import net.tiramisu.noez.item.LifeStealable;
 import net.tiramisu.noez.item.SpellCaster;
@@ -101,6 +102,44 @@ public class ItemStackMixin {
                 }
             }
             cir.setReturnValue(tooltip);
+        }
+    }
+
+    @Inject(method = "getTooltipLines", at = @At("RETURN"), cancellable = true)
+    private void armorTooltip(@Nullable Player pPlayer, TooltipFlag pIsAdvanced, CallbackInfoReturnable<List<Component>> cir) {
+        ItemStack stack = (ItemStack) (Object) this;
+        if (stack.getItem() instanceof ArmorAttribute armorAttribute) {
+            List<Component> tooltip = cir.getReturnValue();
+            String helmetValue = String.format("%.0f", armorAttribute.helmetValue());
+            String chestplateValue = String.format("%.0f", armorAttribute.chesplateValue());
+            String leggingsValue = String.format("%.0f", armorAttribute.leggingsValue());
+            String bootsValue = String.format("%.0f", armorAttribute.bootsValue());
+            for (int i = 0; i < tooltip.size(); i++) {
+                Component line = tooltip.get(i);
+                if (line.getString().contains("When on Head:")) {
+                    tooltip.add(i + 3, Component.translatable(armorAttribute.helmetTooltip(), String.format("%s", helmetValue))
+                            .withStyle(style -> style.withColor(ChatFormatting.BLUE)));
+                    break;
+                }
+
+                if (line.getString().contains("When on Body:")) {
+                    tooltip.add(i + 3, Component.translatable(armorAttribute.chesplateTooltip(), String.format("%s", chestplateValue))
+                            .withStyle(style -> style.withColor(ChatFormatting.BLUE)));
+                    break;
+                }
+
+                if (line.getString().contains("When on Legs:")) {
+                    tooltip.add(i + 3, Component.translatable(armorAttribute.leggingsTooltip(), String.format("%s", leggingsValue))
+                            .withStyle(style -> style.withColor(ChatFormatting.BLUE)));
+                    break;
+                }
+
+                if (line.getString().contains("When on Feet:")) {
+                    tooltip.add(i + 3, Component.translatable(armorAttribute.bootsTooltip(), String.format("%s", bootsValue))
+                            .withStyle(style -> style.withColor(ChatFormatting.BLUE)));
+                    break;
+                }
+            }
         }
     }
 }

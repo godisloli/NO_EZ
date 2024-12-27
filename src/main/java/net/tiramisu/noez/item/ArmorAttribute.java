@@ -1,10 +1,14 @@
 package net.tiramisu.noez.item;
 
 public interface ArmorAttribute {
-    public String getTooltipID();
-    public void setTooltipID(String tooltipID);
-    public String helmetTooltip();
-    public String chesplateTooltip();
-    public String leggingsTooltip();
-    public String bootsTooltip();
+    String getTooltipID();
+    void setTooltipID(String tooltipID);
+    String helmetTooltip();
+    String chesplateTooltip();
+    String leggingsTooltip();
+    String bootsTooltip();
+    float helmetValue();
+    float chesplateValue();
+    float leggingsValue();
+    float bootsValue();
 }

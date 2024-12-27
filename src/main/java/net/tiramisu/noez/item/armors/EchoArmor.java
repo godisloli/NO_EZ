@@ -28,9 +28,9 @@ public class EchoArmor extends ArmorItem implements ArmorAttribute {
     private String toolTipId = "none";
     private static final int RADIUS = 20;
     private static final int HELMET_VALUE = 2;
-    private static final double CHESTPLATE_VALUE = 0.2;
+    private static final float CHESTPLATE_VALUE = 0.2f;
     private static final int LEGGINGS_VALUE = 4;
-    private static final double BOOTS_VALUE = 0.04;
+    private static final float BOOTS_VALUE = 0.04f;
     private static final UUID HELMET_BONUS = UUID.fromString("11111111-1111-1111-1111-111111111111");
     private static final UUID CHESTPLATE_BONUS = UUID.fromString("22222222-2222-2222-2222-222222222222");
     private static final UUID LEGGINGS_BONUS = UUID.fromString("33333333-3333-3333-3333-333333333333");
@@ -56,6 +56,22 @@ public class EchoArmor extends ArmorItem implements ArmorAttribute {
         pTooltipComponents.add(Component.translatable("noez.echo_" + toolTipId + ".tooltip1"));
         pTooltipComponents.add(Component.translatable("noez.echo_" + toolTipId + ".tooltip2"));
 
+    }
+
+    public float helmetValue() {
+        return HELMET_VALUE;
+    }
+
+    public float chesplateValue() {
+        return CHESTPLATE_VALUE * 10;
+    }
+
+    public float leggingsValue(){
+        return LEGGINGS_VALUE;
+    }
+
+    public float bootsValue() {
+        return BOOTS_VALUE * 100;
     }
 
     private static boolean hasFullEchoArmorSet(Player player) {

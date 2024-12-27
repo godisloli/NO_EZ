@@ -72,6 +72,9 @@
   "tooltip.noez.crit_damage": " %s Crit Damage",
   "tooltip.noez.crit_chance": " %s Crit Chance",
   "tooltip.noez.life_steal": " %s Life Steal",
+  "noez.health_bonus": "+%s Bonus Health",
+  "noez.projectile_reduction_bonus": "+%s Projectile Protection",
+  "noez.movement_speed_bonus": "+%s Movement Speed",
   "noez.undeadslayer": "§5Undead Slayer:§r Bypass undead invulnerable",
 
   "creativetab.noez_tab_misc": "Ingredients",
@@ -81,10 +84,10 @@
 
   "noez.echo_none.tooltip1": "§5Half Set:§7 Reveal all entities around you",
   "noez.echo_none.tooltip2": "§6Full Set:§7 Gain Absorption occasionally",
-  "noez.echo_half.tooltip1": "§5Half Set:§d Reveal all entities around you",
+  "noez.echo_half.tooltip1": "§5Half Set:§r Reveal all entities around you",
   "noez.echo_half.tooltip2": "§6Full Set:§7 Gain Absorption occasionally",
-  "noez.echo_full.tooltip1": "§5Half Set:§d Reveal all entities around you",
-  "noez.echo_full.tooltip2": "§6Full Set:§e Gain Absorption occasionally",
+  "noez.echo_full.tooltip1": "§5Half Set:§r Reveal all entities around you",
+  "noez.echo_full.tooltip2": "§6Full Set:§r Gain Absorption occasionally",
 
   "wip": "§7========WORK IN PROGRESS========"
 }
