@@ -1,6 +1,8 @@
 package net.tiramisu.noez.item.armors;
 
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -134,6 +136,24 @@ public class EchoArmor extends ArmorItem implements ArmorAttribute {
 
     private void harden(Player player, Level level){
         if (!player.getCooldowns().isOnCooldown(this)) {
+            if (level instanceof ServerLevel serverLevel) {
+                double angle = Math.random() * 2 * Math.PI;
+                double height = (Math.random() - 0.5) * 2;
+                double distance = Math.sqrt( height * height);
+                double offsetX = distance * Math.cos(angle);
+                double offsetZ = distance * Math.sin(angle);
+                double offsetY = height + 0.5;
+                for (int i = 0; i < 8; i++)
+                    serverLevel.sendParticles(
+                        ParticleTypes.SCULK_SOUL,
+                        player.getX() + offsetX,
+                        player.getY() + offsetY,
+                        player.getZ() + offsetZ,
+                        1,
+                        0,0,0,
+                        0.1
+                );
+            }
             level.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.WARDEN_DEATH, SoundSource.PLAYERS, 0.25f, 1f);
             player.addEffect(new MobEffectInstance(MobEffects.ABSORPTION, 30 * 20, 1));
             player.getCooldowns().addCooldown(this, 30 * 20);

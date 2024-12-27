@@ -13,7 +13,7 @@ public enum NoezArmorTier implements ArmorMaterial {
     ECHO("echo", 25, new int[]{4, 9, 7, 3}, 15,
             SoundEvents.SCULK_CATALYST_PLACE, 4.0F, 0.2F, () -> Ingredient.of(NoezItems.WARDEN_HEART.get()));
 
-    private static final int[] BASE_DURABILITY = {13, 15, 16, 11};
+    private static final int[] BASE_DURABILITY = {13, 18, 16, 11};
     private final String name;
     private final int durabilityMultiplier;
     private final int[] defensePoints;
