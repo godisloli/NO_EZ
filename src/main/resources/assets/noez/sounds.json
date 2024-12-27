@@ -50,5 +50,12 @@
         "weight": 1
       }
     ]
+  },
+  "echo_elytra_updraft": {
+    "sounds": [
+      {
+        "name": "noez:echo_elytra_updraft"
+      }
+    ]
   }
 }

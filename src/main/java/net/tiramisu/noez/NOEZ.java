@@ -1,15 +1,8 @@
 package net.tiramisu.noez;
 
-import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.logging.LogUtils;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.HumanoidModel;
-import net.minecraft.client.model.geom.EntityModelSet;
-import net.minecraft.client.renderer.MultiBufferSource;
-import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.client.renderer.entity.LivingEntityRenderer;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraftforge.api.distmarker.Dist;
@@ -26,13 +19,13 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.tiramisu.noez.attribute.NoezAttributes;
 import net.tiramisu.noez.block.NoezBlocks;
+import net.tiramisu.noez.client.EchoElytraRenderer;
 import net.tiramisu.noez.client.EchoHelmetModel;
 import net.tiramisu.noez.client.EchoHelmetRenderer;
 import net.tiramisu.noez.effect.NoezEffects;
 import net.tiramisu.noez.entity.NoezArrowRenderer;
 import net.tiramisu.noez.entity.NoezEntities;
 import net.tiramisu.noez.entity.NoezNonArrowRenderer;
-import net.tiramisu.noez.event.ModEventBusEvents;
 import net.tiramisu.noez.item.NoezCreativeModTabs;
 import net.tiramisu.noez.item.NoezItems;
 import net.tiramisu.noez.item.NoezPotions;
@@ -116,6 +109,7 @@ public class NOEZ
             event.getSkins().forEach(skin -> {
                 LivingEntityRenderer<Player, HumanoidModel<Player>> renderer = event.getSkin(skin);
                 renderer.addLayer(new EchoHelmetRenderer<>(renderer, event.getEntityModels()));
+                renderer.addLayer(new EchoElytraRenderer<>(renderer, event.getEntityModels()));
             });
         }
     }

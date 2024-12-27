@@ -5,6 +5,8 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -97,6 +99,11 @@ public class EchoArmor extends ArmorItem implements ArmorAttribute {
 
     public static boolean isBroken(ItemStack itemStack) {
         return itemStack.getDamageValue() >= itemStack.getMaxDamage() - 1;
+    }
+
+    @Override
+    public @NotNull InteractionResultHolder<ItemStack> use(@NotNull Level pLevel, @NotNull Player pPlayer, @NotNull InteractionHand pHand) {
+        return super.use(pLevel, pPlayer, pHand);
     }
 
     @Override

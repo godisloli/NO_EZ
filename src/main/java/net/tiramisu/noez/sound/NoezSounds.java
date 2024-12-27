@@ -13,6 +13,7 @@ public class NoezSounds {
     public static final RegistryObject<SoundEvent> WINDBREAKER_HIT = registerSoundEvent("windbreaker_hit");
     public static final RegistryObject<SoundEvent> WINDBREAKER_SLAM = registerSoundEvent("windbreaker_slam");
     public static final RegistryObject<SoundEvent> ARMOR_SHRED = registerSoundEvent("armor_shred");
+    public static final RegistryObject<SoundEvent> ECHO_ELYTRA_UPDRAFT = registerSoundEvent("echo_elytra_updraft");
 
     private static RegistryObject<SoundEvent> registerSoundEvent(String name) {
         return SOUND_EVENTS.register(name, () -> SoundEvent.createVariableRangeEvent(new ResourceLocation("noez", name)));

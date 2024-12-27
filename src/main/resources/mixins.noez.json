@@ -16,7 +16,9 @@
     "ItemStackMixin",
     "SwordItemMixin",
     "PlayerMixin",
-    "MilkBucketMixin"
+    "MilkBucketMixin",
+    "HealthFixMixin",
+    "PlayerListMixin"
   ],
   "injectors": {
     "defaultRequire": 1

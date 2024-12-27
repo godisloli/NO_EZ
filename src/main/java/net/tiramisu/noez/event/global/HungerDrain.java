@@ -18,7 +18,7 @@ public class HungerDrain {
 
     @SubscribeEvent
     public static void drainHungerPoint(TickEvent.PlayerTickEvent event) {
-        if (event.phase != TickEvent.Phase.END || event.player.level().isClientSide()) return;
+        if (event.phase != TickEvent.Phase.END || event.player.level().isClientSide() || event.player.getAbilities().instabuild) return;
         Player player = event.player;
         if (player instanceof ServerPlayer) {
             FoodData foodData = player.getFoodData();

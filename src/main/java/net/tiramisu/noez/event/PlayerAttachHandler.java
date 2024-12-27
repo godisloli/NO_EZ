@@ -26,8 +26,8 @@ public class PlayerAttachHandler {
     }
 
     @SubscribeEvent
-    public static void onRespawn(PlayerEvent.Clone event){
-        if(event.isWasDeath()){
+    public static void onRespawn(PlayerEvent.Clone event) {
+        if (event.isWasDeath()) {
             event.getOriginal().reviveCaps();
             event.getOriginal().getCapability(ManaPlayer.MANA).ifPresent(oldStore -> {
                 event.getEntity().getCapability(ManaPlayer.MANA).ifPresent(newStore -> {
@@ -39,7 +39,7 @@ public class PlayerAttachHandler {
     }
 
     @SubscribeEvent
-    public static void Tick(LivingEvent.LivingTickEvent event){
+    public static void Tick(LivingEvent.LivingTickEvent event) {
         if (event.getEntity() instanceof ServerPlayer serverPlayer){
             serverPlayer.getCapability(ManaPlayer.MANA).ifPresent(mana -> {
                 NoezNetwork.sendDataToClient(serverPlayer, new ManaDataSyncS2CPacket(mana.getMana()));

@@ -4,6 +4,7 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.item.ElytraItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
@@ -28,7 +29,7 @@ public class ItemStackMixin {
     @Inject(method = "hurt", at = @At("HEAD"), cancellable = true)
     private void preventBreaking(CallbackInfoReturnable<Boolean> cir) {
         ItemStack stack = (ItemStack) (Object) this;
-        if (stack.getDamageValue() >= stack.getMaxDamage() - 1) {
+        if (stack.getDamageValue() >= stack.getMaxDamage() - 1 && !(stack.getItem() instanceof ElytraItem)) {
             stack.setDamageValue(stack.getMaxDamage() - 1);
             cir.setReturnValue(false);
         }
