@@ -3,6 +3,7 @@ package net.tiramisu.noez;
 import com.mojang.logging.LogUtils;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.renderer.entity.LivingEntityRenderer;
+import net.minecraft.client.renderer.entity.ThrownItemRenderer;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraftforge.api.distmarker.Dist;
@@ -97,6 +98,7 @@ public class NOEZ
             event.registerEntityRenderer(NoezEntities.IRIDESCENT_ARROW.get(), NoezArrowRenderer::new);
             event.registerEntityRenderer(NoezEntities.ROOT_PROJECTILE.get(), NoezArrowRenderer::new);
             event.registerEntityRenderer(NoezEntities.GRASS_SPELL_SHOT.get(), NoezNonArrowRenderer::new);
+            event.registerEntityRenderer(NoezEntities.SOUL_PEARL_ENTITY.get(), ThrownItemRenderer::new);
         }
 
         @SubscribeEvent

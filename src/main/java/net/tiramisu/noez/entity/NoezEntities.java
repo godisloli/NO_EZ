@@ -10,6 +10,7 @@ import net.tiramisu.noez.NOEZ;
 import net.tiramisu.noez.entity.arrows.IridescentArrow;
 import net.tiramisu.noez.entity.arrows.RootProjectile;
 import net.tiramisu.noez.entity.nonarrows.GrassSpellShot;
+import net.tiramisu.noez.entity.nonarrows.ThrownSoulPearl;
 
 
 public class NoezEntities {
@@ -36,6 +37,13 @@ public class NoezEntities {
                     .clientTrackingRange(8)
                     .updateInterval(10)
                     .build(NOEZ.MOD_ID + ":grass_spell_shot"));
+
+    public static final RegistryObject<EntityType<ThrownSoulPearl>> SOUL_PEARL_ENTITY = ENTITY_TYPES.register("soul_pearl_entity",
+            () -> EntityType.Builder.of(ThrownSoulPearl::new, MobCategory.MISC)
+                    .sized(0.25F, 0.25F)
+                    .clientTrackingRange(8)
+                    .updateInterval(10)
+                    .build("soul_pearl_entity"));
 
     public static void register(IEventBus eventBus){
         ENTITY_TYPES.register(eventBus);
