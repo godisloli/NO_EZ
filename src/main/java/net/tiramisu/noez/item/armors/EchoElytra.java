@@ -1,6 +1,7 @@
 package net.tiramisu.noez.item.armors;
 
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
@@ -12,12 +13,23 @@ import net.minecraft.world.level.Level;
 import net.tiramisu.noez.item.NoezItems;
 import net.tiramisu.noez.sound.NoezSounds;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.List;
 
 public class EchoElytra extends ElytraItem {
     private static final int COOLDOWN = 8;
 
     public EchoElytra(Item.Properties pProperties) {
         super(pProperties);
+    }
+
+    @Override
+    public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
+        super.appendHoverText(pStack, pLevel, pTooltipComponents, pIsAdvanced);
+        pTooltipComponents.add(Component.translatable("noez.echo_elytra.tooltip1"));
+        pTooltipComponents.add(Component.translatable("noez.echo_elytra.tooltip2", COOLDOWN));
+        pTooltipComponents.add(Component.translatable("noez.echo_elytra.tooltip3"));
     }
 
     @Override
@@ -32,7 +44,7 @@ public class EchoElytra extends ElytraItem {
             spawnParticleTrail(level, player);
             if (!player.getCooldowns().isOnCooldown(this)) {
                 var lookDirection = player.getLookAngle();
-                double boostMultiplier = 4.0;
+                double boostMultiplier = 3.0;
                 player.push(lookDirection.x * boostMultiplier,
                         lookDirection.y * boostMultiplier,
                         lookDirection.z * boostMultiplier);

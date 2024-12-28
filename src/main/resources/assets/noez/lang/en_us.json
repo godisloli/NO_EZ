@@ -45,6 +45,7 @@
   "item.noez.echo_chestplate": "§3Echo Chestplate",
   "item.noez.echo_leggings": "§3Echo Leggings",
   "item.noez.echo_boots": "§3Echo Boots",
+  "item.noez.echo_elytra": "§3Echo Elytra",
 
   "noez.relocator.tooltip1": "§6§lOn use: §rBlink to a short distance where you facing",
   "noez.relocator.tooltip2": "§6§lCooldown: §r8 seconds",
@@ -56,7 +57,7 @@
   "noez.obsidian_blade.tooltip1": "§6§lOn attack: §4Bleed§r target",
   "noez.obsidian_blade.tooltip2": "§6§lCooldown: §r12 seconds",
   "noez.hellfire_sword.tooltip1": "§6§lPassive: §rSet target on fire. For each target set on fire by this sword, you gain %s bonus damage (Up to: %s stacks)",
-  "noez.hellfire_sword.tooltip2": "§7§lLose all Bonus Damage if you stop attacking for 5 seconds",
+  "noez.hellfire_sword.tooltip2": "§7Lose all Bonus Damage if you stop attacking for 5 seconds",
   "noez.frostbane_sword.tooltip1": "§6§lPassive: §rDeals more damage to targets immune to fire.",
   "noez.frostbane_sword.tooltip2": "§6§lOn attack: §rInflict §bFrostbite§r to target. ",
   "noez.frostbane_sword.tooltip3": "§6§lCooldown: §r%s seconds",
@@ -88,6 +89,9 @@
   "noez.echo_half.tooltip2": "§6§lFull Set:§7 Gain Absorption occasionally",
   "noez.echo_full.tooltip1": "§5§lHalf Set:§r Reveal all entities around you",
   "noez.echo_full.tooltip2": "§6§lFull Set:§r Gain Absorption occasionally",
+  "noez.echo_elytra.tooltip1": "§6§lPassive:§r The first time you enter fall fly, greatly boost your fly speed",
+  "noez.echo_elytra.tooltip2": "§6§lCooldown:§r %s seconds",
+  "noez.echo_elytra.tooltip3": "§7Cooldown reset if you're fall flying",
 
   "wip": "§7========WORK IN PROGRESS========"
 }
