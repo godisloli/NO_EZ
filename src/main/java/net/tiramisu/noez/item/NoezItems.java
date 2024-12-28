@@ -20,6 +20,9 @@ public class NoezItems {
     public static final RegistryObject<Item> SOUL = ITEMS.register("soul",
             () -> new Item(new Item.Properties().stacksTo(64)));
 
+    public static final RegistryObject<Item> SCULK_BONE = ITEMS.register("sculk_bone",
+            () -> new Item(new Item.Properties().stacksTo(64)));
+
     public static final RegistryObject<Item> WARDEN_HEART = ITEMS.register("warden_heart",
             () -> new Item(new Item.Properties().stacksTo(1).fireResistant()));
 

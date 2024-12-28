@@ -20,6 +20,7 @@ public class NoezCreativeModTabs {
                     .title(Component.translatable("creativetab.noez_tab_misc"))
                     .displayItems((pParameters, pOutput) -> {
                         pOutput.accept(NoezItems.SOUL.get());
+                        pOutput.accept(NoezItems.SCULK_BONE.get());
                         pOutput.accept(NoezItems.WARDEN_HEART.get());
                         pOutput.accept(NoezItems.MOONSILVER_INGOT.get());
                         pOutput.accept(NoezItems.ROSEGOLD_INGOT.get());

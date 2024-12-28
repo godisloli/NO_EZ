@@ -1,6 +1,7 @@
 {
   "item.noez.soul": "Soul",
   "item.noez.warden_heart": "§3Warden Heart",
+  "item.noez.sculk_bone": "Sculk Bone",
   "item.noez.fruit_of_deception": "§dFruit of Deception",
   "item.noez.fruit_of_enlightenment": "§dFruit of Enlightenment",
   "item.noez.fruit_of_madness": "§dFruit of Madness",
@@ -50,7 +51,7 @@
   "noez.relocator.tooltip1": "§6§lOn use: §rBlink to a short distance where you facing",
   "noez.relocator.tooltip2": "§6§lCooldown: §r8 seconds",
   "noez.moonsilver_sword.tooltip1": "§6§lPassive: §rDeal extra Magic Damage to undead",
-  "noez.natura_blade.tooltip1": "§6§lOn attack: §rFire a spike dealing damage, §eRoot §rtarget and gain you §dRegeneration",
+  "noez.natura_blade.tooltip1": "§6§lOn attack: §rFire a spike dealing damage, §eRoot§r target and gain you §dRegeneration",
   "noez.natura_blade.tooltip2": "§6§lCooldown: §r10 seconds",
   "noez.iridescent_bow.tooltip1": "§6§lOn shot: §rConvert any arrows into §bIridescent Arrows",
   "noez.iridescent_bow.tooltip2": "§7Iridescent Arrow: Not affected by gravity, pierces through targets and deals True Damage",
