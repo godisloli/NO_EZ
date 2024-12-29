@@ -110,6 +110,9 @@ public class NoezItems {
     public static final RegistryObject<Item> ECHO_ELYTRA = ITEMS.register("echo_elytra",
             () -> new EchoElytra(new Item.Properties().stacksTo(1).durability(2413).fireResistant()));
 
+    public static final RegistryObject<Item> COMMON_KEY = ITEMS.register("common_key",
+            () -> new Item(new Item.Properties().stacksTo(64)));
+
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
     }

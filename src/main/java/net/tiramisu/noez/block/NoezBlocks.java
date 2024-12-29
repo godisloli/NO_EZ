@@ -11,6 +11,7 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.tiramisu.noez.NOEZ;
+import net.tiramisu.noez.block.vaults.CommonVault;
 import net.tiramisu.noez.item.NoezItems;
 
 import java.util.function.Supplier;
@@ -28,6 +29,12 @@ public class NoezBlocks {
     private static <T extends Block> RegistryObject<Item> registerBlockItem(String name, RegistryObject <T> block) {
         return NoezItems.ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties()));
     }
+
+    public static final RegistryObject<Block> COMMON_VAULT = registerBlock("common_vault",
+            () -> new CommonVault(BlockBehaviour.Properties.copy(Blocks.OBSIDIAN)
+                    .strength(50.0f, 1200.0f)
+                    .noOcclusion()
+                    .lightLevel(state -> 0)));
 
     public static void register(IEventBus eventBus) {
         BLOCKS.register(eventBus);

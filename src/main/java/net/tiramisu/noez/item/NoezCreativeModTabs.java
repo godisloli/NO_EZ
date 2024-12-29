@@ -43,6 +43,15 @@ public class NoezCreativeModTabs {
                     })
                     .build());
 
+    public static final RegistryObject<CreativeModeTab> NOEZ_TAB_TREASURES = CREATIVE_MODE_TABS.register("noez_tab_treasures",
+            () -> CreativeModeTab.builder().icon(() -> new ItemStack(NoezBlocks.COMMON_VAULT.get()))
+                    .title(Component.translatable("creativetab.noez_tab_treasures"))
+                    .displayItems((pParameters, pOutput) -> {
+                        pOutput.accept(NoezBlocks.COMMON_VAULT.get());
+                        pOutput.accept(NoezItems.COMMON_KEY.get());
+                    })
+                    .build());
+
     public static final RegistryObject<CreativeModeTab> NOEZ_TAB_COMBAT = CREATIVE_MODE_TABS.register("noez_tab_combat",
             () -> CreativeModeTab.builder().icon(() -> new ItemStack(NoezItems.WINDBREAKER.get()))
                     .title(Component.translatable("creativetab.noez_tab_combat"))

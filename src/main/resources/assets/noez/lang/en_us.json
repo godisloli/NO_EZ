@@ -83,6 +83,8 @@
   "creativetab.noez_tab_food": "Foods",
   "creativetab.noez_tab_combat": "Arsenal",
   "creativetab.noez_tab_armor": "Armors",
+  "creativetab.noez_tab_treasures": "Treasures",
+
 
   "noez.echo_none.tooltip1": "§5§lHalf Set:§7 Reveal all entities around you",
   "noez.echo_none.tooltip2": "§6§lFull Set:§7 Gain Absorption occasionally",

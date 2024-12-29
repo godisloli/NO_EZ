@@ -2,6 +2,8 @@ package net.tiramisu.noez;
 
 import com.mojang.logging.LogUtils;
 import net.minecraft.client.model.HumanoidModel;
+import net.minecraft.client.renderer.ItemBlockRenderTypes;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.LivingEntityRenderer;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.CreativeModeTabs;
@@ -90,6 +92,7 @@ public class NOEZ
         public static void onClientSetup(FMLClientSetupEvent event) {
             NoezModelPredicate.itemBowTexturesRenderer(NoezItems.IRIDESCENT_BOW.get());
             NoezModelPredicate.itemCrossbowTexturesRenderer(NoezItems.MECHANICAL_CROSSBOW.get());
+            ItemBlockRenderTypes.setRenderLayer(NoezBlocks.COMMON_VAULT.get(), RenderType.cutout());
         }
 
         @SubscribeEvent
