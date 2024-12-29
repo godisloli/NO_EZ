@@ -93,7 +93,7 @@ public class NOEZ
         public static void onClientSetup(FMLClientSetupEvent event) {
             NoezModelPredicate.itemBowTexturesRenderer(NoezItems.IRIDESCENT_BOW.get());
             NoezModelPredicate.itemCrossbowTexturesRenderer(NoezItems.MECHANICAL_CROSSBOW.get());
-            ItemBlockRenderTypes.setRenderLayer(NoezBlocks.COMMON_VAULT.get(), RenderType.cutout());
+            ItemBlockRenderTypes.setRenderLayer(NoezBlocks.COMMON_VAULT.get(), RenderType.translucent());
         }
 
         @SubscribeEvent

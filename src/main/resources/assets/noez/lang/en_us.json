@@ -26,9 +26,11 @@
   "item.noez.blood_sacrifice": "§4Blood Sacrifice",
   "item.noez.druvis_staff": "Druvis Staff",
   "item.noez.mechanical_crossbow": "§4Mechanical Crossbow",
-
   "item.noez.mana_potion.effect.empty": "Mana Potion",
   "item.noez.vital_wrap": "Vital Wrap",
+  "item.noez.common_key": "Common Key",
+
+  "block.noez.common_vault": "Common Vault",
 
   "effect.noez.bleed": "Bleed",
   "effect.noez.stun": "Stun",

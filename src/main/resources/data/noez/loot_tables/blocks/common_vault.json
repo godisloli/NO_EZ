@@ -20,8 +20,7 @@
                 "max": 19
               }
             }
-          ],
-          "probability": 0.09
+          ]
         },
         {
           "type": "minecraft:item",
@@ -34,8 +33,7 @@
                 "max": 9
               }
             }
-          ],
-          "probability": 0.16
+          ]
         },
         {
           "type": "minecraft:item",
@@ -48,8 +46,7 @@
                 "max": 3
               }
             }
-          ],
-          "probability": 0.15
+          ]
         },
         {
           "type": "minecraft:item",
@@ -118,17 +115,16 @@
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:netherite_scrap",
+          "name": "minecraft:amethyst_shard",
           "functions": [
             {
               "function": "minecraft:set_count",
               "count": {
-                "min": 2,
-                "max": 4
+                "min": 4,
+                "max": 7
               }
             }
-          ],
-          "probability": 0.03
+          ]
         }
       ]
     }
