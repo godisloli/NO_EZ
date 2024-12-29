@@ -2,6 +2,7 @@ package net.tiramisu.noez.item;
 
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Rarity;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -11,6 +12,7 @@ import net.tiramisu.noez.item.armors.EchoArmor;
 import net.tiramisu.noez.item.armors.EchoElytra;
 import net.tiramisu.noez.item.arsenal.*;
 import net.tiramisu.noez.item.consumables.ManaPotion;
+import net.tiramisu.noez.item.consumables.SoulPearl;
 import net.tiramisu.noez.item.consumables.VitalWrap;
 
 public class NoezItems {
@@ -91,6 +93,9 @@ public class NoezItems {
             () -> new ManaPotion(new Item.Properties().stacksTo(64)));
 
     public static final RegistryObject<Item> DRUVIS_STAFF = ITEMS.register("druvis_staff", DruvisStaff::new);
+
+    public static final RegistryObject<Item> SOUL_PEARL = ITEMS.register("soul_pearl",
+            () -> new SoulPearl(new Item.Properties().stacksTo(16)));
 
     public static final RegistryObject<Item> VITAL_WRAP = ITEMS.register("vital_wrap",
             () -> new VitalWrap(new Item.Properties().stacksTo(64)));

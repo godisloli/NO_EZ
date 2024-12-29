@@ -40,6 +40,7 @@ public class NoezCreativeModTabs {
                         pOutput.accept(NoezItems.FRUIT_OF_ENLIGHTENMENT.get());
                         pOutput.accept(NoezItems.MANA_POTION.get());
                         pOutput.accept(NoezItems.VITAL_WRAP.get());
+                        pOutput.accept(NoezItems.SOUL_PEARL.get());
                     })
                     .build());
 

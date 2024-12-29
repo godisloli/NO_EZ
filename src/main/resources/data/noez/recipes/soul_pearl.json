@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "SES",
+    "ENE",
+    "SES"
+  ],
+  "key": {
+    "S": {
+      "item": "noez:soul"
+    },
+    "E": {
+      "item": "minecraft:ender_pearl"
+    },
+    "N": {
+      "item": "minecraft:nether_star"
+    }
+  },
+  "result": {
+    "item": "noez:soul_pearl",
+    "count": 16
+  }
+}
