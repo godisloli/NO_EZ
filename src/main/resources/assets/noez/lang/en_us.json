@@ -2,6 +2,7 @@
   "item.noez.soul": "Soul",
   "item.noez.warden_heart": "§3Warden Heart",
   "item.noez.sculk_bone": "Sculk Bone",
+  "item.noez.soul_pearl": "§dSoul Pearl",
   "item.noez.fruit_of_deception": "§dFruit of Deception",
   "item.noez.fruit_of_enlightenment": "§dFruit of Enlightenment",
   "item.noez.fruit_of_madness": "§dFruit of Madness",
@@ -58,7 +59,7 @@
   "noez.obsidian_blade.tooltip1": "§6§lOn attack: §4Bleed§r target",
   "noez.obsidian_blade.tooltip2": "§6§lCooldown: §r12 seconds",
   "noez.hellfire_sword.tooltip1": "§6§lPassive: §rSet target on fire. For each target set on fire by this sword, you gain %s bonus damage (Up to: %s stacks)",
-  "noez.hellfire_sword.tooltip2": "§7Lose all Bonus Damage if you stop attacking for 5 seconds",
+  "noez.hellfire_sword.tooltip2": "§7§oLose all Bonus Damage if you stop attacking for 5 seconds",
   "noez.frostbane_sword.tooltip1": "§6§lPassive: §rDeals more damage to targets immune to fire.",
   "noez.frostbane_sword.tooltip2": "§6§lOn attack: §rInflict §bFrostbite§r to target. ",
   "noez.frostbane_sword.tooltip3": "§6§lCooldown: §r%s seconds",
@@ -70,6 +71,8 @@
   "noez.blood_sacrifice.tooltip1": "§6§lOn attack: §rDeals small damage to all entities around",
   "noez.mechanical_crossbow.tooltip1" : "§6§lPassive: §rReload up to 4 projectiles of the same type simultaneously.",
   "noez.mechanical_crossbow.tooltip2": "§6§lOn shot: §rFire all loaded projectiles",
+  "noez.soul_pearl.tooltip1": "§6§lOn teleport:§r Deal magic damage to all entities around",
+  "noez.soul_pearl.tooltip2": "§6§lCooldown: §r%s seconds",
 
   "tooltip.noez.crit_damage": " %s Crit Damage",
   "tooltip.noez.crit_chance": " %s Crit Chance",
@@ -80,7 +83,7 @@
   "noez.undeadslayer": "§5§lUndead Slayer:§r Bypass undead invulnerable",
 
   "creativetab.noez_tab_misc": "Ingredients",
-  "creativetab.noez_tab_food": "Foods",
+  "creativetab.noez_tab_food": "Consumables",
   "creativetab.noez_tab_combat": "Arsenal",
   "creativetab.noez_tab_armor": "Armors",
 
@@ -92,7 +95,7 @@
   "noez.echo_full.tooltip2": "§6§lFull Set:§r Gain Absorption occasionally",
   "noez.echo_elytra.tooltip1": "§6§lPassive:§r The first time you enter fall fly, greatly boost your fly speed",
   "noez.echo_elytra.tooltip2": "§6§lCooldown:§r %s seconds",
-  "noez.echo_elytra.tooltip3": "§7Cooldown reset if you're fall flying",
+  "noez.echo_elytra.tooltip3": "§7§oCooldown reset if you're fall flying",
 
   "wip": "§7========WORK IN PROGRESS========"
 }
