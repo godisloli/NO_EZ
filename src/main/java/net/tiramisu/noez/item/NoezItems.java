@@ -117,7 +117,7 @@ public class NoezItems {
             () -> new EchoElytra(new Item.Properties().stacksTo(1).durability(2413).fireResistant()));
 
     public static final RegistryObject<Item> KITSUNE_MASK = ITEMS.register("kitsune_mask",
-            () -> new KitsuneMask(NoezArmorTier.KITSUNE, ArmorItem.Type.HELMET, new Item.Properties()));
+            () -> new KitsuneMask(NoezArmorTier.KITSUNE, ArmorItem.Type.HELMET, new Item.Properties().fireResistant()));
 
     public static final RegistryObject<Item> COMMON_KEY = ITEMS.register("common_key",
             () -> new Item(new Item.Properties().stacksTo(64)));
