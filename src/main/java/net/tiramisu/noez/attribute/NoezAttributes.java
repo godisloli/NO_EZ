@@ -41,7 +41,7 @@ public class NoezAttributes {
                     ).setSyncable(true));
 
     public static final RegistryObject<Attribute> MANA_REGENERATION =
-            ATTRIBUTES.register("health_regeneration", () ->
+            ATTRIBUTES.register("mana_regeneration", () ->
                     new RangedAttribute(
                             "attribute.name.generic.mana_regeneration",
                             0.0,
