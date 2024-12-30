@@ -24,8 +24,8 @@ public class LineOfSight {
             farDistance = 16f;
         }
 
-        float largeAngle = 83.0F; // Outer boundary of vision cone
-        float smallAngle = 30.0F; // Inner boundary of vision cone
+        float largeAngle = 83.0F;
+        float smallAngle = 30.0F;
         float mobViewThreshold = 10.0F;
 
         if (target instanceof LivingEntity livingEntity){

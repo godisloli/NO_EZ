@@ -11,7 +11,10 @@ import java.util.function.Supplier;
 
 public enum NoezArmorTier implements ArmorMaterial {
     ECHO("echo", 25, new int[]{4, 9, 7, 3}, 15,
-            SoundEvents.SCULK_CATALYST_PLACE, 4.0F, 0.2F, () -> Ingredient.of(NoezItems.WARDEN_HEART.get()));
+            SoundEvents.SCULK_CATALYST_PLACE, 4.0F, 0.2F, () -> Ingredient.of(NoezItems.WARDEN_HEART.get())),
+
+    KITSUNE("kitsune", 25, new int[] {11, 1, 1, 1}, 15,
+            SoundEvents.ALLAY_AMBIENT_WITH_ITEM, 2.0F, 0.0f, () -> Ingredient.EMPTY);
 
     private static final int[] BASE_DURABILITY = {13, 18, 16, 11};
     private final String name;

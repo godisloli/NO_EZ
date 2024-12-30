@@ -83,6 +83,7 @@ public class NoezCreativeModTabs {
                         pOutput.accept(NoezItems.ECHO_LEGGINGS.get());
                         pOutput.accept(NoezItems.ECHO_BOOTS.get());
                         pOutput.accept(NoezItems.ECHO_ELYTRA.get());
+                        pOutput.accept(NoezItems.KITSUNE_MASK.get());
                     })
                     .build());
 

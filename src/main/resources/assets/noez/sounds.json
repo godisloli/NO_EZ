@@ -57,5 +57,29 @@
         "name": "noez:echo_elytra_updraft"
       }
     ]
+  },
+  "kitsune_proc": {
+    "sounds": [
+      {
+        "name": "noez:kitsune_1",
+        "weight": 1
+      },
+      {
+        "name": "noez:kitsune_2",
+        "weight": 1
+      },
+      {
+        "name": "noez:kitsune_3",
+        "weight": 1
+      },
+      {
+        "name": "noez:kitsune_4",
+        "weight": 1
+      },
+      {
+        "name": "noez:kitsune_5",
+        "weight": 1
+      }
+    ]
   }
 }

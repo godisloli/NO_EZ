@@ -9,6 +9,7 @@ public class Mana {
     private int mana;
     private int maxMana;
     private ServerPlayer owner;
+    private float temporaryMana = 0;
 
     public Mana() {
         this.mana = 20;
@@ -40,6 +41,16 @@ public class Mana {
 
     public void addMana(int amount) {
         setMana(Math.min(maxMana, this.mana + amount));
+    }
+
+    public void addFloatMana(float amount) {
+        float totalMana = temporaryMana + amount;
+        if (totalMana < 1) {
+            this.temporaryMana = totalMana;
+        } else {
+            addMana((int) totalMana);
+            this.temporaryMana = totalMana - (int) totalMana;
+        }
     }
 
     public void consumeMana(int amount) {

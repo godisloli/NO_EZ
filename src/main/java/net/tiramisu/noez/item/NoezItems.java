@@ -10,6 +10,7 @@ import net.minecraftforge.registries.RegistryObject;
 import net.tiramisu.noez.NOEZ;
 import net.tiramisu.noez.item.armors.EchoArmor;
 import net.tiramisu.noez.item.armors.EchoElytra;
+import net.tiramisu.noez.item.armors.KitsuneMask;
 import net.tiramisu.noez.item.arsenal.*;
 import net.tiramisu.noez.item.consumables.ManaPotion;
 import net.tiramisu.noez.item.consumables.SoulPearl;
@@ -114,6 +115,9 @@ public class NoezItems {
 
     public static final RegistryObject<Item> ECHO_ELYTRA = ITEMS.register("echo_elytra",
             () -> new EchoElytra(new Item.Properties().stacksTo(1).durability(2413).fireResistant()));
+
+    public static final RegistryObject<Item> KITSUNE_MASK = ITEMS.register("kitsune_mask",
+            () -> new KitsuneMask(NoezArmorTier.KITSUNE, ArmorItem.Type.HELMET, new Item.Properties()));
 
     public static final RegistryObject<Item> COMMON_KEY = ITEMS.register("common_key",
             () -> new Item(new Item.Properties().stacksTo(64)));

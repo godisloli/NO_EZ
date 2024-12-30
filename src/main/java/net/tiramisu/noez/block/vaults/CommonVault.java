@@ -12,6 +12,9 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.EntityBlock;
+import net.minecraft.world.level.block.RenderShape;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
@@ -25,9 +28,10 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.tiramisu.noez.NOEZ;
 import net.tiramisu.noez.item.NoezItems;
 
+import javax.annotation.Nullable;
 import java.util.List;
 
-public class CommonVault extends Block {
+public class CommonVault extends Block implements EntityBlock {
 
     public static final IntegerProperty VAULT_STATE = IntegerProperty.create("vault_state", 0, 2);
     public static final ResourceLocation COMMON_VAULT_LOOT_TABLE = new ResourceLocation(NOEZ.MOD_ID, "blocks/common_vault");
@@ -103,5 +107,16 @@ public class CommonVault extends Block {
     @Override
     public boolean isOcclusionShapeFullBlock(BlockState state, BlockGetter level, BlockPos pos) {
         return false;
+    }
+
+    @Nullable
+    @Override
+    public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
+        return new CommonVaultBlockEntity(pos, state);
+    }
+
+    @Override
+    public RenderShape getRenderShape(BlockState state) {
+        return RenderShape.MODEL;
     }
 }

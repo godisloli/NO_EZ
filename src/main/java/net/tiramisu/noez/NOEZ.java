@@ -4,6 +4,7 @@ import com.mojang.logging.LogUtils;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
 import net.minecraft.client.renderer.entity.LivingEntityRenderer;
 import net.minecraft.client.renderer.entity.ThrownItemRenderer;
 import net.minecraft.world.entity.player.Player;
@@ -21,8 +22,10 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.tiramisu.noez.attribute.NoezAttributes;
+import net.tiramisu.noez.block.NoezBlockEntities;
 import net.tiramisu.noez.block.NoezBlocks;
 import net.tiramisu.noez.client.EchoElytraRenderer;
+import net.tiramisu.noez.block.CommonVaultRenderer;
 import net.tiramisu.noez.client.EchoHelmetModel;
 import net.tiramisu.noez.client.EchoHelmetRenderer;
 import net.tiramisu.noez.effect.NoezEffects;
@@ -63,6 +66,7 @@ public class NOEZ
         NoezSounds.register(NoezEventBus);
         NoezPotions.register(NoezEventBus);
         NoezAttributes.register(NoezEventBus);
+        NoezBlockEntities.register(NoezEventBus);
         MinecraftForge.EVENT_BUS.register(this);
         MinecraftForge.EVENT_BUS.register(NoezAttributes.class);
         context.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
@@ -94,6 +98,7 @@ public class NOEZ
             NoezModelPredicate.itemBowTexturesRenderer(NoezItems.IRIDESCENT_BOW.get());
             NoezModelPredicate.itemCrossbowTexturesRenderer(NoezItems.MECHANICAL_CROSSBOW.get());
             ItemBlockRenderTypes.setRenderLayer(NoezBlocks.COMMON_VAULT.get(), RenderType.translucent());
+            BlockEntityRenderers.register(NoezBlockEntities.COMMON_VAULT.get(), CommonVaultRenderer::new);
         }
 
         @SubscribeEvent
