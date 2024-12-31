@@ -58,6 +58,7 @@ public class NoezCreativeModTabs {
                     .title(Component.translatable("creativetab.noez_tab_combat"))
                     .displayItems((pParameters, pOutput) -> {
                         pOutput.accept(NoezItems.DRUVIS_STAFF.get());
+                        pOutput.accept(NoezItems.CRIMSON_SOUL_EATER.get());
                         pOutput.accept(NoezItems.IMPERIALITE_SWORD.get());
                         pOutput.accept(NoezItems.NATURA_BLADE.get());
                         pOutput.accept(NoezItems.OBSIDIAN_BLADE.get());

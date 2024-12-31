@@ -9,7 +9,6 @@ import net.minecraftforge.registries.RegistryObject;
 import net.tiramisu.noez.NOEZ;
 import net.tiramisu.noez.entity.arrows.IridescentArrow;
 import net.tiramisu.noez.entity.arrows.RootProjectile;
-import net.tiramisu.noez.entity.nonarrows.CrimsonScytheShot;
 import net.tiramisu.noez.entity.nonarrows.GrassSpellShot;
 import net.tiramisu.noez.entity.nonarrows.ThrownSoulPearl;
 
@@ -39,12 +38,6 @@ public class NoezEntities {
                     .updateInterval(10)
                     .build(NOEZ.MOD_ID + ":grass_spell_shot"));
 
-    public static final RegistryObject<EntityType<CrimsonScytheShot>> CRIMSON_SCYTHE_SHOT = ENTITY_TYPES.register("crimson_scythe_shot",
-            () -> EntityType.Builder.<CrimsonScytheShot>of(CrimsonScytheShot::new, MobCategory.MISC)
-                    .sized(0.5F, 0.5F)
-                    .clientTrackingRange(8)
-                    .updateInterval(10)
-                    .build(NOEZ.MOD_ID + ":crimson_scythe_shot"));
 
     public static final RegistryObject<EntityType<ThrownSoulPearl>> SOUL_PEARL_ENTITY = ENTITY_TYPES.register("soul_pearl_entity",
             () -> EntityType.Builder.<ThrownSoulPearl>of(ThrownSoulPearl::new, MobCategory.MISC)

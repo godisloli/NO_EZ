@@ -59,6 +59,9 @@ public class NoezItems {
     public static final RegistryObject<Item> HELLFIRE_SWORD = ITEMS.register("hellfire_sword",
             () -> new HellfireSword(NoezToolTier.MEDIUM,2,-2.4f, new Item.Properties().stacksTo(1).durability(152)));
 
+    public static final RegistryObject<Item> CRIMSON_SOUL_EATER = ITEMS.register("crimson_soul_eater",
+            () -> new CrimsonSoulEater(NoezToolTier.MEDIUM, 3, -2.4f, new Item.Properties().stacksTo(1).durability(152).fireResistant()));
+
     public static final RegistryObject<Item> BLOOD_SACRIFICE = ITEMS.register("blood_sacrifice",
             () -> new BloodSacrifice(NoezToolTier.MEDIUM,5,-2.4f, new Item.Properties().stacksTo(1).durability(164)));
 

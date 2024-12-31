@@ -31,7 +31,7 @@ import net.tiramisu.noez.client.EchoHelmetRenderer;
 import net.tiramisu.noez.effect.NoezEffects;
 import net.tiramisu.noez.entity.NoezArrowRenderer;
 import net.tiramisu.noez.entity.NoezEntities;
-import net.tiramisu.noez.entity.NoezNonArrowRenderer;
+import net.tiramisu.noez.entity.GrassSpellShotRenderer;
 import net.tiramisu.noez.item.NoezCreativeModTabs;
 import net.tiramisu.noez.item.NoezItems;
 import net.tiramisu.noez.item.NoezPotions;
@@ -105,7 +105,7 @@ public class NOEZ
         public static void onRegisterRenderers(EntityRenderersEvent.RegisterRenderers event) {
             event.registerEntityRenderer(NoezEntities.IRIDESCENT_ARROW.get(), NoezArrowRenderer::new);
             event.registerEntityRenderer(NoezEntities.ROOT_PROJECTILE.get(), NoezArrowRenderer::new);
-            event.registerEntityRenderer(NoezEntities.GRASS_SPELL_SHOT.get(), NoezNonArrowRenderer::new);
+            event.registerEntityRenderer(NoezEntities.GRASS_SPELL_SHOT.get(), GrassSpellShotRenderer::new);
             event.registerEntityRenderer(NoezEntities.SOUL_PEARL_ENTITY.get(), ThrownItemRenderer::new);
         }
 

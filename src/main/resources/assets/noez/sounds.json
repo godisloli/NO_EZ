@@ -81,5 +81,12 @@
         "weight": 1
       }
     ]
+  },
+  "execution": {
+    "sounds": [
+      {
+        "name": "noez:execution"
+      }
+    ]
   }
 }

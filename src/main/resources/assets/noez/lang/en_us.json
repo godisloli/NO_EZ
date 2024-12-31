@@ -30,6 +30,7 @@
   "item.noez.vital_wrap": "Vital Wrap",
   "item.noez.common_key": "Common Key",
   "item.noez.molten_pickaxe": "Molten Pickaxe",
+  "item.noez.crimson_soul_eater": "§4Crimson Soul Eater",
 
   "block.noez.common_vault": "Common Vault",
 
@@ -80,6 +81,8 @@
   "noez.molten_pickaxe.tooltip1": "§6§lPassive:§r Smelt any mined blocks",
   "noez.molten_pickaxe.tooltip2": "§6§lOn attack:§r Set target on fire",
   "noez.molten_pickaxe.tooltip3": "§7§oLose 1 durability each 5 second",
+  "noez.crimson_soul_eater.tooltip1": "§6§lPassive:§r If target's health is lower than 10%, §4Execute§r target and heal you 10% target's max health",
+  "noez.crimson_soul_eater.tooltip2": "§6§lOn attack:§r Deal more damage base on target lost health",
 
   "tooltip.noez.crit_damage": " %s Crit Damage",
   "tooltip.noez.crit_chance": " %s Crit Chance",

@@ -19,7 +19,7 @@ public class ObsidianBlade extends SwordItem implements Critable {
     private final static double CRIT_DAMAGE = 1.75;
     private boolean ALWAYS_CRIT = false;
 
-    public ObsidianBlade(Tier tier, int Damage, float AttackSpeed, Properties properties){
+    public ObsidianBlade(Tier tier, int Damage, float AttackSpeed, Properties properties) {
         super(tier, Damage, AttackSpeed, properties);
     }
 

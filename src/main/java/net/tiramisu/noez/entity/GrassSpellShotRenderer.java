@@ -12,11 +12,11 @@ import net.tiramisu.noez.NOEZ;
 import net.tiramisu.noez.entity.nonarrows.GrassSpellShot;
 import org.joml.Matrix4f;
 
-public class NoezNonArrowRenderer extends EntityRenderer<GrassSpellShot> {
+public class GrassSpellShotRenderer extends EntityRenderer<GrassSpellShot> {
 
     private static final ResourceLocation TEXTURE = new ResourceLocation(NOEZ.MOD_ID, "textures/entity/grass_spell_shot.png");
 
-    public NoezNonArrowRenderer(EntityRendererProvider.Context context) {
+    public GrassSpellShotRenderer(EntityRendererProvider.Context context) {
         super(context);
     }
 
