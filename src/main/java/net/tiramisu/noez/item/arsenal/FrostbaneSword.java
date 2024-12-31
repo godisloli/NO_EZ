@@ -71,6 +71,7 @@ public class FrostbaneSword extends SwordItem implements Critable {
                         1f,
                         1f
                 );
+                pTarget.extinguishFire();
                 pTarget.addEffect(new MobEffectInstance(NoezEffects.FROSTBITE.get(), FROST_DURATION * 20, 1));
                 player.getCooldowns().addCooldown(this, COOLDOWN * 20);
             }

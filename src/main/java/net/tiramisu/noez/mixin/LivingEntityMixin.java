@@ -140,7 +140,12 @@ public abstract class LivingEntityMixin extends Entity {
     @Inject(method = "createLivingAttributes", at = @At("RETURN"), cancellable = true)
     private static void addCustomAttributes(CallbackInfoReturnable<AttributeSupplier.Builder> cir) {
         AttributeSupplier.Builder builder = cir.getReturnValue();
-        builder.add(NoezAttributes.MAGIC_REDUCTION.get()).add(NoezAttributes.PROJECTILE_REDUCTION.get()).add(NoezAttributes.HEALTH_REGENERATION.get()).add(NoezAttributes.MANA_REGENERATION.get());
+        builder.add(NoezAttributes.MAGIC_REDUCTION.get())
+                .add(NoezAttributes.PROJECTILE_REDUCTION.get())
+                .add(NoezAttributes.HEALTH_REGENERATION.get())
+                .add(NoezAttributes.MANA_REGENERATION.get())
+                .add(NoezAttributes.CRIT_CHANCE.get())
+                .add(NoezAttributes.CRIT_DAMAGE.get());
         cir.setReturnValue(builder);
     }
 }

@@ -15,6 +15,7 @@ import net.tiramisu.noez.item.arsenal.*;
 import net.tiramisu.noez.item.consumables.ManaPotion;
 import net.tiramisu.noez.item.consumables.SoulPearl;
 import net.tiramisu.noez.item.consumables.VitalWrap;
+import net.tiramisu.noez.item.tools.MoltenPickaxe;
 
 public class NoezItems {
     public static final DeferredRegister<Item> ITEMS =
@@ -45,6 +46,9 @@ public class NoezItems {
 
     public static final RegistryObject<Item> IMPERIALITE = ITEMS.register("imperialite",
             () -> new Item(new Item.Properties().stacksTo(64).fireResistant()));
+
+    public static final RegistryObject<Item> MOLTEN_PICKAXE = ITEMS.register("molten_pickaxe",
+            () -> new MoltenPickaxe(NoezToolTier.HEAVY, 1, -2.4f, new Item.Properties().stacksTo(1).durability(310).fireResistant()));
 
     public static final RegistryObject<Item> OBSIDIAN_BLADE = ITEMS.register("obsidian_blade",
             () -> new ObsidianBlade(NoezToolTier.HEAVY, 4, -3.5f, new Item.Properties().stacksTo(1).durability(250)));

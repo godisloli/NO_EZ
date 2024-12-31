@@ -11,10 +11,10 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.tiramisu.noez.attribute.NoezAttributes;
 import net.tiramisu.noez.effect.NoezEffects;
 import net.tiramisu.noez.item.Critable;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.ModifyVariable;
@@ -29,12 +29,12 @@ public abstract class PlayerMixin {
             ItemStack mainHandStack = player.getMainHandItem();
             Item mainHandItem = mainHandStack.getItem();
             if (mainHandItem instanceof Critable) {
-                double critChance = Math.max(0,((Critable) mainHandItem).getCritChance() + 0.07);
+                double critChance = Math.max(0,((Critable) mainHandItem).getCritChance() + (player.getAttribute(NoezAttributes.CRIT_CHANCE.get()).getValue() / 100));
                 double random = player.level().getRandom().nextDouble();
                 boolean isCrit = random < critChance || ((Critable) mainHandItem).isAlwaysCrit() || targetEntity.hasEffect(NoezEffects.FROSTBITE.get());
                 if (isCrit) {
                     mainHandItem.hurtEnemy(mainHandStack, targetEntity, player);
-                    float baseDamage = (float) player.getAttribute(net.minecraft.world.entity.ai.attributes.Attributes.ATTACK_DAMAGE).getValue();
+                    float baseDamage = (float) player.getAttribute(Attributes.ATTACK_DAMAGE).getValue() + (float) (player.getAttribute(NoezAttributes.CRIT_DAMAGE.get()).getValue() / 100);
                     float critDamage = baseDamage * (float) ((Critable) mainHandItem).getCritDamageAmplifier();
                     targetEntity.hurt(player.damageSources().playerAttack(player), critDamage);
                     player.level().playSound(null, player.getX(), player.getY(), player.getZ(),

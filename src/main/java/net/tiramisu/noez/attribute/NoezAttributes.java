@@ -49,6 +49,24 @@ public class NoezAttributes {
                             999.0
                     ).setSyncable(true));
 
+    public static final RegistryObject<Attribute> CRIT_CHANCE =
+            ATTRIBUTES.register("crit_chance", () ->
+                    new RangedAttribute(
+                            "attribute.name.generic.crit_chance",
+                            0.0,
+                            0.0,
+                            100.0
+                    ).setSyncable(true));
+
+    public static final RegistryObject<Attribute> CRIT_DAMAGE =
+            ATTRIBUTES.register("crit_damage", () ->
+                    new RangedAttribute(
+                            "attribute.name.generic.crit_damage",
+                            0.0,
+                            0.0,
+                            999.0
+                    ).setSyncable(true));
+
     public static void register(IEventBus eventBus) {
         ATTRIBUTES.register(eventBus);
     }

@@ -45,7 +45,7 @@ public class NoezCreativeModTabs {
                     .build());
 
     public static final RegistryObject<CreativeModeTab> NOEZ_TAB_TREASURES = CREATIVE_MODE_TABS.register("noez_tab_treasures",
-            () -> CreativeModeTab.builder().icon(() -> new ItemStack(NoezBlocks.COMMON_VAULT.get()))
+            () -> CreativeModeTab.builder().icon(() -> new ItemStack(NoezItems.COMMON_KEY.get()))
                     .title(Component.translatable("creativetab.noez_tab_treasures"))
                     .displayItems((pParameters, pOutput) -> {
                         pOutput.accept(NoezBlocks.COMMON_VAULT.get());
@@ -75,7 +75,7 @@ public class NoezCreativeModTabs {
                     .build());
 
     public static final RegistryObject<CreativeModeTab> NOEZ_TAB_ARMOR = CREATIVE_MODE_TABS.register("noez_tab_armor",
-            () -> CreativeModeTab.builder().icon(() -> new ItemStack(NoezItems.ECHO_HELMET.get()))
+            () -> CreativeModeTab.builder().icon(() -> new ItemStack(NoezItems.KITSUNE_MASK.get()))
                     .title(Component.translatable("creativetab.noez_tab_armor"))
                     .displayItems((pParameters, pOutput) -> {
                         pOutput.accept(NoezItems.ECHO_HELMET.get());
@@ -84,6 +84,14 @@ public class NoezCreativeModTabs {
                         pOutput.accept(NoezItems.ECHO_BOOTS.get());
                         pOutput.accept(NoezItems.ECHO_ELYTRA.get());
                         pOutput.accept(NoezItems.KITSUNE_MASK.get());
+                    })
+                    .build());
+
+    public static final RegistryObject<CreativeModeTab> NOEZ_TAB_TOOL = CREATIVE_MODE_TABS.register("noez_tab_tool",
+            () -> CreativeModeTab.builder().icon(() -> new ItemStack(NoezItems.MOLTEN_PICKAXE.get()))
+                    .title(Component.translatable("creativetab.noez_tab_tool"))
+                    .displayItems((pParameters, pOutput) -> {
+                        pOutput.accept(NoezItems.MOLTEN_PICKAXE.get());
                     })
                     .build());
 
