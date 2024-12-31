@@ -16,10 +16,10 @@ public enum NoezToolTier implements Tier{
     // 3: Can mine diamond-tier blocks (obsidian).
     // 4+: Custom tiers for mods; typically used for stronger or custom blocks.
 
-    private final int maxUses;      // Durability
-    private final float efficiency; // Mining speed
-    private final float attackDamage; // Attack damage
-    private final int enchantability; // Enchantability
+    private final int maxUses;
+    private final float efficiency;
+    private final float attackDamage;
+    private final int enchantability;
 
     NoezToolTier(int harvestLevel, int maxUses, float efficiency, float attackDamage, int enchantability, Ingredient repairMaterial) {
         this.harvestLevel = harvestLevel;
