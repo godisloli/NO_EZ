@@ -65,6 +65,7 @@ public class NoezCreativeModTabs {
                         pOutput.accept(NoezItems.HELLFIRE_SWORD.get());
                         pOutput.accept(NoezItems.FROSTBANE_SWORD.get());
                         pOutput.accept(NoezItems.IRIDESCENT_BOW.get());
+                        pOutput.accept(NoezItems.VOID_STALKER.get());
                         pOutput.accept(NoezItems.RELOCATOR.get());
                         pOutput.accept(NoezItems.WINDBREAKER.get());
                         pOutput.accept(NoezItems.BAMBOO_SWORD.get());

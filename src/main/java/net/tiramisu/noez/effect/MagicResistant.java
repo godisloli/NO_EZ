@@ -26,8 +26,6 @@ public class MagicResistant extends MobEffect {
                 double magicResistAmount = Math.min(80, (amplifier + 1) * REDUCED_PERCENTAGE);
                 AttributeModifier modifier = new AttributeModifier(MAGIC_RESISTANT_UUID, "Magic Resist Bonus", magicResistAmount, AttributeModifier.Operation.ADDITION);
                 attribute.addPermanentModifier(modifier);
-                System.out.println(modifier);
-                System.out.println(entity.getAttributeValue(NoezAttributes.MAGIC_REDUCTION.get()));
             }
         }
         super.applyEffectTick(entity, amplifier);

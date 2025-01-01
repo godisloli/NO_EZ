@@ -96,6 +96,7 @@ public class NOEZ
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event) {
             NoezModelPredicate.itemBowTexturesRenderer(NoezItems.IRIDESCENT_BOW.get());
+            NoezModelPredicate.itemBowTexturesRenderer(NoezItems.VOID_STALKER.get());
             NoezModelPredicate.itemCrossbowTexturesRenderer(NoezItems.MECHANICAL_CROSSBOW.get());
             ItemBlockRenderTypes.setRenderLayer(NoezBlocks.COMMON_VAULT.get(), RenderType.translucent());
             BlockEntityRenderers.register(NoezBlockEntities.COMMON_VAULT.get(), CommonVaultRenderer::new);
@@ -104,6 +105,7 @@ public class NOEZ
         @SubscribeEvent
         public static void onRegisterRenderers(EntityRenderersEvent.RegisterRenderers event) {
             event.registerEntityRenderer(NoezEntities.IRIDESCENT_ARROW.get(), NoezArrowRenderer::new);
+            event.registerEntityRenderer(NoezEntities.VOID_ARROW.get(), NoezArrowRenderer::new);
             event.registerEntityRenderer(NoezEntities.ROOT_PROJECTILE.get(), NoezArrowRenderer::new);
             event.registerEntityRenderer(NoezEntities.GRASS_SPELL_SHOT.get(), GrassSpellShotRenderer::new);
             event.registerEntityRenderer(NoezEntities.SOUL_PEARL_ENTITY.get(), ThrownItemRenderer::new);

@@ -23,6 +23,8 @@ public class NoezArrowRenderer extends ArrowRenderer {
             return "iridescent_arrow";
         } else if (entity.getType().toString().contains("root_projectile")) {
             return "root_projectile";
+        } else if (entity.getType().toString().contains("void_arrow")) {
+            return "void_arrow";
         }
         return "default_arrow";
     }

@@ -9,6 +9,7 @@ import net.minecraftforge.registries.RegistryObject;
 import net.tiramisu.noez.NOEZ;
 import net.tiramisu.noez.entity.arrows.IridescentArrow;
 import net.tiramisu.noez.entity.arrows.RootProjectile;
+import net.tiramisu.noez.entity.arrows.VoidArrow;
 import net.tiramisu.noez.entity.nonarrows.GrassSpellShot;
 import net.tiramisu.noez.entity.nonarrows.ThrownSoulPearl;
 
@@ -23,6 +24,13 @@ public class NoezEntities {
                     .clientTrackingRange(8)
                     .updateInterval(10)
                     .build(NOEZ.MOD_ID + ":iridescent_arrow"));
+
+    public static final RegistryObject<EntityType<VoidArrow>> VOID_ARROW = ENTITY_TYPES.register("void_arrow",
+            () -> EntityType.Builder.<VoidArrow>of(VoidArrow::new, MobCategory.MISC)
+                    .sized(0.5F, 0.5F)
+                    .clientTrackingRange(8)
+                    .updateInterval(10)
+                    .build(NOEZ.MOD_ID + "void_arrow"));
 
     public static final RegistryObject<EntityType<RootProjectile>> ROOT_PROJECTILE = ENTITY_TYPES.register("root_projectile",
             () -> EntityType.Builder.<RootProjectile>of(RootProjectile::new, MobCategory.MISC)

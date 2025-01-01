@@ -1,0 +1,6 @@
+{
+  "parent": "noez:item/void_stalker",
+  "textures": {
+    "layer0": "noez:item/void_stalker_pulling_0"
+  }
+}
