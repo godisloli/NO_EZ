@@ -1,8 +1,10 @@
 package net.tiramisu.noez.effect;
 
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.LivingEntity;
+import net.tiramisu.noez.particles.NoezParticles;
 import net.tiramisu.noez.util.NoezTags;
 
 public class Bleed extends MobEffect {
@@ -15,6 +17,17 @@ public class Bleed extends MobEffect {
         if (!entity.level().isClientSide & !entity.getType().is(NoezTags.Mobs.CONSTRUCT_MOBS)) {
             double damage = getDamagePerLevel(amplifier);
             entity.hurt(entity.damageSources().magic(), (float) damage);
+            if (entity.level() instanceof ServerLevel serverLevel) {
+                serverLevel.sendParticles(
+                        NoezParticles.BLEED.get(),
+                        entity.getX(),
+                        entity.getY() + 0.5,
+                        entity.getZ(),
+                        3,
+                        0.1, 0.1, 0.1,
+                        0.1
+                );
+            }
         }
     }
 

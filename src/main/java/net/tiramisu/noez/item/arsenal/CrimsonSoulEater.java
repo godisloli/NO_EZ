@@ -13,6 +13,7 @@ import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import net.tiramisu.noez.item.Critable;
 import net.tiramisu.noez.item.LifeStealable;
+import net.tiramisu.noez.particles.NoezParticles;
 import net.tiramisu.noez.sound.NoezSounds;
 import org.jetbrains.annotations.Nullable;
 
@@ -44,15 +45,15 @@ public class CrimsonSoulEater extends SwordItem implements Critable, LifeStealab
                 target.kill();
                 attacker.heal(target.getMaxHealth() * 0.1f);
                 if (attacker.level() instanceof ServerLevel serverLevel) {
-                    for (int i = 0; i < 10; i++)
+                    for (int i = 0; i < 20; i++)
                         serverLevel.sendParticles(
-                                ParticleTypes.ANGRY_VILLAGER,
+                                NoezParticles.BLEED.get(),
                                 target.getX(),
                                 target.getY(),
                                 target.getZ(),
-                                3,
-                                0.5,0.5,0.5,
-                                0.5
+                                5,
+                                0,0.5,0,
+                                0.2
                         );
                     serverLevel.playSound(
                             null,

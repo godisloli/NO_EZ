@@ -39,6 +39,11 @@ public class ModEventBusEvents {
                 NoezParticles.BLOOD_SLASH.get(),
                 spriteSet -> new BloodSlash.Provider(spriteSet)
         );
+
+        event.registerSpriteSet(
+                NoezParticles.BLEED.get(),
+                spriteSet -> new Bleed.Provider(spriteSet)
+        );
     }
 
     @SubscribeEvent
