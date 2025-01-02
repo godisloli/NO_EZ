@@ -1,10 +1,13 @@
 package net.tiramisu.noez.mixin;
 
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.attributes.AttributeInstance;
+import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.Entity;
@@ -19,9 +22,32 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.ModifyVariable;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(Player.class)
 public abstract class PlayerMixin {
+    private static final String REPUTATION_TAG = "Reputation";
+
+    @Inject(method = "addAdditionalSaveData", at = @At("HEAD"))
+    private void saveReputationData(CompoundTag tag, CallbackInfo ci) {
+        Player player = (Player) (Object) this;
+        AttributeInstance reputationAttribute = player.getAttribute(NoezAttributes.REPUTATION.get());
+        if (reputationAttribute != null) {
+            tag.putDouble(REPUTATION_TAG, reputationAttribute.getBaseValue());
+        }
+    }
+
+    @Inject(method = "readAdditionalSaveData", at = @At("HEAD"))
+    private void loadReputationData(CompoundTag tag, CallbackInfo ci) {
+        Player player = (Player) (Object) this;
+        if (tag.contains(REPUTATION_TAG)) {
+            AttributeInstance reputationAttribute = player.getAttribute(NoezAttributes.REPUTATION.get());
+            if (reputationAttribute != null) {
+                reputationAttribute.setBaseValue(tag.getDouble(REPUTATION_TAG));
+            }
+        }
+    }
+
     @Inject(method = "attack", at = @At("HEAD"))
     private void NoezCritLogic(Entity target, CallbackInfo ci) {
         if (target instanceof LivingEntity targetEntity) {
@@ -68,5 +94,12 @@ public abstract class PlayerMixin {
     )
     public boolean attack(boolean value) {
         return false;
+    }
+
+    @Inject(method = "createAttributes", at = @At("RETURN"), cancellable = true)
+    private static void addCustomAttributes(CallbackInfoReturnable<AttributeSupplier.Builder> cir) {
+        AttributeSupplier.Builder builder = cir.getReturnValue();
+        builder.add(NoezAttributes.REPUTATION.get());
+        cir.setReturnValue(builder);
     }
 }

@@ -67,6 +67,15 @@ public class NoezAttributes {
                             999.0
                     ).setSyncable(true));
 
+    public static final RegistryObject<Attribute> REPUTATION =
+            ATTRIBUTES.register("reputation", () ->
+                    new RangedAttribute(
+                            "attribute.name.generic.reputation",
+                            0,
+                            -100,
+                            100
+                    ));
+
     public static void register(IEventBus eventBus) {
         ATTRIBUTES.register(eventBus);
     }

@@ -1,6 +1,7 @@
 package net.tiramisu.noez.event.global;
 
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.item.ItemStack;
@@ -26,7 +27,7 @@ public class GlobalMobDrops {
         if (BLACKLISTED_MOBS.contains(entityId)) {
             return;
         }
-        if (entity.getType().getCategory() == MobCategory.MONSTER || entity.getType().getCategory() == MobCategory.CREATURE) {
+        if (entity instanceof Mob) {
                 ItemEntity soulDrop = new ItemEntity(
                         entity.level(),
                         entity.getX(),
