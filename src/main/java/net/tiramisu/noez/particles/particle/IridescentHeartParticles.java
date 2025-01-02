@@ -9,29 +9,21 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 public class IridescentHeartParticles extends TextureSheetParticle {
     protected IridescentHeartParticles(ClientLevel pLevel, double pX, double pY, double pZ, SpriteSet spriteSet, double pXSpeed, double pYSpeed, double pZSpeed) {
         super(pLevel, pX, pY, pZ, pXSpeed, pYSpeed, pZSpeed);
-        this.friction = 0.75f;
-        this.xd = pXSpeed;
-        this.yd = pYSpeed;
-        this.zd = pZSpeed;
-        this.quadSize *= 0.55f;
-        this.lifetime = 10 + level.random.nextInt(41);
+        this.xd = 0;
+        this.yd = 0;
+        this.zd = 0;
+        this.quadSize *= 6f;
+        this.lifetime = 50 + pLevel.random.nextInt(20);
         this.setSpriteFromAge(spriteSet);
 
         this.rCol = 1f;
         this.gCol = 1f;
         this.bCol = 1f;
-
-        this.xd += (level.random.nextDouble() * 0.1) - 0.05;
-        this.yd += (level.random.nextDouble() * 0.1) - 0.05;
-        this.zd += (level.random.nextDouble() * 0.1) - 0.05;
     }
 
     @Override
     public void tick() {
         super.tick();
-        this.xd += (level.random.nextDouble() * 0.02) - 0.01;
-        this.yd += (level.random.nextDouble() * 0.02) - 0.01;
-        this.zd += (level.random.nextDouble() * 0.02) - 0.01;
         FadeOut();
     }
 

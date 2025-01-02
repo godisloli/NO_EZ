@@ -106,11 +106,17 @@ public class IridescentArrow extends AbstractArrow {
     }
 
     private void spawnArrowParticles() {
-        if (!this.level().isClientSide) return;
-        for (int i = 0; i < 2; i++) {
-            this.level().addParticle(NoezParticles.IRIDESCENT_HEART.get(), this.getX(), this.getY(), this.getZ(),
-                    this.getDeltaMovement().x * 0.1, this.getDeltaMovement().y * 0.1, this.getDeltaMovement().z * 0.1);
-        }
+        if (this.level() instanceof ServerLevel serverLevel)
+            for (int i = 0; i < 2; i ++)
+                serverLevel.sendParticles(
+                        NoezParticles.IRIDESCENT_HEART.get(),
+                        this.getX() + (Math.random() - 0.5) * 0.2,
+                        this.getY() + (Math.random() - 0.5) * 0.2,
+                        this.getZ() + (Math.random() - 0.5) * 0.2,
+                        2,
+                        0.2,0.2,0.2,
+                        0
+                );
     }
 }
 
