@@ -25,7 +25,7 @@ import java.util.Set;
 
 @Mod.EventBusSubscriber
 public class VillageProtection {
-    private static final Set<BlockPos> playerPlacedBlocks = new HashSet<>();
+    private static Set<BlockPos> playerPlacedBlocks = new HashSet<>();
 
     @SubscribeEvent
     public static void onBlockBreak(BlockEvent.BreakEvent event) {
@@ -67,7 +67,6 @@ public class VillageProtection {
             return;
         }
         if (isInVillage(level, pos) && canVillagersSee(player, level, pos)) {
-            alertIronGolems(level, pos, player);
             decreaseReputation(player, 5);
         }
     }
