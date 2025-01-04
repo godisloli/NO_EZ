@@ -1,11 +1,14 @@
 package net.tiramisu.noez.mixin;
 
 import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
+import net.tiramisu.noez.attribute.AttributeHandler;
+import net.tiramisu.noez.attribute.NoezAttributes;
 import net.tiramisu.noez.effect.NoezEffects;
 import net.tiramisu.noez.util.NoezTags;
 import org.spongepowered.asm.mixin.Mixin;
@@ -14,10 +17,11 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Mixin(Mob.class)
-public abstract class MobMixin {
+public class MobMixin {
     @Inject(method = "serverAiStep", at = @At("HEAD"), cancellable = true)
     private void disablePathfindingWhileStunned(CallbackInfo ci) {
         Mob mob = (Mob) (Object) this;
@@ -100,6 +104,34 @@ public abstract class MobMixin {
     private void removeEnchantWeaponSpawn(CallbackInfo ci) {
         ci.cancel();
     }
+
+    @Inject(method = "setTarget", at = @At("HEAD"), cancellable = true)
+    private void neutralPillagers(LivingEntity target, CallbackInfo callbackInfo) {
+        Mob mob = (Mob) (Object) this;
+
+        if (mob.getType().is(NoezTags.Mobs.RAIDER) && target instanceof Player player) {
+            double reputation = player.getAttribute(NoezAttributes.REPUTATION.get()).getValue();
+
+            if (reputation <= -40) {
+                List<Mob> nearbyRaiders = mob.level().getEntitiesOfClass(
+                        Mob.class,
+                        mob.getBoundingBox().inflate(100),
+                        nearbyMob -> nearbyMob.getType().is(NoezTags.Mobs.RAIDER)
+                );
+
+                for (Mob nearbyRaider : nearbyRaiders) {
+                    if (nearbyRaider.getLastAttacker() == player || nearbyRaider.getTarget() == player) {
+                        return;
+                    }
+                }
+
+                if (mob.getTarget() instanceof Player && mob.getLastAttacker() != player || mob.getLastAttacker() == null) {
+                    callbackInfo.cancel();
+                }
+            }
+        }
+    }
+
 }
 
 

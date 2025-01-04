@@ -72,8 +72,8 @@ public class NoezAttributes {
                     new RangedAttribute(
                             "attribute.name.generic.reputation",
                             0,
-                            -100,
-                            100
+                            -1000,
+                            1000
                     ));
 
     public static void register(IEventBus eventBus) {
