@@ -1,14 +1,18 @@
 package net.tiramisu.noez.attribute;
 
+import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.animal.IronGolem;
 import net.minecraft.world.entity.monster.Pillager;
 import net.minecraft.world.entity.npc.Villager;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.AABB;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
@@ -18,6 +22,8 @@ import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.tiramisu.noez.util.NoezTags;
+
+import java.util.List;
 
 @Mod.EventBusSubscriber
 public class AttributeHandler {
@@ -35,7 +41,7 @@ public class AttributeHandler {
         Player player = event.getEntity();
         if (event.getTarget() instanceof Villager villager && !player.level().isClientSide) {
             double reputation = player.getAttributeValue(NoezAttributes.REPUTATION.get());
-            if (reputation < -100) {
+            if (reputation <= -100) {
                 villager.setTradingPlayer(null);
                 villager.playSound(SoundEvents.VILLAGER_NO);
                 villager.setTradingPlayer(null);
@@ -45,11 +51,30 @@ public class AttributeHandler {
     }
 
     @SubscribeEvent
+    public static void ironGolemHelpPlayer(LivingHurtEvent event) {
+        LivingEntity target = event.getEntity();
+        Entity entity = event.getSource().getEntity();
+        if (target instanceof Player player && entity instanceof LivingEntity attacker) {
+            if (player.getAttribute(NoezAttributes.REPUTATION.get()).getValue() >= 500)
+                alertIronGolems(attacker.level(), attacker.blockPosition(), attacker);
+        }
+    }
+
+    @SubscribeEvent
     public static void reputationGainOnVillagerTrade(TradeWithVillagerEvent event) {
         Player player = event.getEntity();
         boolean isPositiveTrade = event.getMerchantOffer().getResult().getCount() > 0;
         if (isPositiveTrade) {
             increaseReputation(player, 1);
+        }
+    }
+
+    private static void alertIronGolems(Level level, BlockPos alertPos, LivingEntity target) {
+        List<IronGolem> golems = level.getEntitiesOfClass(IronGolem.class,
+                new AABB(alertPos).inflate(50));
+        for (IronGolem golem : golems) {
+            if (golem.getTarget() == null)
+                golem.setTarget(target);
         }
     }
 

@@ -58,6 +58,8 @@ public class WindBreaker extends SwordItem implements Critable {
 
     @Override
     public boolean hurtEnemy(ItemStack pStack, LivingEntity pTarget, LivingEntity pAttacker) {
+        if (isBroken(pStack))
+            return super.hurtEnemy(pStack, pTarget, pAttacker);
         if (pAttacker instanceof Player player && player.level() instanceof ServerLevel serverLevel) {
             double fallDistance = player.fallDistance;
             if (fallDistance > 2) {
@@ -114,6 +116,10 @@ public class WindBreaker extends SwordItem implements Critable {
             }
         }
         return super.hurtEnemy(pStack, pTarget, pAttacker);
+    }
+
+    public boolean isBroken(ItemStack itemStack) {
+        return itemStack.getDamageValue() >= itemStack.getMaxDamage() - 1;
     }
 }
 

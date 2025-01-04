@@ -35,10 +35,9 @@ public class CrimsonSoulEater extends SwordItem implements Critable, LifeStealab
         super.appendHoverText(pStack, pLevel, pTooltipComponents, pIsAdvanced);
     }
 
-
     @Override
     public boolean hurtEnemy(ItemStack stack, LivingEntity target, LivingEntity attacker) {
-        if (target.getHealth() < target.getMaxHealth()) {
+        if (target.getHealth() < target.getMaxHealth() && !isBroken(stack)) {
             if (target.getHealth() < target.getMaxHealth() * 0.1) {
                 target.kill();
                 attacker.heal(target.getMaxHealth() * 0.1f);
@@ -68,6 +67,10 @@ public class CrimsonSoulEater extends SwordItem implements Critable, LifeStealab
             target.hurt(attacker.damageSources().mobAttack(attacker), (target.getMaxHealth() - target.getHealth()) * BONUS_DAMAGE_AMPLIFIER);
         }
         return super.hurtEnemy(stack, target, attacker);
+    }
+
+    public boolean isBroken(ItemStack itemStack) {
+        return itemStack.getDamageValue() >= itemStack.getMaxDamage() - 1;
     }
 
     @Override

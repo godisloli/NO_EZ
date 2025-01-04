@@ -3,11 +3,15 @@ package net.tiramisu.noez.mixin;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.PathfinderMob;
+import net.minecraft.world.entity.ai.goal.AvoidEntityGoal;
+import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
+import net.minecraft.world.entity.animal.IronGolem;
+import net.minecraft.world.entity.npc.Villager;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
-import net.tiramisu.noez.attribute.AttributeHandler;
 import net.tiramisu.noez.attribute.NoezAttributes;
 import net.tiramisu.noez.effect.NoezEffects;
 import net.tiramisu.noez.util.NoezTags;
@@ -21,7 +25,12 @@ import java.util.List;
 import java.util.Map;
 
 @Mixin(Mob.class)
-public class MobMixin {
+public abstract class MobMixin {
+    private static final double MAX_RANGE = 10.0;
+    private static final double CLOSE_RANGE = 4.0;
+    private static final long COOLDOWN_MILLIS = 5000; // 5 seconds
+    private static final Map<Mob, Long> mobCooldowns = new HashMap<>();
+
     @Inject(method = "serverAiStep", at = @At("HEAD"), cancellable = true)
     private void disablePathfindingWhileStunned(CallbackInfo ci) {
         Mob mob = (Mob) (Object) this;
@@ -29,11 +38,6 @@ public class MobMixin {
             ci.cancel();
         }
     }
-
-    private static final double MAX_RANGE = 10.0;
-    private static final double CLOSE_RANGE = 4.0;
-    private static final long COOLDOWN_MILLIS = 5000; // 5 seconds
-    private static final Map<Mob, Long> mobCooldowns = new HashMap<>();
 
     @Inject(method = "tick", at = @At("HEAD"))
     private void MobListen(CallbackInfo info) {
@@ -67,10 +71,7 @@ public class MobMixin {
     private boolean isCooldownActive(Mob mob) {
         long currentTime = System.currentTimeMillis();
         Long lastInteractionTime = mobCooldowns.get(mob);
-        if (lastInteractionTime != null && currentTime - lastInteractionTime < COOLDOWN_MILLIS) {
-            return true;
-        }
-        return false;
+        return lastInteractionTime != null && currentTime - lastInteractionTime < COOLDOWN_MILLIS;
     }
 
     private void setCooldown(Mob mob) {
@@ -132,6 +133,29 @@ public class MobMixin {
         }
     }
 
+    @Inject(method = "aiStep", at = @At("TAIL"))
+    private void addFearBehavior(CallbackInfo ci) {
+        Mob mob = (Mob) (Object) this;
+        if (mob instanceof Villager villager && villager.goalSelector != null)
+            villager.goalSelector.addGoal(1, new AvoidEntityGoal<>(
+                    villager,
+                    Player.class,
+                    5.0F,
+                    1.0D,
+                    0.8D,
+                    this::shouldVillagerAvoid
+            ));
+    }
+
+    private boolean shouldVillagerAvoid(LivingEntity entity) {
+        if (entity instanceof Player player) {
+            if (player.getAttributes().hasAttribute(NoezAttributes.REPUTATION.get())) {
+                double reputation = player.getAttributeValue(NoezAttributes.REPUTATION.get());
+                return reputation < -200;
+            }
+        }
+        return false;
+    }
 }
 
 

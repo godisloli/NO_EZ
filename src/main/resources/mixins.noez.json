@@ -4,21 +4,22 @@
   "package": "net.tiramisu.noez.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
-    "LivingEntityMixin",
-    "MobMixin",
-    "MouseHandlerMixin",
-    "ServerPlayerMixin",
-    "EntityMixin",
     "AnvilMenuMixin",
     "EnchantmentHelperMixin",
     "EnchantmentMenuMixin",
-    "VillagerTradeMixin",
-    "ItemStackMixin",
-    "SwordItemMixin",
-    "PlayerMixin",
-    "MilkBucketMixin",
+    "EntityMixin",
     "HealthFixMixin",
-    "PlayerListMixin"
+    "ItemStackMixin",
+    "LivingEntityMixin",
+    "MilkBucketMixin",
+    "MobMixin",
+    "MouseHandlerMixin",
+    "PlayerListMixin",
+    "PlayerMixin",
+    "ServerPlayerMixin",
+    "SwordItemMixin",
+    "VillagerMixin",
+    "VillagerTradeMixin"
   ],
   "injectors": {
     "defaultRequire": 1

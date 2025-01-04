@@ -16,6 +16,7 @@ import net.minecraft.world.level.block.entity.ChestBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
+import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.level.BlockEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -34,6 +35,35 @@ public class VillageProtection {
     @SubscribeEvent
     public static void onBlockBreak(BlockEvent.BreakEvent event) {
         removeBlock(event.getPlayer().level(), event.getPos());
+    }
+
+    @SubscribeEvent
+    public static void ironGolemAggressive(LivingEvent.LivingTickEvent event) {
+        LivingEntity entity = event.getEntity();
+
+        if (entity instanceof IronGolem ironGolem && !ironGolem.isDeadOrDying()) {
+            Level level = ironGolem.level();
+
+            Player targetPlayer = null;
+            for (Player player : level.getEntitiesOfClass(Player.class, ironGolem.getBoundingBox().inflate(10.0))) {
+                if (shouldMobAttack(player)) {
+                    targetPlayer = player;
+                    break;
+                }
+            }
+
+            if (targetPlayer != null) {
+                ironGolem.setTarget(targetPlayer);
+            }
+        }
+    }
+
+    private static boolean shouldMobAttack(Player player) {
+        if (player.getAttributes().hasAttribute(NoezAttributes.REPUTATION.get()) && !player.getAbilities().instabuild) {
+            double reputation = player.getAttributeValue(NoezAttributes.REPUTATION.get());
+            return reputation < -200;
+        }
+        return false;
     }
 
     @SubscribeEvent
