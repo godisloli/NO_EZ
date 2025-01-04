@@ -62,4 +62,6 @@ public class AttributeHandler {
     private static boolean isProjectile(DamageSource source) {
         return source.getMsgId().equals("arrow") || source.getMsgId().equals("thrown");
     }
+
+
 }

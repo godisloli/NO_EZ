@@ -4,6 +4,8 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.animal.IronGolem;
 import net.minecraft.world.entity.npc.Villager;
 import net.minecraft.world.entity.player.Player;
@@ -13,11 +15,13 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.ChestBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
+import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.level.BlockEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.tiramisu.noez.attribute.NoezAttributes;
+import net.tiramisu.noez.util.VillageDetect;
 
 import java.util.HashSet;
 import java.util.List;
@@ -25,11 +29,20 @@ import java.util.Set;
 
 @Mod.EventBusSubscriber
 public class VillageProtection {
-    private static Set<BlockPos> playerPlacedBlocks = new HashSet<>();
+    private static final Set<BlockPos> playerPlacedBlocks = new HashSet<>();
 
     @SubscribeEvent
     public static void onBlockBreak(BlockEvent.BreakEvent event) {
         removeBlock(event.getPlayer().level(), event.getPos());
+    }
+
+    @SubscribeEvent
+    public static void killVillager(LivingDeathEvent event) {
+        LivingEntity livingEntity = event.getEntity();
+        Entity killer = event.getSource().getEntity();
+        if (livingEntity instanceof Villager && killer instanceof Player player) {
+            decreaseReputation(player, 30);
+        }
     }
 
     @SubscribeEvent
@@ -66,7 +79,8 @@ public class VillageProtection {
         if (isPlayerPlaced(level, pos)) {
             return;
         }
-        if (isInVillage(level, pos) && canVillagersSee(player, level, pos)) {
+
+        if (VillageDetect.isInVillage(level, pos) && canVillagersSee(player, level, pos)) {
             decreaseReputation(player, 5);
         }
     }
@@ -82,7 +96,7 @@ public class VillageProtection {
             return;
         }
 
-        if (!isInVillage(level, pos)) {
+        if (!VillageDetect.isInVillage(level, pos)) {
             return;
         }
 
@@ -94,7 +108,7 @@ public class VillageProtection {
             }
         }
 
-        if (isInVillage(level, pos) && canVillagersSee(player, level, pos)) {
+        if (VillageDetect.isInVillage(level, pos) && canVillagersSee(player, level, pos)) {
             alertIronGolems(level, pos, player);
             decreaseReputation(player, 10);
         }
