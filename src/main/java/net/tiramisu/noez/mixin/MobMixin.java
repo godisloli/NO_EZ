@@ -112,7 +112,7 @@ public class MobMixin {
         if (mob.getType().is(NoezTags.Mobs.RAIDER) && target instanceof Player player) {
             double reputation = player.getAttribute(NoezAttributes.REPUTATION.get()).getValue();
 
-            if (reputation <= -40) {
+            if (reputation <= -400) {
                 List<Mob> nearbyRaiders = mob.level().getEntitiesOfClass(
                         Mob.class,
                         mob.getBoundingBox().inflate(100),

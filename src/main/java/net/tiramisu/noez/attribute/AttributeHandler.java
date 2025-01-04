@@ -35,7 +35,7 @@ public class AttributeHandler {
         Player player = event.getEntity();
         if (event.getTarget() instanceof Villager villager && !player.level().isClientSide) {
             double reputation = player.getAttributeValue(NoezAttributes.REPUTATION.get());
-            if (reputation < -20) {
+            if (reputation < -100) {
                 villager.setTradingPlayer(null);
                 villager.playSound(SoundEvents.VILLAGER_NO);
                 villager.setTradingPlayer(null);

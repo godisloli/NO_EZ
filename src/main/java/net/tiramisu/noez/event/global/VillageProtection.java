@@ -41,7 +41,8 @@ public class VillageProtection {
         LivingEntity livingEntity = event.getEntity();
         Entity killer = event.getSource().getEntity();
         if (livingEntity instanceof Villager && killer instanceof Player player) {
-            decreaseReputation(player, 30);
+            decreaseReputation(player, 100);
+            alertIronGolems(player.level(), player.blockPosition(), player);
         }
     }
 
@@ -110,14 +111,8 @@ public class VillageProtection {
 
         if (VillageDetect.isInVillage(level, pos) && canVillagersSee(player, level, pos)) {
             alertIronGolems(level, pos, player);
-            decreaseReputation(player, 10);
+            decreaseReputation(player, 20);
         }
-    }
-
-    private static boolean isInVillage(Level level, BlockPos pos) {
-        List<Villager> villagers = level.getEntitiesOfClass(Villager.class,
-                new AABB(pos).inflate(32));
-        return !villagers.isEmpty();
     }
 
     private static boolean canVillagersSee(Player player, Level level, BlockPos chestPos) {
@@ -142,9 +137,9 @@ public class VillageProtection {
         return false;
     }
 
-    private static void alertIronGolems(Level level, BlockPos chestPos, Player player) {
+    private static void alertIronGolems(Level level, BlockPos alertPos, Player player) {
         List<IronGolem> golems = level.getEntitiesOfClass(IronGolem.class,
-                new AABB(chestPos).inflate(100));
+                new AABB(alertPos).inflate(100));
         for (IronGolem golem : golems) {
             golem.setTarget(player);
         }
