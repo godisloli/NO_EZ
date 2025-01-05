@@ -140,9 +140,9 @@ public abstract class MobMixin {
             villager.goalSelector.addGoal(1, new AvoidEntityGoal<>(
                     villager,
                     Player.class,
-                    5.0F,
+                    8.0F,
                     1.0D,
-                    0.8D,
+                    1.0D,
                     this::shouldVillagerAvoid
             ));
     }
