@@ -18,6 +18,7 @@
     "PlayerMixin",
     "ServerPlayerMixin",
     "SwordItemMixin",
+    "VillagerMixin",
     "VillagerTradeMixin"
   ],
   "injectors": {

@@ -2,10 +2,12 @@ package net.tiramisu.noez.event.global;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.goal.AvoidEntityGoal;
 import net.minecraft.world.entity.animal.IronGolem;
 import net.minecraft.world.entity.npc.Villager;
 import net.minecraft.world.entity.player.Player;
@@ -24,36 +26,25 @@ import net.minecraftforge.fml.common.Mod;
 import net.tiramisu.noez.attribute.NoezAttributes;
 import net.tiramisu.noez.util.VillageDetect;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @Mod.EventBusSubscriber
 public class VillageProtection {
-    private static final Set<BlockPos> playerPlacedBlocks = new HashSet<>();
-
-    @SubscribeEvent
-    public static void onBlockBreak(BlockEvent.BreakEvent event) {
-        removeBlock(event.getPlayer().level(), event.getPos());
-    }
 
     @SubscribeEvent
     public static void ironGolemAggressive(LivingEvent.LivingTickEvent event) {
         LivingEntity entity = event.getEntity();
-
         if (entity instanceof IronGolem ironGolem && !ironGolem.isDeadOrDying()) {
             Level level = ironGolem.level();
-
-            Player targetPlayer = null;
-            for (Player player : level.getEntitiesOfClass(Player.class, ironGolem.getBoundingBox().inflate(10.0))) {
-                if (shouldMobAttack(player)) {
-                    targetPlayer = player;
-                    break;
-                }
+            if (!(level instanceof ServerLevel)) {
+                return;
             }
 
-            if (targetPlayer != null) {
-                ironGolem.setTarget(targetPlayer);
+            for (Player player : level.getEntitiesOfClass(Player.class, ironGolem.getBoundingBox().inflate(10.0))) {
+                if (shouldMobAttack(player) && ironGolem.getTarget() == null) {
+                    ironGolem.setTarget(player);
+                    break;
+                }
             }
         }
     }
@@ -62,6 +53,32 @@ public class VillageProtection {
         if (player.getAttributes().hasAttribute(NoezAttributes.REPUTATION.get()) && !player.getAbilities().instabuild) {
             double reputation = player.getAttributeValue(NoezAttributes.REPUTATION.get());
             return reputation < -200;
+        }
+        return false;
+    }
+
+    @SubscribeEvent
+    public static void villagerFear(LivingEvent.LivingTickEvent event) {
+        LivingEntity livingEntity = event.getEntity();
+        if (livingEntity instanceof Villager villager) {
+            villager.goalSelector.addGoal(1, new AvoidEntityGoal<>(
+                    villager,
+                    Player.class,
+                    8.0F,
+                    1.0D,
+                    1.0D,
+                    VillageProtection::shouldVillagerAvoid
+            ));
+        }
+    }
+
+    private static boolean shouldVillagerAvoid(LivingEntity entity) {
+        if (entity instanceof Player player) {
+            if (player.getAttributes().hasAttribute(NoezAttributes.REPUTATION.get())) {
+                double reputation = player.getAttributeValue(NoezAttributes.REPUTATION.get());
+                System.out.println("Player reputation: " + reputation);
+                return reputation < -200;
+            }
         }
         return false;
     }
@@ -77,42 +94,31 @@ public class VillageProtection {
     }
 
     @SubscribeEvent
-    public static void onBlockPlace(BlockEvent.EntityPlaceEvent event) {
-        Level level = event.getEntity().level();
-        BlockPos pos = event.getPos();
-
-        if (event.getEntity() instanceof Player) {
-            markPlayerPlacedBlock(level, pos);
-        }
-    }
-
-    public static void markPlayerPlacedBlock(Level level, BlockPos pos) {
-        if (!level.isClientSide) {
-            playerPlacedBlocks.add(pos.immutable());
-        }
-    }
-
-    public static void removeBlock(Level level, BlockPos pos) {
-        if (!level.isClientSide) {
-            playerPlacedBlocks.remove(pos.immutable());
-        }
-    }
-
-    public static boolean isPlayerPlaced(Level level, BlockPos pos) {
-        return playerPlacedBlocks.contains(pos.immutable());
-    }
-
-    @SubscribeEvent
-    public static void playerGrief(BlockEvent.BreakEvent event) {
+    public static void onChestBreak(BlockEvent.BreakEvent event) {
+        Level level = event.getPlayer().level();
         Player player = event.getPlayer();
-        Level level = player.level();
         BlockPos pos = event.getPos();
-        if (isPlayerPlaced(level, pos)) {
+        BlockState blockState = level.getBlockState(pos);
+
+        if (!(blockState.getBlock() instanceof ChestBlock) || player.getAbilities().instabuild) {
             return;
         }
 
+        if (!VillageDetect.isInVillage(level, pos)) {
+            return;
+        }
+
+        BlockEntity blockEntity = level.getBlockEntity(pos);
+        if (blockEntity instanceof ChestBlockEntity chestEntity) {
+            CompoundTag tag = chestEntity.saveWithFullMetadata();
+            if (!tag.contains("LootTable")) {
+                return;
+            }
+        }
+
         if (VillageDetect.isInVillage(level, pos) && canVillagersSee(player, level, pos)) {
-            decreaseReputation(player, 5);
+            alertIronGolems(level, pos, player);
+            decreaseReputation(player, 20);
         }
     }
 

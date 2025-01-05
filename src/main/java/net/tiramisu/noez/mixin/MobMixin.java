@@ -3,10 +3,7 @@ package net.tiramisu.noez.mixin;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
-import net.minecraft.world.entity.PathfinderMob;
 import net.minecraft.world.entity.ai.goal.AvoidEntityGoal;
-import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
-import net.minecraft.world.entity.animal.IronGolem;
 import net.minecraft.world.entity.npc.Villager;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -131,30 +128,6 @@ public abstract class MobMixin {
                 }
             }
         }
-    }
-
-    @Inject(method = "aiStep", at = @At("TAIL"))
-    private void addFearBehavior(CallbackInfo ci) {
-        Mob mob = (Mob) (Object) this;
-        if (mob instanceof Villager villager && villager.goalSelector != null)
-            villager.goalSelector.addGoal(1, new AvoidEntityGoal<>(
-                    villager,
-                    Player.class,
-                    8.0F,
-                    1.0D,
-                    1.0D,
-                    this::shouldVillagerAvoid
-            ));
-    }
-
-    private boolean shouldVillagerAvoid(LivingEntity entity) {
-        if (entity instanceof Player player) {
-            if (player.getAttributes().hasAttribute(NoezAttributes.REPUTATION.get())) {
-                double reputation = player.getAttributeValue(NoezAttributes.REPUTATION.get());
-                return reputation < -200;
-            }
-        }
-        return false;
     }
 }
 
