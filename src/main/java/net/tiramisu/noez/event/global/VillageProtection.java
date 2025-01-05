@@ -5,6 +5,7 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.Difficulty;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.goal.AvoidEntityGoal;
@@ -41,7 +42,7 @@ public class VillageProtection {
             }
 
             for (Player player : level.getEntitiesOfClass(Player.class, ironGolem.getBoundingBox().inflate(10.0))) {
-                if (shouldMobAttack(player) && ironGolem.getTarget() == null) {
+                if (shouldMobAttack(player) && ironGolem.getTarget() == null && level.getDifficulty() != Difficulty.PEACEFUL) {
                     ironGolem.setTarget(player);
                     break;
                 }
@@ -174,6 +175,8 @@ public class VillageProtection {
     }
 
     private static void alertIronGolems(Level level, BlockPos alertPos, Player player) {
+        if (level.getDifficulty() == Difficulty.PEACEFUL)
+            return;
         List<IronGolem> golems = level.getEntitiesOfClass(IronGolem.class,
                 new AABB(alertPos).inflate(100));
         for (IronGolem golem : golems) {
