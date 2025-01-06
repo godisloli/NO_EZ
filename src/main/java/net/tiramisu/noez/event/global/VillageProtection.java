@@ -8,7 +8,6 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.ai.goal.AvoidEntityGoal;
 import net.minecraft.world.entity.animal.IronGolem;
 import net.minecraft.world.entity.npc.Villager;
 import net.minecraft.world.entity.player.Player;
@@ -54,32 +53,6 @@ public class VillageProtection {
         if (player.getAttributes().hasAttribute(NoezAttributes.REPUTATION.get()) && !player.getAbilities().instabuild) {
             double reputation = player.getAttributeValue(NoezAttributes.REPUTATION.get());
             return reputation < -200;
-        }
-        return false;
-    }
-
-    @SubscribeEvent
-    public static void villagerFear(LivingEvent.LivingTickEvent event) {
-        LivingEntity livingEntity = event.getEntity();
-        if (livingEntity instanceof Villager villager) {
-            villager.goalSelector.addGoal(1, new AvoidEntityGoal<>(
-                    villager,
-                    Player.class,
-                    8.0F,
-                    1.0D,
-                    0.8D,
-                    VillageProtection::shouldVillagerAvoid
-            ));
-        }
-    }
-
-    private static boolean shouldVillagerAvoid(LivingEntity entity) {
-        if (entity instanceof Player player) {
-            if (player.getAttributes().hasAttribute(NoezAttributes.REPUTATION.get())) {
-                double reputation = player.getAttributeValue(NoezAttributes.REPUTATION.get());
-                System.out.println("Player reputation: " + reputation);
-                return reputation < -200;
-            }
         }
         return false;
     }
