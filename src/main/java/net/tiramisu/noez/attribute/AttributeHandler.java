@@ -37,7 +37,7 @@ public class AttributeHandler {
     }
 
     @SubscribeEvent
-    public static void onPlayerInteractWithVillager(PlayerInteractEvent.EntityInteract event) {
+    public static void lowReputationLockTrade(PlayerInteractEvent.EntityInteract event) {
         Player player = event.getEntity();
         if (event.getTarget() instanceof Villager villager && !player.level().isClientSide) {
             double reputation = player.getAttributeValue(NoezAttributes.REPUTATION.get());

@@ -21,7 +21,7 @@ public abstract class VillagerMixin {
                     Player.class,
                     8.0F,
                     1.0D,
-                    1.0D,
+                    0.8D,
                     this::shouldVillagerAvoid
             ));
         }
@@ -31,7 +31,6 @@ public abstract class VillagerMixin {
         if (entity instanceof Player player) {
             if (player.getAttributes().hasAttribute(NoezAttributes.REPUTATION.get())) {
                 double reputation = player.getAttributeValue(NoezAttributes.REPUTATION.get());
-                System.out.println("Player reputation: " + reputation);
                 return reputation < -200;
             }
         }

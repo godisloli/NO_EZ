@@ -67,7 +67,7 @@ public class VillageProtection {
                     Player.class,
                     8.0F,
                     1.0D,
-                    1.0D,
+                    0.8D,
                     VillageProtection::shouldVillagerAvoid
             ));
         }
