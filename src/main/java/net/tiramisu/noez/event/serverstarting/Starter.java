@@ -3,7 +3,6 @@ package net.tiramisu.noez.event.serverstarting;
 import net.minecraft.world.level.GameRules;
 import net.minecraftforge.event.server.ServerStartingEvent;
 
-
 public class Starter {
     public void onServerStart(ServerStartingEvent event, boolean condition){
         if (condition)

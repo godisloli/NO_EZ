@@ -1,6 +1,7 @@
 package net.tiramisu.noez.item;
 
 import net.minecraft.world.item.ArmorItem;
+import net.minecraft.world.item.AxeItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Rarity;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -29,6 +30,9 @@ public class NoezItems {
 
     public static final RegistryObject<Item> WARDEN_HEART = ITEMS.register("warden_heart",
             () -> new Item(new Item.Properties().stacksTo(1).fireResistant()));
+
+    public static final RegistryObject<Item> WAR_AXE = ITEMS.register("war_axe",
+            () -> new AxeItem(NoezToolTier.HEAVY, 2, -3f, new Item.Properties().stacksTo(1).durability(122)));
 
     public static final RegistryObject<Item> RELOCATOR = ITEMS.register("relocator",
             ()-> new Relocator(new Item.Properties().stacksTo(1).durability(25)));

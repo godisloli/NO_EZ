@@ -73,6 +73,7 @@ public class NoezCreativeModTabs {
                         pOutput.accept(NoezItems.MOONSILVER_SWORD.get());
                         pOutput.accept(NoezItems.BLOOD_SACRIFICE.get());
                         pOutput.accept(NoezItems.MECHANICAL_CROSSBOW.get());
+                        pOutput.accept(NoezItems.WAR_AXE.get());
                     })
                     .build());
 
