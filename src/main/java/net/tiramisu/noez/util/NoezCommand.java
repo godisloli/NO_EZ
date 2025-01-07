@@ -10,8 +10,6 @@ import net.minecraft.commands.Commands;
 import net.minecraft.commands.arguments.EntityArgument;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.GameType;
@@ -36,6 +34,7 @@ public class NoezCommand {
                 .executes(NoezCommand::setSurvivalMode));
 
         dispatcher.register(Commands.literal("heals")
+                .requires(source -> source.hasPermission(2))
                 .then(Commands.argument("entities", EntityArgument.entities())
                         .then(Commands.argument("amount", IntegerArgumentType.integer(0))
                                 .executes(context -> healEntities(context, EntityArgument.getEntities(context, "entities"), IntegerArgumentType.getInteger(context, "amount")))))
@@ -45,6 +44,7 @@ public class NoezCommand {
                 }));
 
         dispatcher.register(Commands.literal("heal")
+                .requires(source -> source.hasPermission(2))
                 .then(Commands.argument("amount", IntegerArgumentType.integer(0))
                         .executes(context -> healSelf(context, IntegerArgumentType.getInteger(context, "amount"))))
                 .executes(context -> {
@@ -54,6 +54,7 @@ public class NoezCommand {
 
         dispatcher.register(Commands.literal("hurts")
                 .then(Commands.argument("entities", EntityArgument.entities())
+                        .requires(source -> source.hasPermission(2))
                         .then(Commands.argument("amount", IntegerArgumentType.integer(0))
                                 .executes(context -> hurtEntities(context, EntityArgument.getEntities(context, "entities"), IntegerArgumentType.getInteger(context, "amount")))))
                 .executes(context -> {
@@ -63,12 +64,12 @@ public class NoezCommand {
 
         dispatcher.register(Commands.literal("hurt")
                 .then(Commands.argument("amount", IntegerArgumentType.integer(0))
+                        .requires(source -> source.hasPermission(2))
                         .executes(context -> hurtSelf(context, IntegerArgumentType.getInteger(context, "amount"))))
                 .executes(context -> {
                     context.getSource().sendFailure(Component.literal("Usage: /hurt <amount>"));
                     return 0;
                 }));
-
     }
 
     private static int setCreativeMode(CommandContext<CommandSourceStack> context) throws CommandSyntaxException {
