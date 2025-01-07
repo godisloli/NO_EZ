@@ -1,0 +1,38 @@
+{
+  "parent": "minecraft:item/handheld",
+  "loader": "forge:separate_transforms",
+  "base": {
+    "parent": "minecraft:item/handheld",
+    "textures": {
+      "layer0": "minecraft:item/iron_sword"
+    }
+  },
+  "perspectives": {
+    "gui": {
+      "parent": "item/generated",
+      "textures": {
+        "layer0": "minecraft:item/iron_sword",
+        "layer1": "noez:item/mastercrafted_frame"
+      },
+      "display": {
+        "gui": {
+          "scale": [1.5, 1.5, 1.5],
+          "translation": [0, 0, 0],
+          "rotation": [0, 0, 0]
+        }
+      }
+    },
+    "ground": {
+      "parent": "minecraft:item/generated",
+      "textures": {
+        "layer0": "minecraft:item/iron_sword"
+      }
+    },
+    "fixed": {
+      "parent": "minecraft:item/generated",
+      "textures": {
+        "layer0": "minecraft:item/iron_sword"
+      }
+    }
+  }
+}

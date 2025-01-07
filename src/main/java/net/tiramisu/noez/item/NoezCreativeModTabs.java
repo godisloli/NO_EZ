@@ -57,6 +57,7 @@ public class NoezCreativeModTabs {
             () -> CreativeModeTab.builder().icon(() -> new ItemStack(NoezItems.CRIMSON_SOUL_EATER.get()))
                     .title(Component.translatable("creativetab.noez_tab_combat"))
                     .displayItems((pParameters, pOutput) -> {
+                        pOutput.accept(NoezItems.MASTERCRAFT_IRON_SWORD.get());
                         pOutput.accept(NoezItems.DRUVIS_STAFF.get());
                         pOutput.accept(NoezItems.CRIMSON_SOUL_EATER.get());
                         pOutput.accept(NoezItems.IMPERIALITE_SWORD.get());

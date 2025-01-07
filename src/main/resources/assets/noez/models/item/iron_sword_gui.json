@@ -1,0 +1,13 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "noez:item/mastercrafted_frame"
+  },
+  "display": {
+    "gui": {
+      "scale": [1.5, 1.5, 1.5],
+      "translation": [0, 0, 0],
+      "rotation": [0, 0, 0]
+    }
+  }
+}
