@@ -112,6 +112,18 @@ public class NoezItems {
     public static final RegistryObject<Item> VITAL_WRAP = ITEMS.register("vital_wrap",
             () -> new VitalWrap(new Item.Properties().stacksTo(64)));
 
+    public static final RegistryObject<Item> GUARDIAN_ANGEL_HELMET = ITEMS.register("guardian_angel_helmet",
+            () -> new EchoArmor(NoezArmorTier.ECHO, ArmorItem.Type.HELMET, new Item.Properties()));
+
+    public static final RegistryObject<Item> GUARDIAN_ANGEL_CHESTPLATE = ITEMS.register("guardian_angel_chestplate",
+            () -> new EchoArmor(NoezArmorTier.ECHO, ArmorItem.Type.CHESTPLATE, new Item.Properties()));
+
+    public static final RegistryObject<Item> GUARDIAN_ANGEL_LEGGINGS = ITEMS.register("guardian_angel_leggings",
+            () -> new EchoArmor(NoezArmorTier.ECHO, ArmorItem.Type.LEGGINGS, new Item.Properties()));
+
+    public static final RegistryObject<Item> GUARDIAN_ANGEL_BOOTS = ITEMS.register("guardian_angel_boots",
+            () -> new EchoArmor(NoezArmorTier.ECHO, ArmorItem.Type.BOOTS, new Item.Properties()));
+
     public static final RegistryObject<Item> ECHO_HELMET = ITEMS.register("echo_helmet",
             () -> new EchoArmor(NoezArmorTier.ECHO, ArmorItem.Type.HELMET, new Item.Properties()));
 
@@ -134,7 +146,16 @@ public class NoezItems {
             () -> new Item(new Item.Properties().stacksTo(64)));
 
     public static final RegistryObject<Item> MASTERCRAFT_IRON_SWORD = ITEMS.register("iron_sword_mastercraft",
-            () -> new SwordItem(NoezToolTier.MEDIUM, 5, -2f, new Item.Properties().stacksTo(1).durability(192).fireResistant().rarity(Rarity.EPIC)));
+            () -> new MastercraftedWeapon(NoezToolTier.MEDIUM, 5, -2f, new Item.Properties().stacksTo(1).durability(192).fireResistant().rarity(Rarity.EPIC), 0.2, 1.65));
+
+    public static final RegistryObject<Item> MASTERCRAFT_GOLD_SWORD = ITEMS.register("gold_sword_mastercraft",
+            () -> new MastercraftedWeapon(NoezToolTier.MEDIUM, 4, -1.8f, new Item.Properties().stacksTo(1).durability(162).fireResistant().rarity(Rarity.EPIC), 0.25, 1.75));
+
+    public static final RegistryObject<Item> MASTERCRAFT_DIAMOND_SWORD = ITEMS.register("diamond_sword_mastercraft",
+            () -> new MastercraftedWeapon(NoezToolTier.MEDIUM, 6, -2f, new Item.Properties().stacksTo(1).durability(242).fireResistant().rarity(Rarity.EPIC), 0.2, 1.65));
+
+    public static final RegistryObject<Item> MASTERCRAFT_NETHERITE_SWORD = ITEMS.register("netherite_sword_mastercraft",
+            () -> new MastercraftedWeapon(NoezToolTier.MEDIUM, 7, -2f, new Item.Properties().stacksTo(1).durability(326).fireResistant().rarity(Rarity.EPIC), 0.2, 1.65));
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);

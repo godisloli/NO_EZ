@@ -15,6 +15,7 @@ import net.tiramisu.noez.item.ArmorAttribute;
 import net.tiramisu.noez.item.Critable;
 import net.tiramisu.noez.item.LifeStealable;
 import net.tiramisu.noez.item.SpellCaster;
+import net.tiramisu.noez.item.arsenal.MastercraftedWeapon;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;

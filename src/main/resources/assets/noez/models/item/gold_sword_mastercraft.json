@@ -1,6 +1,6 @@
 {
   "parent": "item/handheld",
   "textures": {
-    "layer0": "noez:item/iron_sword_mastercraft"
+    "layer0": "noez:item/golden_sword_mastercraft"
   }
 }

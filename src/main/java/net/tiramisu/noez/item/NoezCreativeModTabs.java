@@ -58,6 +58,9 @@ public class NoezCreativeModTabs {
                     .title(Component.translatable("creativetab.noez_tab_combat"))
                     .displayItems((pParameters, pOutput) -> {
                         pOutput.accept(NoezItems.MASTERCRAFT_IRON_SWORD.get());
+                        pOutput.accept(NoezItems.MASTERCRAFT_GOLD_SWORD.get());
+                        pOutput.accept(NoezItems.MASTERCRAFT_DIAMOND_SWORD.get());
+                        pOutput.accept(NoezItems.MASTERCRAFT_NETHERITE_SWORD.get());
                         pOutput.accept(NoezItems.DRUVIS_STAFF.get());
                         pOutput.accept(NoezItems.CRIMSON_SOUL_EATER.get());
                         pOutput.accept(NoezItems.IMPERIALITE_SWORD.get());
@@ -74,7 +77,6 @@ public class NoezCreativeModTabs {
                         pOutput.accept(NoezItems.MOONSILVER_SWORD.get());
                         pOutput.accept(NoezItems.BLOOD_SACRIFICE.get());
                         pOutput.accept(NoezItems.MECHANICAL_CROSSBOW.get());
-                        pOutput.accept(NoezItems.WAR_AXE.get());
                     })
                     .build());
 
@@ -96,6 +98,7 @@ public class NoezCreativeModTabs {
                     .title(Component.translatable("creativetab.noez_tab_tool"))
                     .displayItems((pParameters, pOutput) -> {
                         pOutput.accept(NoezItems.MOLTEN_PICKAXE.get());
+                        pOutput.accept(NoezItems.WAR_AXE.get());
                     })
                     .build());
 
