@@ -1,9 +1,9 @@
 package net.tiramisu.noez.item.armors;
 
-import net.minecraft.advancements.critereon.UsedTotemTrigger;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -15,6 +15,9 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.Level;
+import net.minecraftforge.event.entity.living.LivingDeathEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 import net.tiramisu.noez.attribute.NoezAttributes;
 import net.tiramisu.noez.item.ArmorAttribute;
 import org.jetbrains.annotations.NotNull;
@@ -23,6 +26,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 import java.util.UUID;
 
+@Mod.EventBusSubscriber
 public class GuardianAngelArmor extends ArmorItem implements ArmorAttribute {
     private String toolTipId = "none";
     private static final int HELMET_VALUE = 1;
@@ -61,10 +65,6 @@ public class GuardianAngelArmor extends ArmorItem implements ArmorAttribute {
         super.onInventoryTick(stack, level, player, slotIndex, selectedIndex);
         if (hasFullGuardianAngelArmorSet(player)) {
             setTooltipID("full");
-            if (player.isDeadOrDying() && !player.getCooldowns().isOnCooldown(this)) {
-                activateTotemEffect(player);
-                player.getCooldowns().addCooldown(this,10 * 20);
-            }
         }
         if (hasHalfGuardianAngelArmorSet(player)) {
             setTooltipID("half");
@@ -80,6 +80,51 @@ public class GuardianAngelArmor extends ArmorItem implements ArmorAttribute {
             } else {
                 removeBonus(player, slot);
             }
+        }
+    }
+
+    @SubscribeEvent
+    public static void guardianProtection(LivingDeathEvent event) {
+        if (event.getEntity() instanceof ServerPlayer serverPlayer && hasFullGuardianAngelArmorSet(serverPlayer)) {
+            if (!isAnyPieceOnCooldown(serverPlayer)) {
+                event.setCanceled(true);
+                activateTotemEffect(serverPlayer);
+                applyCooldownToAllArmorPieces(serverPlayer);
+            }
+        }
+    }
+
+    private static boolean isAnyPieceOnCooldown(ServerPlayer serverPlayer) {
+        ItemStack helmet = serverPlayer.getItemBySlot(EquipmentSlot.HEAD);
+        ItemStack chestplate = serverPlayer.getItemBySlot(EquipmentSlot.CHEST);
+        ItemStack leggings = serverPlayer.getItemBySlot(EquipmentSlot.LEGS);
+        ItemStack boots = serverPlayer.getItemBySlot(EquipmentSlot.FEET);
+
+        return isItemOnCooldown(serverPlayer, helmet) || isItemOnCooldown(serverPlayer, chestplate) ||
+                isItemOnCooldown(serverPlayer, leggings) || isItemOnCooldown(serverPlayer, boots);
+    }
+
+    private static boolean isItemOnCooldown(ServerPlayer serverPlayer, ItemStack itemStack) {
+        return itemStack.getItem() instanceof GuardianAngelArmor && serverPlayer.getCooldowns().isOnCooldown(itemStack.getItem());
+    }
+
+    private static void applyCooldownToAllArmorPieces(ServerPlayer serverPlayer) {
+        ItemStack helmet = serverPlayer.getItemBySlot(EquipmentSlot.HEAD);
+        ItemStack chestplate = serverPlayer.getItemBySlot(EquipmentSlot.CHEST);
+        ItemStack leggings = serverPlayer.getItemBySlot(EquipmentSlot.LEGS);
+        ItemStack boots = serverPlayer.getItemBySlot(EquipmentSlot.FEET);
+
+        if (helmet.getItem() instanceof GuardianAngelArmor) {
+            serverPlayer.getCooldowns().addCooldown(helmet.getItem(), 900 * 20);
+        }
+        if (chestplate.getItem() instanceof GuardianAngelArmor) {
+            serverPlayer.getCooldowns().addCooldown(chestplate.getItem(), 900 * 20);
+        }
+        if (leggings.getItem() instanceof GuardianAngelArmor) {
+            serverPlayer.getCooldowns().addCooldown(leggings.getItem(), 900 * 20);
+        }
+        if (boots.getItem() instanceof GuardianAngelArmor) {
+            serverPlayer.getCooldowns().addCooldown(boots.getItem(), 900 * 20);
         }
     }
 

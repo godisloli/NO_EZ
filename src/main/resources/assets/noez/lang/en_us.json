@@ -58,6 +58,10 @@
   "item.noez.echo_leggings": "§3Echo Leggings",
   "item.noez.echo_boots": "§3Echo Boots",
   "item.noez.echo_elytra": "§3Echo Elytra",
+  "item.noez.guardian_angel_helmet": "§eGuardian Angel Helmet",
+  "item.noez.guardian_angel_chestplate": "§eGuardian Angel Chestplate",
+  "item.noez.guardian_angel_leggings": "§eGuardian Angel Leggings",
+  "item.noez.guardian_angel_boots": "§eGuardian Angel Boots",
   "item.noez.kitsune_mask": "§4Kitsune Mask",
 
   "noez.relocator.tooltip1": "§6§lOn use:§r Blink to a short distance where you facing",
@@ -99,6 +103,9 @@
   "noez.projectile_reduction_bonus": "+%s Projectile Protection",
   "noez.movement_speed_bonus": "+%s Movement Speed",
   "noez.heal_regen_bonus": "+%s Health Regeneration",
+  "noez.crit_bonus": "+%s% Crit Chance",
+  "noez.damage_bonus": "+%s Attack Damage",
+  "noez.magic_resistant_bonus": "+%s Magic Resistant",
   "noez.undeadslayer": "§5§lUndead Slayer:§r Bypass undead invulnerable",
 
   "creativetab.noez_tab_misc": "Ingredients",
@@ -117,6 +124,12 @@
   "noez.echo_elytra.tooltip1": "§6§lPassive:§r The first time you enter fall fly, greatly boost your fly speed",
   "noez.echo_elytra.tooltip2": "§6§lCooldown:§r %s seconds",
   "noez.echo_elytra.tooltip3": "§7§oCooldown reset if you're fall flying",
+  "noez.guardian_angel_none.tooltip1": "§5§lHalf Set:§7 ",
+  "noez.guardian_angel_none.tooltip2": "§6§lFull Set:§7 ",
+  "noez.guardian_angel_half.tooltip1": "§5§lHalf Set:§r ",
+  "noez.guardian_angel_half.tooltip2": "§6§lFull Set:§7 ",
+  "noez.guardian_angel_full.tooltip1": "§5§lHalf Set:§r ",
+  "noez.guardian_angel_full.tooltip2": "§5§lHalf Set:§r ",
   "noez.kitsune_mask.tooltip1": "§6§lPassive:§r Greatly increase speed and regeneration when on low health",
   "noez.kitsune_mask.tooltip2": "§6§lCooldown: §r%s seconds",
 

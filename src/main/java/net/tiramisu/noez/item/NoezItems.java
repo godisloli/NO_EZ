@@ -8,6 +8,7 @@ import net.minecraftforge.registries.RegistryObject;
 import net.tiramisu.noez.NOEZ;
 import net.tiramisu.noez.item.armors.EchoArmor;
 import net.tiramisu.noez.item.armors.EchoElytra;
+import net.tiramisu.noez.item.armors.GuardianAngelArmor;
 import net.tiramisu.noez.item.armors.KitsuneMask;
 import net.tiramisu.noez.item.arsenal.*;
 import net.tiramisu.noez.item.consumables.ManaPotion;
@@ -113,16 +114,16 @@ public class NoezItems {
             () -> new VitalWrap(new Item.Properties().stacksTo(64)));
 
     public static final RegistryObject<Item> GUARDIAN_ANGEL_HELMET = ITEMS.register("guardian_angel_helmet",
-            () -> new EchoArmor(NoezArmorTier.ECHO, ArmorItem.Type.HELMET, new Item.Properties()));
+            () -> new GuardianAngelArmor(NoezArmorTier.GUARDIAN_ANGEL, ArmorItem.Type.HELMET, new Item.Properties()));
 
     public static final RegistryObject<Item> GUARDIAN_ANGEL_CHESTPLATE = ITEMS.register("guardian_angel_chestplate",
-            () -> new EchoArmor(NoezArmorTier.ECHO, ArmorItem.Type.CHESTPLATE, new Item.Properties()));
+            () -> new GuardianAngelArmor(NoezArmorTier.GUARDIAN_ANGEL, ArmorItem.Type.CHESTPLATE, new Item.Properties()));
 
     public static final RegistryObject<Item> GUARDIAN_ANGEL_LEGGINGS = ITEMS.register("guardian_angel_leggings",
-            () -> new EchoArmor(NoezArmorTier.ECHO, ArmorItem.Type.LEGGINGS, new Item.Properties()));
+            () -> new GuardianAngelArmor(NoezArmorTier.GUARDIAN_ANGEL, ArmorItem.Type.LEGGINGS, new Item.Properties()));
 
     public static final RegistryObject<Item> GUARDIAN_ANGEL_BOOTS = ITEMS.register("guardian_angel_boots",
-            () -> new EchoArmor(NoezArmorTier.ECHO, ArmorItem.Type.BOOTS, new Item.Properties()));
+            () -> new GuardianAngelArmor(NoezArmorTier.GUARDIAN_ANGEL, ArmorItem.Type.BOOTS, new Item.Properties()));
 
     public static final RegistryObject<Item> ECHO_HELMET = ITEMS.register("echo_helmet",
             () -> new EchoArmor(NoezArmorTier.ECHO, ArmorItem.Type.HELMET, new Item.Properties()));
