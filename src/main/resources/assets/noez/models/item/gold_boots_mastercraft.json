@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "noez:item/iron_helmet_mastercraft"
+    "layer0": "noez:item/golden_boots_mastercraft"
   }
 }

@@ -98,6 +98,10 @@ public class NoezCreativeModTabs {
                         pOutput.accept(NoezItems.MASTERCRAFTED_IRON_LEGGINGS.get());
                         pOutput.accept(NoezItems.MASTERCRAFTED_IRON_BOOTS.get());
                         pOutput.accept(NoezItems.KITSUNE_MASK.get());
+                        pOutput.accept(NoezItems.MASTERCRAFTED_GOLD_HELMET.get());
+                        pOutput.accept(NoezItems.MASTERCRAFTED_GOLD_CHESTPLATE.get());
+                        pOutput.accept(NoezItems.MASTERCRAFTED_GOLD_LEGGINGS.get());
+                        pOutput.accept(NoezItems.MASTERCRAFTED_GOLD_BOOTS.get());
                     })
                     .build());
 

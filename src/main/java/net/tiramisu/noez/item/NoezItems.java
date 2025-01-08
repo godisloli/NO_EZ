@@ -138,28 +138,28 @@ public class NoezItems {
             () -> new EchoArmor(NoezArmorTier.ECHO, ArmorItem.Type.BOOTS, new Item.Properties()));
 
     public static final RegistryObject<Item> MASTERCRAFTED_IRON_HELMET = ITEMS.register("iron_helmet_mastercraft",
-            () -> new ArmorItem(NoezArmorTier.MASTERCRAFT_IRON, ArmorItem.Type.HELMET, new Item.Properties()));
+            () -> new ArmorItem(NoezArmorTier.MASTERCRAFT_IRON, ArmorItem.Type.HELMET, new Item.Properties().rarity(Rarity.EPIC)));
 
     public static final RegistryObject<Item> MASTERCRAFTED_IRON_CHESTPLATE = ITEMS.register("iron_chestplate_mastercraft",
-            () -> new ArmorItem(NoezArmorTier.MASTERCRAFT_IRON, ArmorItem.Type.CHESTPLATE, new Item.Properties()));
+            () -> new ArmorItem(NoezArmorTier.MASTERCRAFT_IRON, ArmorItem.Type.CHESTPLATE, new Item.Properties().rarity(Rarity.EPIC)));
 
     public static final RegistryObject<Item> MASTERCRAFTED_IRON_LEGGINGS = ITEMS.register("iron_leggings_mastercraft",
-            () -> new ArmorItem(NoezArmorTier.MASTERCRAFT_IRON, ArmorItem.Type.LEGGINGS, new Item.Properties()));
+            () -> new ArmorItem(NoezArmorTier.MASTERCRAFT_IRON, ArmorItem.Type.LEGGINGS, new Item.Properties().rarity(Rarity.EPIC)));
 
     public static final RegistryObject<Item> MASTERCRAFTED_IRON_BOOTS = ITEMS.register("iron_boots_mastercraft",
-            () -> new ArmorItem(NoezArmorTier.MASTERCRAFT_IRON, ArmorItem.Type.BOOTS, new Item.Properties()));
+            () -> new ArmorItem(NoezArmorTier.MASTERCRAFT_IRON, ArmorItem.Type.BOOTS, new Item.Properties().rarity(Rarity.EPIC)));
 
     public static final RegistryObject<Item> MASTERCRAFTED_GOLD_HELMET = ITEMS.register("gold_helmet_mastercraft",
-            () -> new ArmorItem(NoezArmorTier.MASTERCRAFT_GOLD, ArmorItem.Type.HELMET, new Item.Properties()));
+            () -> new ArmorItem(NoezArmorTier.MASTERCRAFT_GOLD, ArmorItem.Type.HELMET, new Item.Properties().rarity(Rarity.EPIC)));
 
     public static final RegistryObject<Item> MASTERCRAFTED_GOLD_CHESTPLATE = ITEMS.register("gold_chestplate_mastercraft",
-            () -> new ArmorItem(NoezArmorTier.MASTERCRAFT_GOLD, ArmorItem.Type.CHESTPLATE, new Item.Properties()));
+            () -> new ArmorItem(NoezArmorTier.MASTERCRAFT_GOLD, ArmorItem.Type.CHESTPLATE, new Item.Properties().rarity(Rarity.EPIC)));
 
     public static final RegistryObject<Item> MASTERCRAFTED_GOLD_LEGGINGS = ITEMS.register("gold_leggings_mastercraft",
-            () -> new ArmorItem(NoezArmorTier.MASTERCRAFT_GOLD, ArmorItem.Type.LEGGINGS, new Item.Properties()));
+            () -> new ArmorItem(NoezArmorTier.MASTERCRAFT_GOLD, ArmorItem.Type.LEGGINGS, new Item.Properties().rarity(Rarity.EPIC)));
 
     public static final RegistryObject<Item> MASTERCRAFTED_GOLD_BOOTS = ITEMS.register("gold_boots_mastercraft",
-            () -> new ArmorItem(NoezArmorTier.MASTERCRAFT_GOLD, ArmorItem.Type.BOOTS, new Item.Properties()));
+            () -> new ArmorItem(NoezArmorTier.MASTERCRAFT_GOLD, ArmorItem.Type.BOOTS, new Item.Properties().rarity(Rarity.EPIC)));
 
     public static final RegistryObject<Item> ECHO_ELYTRA = ITEMS.register("echo_elytra",
             () -> new EchoElytra(new Item.Properties().stacksTo(1).durability(2413).fireResistant()));

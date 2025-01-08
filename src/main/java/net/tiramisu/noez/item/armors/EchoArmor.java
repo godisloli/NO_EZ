@@ -102,11 +102,6 @@ public class EchoArmor extends ArmorItem implements ArmorAttribute {
     }
 
     @Override
-    public @NotNull InteractionResultHolder<ItemStack> use(@NotNull Level pLevel, @NotNull Player pPlayer, @NotNull InteractionHand pHand) {
-        return super.use(pLevel, pPlayer, pHand);
-    }
-
-    @Override
     public void onInventoryTick(ItemStack stack, Level level, Player player, int slotIndex, int selectedIndex) {
         super.onInventoryTick(stack, level, player, slotIndex, selectedIndex);
         if (hasFullEchoArmorSet(player)) {
