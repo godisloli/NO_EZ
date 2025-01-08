@@ -31,12 +31,13 @@ public class GuardianAngelArmor extends ArmorItem implements ArmorAttribute {
     private String toolTipId = "none";
     private static final int HELMET_VALUE = 1;
     private static final int CHESTPLATE_VALUE = 20;
-    private static final int LEGGINGS_VALUE = 2;
+    private static final int LEGGINGS_VALUE = 4;
     private static final float BOOTS_VALUE = 20f;
     private static final UUID HELMET_BONUS = UUID.fromString("11111111-1111-1111-1111-111111111111");
     private static final UUID CHESTPLATE_BONUS = UUID.fromString("22222222-2222-2222-2222-222222222222");
     private static final UUID LEGGINGS_BONUS = UUID.fromString("33333333-3333-3333-3333-333333333333");
     private static final UUID BOOTS_BONUS = UUID.fromString("44444444-4444-4444-4444-444444444444");
+    private static final UUID HALF_SET_BONUS = UUID.fromString("11111111-2222-3333-4444-555555555555");
     private static final int COOLDOWN = 900 * 20;
 
     public GuardianAngelArmor(ArmorMaterial pMaterial, Type pType, Item.Properties pProperties) {
@@ -67,13 +68,19 @@ public class GuardianAngelArmor extends ArmorItem implements ArmorAttribute {
         super.onInventoryTick(stack, level, player, slotIndex, selectedIndex);
         if (hasFullGuardianAngelArmorSet(player)) {
             setTooltipID("full");
+            halfSetBonus(player);
         }
+
         if (hasHalfGuardianAngelArmorSet(player)) {
             setTooltipID("half");
-
+            halfSetBonus(player);
         }
-        if (!hasHalfGuardianAngelArmorSet(player) && !hasFullGuardianAngelArmorSet(player))
+
+        if (!hasHalfGuardianAngelArmorSet(player) && !hasFullGuardianAngelArmorSet(player)) {
             setTooltipID("none");
+            AttributeInstance attributeInstance = player.getAttribute(NoezAttributes.TENACITY.get());
+            removeModifier(attributeInstance, HALF_SET_BONUS);
+        }
 
         if (!level.isClientSide) {
             EquipmentSlot slot = this.getType().getSlot();
@@ -85,10 +92,22 @@ public class GuardianAngelArmor extends ArmorItem implements ArmorAttribute {
         }
     }
 
+    private void halfSetBonus(Player player) {
+        AttributeInstance attributeInstance;
+        AttributeModifier modifier;
+        attributeInstance = player.getAttribute(NoezAttributes.TENACITY.get());
+        if (player.getHealth() <= player.getMaxHealth() * 0.5) {
+            modifier = new AttributeModifier(HALF_SET_BONUS, "Guardian Angel half set bonus", 30, AttributeModifier.Operation.ADDITION);
+            applyModifier(attributeInstance, modifier);
+        } else {
+            removeModifier(attributeInstance, HALF_SET_BONUS);
+        }
+    }
+
     @SubscribeEvent
     public static void guardianProtection(LivingDeathEvent event) {
         if (event.getEntity() instanceof ServerPlayer serverPlayer && hasFullGuardianAngelArmorSet(serverPlayer)) {
-            if (!isAnyPieceOnCooldown(serverPlayer)) {
+            if (!isAnyPieceOnCooldown(serverPlayer) && !serverPlayer.getAbilities().instabuild) {
                 event.setCanceled(true);
                 activateTotemEffect(serverPlayer);
                 applyCooldownToAllArmorPieces(serverPlayer);
@@ -162,8 +181,8 @@ public class GuardianAngelArmor extends ArmorItem implements ArmorAttribute {
         int count = 0;
         count += player.getItemBySlot(EquipmentSlot.HEAD).getItem() instanceof GuardianAngelArmor && !isBroken(player.getItemBySlot(EquipmentSlot.HEAD)) ? 1 : 0;
         count += player.getItemBySlot(EquipmentSlot.CHEST).getItem() instanceof GuardianAngelArmor && !isBroken(player.getItemBySlot(EquipmentSlot.CHEST)) ? 1 : 0;
-        count += player.getItemBySlot(EquipmentSlot.CHEST).getItem() instanceof GuardianAngelArmor && !isBroken(player.getItemBySlot(EquipmentSlot.LEGS)) ? 1 : 0;
-        count += player.getItemBySlot(EquipmentSlot.CHEST).getItem() instanceof GuardianAngelArmor && !isBroken(player.getItemBySlot(EquipmentSlot.FEET)) ? 1 : 0;
+        count += player.getItemBySlot(EquipmentSlot.LEGS).getItem() instanceof GuardianAngelArmor && !isBroken(player.getItemBySlot(EquipmentSlot.LEGS)) ? 1 : 0;
+        count += player.getItemBySlot(EquipmentSlot.FEET).getItem() instanceof GuardianAngelArmor && !isBroken(player.getItemBySlot(EquipmentSlot.FEET)) ? 1 : 0;
 
         return count >= 2 && count < 4;
     }

@@ -4,6 +4,8 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.effect.MobEffectCategory;
+import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.AbstractArrow;
@@ -23,6 +25,8 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+
+import javax.annotation.Nullable;
 
 @Mixin(LivingEntity.class)
 public abstract class LivingEntityMixin extends Entity {
@@ -145,7 +149,22 @@ public abstract class LivingEntityMixin extends Entity {
                 .add(NoezAttributes.HEALTH_REGENERATION.get())
                 .add(NoezAttributes.MANA_REGENERATION.get())
                 .add(NoezAttributes.CRIT_CHANCE.get())
-                .add(NoezAttributes.CRIT_DAMAGE.get());
+                .add(NoezAttributes.CRIT_DAMAGE.get())
+                .add(NoezAttributes.TENACITY.get());
         cir.setReturnValue(builder);
+    }
+
+    @Inject(method = "addEffect*", at = @At("HEAD"))
+    private void tenacityLivingEntity(MobEffectInstance effectInstance, @Nullable Entity pEntity, CallbackInfoReturnable<Boolean> cir) {
+        if (effectInstance.getEffect().getCategory() == MobEffectCategory.HARMFUL) {
+            if (pEntity instanceof LivingEntity livingEntity) {
+                double tenacity = livingEntity.getAttributeValue(NoezAttributes.TENACITY.get());
+                if (tenacity > 0) {
+                    int originalDuration = effectInstance.getDuration();
+                    int reducedDuration = (int) (originalDuration * (1 - (tenacity / 100.0)));
+                    ((MobEffectInstanceAccessor) effectInstance).setDuration(reducedDuration);
+                }
+            }
+        }
     }
 }

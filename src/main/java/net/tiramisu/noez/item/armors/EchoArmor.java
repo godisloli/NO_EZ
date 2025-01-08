@@ -91,8 +91,8 @@ public class EchoArmor extends ArmorItem implements ArmorAttribute {
         int count = 0;
         count += player.getItemBySlot(EquipmentSlot.HEAD).getItem() instanceof EchoArmor && !isBroken(player.getItemBySlot(EquipmentSlot.HEAD)) ? 1 : 0;
         count += player.getItemBySlot(EquipmentSlot.CHEST).getItem() instanceof EchoArmor && !isBroken(player.getItemBySlot(EquipmentSlot.CHEST)) ? 1 : 0;
-        count += player.getItemBySlot(EquipmentSlot.CHEST).getItem() instanceof EchoArmor && !isBroken(player.getItemBySlot(EquipmentSlot.LEGS)) ? 1 : 0;
-        count += player.getItemBySlot(EquipmentSlot.CHEST).getItem() instanceof EchoArmor && !isBroken(player.getItemBySlot(EquipmentSlot.FEET)) ? 1 : 0;
+        count += player.getItemBySlot(EquipmentSlot.LEGS).getItem() instanceof EchoArmor && !isBroken(player.getItemBySlot(EquipmentSlot.LEGS)) ? 1 : 0;
+        count += player.getItemBySlot(EquipmentSlot.FEET).getItem() instanceof EchoArmor && !isBroken(player.getItemBySlot(EquipmentSlot.FEET)) ? 1 : 0;
 
         return count >= 2 && count < 4;
     }

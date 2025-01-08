@@ -17,7 +17,8 @@
     "ServerPlayerMixin",
     "SwordItemMixin",
     "VillagerMixin",
-    "VillagerTradeMixin"
+    "VillagerTradeMixin",
+    "MobEffectInstanceAccessor"
   ],
   "injectors": {
     "defaultRequire": 1

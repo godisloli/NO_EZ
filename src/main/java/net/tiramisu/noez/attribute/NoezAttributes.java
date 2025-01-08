@@ -76,6 +76,15 @@ public class NoezAttributes {
                             1000
                     ));
 
+
+    public static final RegistryObject<Attribute> TENACITY =
+            ATTRIBUTES.register("tenacity", () ->
+                    new RangedAttribute(
+                            "attribute.name.generic.tenacity",
+                            0,
+                            0,
+                            95
+                    ));
     public static void register(IEventBus eventBus) {
         ATTRIBUTES.register(eventBus);
     }
