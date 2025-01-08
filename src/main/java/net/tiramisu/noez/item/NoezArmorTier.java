@@ -4,17 +4,30 @@ import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ArmorMaterial;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.tiramisu.noez.NOEZ;
 
 import java.util.function.Supplier;
 
 public enum NoezArmorTier implements ArmorMaterial {
-    ECHO("echo", 25, new int[]{4, 9, 7, 3}, 15,
+    ECHO("echo", 25, new int[]{4, 9, 7, 4}, 15,
             SoundEvents.SCULK_CATALYST_PLACE, 4.0F, 0.2F, () -> Ingredient.of(NoezItems.WARDEN_HEART.get())),
 
-    GUARDIAN_ANGEL("guardian_angel", 25,new int[]{3, 8, 7, 3}, 15,
+    GUARDIAN_ANGEL("guardian_angel", 22,new int[]{3, 8, 7, 3}, 15,
             SoundEvents.ARMOR_EQUIP_NETHERITE, 2.0F, 0.2F, () -> Ingredient.EMPTY),
+
+    MASTERCRAFT_IRON("mastercraft_iron", 20, new int[]{3, 7, 6, 3}, 15,
+            SoundEvents.ARMOR_EQUIP_IRON, 1.0F, 0, () -> Ingredient.of(Items.IRON_INGOT)),
+
+    MASTERCRAFT_GOLD("mastercraft_gold", 23, new int[]{2,8,5,4}, 15,
+            SoundEvents.ARMOR_EQUIP_GOLD, 2.0F, 0, () -> Ingredient.of(Items.GOLD_INGOT)),
+
+    MASTERCRAFT_DIAMOND("mastercraft_diamond", 26, new int[]{4, 9, 7, 4}, 15,
+            SoundEvents.ARMOR_EQUIP_DIAMOND, 3.0F, 0.2F, () -> Ingredient.of(Items.DIAMOND)),
+
+    MASTERCRAFT_NETHERITE("master_netherite", 32, new int[]{5, 10 ,8, 5}, 15,
+            SoundEvents.ARMOR_EQUIP_NETHERITE, 4, 0.5F, () -> Ingredient.of(Items.NETHERITE_INGOT)),
 
     KITSUNE("kitsune", 25, new int[] {2, 1, 1, 1}, 15,
             SoundEvents.ALLAY_AMBIENT_WITH_ITEM, 2.0F, 0.0f, () -> Ingredient.EMPTY);
