@@ -32,11 +32,12 @@ public class GuardianAngelArmor extends ArmorItem implements ArmorAttribute {
     private static final int HELMET_VALUE = 1;
     private static final int CHESTPLATE_VALUE = 20;
     private static final int LEGGINGS_VALUE = 2;
-    private static final float BOOTS_VALUE = 0.2f;
+    private static final float BOOTS_VALUE = 20f;
     private static final UUID HELMET_BONUS = UUID.fromString("11111111-1111-1111-1111-111111111111");
     private static final UUID CHESTPLATE_BONUS = UUID.fromString("22222222-2222-2222-2222-222222222222");
     private static final UUID LEGGINGS_BONUS = UUID.fromString("33333333-3333-3333-3333-333333333333");
     private static final UUID BOOTS_BONUS = UUID.fromString("44444444-4444-4444-4444-444444444444");
+    private static final int COOLDOWN = 900 * 20;
 
     public GuardianAngelArmor(ArmorMaterial pMaterial, Type pType, Item.Properties pProperties) {
         super(pMaterial, pType, pProperties);
@@ -57,6 +58,7 @@ public class GuardianAngelArmor extends ArmorItem implements ArmorAttribute {
         super.appendHoverText(pStack, pLevel, pTooltipComponents, pIsAdvanced);
         pTooltipComponents.add(Component.translatable("noez.guardian_angel_" + toolTipId + ".tooltip1"));
         pTooltipComponents.add(Component.translatable("noez.guardian_angel_" + toolTipId + ".tooltip2"));
+        pTooltipComponents.add(Component.translatable("noez.guardian_angel_cooldown.tooltip", COOLDOWN / 1200));
 
     }
 
@@ -115,16 +117,16 @@ public class GuardianAngelArmor extends ArmorItem implements ArmorAttribute {
         ItemStack boots = serverPlayer.getItemBySlot(EquipmentSlot.FEET);
 
         if (helmet.getItem() instanceof GuardianAngelArmor) {
-            serverPlayer.getCooldowns().addCooldown(helmet.getItem(), 900 * 20);
+            serverPlayer.getCooldowns().addCooldown(helmet.getItem(), COOLDOWN);
         }
         if (chestplate.getItem() instanceof GuardianAngelArmor) {
-            serverPlayer.getCooldowns().addCooldown(chestplate.getItem(), 900 * 20);
+            serverPlayer.getCooldowns().addCooldown(chestplate.getItem(), COOLDOWN);
         }
         if (leggings.getItem() instanceof GuardianAngelArmor) {
-            serverPlayer.getCooldowns().addCooldown(leggings.getItem(), 900 * 20);
+            serverPlayer.getCooldowns().addCooldown(leggings.getItem(), COOLDOWN);
         }
         if (boots.getItem() instanceof GuardianAngelArmor) {
-            serverPlayer.getCooldowns().addCooldown(boots.getItem(), 900 * 20);
+            serverPlayer.getCooldowns().addCooldown(boots.getItem(), COOLDOWN);
         }
     }
 
