@@ -70,6 +70,10 @@
   "item.noez.gold_chestplate_mastercraft": "Mastercrafted Gold Chestplate",
   "item.noez.gold_leggings_mastercraft": "Mastercrafted Gold Leggings",
   "item.noez.gold_boots_mastercraft": "Mastercrafted Gold Boots",
+  "item.noez.diamond_helmet_mastercraft": "Mastercrafted Diamond Helmet",
+  "item.noez.diamond_chestplate_mastercraft": "Mastercrafted Diamond Chestplate",
+  "item.noez.diamond_leggings_mastercraft": "Mastercrafted Diamond Leggings",
+  "item.noez.diamond_boots_mastercraft": "Mastercrafted Diamond Boots",
   "item.noez.kitsune_mask": "§4Kitsune Mask",
 
   "noez.relocator.tooltip1": "§6§lOn use:§r Blink to a short distance where you facing",
@@ -128,7 +132,7 @@
   "noez.echo_half.tooltip1": "§5§lHalf Set:§r Reveal all entities around you",
   "noez.echo_half.tooltip2": "§4§lFull Set:§7 Gain Absorption occasionally",
   "noez.echo_full.tooltip1": "§5§lHalf Set:§r Reveal all entities around you",
-  "noez.echo_full.tooltip2": "§4§lFull Set:§r Gain Absorption occasionally",
+  "noez.echo_full.tooltip2": "§4§lFull Set:§r Gain §eAbsorption§r occasionally",
   "noez.echo_elytra.tooltip1": "§6§lPassive:§r The first time you enter fall fly, greatly boost your fly speed",
   "noez.echo_elytra.tooltip2": "§6§lCooldown:§r %s seconds",
   "noez.echo_elytra.tooltip3": "§7§oCooldown reset if you're fall flying",
@@ -139,7 +143,7 @@
   "noez.guardian_angel_full.tooltip1": "§5§lHalf Set:§r Gain an amount of §bTenacity§r while your health is low",
   "noez.guardian_angel_full.tooltip2": "§4§lFull Set:§r Protect you from taking fatal damage",
   "noez.guardian_angel_cooldown.tooltip": "§6§lCooldown: §r%s minutes",
-  "noez.kitsune_mask.tooltip1": "§6§lPassive:§r Greatly increase speed and regeneration when on low health",
+  "noez.kitsune_mask.tooltip1": "§6§lPassive:§r Gain §bSpeed§r and §dRegeneration§r when on low health",
   "noez.kitsune_mask.tooltip2": "§6§lCooldown: §r%s seconds",
 
   "wip": "§7========WORK IN PROGRESS========"

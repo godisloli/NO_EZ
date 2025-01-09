@@ -161,6 +161,18 @@ public class NoezItems {
     public static final RegistryObject<Item> MASTERCRAFTED_GOLD_BOOTS = ITEMS.register("gold_boots_mastercraft",
             () -> new ArmorItem(NoezArmorTier.MASTERCRAFT_GOLD, ArmorItem.Type.BOOTS, new Item.Properties().rarity(Rarity.EPIC)));
 
+    public static final RegistryObject<Item> MASTERCRAFTED_DIAMOND_HELMET = ITEMS.register("diamond_helmet_mastercraft",
+            () -> new ArmorItem(NoezArmorTier.MASTERCRAFT_DIAMOND, ArmorItem.Type.HELMET, new Item.Properties().rarity(Rarity.EPIC)));
+
+    public static final RegistryObject<Item> MASTERCRAFTED_DIAMOND_CHESTPLATE = ITEMS.register("diamond_chestplate_mastercraft",
+            () -> new ArmorItem(NoezArmorTier.MASTERCRAFT_DIAMOND, ArmorItem.Type.CHESTPLATE, new Item.Properties().rarity(Rarity.EPIC)));
+
+    public static final RegistryObject<Item> MASTERCRAFTED_DIAMOND_LEGGINGS = ITEMS.register("diamond_leggings_mastercraft",
+            () -> new ArmorItem(NoezArmorTier.MASTERCRAFT_DIAMOND, ArmorItem.Type.LEGGINGS, new Item.Properties().rarity(Rarity.EPIC)));
+
+    public static final RegistryObject<Item> MASTERCRAFTED_DIAMOND_BOOTS = ITEMS.register("diamond_boots_mastercraft",
+            () -> new ArmorItem(NoezArmorTier.MASTERCRAFT_DIAMOND, ArmorItem.Type.BOOTS, new Item.Properties().rarity(Rarity.EPIC)));
+
     public static final RegistryObject<Item> ECHO_ELYTRA = ITEMS.register("echo_elytra",
             () -> new EchoElytra(new Item.Properties().stacksTo(1).durability(2413).fireResistant()));
 
