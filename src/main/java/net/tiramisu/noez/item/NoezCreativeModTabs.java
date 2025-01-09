@@ -106,6 +106,7 @@ public class NoezCreativeModTabs {
                         pOutput.accept(NoezItems.MASTERCRAFTED_DIAMOND_CHESTPLATE.get());
                         pOutput.accept(NoezItems.MASTERCRAFTED_DIAMOND_LEGGINGS.get());
                         pOutput.accept(NoezItems.MASTERCRAFTED_DIAMOND_BOOTS.get());
+                        pOutput.accept(NoezItems.TWILIGHT_WITCH_HAT.get());
                     })
                     .build());
 

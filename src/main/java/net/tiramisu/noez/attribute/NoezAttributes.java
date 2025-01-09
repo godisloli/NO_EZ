@@ -31,6 +31,15 @@ public class NoezAttributes {
                             90.0
                     ).setSyncable(true));
 
+    public static final RegistryObject<Attribute> MAGIC_DAMAGE =
+            ATTRIBUTES.register("magic_damage", () ->
+                    new RangedAttribute(
+                            "attribute.name.generic.magic_damage",
+                            0.0,
+                            0.0,
+                            999.0
+                    ).setSyncable(true));
+
     public static final RegistryObject<Attribute> HEALTH_REGENERATION =
             ATTRIBUTES.register("health_regeneration", () ->
                     new RangedAttribute(

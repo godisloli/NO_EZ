@@ -75,6 +75,7 @@
   "item.noez.diamond_leggings_mastercraft": "Mastercrafted Diamond Leggings",
   "item.noez.diamond_boots_mastercraft": "Mastercrafted Diamond Boots",
   "item.noez.kitsune_mask": "§4Kitsune Mask",
+  "item.noez.twilight_witch_hat": "Twilight Witch Hat",
 
   "noez.relocator.tooltip1": "§6§lOn use:§r Blink to a short distance where you facing",
   "noez.relocator.tooltip2": "§6§lCooldown:§r 8 seconds",
@@ -111,6 +112,7 @@
   "tooltip.noez.crit_damage": " %s Crit Damage",
   "tooltip.noez.crit_chance": " %s Crit Chance",
   "tooltip.noez.life_steal": " %s Life Steal",
+  "noez.magic_damage_bonus": "+%s%% Magic Damage",
   "noez.health_bonus": "+%s Bonus Health",
   "noez.projectile_reduction_bonus": "+%s Projectile Protection",
   "noez.movement_speed_bonus": "+%s Movement Speed",

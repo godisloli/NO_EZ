@@ -150,7 +150,8 @@ public abstract class LivingEntityMixin extends Entity {
                 .add(NoezAttributes.MANA_REGENERATION.get())
                 .add(NoezAttributes.CRIT_CHANCE.get())
                 .add(NoezAttributes.CRIT_DAMAGE.get())
-                .add(NoezAttributes.TENACITY.get());
+                .add(NoezAttributes.TENACITY.get())
+                .add(NoezAttributes.MAGIC_DAMAGE.get());
         cir.setReturnValue(builder);
     }
 

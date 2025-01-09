@@ -173,6 +173,10 @@ public class NoezItems {
     public static final RegistryObject<Item> MASTERCRAFTED_DIAMOND_BOOTS = ITEMS.register("diamond_boots_mastercraft",
             () -> new ArmorItem(NoezArmorTier.MASTERCRAFT_DIAMOND, ArmorItem.Type.BOOTS, new Item.Properties().rarity(Rarity.EPIC)));
 
+    public static final RegistryObject<Item> TWILIGHT_WITCH_HAT = ITEMS.register("twilight_witch_hat",
+            () -> new ArmorItem(NoezArmorTier.TWILIGHT_WITCH_HAT, ArmorItem.Type.HELMET, new Item.Properties().rarity(Rarity.EPIC)));
+
+
     public static final RegistryObject<Item> ECHO_ELYTRA = ITEMS.register("echo_elytra",
             () -> new EchoElytra(new Item.Properties().stacksTo(1).durability(2413).fireResistant()));
 

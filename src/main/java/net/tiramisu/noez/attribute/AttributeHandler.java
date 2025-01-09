@@ -19,6 +19,7 @@ import net.minecraftforge.event.entity.player.TradeWithVillagerEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.tiramisu.noez.effect.NoezEffects;
 import net.tiramisu.noez.util.NoezTags;
 
 import java.util.List;
@@ -92,6 +93,19 @@ public class AttributeHandler {
         }
     }
 
+    @SubscribeEvent(priority = EventPriority.LOW)
+    public static void onLivingHurtMagic(LivingHurtEvent event) {
+        DamageSource source = event.getSource();
+        Entity attackerEntity = source.getEntity();
+        if (isMagic(source)) {
+            if (attackerEntity instanceof LivingEntity attacker) {
+                double bonus = attacker.getAttributeValue(NoezAttributes.MAGIC_DAMAGE.get());
+                float boostedDamage = event.getAmount() + applyBonus(event.getAmount(), bonus) ;
+                event.setAmount(boostedDamage);
+            }
+        }
+    }
+
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void onLivingHurt(LivingHurtEvent event) {
         LivingEntity livingEntity = event.getEntity();
@@ -136,6 +150,10 @@ public class AttributeHandler {
         return (float) (damage * (1.0 - reduction / 100.0));
     }
 
+    private static float applyBonus(float damage, double points) {
+        return (float) (damage * (1.0 - points / 100.0));
+    }
+
     private static boolean isMagic(DamageSource source) {
         return source.getMsgId().equals("magic") || source.getMsgId().equals("indirectMagic");
     }
@@ -143,6 +161,4 @@ public class AttributeHandler {
     private static boolean isProjectile(DamageSource source) {
         return source.getMsgId().equals("arrow") || source.getMsgId().equals("thrown");
     }
-
-
 }

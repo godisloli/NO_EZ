@@ -14,8 +14,11 @@ public enum NoezArmorTier implements ArmorMaterial {
     ECHO("echo", 25, new int[]{4, 9, 7, 4}, 15,
             SoundEvents.SCULK_CATALYST_PLACE, 4.0F, 0.2F, () -> Ingredient.of(NoezItems.WARDEN_HEART.get())),
 
-    GUARDIAN_ANGEL("guardian_angel", 22,new int[]{3, 8, 7, 3}, 15,
+    GUARDIAN_ANGEL("guardian_angel", 22, new int[]{3, 8, 7, 3}, 15,
             SoundEvents.ARMOR_EQUIP_NETHERITE, 2.0F, 0.2F, () -> Ingredient.EMPTY),
+
+    TWILIGHT_WITCH_HAT("twilight_witch_hat, 20",22, new int[]{1, 0, 0, 0}, 15,
+            SoundEvents.ARMOR_EQUIP_LEATHER, 0, 0, () -> Ingredient.EMPTY),
 
     MASTERCRAFT_IRON("mastercraft_iron", 20, new int[]{3, 7, 6, 3}, 15,
             SoundEvents.ARMOR_EQUIP_IRON, 1.0F, 0, () -> Ingredient.of(Items.IRON_INGOT)),
