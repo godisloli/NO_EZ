@@ -194,6 +194,18 @@ public class NoezItems {
     public static final RegistryObject<Item> MASTERCRAFT_NETHERITE_SWORD = ITEMS.register("netherite_sword_mastercraft",
             () -> new MastercraftedWeapon(NoezToolTier.MEDIUM, 7, -2f, new Item.Properties().stacksTo(1).durability(326).fireResistant().rarity(Rarity.EPIC), 0.2, 1.65));
 
+    public static final RegistryObject<Item> CACTUS_HELMET = ITEMS.register("cactus_helmet",
+            () -> new CactusArmor(NoezArmorTier.CACTUS, ArmorItem.Type.HELMET, new Item.Properties()));
+
+    public static final RegistryObject<Item> CACTUS_CHESTPLATE = ITEMS.register("cactus_chestplate",
+            () -> new CactusArmor(NoezArmorTier.CACTUS, ArmorItem.Type.CHESTPLATE, new Item.Properties()));
+
+    public static final RegistryObject<Item> CACTUS_LEGGINGS = ITEMS.register("cactus_leggings",
+            () -> new CactusArmor(NoezArmorTier.CACTUS, ArmorItem.Type.LEGGINGS, new Item.Properties()));
+
+    public static final RegistryObject<Item> CACTUS_BOOTS = ITEMS.register("cactus_boots",
+            () -> new CactusArmor(NoezArmorTier.CACTUS, ArmorItem.Type.BOOTS, new Item.Properties()));
+
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
     }

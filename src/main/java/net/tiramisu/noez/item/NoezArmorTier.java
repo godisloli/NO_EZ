@@ -32,6 +32,9 @@ public enum NoezArmorTier implements ArmorMaterial {
     MASTERCRAFT_NETHERITE("master_netherite", 32, new int[]{5, 10 ,8, 5}, 15,
             SoundEvents.ARMOR_EQUIP_NETHERITE, 4, 0.5F, () -> Ingredient.of(Items.NETHERITE_INGOT)),
 
+    CACTUS("cactus", 14, new int[]{1, 3, 2, 1}, 0,
+            SoundEvents.ARMOR_EQUIP_LEATHER, 0, 0, () -> Ingredient.of(Items.CACTUS)),
+
     KITSUNE("kitsune", 25, new int[] {2, 1, 1, 1}, 15,
             SoundEvents.ALLAY_AMBIENT_WITH_ITEM, 2.0F, 0.0f, () -> Ingredient.EMPTY);
 
