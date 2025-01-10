@@ -119,25 +119,25 @@ public class ItemStackMixin {
             for (int i = 0; i < tooltip.size(); i++) {
                 Component line = tooltip.get(i);
                 if (line.getString().contains("When on Head:")) {
-                    tooltip.add(i + 3, Component.translatable(armorAttribute.helmetTooltip(), String.format("%s", helmetValue))
+                    tooltip.add(i + 1, Component.translatable(armorAttribute.helmetTooltip(), String.format("%s", helmetValue))
                             .withStyle(style -> style.withColor(ChatFormatting.BLUE)));
                     break;
                 }
 
                 if (line.getString().contains("When on Body:")) {
-                    tooltip.add(i + 3, Component.translatable(armorAttribute.chesplateTooltip(), String.format("%s", chestplateValue))
+                    tooltip.add(i + 1, Component.translatable(armorAttribute.chesplateTooltip(), String.format("%s", chestplateValue))
                             .withStyle(style -> style.withColor(ChatFormatting.BLUE)));
                     break;
                 }
 
                 if (line.getString().contains("When on Legs:")) {
-                    tooltip.add(i + 3, Component.translatable(armorAttribute.leggingsTooltip(), String.format("%s", leggingsValue))
+                    tooltip.add(i + 1, Component.translatable(armorAttribute.leggingsTooltip(), String.format("%s", leggingsValue))
                             .withStyle(style -> style.withColor(ChatFormatting.BLUE)));
                     break;
                 }
 
                 if (line.getString().contains("When on Feet:")) {
-                    tooltip.add(i + 3, Component.translatable(armorAttribute.bootsTooltip(), String.format("%s", bootsValue))
+                    tooltip.add(i + 1, Component.translatable(armorAttribute.bootsTooltip(), String.format("%s", bootsValue))
                             .withStyle(style -> style.withColor(ChatFormatting.BLUE)));
                     break;
                 }

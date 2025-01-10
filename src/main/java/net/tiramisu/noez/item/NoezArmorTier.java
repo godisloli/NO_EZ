@@ -17,7 +17,7 @@ public enum NoezArmorTier implements ArmorMaterial {
     GUARDIAN_ANGEL("guardian_angel", 22, new int[]{3, 8, 7, 3}, 15,
             SoundEvents.ARMOR_EQUIP_NETHERITE, 2.0F, 0.2F, () -> Ingredient.EMPTY),
 
-    TWILIGHT_WITCH_HAT("twilight_witch_hat, 20",22, new int[]{1, 0, 0, 0}, 15,
+    TWILIGHT_WITCH_HAT("twilight_witch_hat",22, new int[]{1, 0, 0, 0}, 15,
             SoundEvents.ARMOR_EQUIP_LEATHER, 0, 0, () -> Ingredient.EMPTY),
 
     MASTERCRAFT_IRON("mastercraft_iron", 20, new int[]{3, 7, 6, 3}, 15,

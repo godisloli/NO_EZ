@@ -6,10 +6,7 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.tiramisu.noez.NOEZ;
-import net.tiramisu.noez.item.armors.EchoArmor;
-import net.tiramisu.noez.item.armors.EchoElytra;
-import net.tiramisu.noez.item.armors.GuardianAngelArmor;
-import net.tiramisu.noez.item.armors.KitsuneMask;
+import net.tiramisu.noez.item.armors.*;
 import net.tiramisu.noez.item.arsenal.*;
 import net.tiramisu.noez.item.consumables.ManaPotion;
 import net.tiramisu.noez.item.consumables.SoulPearl;
@@ -174,8 +171,7 @@ public class NoezItems {
             () -> new ArmorItem(NoezArmorTier.MASTERCRAFT_DIAMOND, ArmorItem.Type.BOOTS, new Item.Properties().rarity(Rarity.EPIC)));
 
     public static final RegistryObject<Item> TWILIGHT_WITCH_HAT = ITEMS.register("twilight_witch_hat",
-            () -> new ArmorItem(NoezArmorTier.TWILIGHT_WITCH_HAT, ArmorItem.Type.HELMET, new Item.Properties().rarity(Rarity.EPIC)));
-
+            () -> new TwilightWitchHat(NoezArmorTier.TWILIGHT_WITCH_HAT, ArmorItem.Type.HELMET, new Item.Properties().rarity(Rarity.EPIC)));
 
     public static final RegistryObject<Item> ECHO_ELYTRA = ITEMS.register("echo_elytra",
             () -> new EchoElytra(new Item.Properties().stacksTo(1).durability(2413).fireResistant()));

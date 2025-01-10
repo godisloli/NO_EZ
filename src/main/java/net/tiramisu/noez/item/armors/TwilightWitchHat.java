@@ -26,7 +26,7 @@ import java.util.function.Consumer;
 
 public class TwilightWitchHat extends ArmorItem implements ArmorAttribute, GeoItem {
     private final AnimatableInstanceCache cache = new SingletonAnimatableInstanceCache(this);
-    private static final UUID TWILIGHT_BONUS = UUID.fromString("123x4r67-e89b-12d3-a456-42661417z000");
+    private static final UUID TWILIGHT_BONUS = UUID.fromString("12304267-e89b-12d3-a456-426614173000");
     private static final float MAGIC_BONUS = 45;
     
     public TwilightWitchHat(ArmorMaterial pMaterial, Type pType, Properties pProperties) {
@@ -150,6 +150,7 @@ public class TwilightWitchHat extends ArmorItem implements ArmorAttribute, GeoIt
                 if (equipmentSlot == EquipmentSlot.HEAD) {
                     this.renderer.prepForRender(livingEntity, itemStack, EquipmentSlot.HEAD, original);
                 }
+                renderer.prepForRender(livingEntity, itemStack, EquipmentSlot.HEAD, original);
                 return this.renderer;
             }
         });

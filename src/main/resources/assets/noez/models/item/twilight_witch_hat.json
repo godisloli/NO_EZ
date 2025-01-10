@@ -1,0 +1,20 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "noez:item/twilight_witch_hat"
+  },
+  "display": {
+    "thirdperson_righthand": {
+      "scale": [1.25, 1.25, 1.25]
+    },
+    "gui": {
+      "scale": [1.25, 1.25, 1.25]
+    },
+    "fixed": {
+      "scale": [1.25, 1.25, 1.25]
+    },
+    "ground": {
+      "scale": [1.25, 1.25, 1.25]
+    }
+  }
+}
