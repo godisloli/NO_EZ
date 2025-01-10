@@ -1,6 +1,7 @@
 package net.tiramisu.noez.item.armors;
 
 import net.minecraft.client.model.HumanoidModel;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
@@ -9,17 +10,20 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.client.extensions.common.IClientItemExtensions;
 import net.tiramisu.noez.attribute.NoezAttributes;
 import net.tiramisu.noez.client.TwilightWitchHatRenderer;
 import net.tiramisu.noez.item.ArmorAttribute;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib.animatable.GeoItem;
 import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
 import software.bernie.geckolib.core.animatable.instance.SingletonAnimatableInstanceCache;
 import software.bernie.geckolib.core.animation.AnimatableManager;
 
+import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 import java.util.function.Consumer;
@@ -31,6 +35,12 @@ public class TwilightWitchHat extends ArmorItem implements ArmorAttribute, GeoIt
     
     public TwilightWitchHat(ArmorMaterial pMaterial, Type pType, Properties pProperties) {
         super(pMaterial, pType, pProperties);
+    }
+
+    @Override
+    public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
+        super.appendHoverText(pStack, pLevel, pTooltipComponents, pIsAdvanced);
+        pTooltipComponents.add(Component.translatable("noez.developer_line.twilight"));
     }
 
     @Override

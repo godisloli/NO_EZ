@@ -148,5 +148,6 @@
   "noez.kitsune_mask.tooltip1": "§6§lPassive:§r Gain §bSpeed§r and §dRegeneration§r when on low health",
   "noez.kitsune_mask.tooltip2": "§6§lCooldown: §r%s seconds",
 
-  "wip": "§7========WORK IN PROGRESS========"
+  "wip": "§7========WORK IN PROGRESS========",
+  "noez.developer_line.twilight": "§8Embrace the power"
 }

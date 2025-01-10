@@ -18,6 +18,7 @@ public class MagicResistant extends MobEffect {
     public MagicResistant() {
         super (MobEffectCategory.BENEFICIAL, 0x1140e0);
     }
+
     @Override
     public void applyEffectTick(LivingEntity entity, int amplifier) {
         if (!entity.level().isClientSide()) {

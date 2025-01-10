@@ -98,7 +98,7 @@ public class AttributeHandler {
         DamageSource source = event.getSource();
         Entity attackerEntity = source.getEntity();
         if (isMagic(source)) {
-            if (attackerEntity instanceof LivingEntity attacker) {
+            if (attackerEntity instanceof LivingEntity attacker && attacker.getAttributeValue(NoezAttributes.MAGIC_DAMAGE.get()) != 0) {
                 double bonus = attacker.getAttributeValue(NoezAttributes.MAGIC_DAMAGE.get());
                 float boostedDamage = event.getAmount() + applyBonus(event.getAmount(), bonus) ;
                 event.setAmount(boostedDamage);
