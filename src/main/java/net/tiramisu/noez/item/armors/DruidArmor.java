@@ -11,13 +11,13 @@ import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.animal.Wolf;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ArmorItem;
-import net.minecraft.world.item.ArmorMaterial;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.*;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraftforge.event.entity.living.LivingDeathEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 import net.tiramisu.noez.attribute.NoezAttributes;
 import net.tiramisu.noez.item.ArmorAttribute;
 import net.tiramisu.noez.item.NoezItems;
@@ -29,12 +29,13 @@ import java.util.List;
 import java.util.Random;
 import java.util.UUID;
 
+@Mod.EventBusSubscriber
 public class DruidArmor extends ArmorItem implements ArmorAttribute {
     private String toolTipId = "none";
     private static final int HELMET_VALUE = 10;
     private static final float CHESTPLATE_VALUE = 1;
     private static final int LEGGINGS_VALUE = 1;
-    private static final float BOOTS_VALUE = 20f;
+    private static final float BOOTS_VALUE = 15;
     private static final UUID HELMET_BONUS = UUID.fromString("11111112-1111-1111-1111-111111111111");
     private static final UUID CHESTPLATE_BONUS = UUID.fromString("22232222-2222-2222-2222-222222222222");
     private static final UUID LEGGINGS_BONUS = UUID.fromString("33333433-3333-3333-3333-333333333333");
@@ -76,6 +77,16 @@ public class DruidArmor extends ArmorItem implements ArmorAttribute {
             ).forEach(DruidArmor::removeAttackDamageBonus);
         }
 
+        if (player.isDeadOrDying() || !hasFullDruidArmorSet(player)) {
+            summonedWolves.forEach(wolf -> {
+                if (wolf.isAlive()) {
+                    wolf.discard();
+                }
+            });
+            summonedWolves.clear();
+            return;
+        }
+
         if (!level.isClientSide) {
             EquipmentSlot slot = this.getType().getSlot();
             if (player.getItemBySlot(slot) == stack) {
@@ -83,6 +94,18 @@ public class DruidArmor extends ArmorItem implements ArmorAttribute {
             } else {
                 removeBonus(player, slot);
             }
+        }
+    }
+
+    @SubscribeEvent
+    public static void onPlayerDeath(LivingDeathEvent event) {
+        if (event.getEntity() instanceof Player) {
+            summonedWolves.forEach(wolf -> {
+                if (wolf.isAlive()) {
+                    wolf.discard();
+                }
+            });
+            summonedWolves.clear();
         }
     }
 
@@ -99,14 +122,18 @@ public class DruidArmor extends ArmorItem implements ArmorAttribute {
                 player.getCooldowns().isOnCooldown(NoezItems.DRUID_LEGGINGS.get());
 
         if (player.level() instanceof ServerLevel serverLevel && !onCooldown) {
-            player.getCooldowns().addCooldown(this, COOLDOWN);
+            player.getCooldowns().addCooldown(NoezItems.DRUID_HELMET.get(), COOLDOWN);
+            player.getCooldowns().addCooldown(NoezItems.DRUID_CHESTPLATE.get(), COOLDOWN);
+            player.getCooldowns().addCooldown(NoezItems.DRUID_LEGGINGS.get(), COOLDOWN);
+            player.getCooldowns().addCooldown(NoezItems.DRUID_BOOTS.get(), COOLDOWN);
             BlockPos spawnPos = findValidSpawnPosition(player, serverLevel);
             Wolf wolf = new Wolf(EntityType.WOLF, serverLevel);
             wolf.setPos(spawnPos.getX(), spawnPos.getY(), spawnPos.getZ());
             wolf.setTame(true);
+            wolf.setCollarColor(DyeColor.GREEN);
             wolf.setOwnerUUID(player.getUUID());
             String name = player.getName().getString();
-            wolf.setCustomName(Component.translatable("noez.summon", name));
+            wolf.setCustomName(Component.translatable("noez.druid_wolf", name));
             wolf.setPersistenceRequired();
             serverLevel.addFreshEntity(wolf);
             summonedWolves.add(wolf);
@@ -276,7 +303,7 @@ public class DruidArmor extends ArmorItem implements ArmorAttribute {
 
     @Override
     public String bootsTooltip() {
-        return "";
+        return "noez.tenacity_bonus";
     }
 
     @Override

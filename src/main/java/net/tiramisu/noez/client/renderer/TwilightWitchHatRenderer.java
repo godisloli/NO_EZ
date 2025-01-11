@@ -1,6 +1,6 @@
-package net.tiramisu.noez.client;
+package net.tiramisu.noez.client.renderer;
 
-import net.tiramisu.noez.item.armors.KitsuneMask;
+import net.tiramisu.noez.client.models.TwilightWitchHatModel;
 import net.tiramisu.noez.item.armors.TwilightWitchHat;
 import software.bernie.geckolib.renderer.GeoArmorRenderer;
 

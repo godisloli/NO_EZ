@@ -1,4 +1,4 @@
-package net.tiramisu.noez.client;
+package net.tiramisu.noez.client.renderer;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.model.HumanoidModel;
@@ -14,6 +14,7 @@ import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import net.tiramisu.noez.NOEZ;
+import net.tiramisu.noez.client.models.EchoHelmetModel;
 import net.tiramisu.noez.item.NoezItems;
 
 public class EchoHelmetRenderer<E extends LivingEntity, M extends HumanoidModel<E>> extends RenderLayer<E, M> {

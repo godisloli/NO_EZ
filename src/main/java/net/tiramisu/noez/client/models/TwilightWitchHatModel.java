@@ -1,4 +1,4 @@
-package net.tiramisu.noez.client;
+package net.tiramisu.noez.client.models;
 
 import net.minecraft.resources.ResourceLocation;
 import net.tiramisu.noez.NOEZ;
