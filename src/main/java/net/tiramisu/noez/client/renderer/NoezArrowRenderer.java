@@ -1,4 +1,4 @@
-package net.tiramisu.noez.entity;
+package net.tiramisu.noez.client.renderer;
 
 import net.minecraft.client.renderer.entity.ArrowRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;

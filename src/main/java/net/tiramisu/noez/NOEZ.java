@@ -24,14 +24,12 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.tiramisu.noez.attribute.NoezAttributes;
 import net.tiramisu.noez.block.NoezBlockEntities;
 import net.tiramisu.noez.block.NoezBlocks;
-import net.tiramisu.noez.client.renderer.EchoElytraRenderer;
+import net.tiramisu.noez.client.models.GuardianAngelHelmetModel;
+import net.tiramisu.noez.client.renderer.*;
 import net.tiramisu.noez.block.CommonVaultRenderer;
 import net.tiramisu.noez.client.models.EchoHelmetModel;
-import net.tiramisu.noez.client.renderer.EchoHelmetRenderer;
 import net.tiramisu.noez.effect.NoezEffects;
-import net.tiramisu.noez.entity.NoezArrowRenderer;
 import net.tiramisu.noez.entity.NoezEntities;
-import net.tiramisu.noez.entity.GrassSpellShotRenderer;
 import net.tiramisu.noez.item.NoezCreativeModTabs;
 import net.tiramisu.noez.item.NoezItems;
 import net.tiramisu.noez.item.NoezPotions;
@@ -114,6 +112,7 @@ public class NOEZ
         @SubscribeEvent
         public static void onRegisterLayers(EntityRenderersEvent.RegisterLayerDefinitions event) {
             event.registerLayerDefinition(EchoHelmetRenderer.MODEL, EchoHelmetModel::createBodyModel);
+            event.registerLayerDefinition(GuardianAngelHelmetRenderer.MODEL, GuardianAngelHelmetModel::createBodyModel);
         }
 
         @SubscribeEvent
@@ -121,6 +120,7 @@ public class NOEZ
             event.getSkins().forEach(skin -> {
                 LivingEntityRenderer<Player, HumanoidModel<Player>> renderer = event.getSkin(skin);
                 renderer.addLayer(new EchoHelmetRenderer<>(renderer, event.getEntityModels()));
+                renderer.addLayer(new GuardianAngelHelmetRenderer<>(renderer, event.getEntityModels()));
                 renderer.addLayer(new EchoElytraRenderer<>(renderer, event.getEntityModels()));
             });
         }

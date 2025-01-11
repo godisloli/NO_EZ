@@ -1,4 +1,4 @@
-package net.tiramisu.noez.entity;
+package net.tiramisu.noez.client.renderer;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;

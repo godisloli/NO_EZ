@@ -16,6 +16,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
+import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.tiramisu.noez.attribute.NoezAttributes;
@@ -107,6 +108,16 @@ public class DruidArmor extends ArmorItem implements ArmorAttribute {
             });
             summonedWolves.clear();
         }
+    }
+
+    @SubscribeEvent
+    public static void logOut(PlayerEvent.PlayerLoggedOutEvent event) {
+        summonedWolves.forEach(wolf -> {
+            if (wolf.isAlive()) {
+                wolf.discard();
+            }
+        });
+        summonedWolves.clear();
     }
 
     private void fullSetBonus(Player player) {
