@@ -111,6 +111,10 @@ public class NoezCreativeModTabs {
                         pOutput.accept(NoezItems.CACTUS_CHESTPLATE.get());
                         pOutput.accept(NoezItems.CACTUS_LEGGINGS.get());
                         pOutput.accept(NoezItems.CACTUS_BOOTS.get());
+                        pOutput.accept(NoezItems.DRUID_HELMET.get());
+                        pOutput.accept(NoezItems.DRUID_CHESTPLATE.get());
+                        pOutput.accept(NoezItems.DRUID_LEGGINGS.get());
+                        pOutput.accept(NoezItems.DRUID_BOOTS.get());
                     })
                     .build());
 

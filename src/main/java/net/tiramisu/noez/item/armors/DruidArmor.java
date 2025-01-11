@@ -1,21 +1,32 @@
 package net.tiramisu.noez.item.armors;
 
+import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.TamableAnimal;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.animal.Wolf;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockState;
 import net.tiramisu.noez.attribute.NoezAttributes;
 import net.tiramisu.noez.item.ArmorAttribute;
+import net.tiramisu.noez.item.NoezItems;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.UUID;
 
 public class DruidArmor extends ArmorItem implements ArmorAttribute {
@@ -28,7 +39,10 @@ public class DruidArmor extends ArmorItem implements ArmorAttribute {
     private static final UUID CHESTPLATE_BONUS = UUID.fromString("22232222-2222-2222-2222-222222222222");
     private static final UUID LEGGINGS_BONUS = UUID.fromString("33333433-3333-3333-3333-333333333333");
     private static final UUID BOOTS_BONUS = UUID.fromString("44444445-4444-4444-4444-444444444444");
-    private static final UUID HALF_SET_BONUS = UUID.fromString("11112111-2222-3333-4444-555555555555");
+    private static final List<Wolf> summonedWolves = new ArrayList<>();
+    private static final int COOLDOWN = 15 * 20;
+    private static final UUID PET_ATTACK_DAMAGE_BONUS_UUID = UUID.fromString("12345678-1234-5678-1234-567812345678");
+    private static final double DAMAGE_BONUS_MULTIPLIER = 0.5;
     
     public DruidArmor(ArmorMaterial pMaterial, Type pType, Properties pProperties) {
         super(pMaterial, pType, pProperties);
@@ -46,14 +60,20 @@ public class DruidArmor extends ArmorItem implements ArmorAttribute {
         super.onInventoryTick(stack, level, player, slotIndex, selectedIndex);
         if (hasFullDruidArmorSet(player)) {
             setTooltipID("full");
+            halfSetBonus(player);
+            fullSetBonus(player);
         }
 
         if (hasHalfDruidArmorSet(player)) {
             setTooltipID("half");
+            halfSetBonus(player);
         }
 
         if (!hasHalfDruidArmorSet(player) && !hasFullDruidArmorSet(player)) {
             setTooltipID("none");
+            level.getEntitiesOfClass(TamableAnimal.class, player.getBoundingBox().inflate(50),
+                    pet -> pet.isTame() && pet.getOwner() == player
+            ).forEach(DruidArmor::removeAttackDamageBonus);
         }
 
         if (!level.isClientSide) {
@@ -64,6 +84,83 @@ public class DruidArmor extends ArmorItem implements ArmorAttribute {
                 removeBonus(player, slot);
             }
         }
+    }
+
+    private void fullSetBonus(Player player) {
+        summonedWolves.removeIf(w -> !w.isAlive() || !hasFullDruidArmorSet(player) || w.getOwner() == null || !w.getOwner().isAlive());
+
+        if (summonedWolves.size() >= 4) {
+            return;
+        }
+
+        boolean onCooldown = player.getCooldowns().isOnCooldown(NoezItems.DRUID_CHESTPLATE.get()) ||
+                player.getCooldowns().isOnCooldown(NoezItems.DRUID_HELMET.get()) ||
+                player.getCooldowns().isOnCooldown(NoezItems.DRUID_BOOTS.get()) ||
+                player.getCooldowns().isOnCooldown(NoezItems.DRUID_LEGGINGS.get());
+
+        if (player.level() instanceof ServerLevel serverLevel && !onCooldown) {
+            player.getCooldowns().addCooldown(this, COOLDOWN);
+            BlockPos spawnPos = findValidSpawnPosition(player, serverLevel);
+            Wolf wolf = new Wolf(EntityType.WOLF, serverLevel);
+            wolf.setPos(spawnPos.getX(), spawnPos.getY(), spawnPos.getZ());
+            wolf.setTame(true);
+            wolf.setOwnerUUID(player.getUUID());
+            String name = player.getName().getString();
+            wolf.setCustomName(Component.translatable("noez.summon", name));
+            wolf.setPersistenceRequired();
+            serverLevel.addFreshEntity(wolf);
+            summonedWolves.add(wolf);
+        }
+    }
+
+    private BlockPos findValidSpawnPosition(Player player, ServerLevel level) {
+        Random random = new Random();
+        BlockPos playerPos = player.blockPosition();
+
+        for (int i = 0; i < 10; i++) {
+            int offsetX = random.nextInt(7) - 3;
+            int offsetY = random.nextInt(7) - 3;
+            int offsetZ = random.nextInt(7) - 3;
+            BlockPos spawnPos = playerPos.offset(offsetX, offsetY, offsetZ);
+
+            if (isValidSpawnLocation(spawnPos, level)) {
+                return spawnPos;
+            }
+        }
+        return playerPos;
+    }
+
+    private boolean isValidSpawnLocation(BlockPos pos, ServerLevel level) {
+        BlockState blockState = level.getBlockState(pos);
+        BlockState belowBlockState = level.getBlockState(pos.below());
+        return !blockState.isAir() && !blockState.is(Blocks.LAVA) && !belowBlockState.isAir() && !belowBlockState.is(Blocks.LAVA) && !blockState.isSolidRender(level, pos);
+    }
+
+    private void halfSetBonus(Player player) {
+        Level level = player.level();
+        if (!level.isClientSide) {
+            level.getEntitiesOfClass(TamableAnimal.class, player.getBoundingBox().inflate(50),
+                    pet -> pet.isTame() && pet.getOwner() == player
+            ).forEach(DruidArmor::applyAttackDamageBonus);
+        }
+    }
+
+    public static void applyAttackDamageBonus(TamableAnimal pet) {
+        AttributeInstance attackDamage = pet.getAttribute(Attributes.ATTACK_DAMAGE);
+        if (attackDamage != null && !attackDamage.hasModifier(getDamageBonusModifier())) {
+            attackDamage.addTransientModifier(getDamageBonusModifier());
+        }
+    }
+
+    public static void removeAttackDamageBonus(TamableAnimal pet) {
+        AttributeInstance attackDamage = pet.getAttribute(Attributes.ATTACK_DAMAGE);
+        if (attackDamage != null && attackDamage.getModifier(PET_ATTACK_DAMAGE_BONUS_UUID) != null) {
+            attackDamage.removeModifier(PET_ATTACK_DAMAGE_BONUS_UUID);
+        }
+    }
+
+    private static AttributeModifier getDamageBonusModifier() {
+        return new AttributeModifier(PET_ATTACK_DAMAGE_BONUS_UUID, "Druid Half Set Bonus", DAMAGE_BONUS_MULTIPLIER, AttributeModifier.Operation.MULTIPLY_TOTAL);
     }
 
     private static boolean hasFullDruidArmorSet(Player player) {

@@ -206,6 +206,18 @@ public class NoezItems {
     public static final RegistryObject<Item> CACTUS_BOOTS = ITEMS.register("cactus_boots",
             () -> new CactusArmor(NoezArmorTier.CACTUS, ArmorItem.Type.BOOTS, new Item.Properties()));
 
+    public static final RegistryObject<Item> DRUID_HELMET = ITEMS.register("druid_helmet",
+            () -> new DruidArmor(NoezArmorTier.DRUID, ArmorItem.Type.HELMET, new Item.Properties()));
+
+    public static final RegistryObject<Item> DRUID_CHESTPLATE = ITEMS.register("druid_chestplate",
+            () -> new DruidArmor(NoezArmorTier.DRUID, ArmorItem.Type.CHESTPLATE, new Item.Properties()));
+
+    public static final RegistryObject<Item> DRUID_LEGGINGS = ITEMS.register("druid_leggings",
+            () -> new DruidArmor(NoezArmorTier.DRUID, ArmorItem.Type.LEGGINGS, new Item.Properties()));
+
+    public static final RegistryObject<Item> DRUID_BOOTS = ITEMS.register("druid_boots",
+            () -> new DruidArmor(NoezArmorTier.DRUID, ArmorItem.Type.BOOTS, new Item.Properties()));
+
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
     }
