@@ -33,11 +33,11 @@ public class GuardianAngelArmor extends ArmorItem implements ArmorAttribute {
     private static final int CHESTPLATE_VALUE = 20;
     private static final int LEGGINGS_VALUE = 4;
     private static final float BOOTS_VALUE = 20f;
-    private static final UUID HELMET_BONUS = UUID.fromString("11111111-1111-1111-1111-111111111111");
-    private static final UUID CHESTPLATE_BONUS = UUID.fromString("22222222-2222-2222-2222-222222222222");
-    private static final UUID LEGGINGS_BONUS = UUID.fromString("33333333-3333-3333-3333-333333333333");
-    private static final UUID BOOTS_BONUS = UUID.fromString("44444444-4444-4444-4444-444444444444");
-    private static final UUID HALF_SET_BONUS = UUID.fromString("11111111-2222-3333-4444-555555555555");
+    private static final UUID HELMET_BONUS = UUID.fromString("12111111-1111-1111-1111-111111111111");
+    private static final UUID CHESTPLATE_BONUS = UUID.fromString("23222222-2222-2222-2222-222222222222");
+    private static final UUID LEGGINGS_BONUS = UUID.fromString("34333333-3333-3333-3333-333333333333");
+    private static final UUID BOOTS_BONUS = UUID.fromString("44445444-4444-4444-4444-444444444444");
+    private static final UUID HALF_SET_BONUS = UUID.fromString("13111111-2222-3333-4444-555555555555");
     private static final int COOLDOWN = 900 * 20;
 
     public GuardianAngelArmor(ArmorMaterial pMaterial, Type pType, Item.Properties pProperties) {

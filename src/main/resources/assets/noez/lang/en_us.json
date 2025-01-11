@@ -117,6 +117,7 @@
   "tooltip.noez.crit_chance": " %s Crit Chance",
   "tooltip.noez.life_steal": " %s Life Steal",
   "noez.magic_damage_bonus": "+%s%% Magic Damage",
+  "noez.mana_regen_bonus": "+",
   "noez.health_bonus": "+%s Bonus Health",
   "noez.projectile_reduction_bonus": "+%s Projectile Protection",
   "noez.movement_speed_bonus": "+%s Movement Speed",
