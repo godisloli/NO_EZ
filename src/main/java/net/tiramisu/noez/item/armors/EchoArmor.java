@@ -32,7 +32,7 @@ public class EchoArmor extends ArmorItem implements ArmorAttribute {
     private String toolTipId = "none";
     private static final int RADIUS = 20;
     private static final int HELMET_VALUE = 2;
-    private static final float CHESTPLATE_VALUE = 0.2f;
+    private static final float CHESTPLATE_VALUE = 35f;
     private static final int LEGGINGS_VALUE = 4;
     private static final float BOOTS_VALUE = 0.04f;
     private static final UUID HELMET_BONUS = UUID.fromString("11111111-1111-1111-1111-111111111111");

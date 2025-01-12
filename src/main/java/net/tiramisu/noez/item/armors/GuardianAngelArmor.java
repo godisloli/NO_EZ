@@ -60,7 +60,6 @@ public class GuardianAngelArmor extends ArmorItem implements ArmorAttribute {
         pTooltipComponents.add(Component.translatable("noez.guardian_angel_" + toolTipId + ".tooltip1"));
         pTooltipComponents.add(Component.translatable("noez.guardian_angel_" + toolTipId + ".tooltip2"));
         pTooltipComponents.add(Component.translatable("noez.guardian_angel_cooldown.tooltip", COOLDOWN / 1200));
-
     }
 
     @Override
@@ -250,6 +249,10 @@ public class GuardianAngelArmor extends ArmorItem implements ArmorAttribute {
         }
     }
 
+    public static boolean isBroken(ItemStack itemStack) {
+        return itemStack.getDamageValue() >= itemStack.getMaxDamage() - 1;
+    }
+
     public float helmetValue() {
         return HELMET_VALUE;
     }
@@ -264,10 +267,6 @@ public class GuardianAngelArmor extends ArmorItem implements ArmorAttribute {
 
     public float bootsValue() {
         return BOOTS_VALUE;
-    }
-
-    public static boolean isBroken(ItemStack itemStack) {
-        return itemStack.getDamageValue() >= itemStack.getMaxDamage() - 1;
     }
 
     public String helmetTooltip() {
