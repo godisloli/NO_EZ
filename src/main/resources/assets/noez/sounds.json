@@ -89,7 +89,7 @@
       }
     ]
   },
-  "guardian": {
+  "royal_guardian": {
     "sounds": [
       {
         "name": "noez:guardian_1",
@@ -106,6 +106,13 @@
       {
         "name": "noez:guardian_4",
         "weight": 1
+      }
+    ]
+  },
+  "royal_guardian_explode": {
+    "sounds": [
+      {
+        "name": "noez:royal_guardian_explode"
       }
     ]
   }

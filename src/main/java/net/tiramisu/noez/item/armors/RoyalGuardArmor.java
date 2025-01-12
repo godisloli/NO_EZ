@@ -1,6 +1,5 @@
 package net.tiramisu.noez.item.armors;
 
-import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
@@ -55,6 +54,7 @@ public class RoyalGuardArmor extends ArmorItem implements ArmorAttribute {
         super.appendHoverText(pStack, pLevel, pTooltipComponents, pIsAdvanced);
         pTooltipComponents.add(Component.translatable("noez.royal_guard_" + toolTipId + ".tooltip1"));
         pTooltipComponents.add(Component.translatable("noez.royal_guard_" + toolTipId + ".tooltip2"));
+        pTooltipComponents.add(Component.translatable("noez.royal_guard_cooldown.tooltip", COOLDOWN / 20));
     }
 
     @Override
@@ -95,7 +95,7 @@ public class RoyalGuardArmor extends ArmorItem implements ArmorAttribute {
 
     private void addCumulativeDamage(Player player, float damage) {
         cumulativeDamage += damage;
-
+        System.out.println(cumulativeDamage);
         if (cumulativeDamage >= 30) {
             triggerAoEDamage(player);
             cumulativeDamage = 0;
@@ -104,7 +104,7 @@ public class RoyalGuardArmor extends ArmorItem implements ArmorAttribute {
 
     private void triggerAoEDamage(Player player) {
         Level level = player.level();
-        float aoeDamage = cumulativeDamage / 3f;
+        float aoeDamage = cumulativeDamage / 6f;
 
         List<Entity> nearbyEntities = level.getEntities(player, player.getBoundingBox().inflate(6),
                 entity -> entity instanceof LivingEntity && entity != player);
@@ -127,7 +127,7 @@ public class RoyalGuardArmor extends ArmorItem implements ArmorAttribute {
                     }
                 }
             }
-            level.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.GENERIC_EXPLODE, SoundSource.PLAYERS, 1.0F, 1.0F);
+            level.playSound(null, player.getX(), player.getY(), player.getZ(), NoezSounds.ROYAL_GUARDIAN_EXPLODE.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
             serverLevel.sendParticles(NoezParticles.ROYAL_EXPLOSION.get(), player.getX(), player.getY() + 0.2, player.getZ(), 1, 0, 0, 0, 0);
         }
     }
@@ -135,7 +135,7 @@ public class RoyalGuardArmor extends ArmorItem implements ArmorAttribute {
     private void fullSetBonus(Player player) {
         if (player.getHealth() < player.getMaxHealth() * 0.3 && !player.getCooldowns().isOnCooldown(this)) {
             player.addEffect(new MobEffectInstance(MobEffects.ABSORPTION, 15 * 20, 3));
-            player.level().playSound(null, player.getX(), player.getY(), player.getZ(), NoezSounds.GUARDIAN.get(), SoundSource.PLAYERS, 1, 1);
+            player.level().playSound(null, player.getX(), player.getY(), player.getZ(), NoezSounds.ROYAL_GUARDIAN_PROC.get(), SoundSource.PLAYERS, 1, 1);
             player.getCooldowns().addCooldown(this, COOLDOWN);
         }
     }
