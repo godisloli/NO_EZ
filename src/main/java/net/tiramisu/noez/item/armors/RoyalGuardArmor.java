@@ -1,7 +1,15 @@
 package net.tiramisu.noez.item.armors;
 
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -11,26 +19,33 @@ import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
+import net.minecraftforge.event.entity.living.LivingAttackEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 import net.tiramisu.noez.attribute.NoezAttributes;
 import net.tiramisu.noez.item.ArmorAttribute;
+import net.tiramisu.noez.particles.NoezParticles;
+import net.tiramisu.noez.sound.NoezSounds;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 import java.util.UUID;
 
+@Mod.EventBusSubscriber
 public class RoyalGuardArmor extends ArmorItem implements ArmorAttribute {
     private String toolTipId = "none";
     private static final int HELMET_VALUE = 2;
     private static final int CHESTPLATE_VALUE = 4;
-    private static final float LEGGINGS_VALUE = 0.2f;
-    private static final float BOOTS_VALUE = 0.15f;
+    private static final float LEGGINGS_VALUE = 20;
+    private static final float BOOTS_VALUE = 15;
     private static final UUID HELMET_BONUS = UUID.fromString("12112111-1111-1111-1111-111111111111");
     private static final UUID CHESTPLATE_BONUS = UUID.fromString("23222322-2222-2222-2222-222222222222");
     private static final UUID LEGGINGS_BONUS = UUID.fromString("34333433-3333-3333-3333-333333333333");
     private static final UUID BOOTS_BONUS = UUID.fromString("45445444-4444-4444-4444-444444444444");
-    private static final int COOLDOWN = 900 * 20;
-    
+    private static final int COOLDOWN = 120 * 20;
+    private float cumulativeDamage = 0;
+
     public RoyalGuardArmor(ArmorMaterial pMaterial, Type pType, Properties pProperties) {
         super(pMaterial, pType, pProperties);
     }
@@ -48,12 +63,10 @@ public class RoyalGuardArmor extends ArmorItem implements ArmorAttribute {
         if (hasFullRoyalGuardArmorSet(player)) {
             setTooltipID("full");
             fullSetBonus(player);
-            halfSetBonus(player);
         }
 
         if (hasHalfRoyalGuardArmorSet(player)) {
             setTooltipID("half");
-            halfSetBonus(player);
         }
 
         if (!hasHalfRoyalGuardArmorSet(player) && !hasFullRoyalGuardArmorSet(player)) {
@@ -70,12 +83,61 @@ public class RoyalGuardArmor extends ArmorItem implements ArmorAttribute {
         }
     }
 
-    private static void halfSetBonus(Player player) {
-
+    @SubscribeEvent
+    public static void onLivingAttack(LivingAttackEvent event) {
+        if (event.getEntity() instanceof Player player) {
+            if (hasHalfRoyalGuardArmorSet(player) || hasFullRoyalGuardArmorSet(player)) {
+                RoyalGuardArmor armor = (RoyalGuardArmor) player.getItemBySlot(EquipmentSlot.CHEST).getItem();
+                armor.addCumulativeDamage(player, event.getAmount());
+            }
+        }
     }
 
-    private static void fullSetBonus(Player player) {
+    private void addCumulativeDamage(Player player, float damage) {
+        cumulativeDamage += damage;
 
+        if (cumulativeDamage >= 30) {
+            triggerAoEDamage(player);
+            cumulativeDamage = 0;
+        }
+    }
+
+    private void triggerAoEDamage(Player player) {
+        Level level = player.level();
+        float aoeDamage = cumulativeDamage / 3f;
+
+        List<Entity> nearbyEntities = level.getEntities(player, player.getBoundingBox().inflate(6),
+                entity -> entity instanceof LivingEntity && entity != player);
+
+        if (!nearbyEntities.isEmpty() && level instanceof ServerLevel serverLevel) {
+            for (Entity entity : nearbyEntities) {
+                if (entity instanceof LivingEntity livingEntity) {
+                    livingEntity.hurt(player.damageSources().explosion(null), aoeDamage);
+                    double dx = livingEntity.getX() - player.getX();
+                    double dz = livingEntity.getZ() - player.getZ();
+                    double distance = Math.sqrt(dx * dx + dz * dz);
+
+                    if (distance > 0) {
+                        double knockbackStrength = 1;
+                        livingEntity.push(
+                                dx / distance * knockbackStrength,
+                                0.5,
+                                dz / distance * knockbackStrength
+                        );
+                    }
+                }
+            }
+            level.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.GENERIC_EXPLODE, SoundSource.PLAYERS, 1.0F, 1.0F);
+            serverLevel.sendParticles(NoezParticles.ROYAL_EXPLOSION.get(), player.getX(), player.getY() + 0.2, player.getZ(), 1, 0, 0, 0, 0);
+        }
+    }
+
+    private void fullSetBonus(Player player) {
+        if (player.getHealth() < player.getMaxHealth() * 0.3 && !player.getCooldowns().isOnCooldown(this)) {
+            player.addEffect(new MobEffectInstance(MobEffects.ABSORPTION, 15 * 20, 3));
+            player.level().playSound(null, player.getX(), player.getY(), player.getZ(), NoezSounds.GUARDIAN.get(), SoundSource.PLAYERS, 1, 1);
+            player.getCooldowns().addCooldown(this, COOLDOWN);
+        }
     }
 
     private static boolean hasFullRoyalGuardArmorSet(Player player) {

@@ -16,6 +16,7 @@ public class NoezSounds {
     public static final RegistryObject<SoundEvent> ECHO_ELYTRA_UPDRAFT = registerSoundEvent("echo_elytra_updraft");
     public static final RegistryObject<SoundEvent> KITSUNE_PROC = registerSoundEvent("kitsune_proc");
     public static final RegistryObject<SoundEvent> EXECUTION = registerSoundEvent("execution");
+    public static final RegistryObject<SoundEvent> GUARDIAN = registerSoundEvent("guardian");
 
     private static RegistryObject<SoundEvent> registerSoundEvent(String name) {
         return SOUND_EVENTS.register(name, () -> SoundEvent.createVariableRangeEvent(new ResourceLocation("noez", name)));

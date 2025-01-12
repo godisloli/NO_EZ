@@ -38,12 +38,6 @@ public class TwilightWitchHat extends ArmorItem implements ArmorAttribute, GeoIt
     }
 
     @Override
-    public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
-        super.appendHoverText(pStack, pLevel, pTooltipComponents, pIsAdvanced);
-        pTooltipComponents.add(Component.translatable("noez.developer_line.twilight"));
-    }
-
-    @Override
     public void onInventoryTick(ItemStack stack, Level level, Player player, int slotIndex, int selectedIndex) {
         super.onInventoryTick(stack, level, player, slotIndex, selectedIndex);
         if (player.getItemBySlot(EquipmentSlot.HEAD).getItem() instanceof TwilightWitchHat && !isBroken(player.getItemBySlot(EquipmentSlot.HEAD))) {

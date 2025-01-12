@@ -25,10 +25,7 @@ import net.tiramisu.noez.item.NoezItems;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-import java.util.UUID;
+import java.util.*;
 
 @Mod.EventBusSubscriber
 public class DruidArmor extends ArmorItem implements ArmorAttribute {
@@ -41,7 +38,8 @@ public class DruidArmor extends ArmorItem implements ArmorAttribute {
     private static final UUID CHESTPLATE_BONUS = UUID.fromString("22232222-2222-2222-2222-222222222222");
     private static final UUID LEGGINGS_BONUS = UUID.fromString("33333433-3333-3333-3333-333333333333");
     private static final UUID BOOTS_BONUS = UUID.fromString("44444445-4444-4444-4444-444444444444");
-    private static final List<Wolf> summonedWolves = new ArrayList<>();
+    private final List<Wolf> summonedWolves = new ArrayList<>();
+    private static final Map<Player, List<Wolf>> playerSummonedWolves = new HashMap<>();
     private static final int COOLDOWN = 15 * 20;
     private static final UUID PET_ATTACK_DAMAGE_BONUS_UUID = UUID.fromString("12345678-1234-5678-1234-567812345678");
     private static final double DAMAGE_BONUS_MULTIPLIER = 0.5;
@@ -100,30 +98,37 @@ public class DruidArmor extends ArmorItem implements ArmorAttribute {
 
     @SubscribeEvent
     public static void onPlayerDeath(LivingDeathEvent event) {
-        if (event.getEntity() instanceof Player) {
-            summonedWolves.forEach(wolf -> {
-                if (wolf.isAlive()) {
-                    wolf.discard();
-                }
-            });
-            summonedWolves.clear();
+        if (event.getEntity() instanceof Player player) {
+            List<Wolf> wolves = playerSummonedWolves.remove(player);
+            if (wolves != null) {
+                wolves.forEach(wolf -> {
+                    if (wolf.isAlive()) {
+                        wolf.discard();
+                    }
+                });
+            }
         }
     }
 
     @SubscribeEvent
     public static void logOut(PlayerEvent.PlayerLoggedOutEvent event) {
-        summonedWolves.forEach(wolf -> {
-            if (wolf.isAlive()) {
-                wolf.discard();
-            }
-        });
-        summonedWolves.clear();
+        Player player = event.getEntity();
+        List<Wolf> wolves = playerSummonedWolves.remove(player);
+        if (wolves != null) {
+            wolves.forEach(wolf -> {
+                if (wolf.isAlive()) {
+                    wolf.discard();
+                }
+            });
+        }
     }
 
     private void fullSetBonus(Player player) {
-        summonedWolves.removeIf(w -> !w.isAlive() || !hasFullDruidArmorSet(player) || w.getOwner() == null || !w.getOwner().isAlive());
+        List<Wolf> wolves = playerSummonedWolves.computeIfAbsent(player, k -> new ArrayList<>());
 
-        if (summonedWolves.size() >= 4) {
+        wolves.removeIf(w -> !w.isAlive() || !hasFullDruidArmorSet(player) || w.getOwner() == null || !w.getOwner().isAlive());
+
+        if (wolves.size() >= 4) {
             return;
         }
 
@@ -147,7 +152,7 @@ public class DruidArmor extends ArmorItem implements ArmorAttribute {
             wolf.setCustomName(Component.translatable("noez.druid_wolf", name));
             wolf.setPersistenceRequired();
             serverLevel.addFreshEntity(wolf);
-            summonedWolves.add(wolf);
+            wolves.add(wolf);
         }
     }
 

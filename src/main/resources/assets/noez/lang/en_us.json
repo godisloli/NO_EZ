@@ -84,6 +84,10 @@
   "item.noez.druid_chestplate": "Druid Chestplate",
   "item.noez.druid_helmet": "Druid Helmet",
   "item.noez.druid_leggings": "Druid Leggings",
+  "item.noez.royal_guard_boots": "§bRoyal Guard Boots",
+  "item.noez.royal_guard_chestplate": "§bRoyal Guard Chestplate",
+  "item.noez.royal_guard_helmet": "§bRoyal Guard Helmet",
+  "item.noez.royal_guard_leggings": "§bRoyal Guard Leggings",
 
   "noez.relocator.tooltip1": "§6§lOn use:§r Blink to a short distance where you facing",
   "noez.relocator.tooltip2": "§6§lCooldown:§r 8 seconds",
@@ -123,13 +127,13 @@
   "noez.magic_damage_bonus": "+%s%% Magic Damage",
   "noez.mana_regen_bonus": "+%s Mana Regeneration",
   "noez.health_bonus": "+%s Bonus Health",
-  "noez.projectile_reduction_bonus": "+%s Projectile Protection",
+  "noez.projectile_reduction_bonus": "+%s%% Projectile Protection",
   "noez.movement_speed_bonus": "+%s Movement Speed",
   "noez.heal_regen_bonus": "+%s Health Regeneration",
   "noez.crit_bonus": "+%s%% Crit Chance",
   "noez.damage_bonus": "+%s Attack Damage",
   "noez.tenacity_bonus": "+%s%% Tenacity",
-  "noez.magic_resistant_bonus": "+%s Magic Resistant",
+  "noez.magic_resistant_bonus": "+%s%% Magic Resistant",
   "noez.undeadslayer": "§5§lUndead Slayer:§r Bypass undead invulnerable",
   "noez.druid_wolf": "§6§lDruid Wolf§r - %s",
 
@@ -170,6 +174,12 @@
   "noez.druid_half.tooltip2": "§4§lFull Set:§7 Summon a wolf that fight for you, up to 4 wolves",
   "noez.druid_full.tooltip1": "§5§lHalf Set:§r Increase summons/pets damage",
   "noez.druid_full.tooltip2": "§4§lFull Set:§r Summon a wolf that fight for you, up to 4 wolves",
+  "noez.royal_guard_none.tooltip1": "§5§lHalf Set:§7 Releases a shockwave, damages and pushes enemies back upon taking enough damage",
+  "noez.royal_guard_none.tooltip2": "§4§lFull Set:§7 Gain Absorption on low health",
+  "noez.royal_guard_half.tooltip1": "§5§lHalf Set:§r Releases a shockwave, damages and pushes enemies back upon taking enough damage",
+  "noez.royal_guard_half.tooltip2": "§4§lFull Set:§7 Gain Absorption on low health",
+  "noez.royal_guard_full.tooltip1": "§5§lHalf Set:§r Releases a shockwave, damages and pushes enemies back upon taking enough damage",
+  "noez.royal_guard_full.tooltip2": "§4§lFull Set:§r Gain §eAbsorption§r on low health",
 
   "wip": "§7========WORK IN PROGRESS========"
 }

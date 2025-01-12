@@ -10,15 +10,15 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import org.joml.Vector3f;
 
-public class BloodSlash extends TextureSheetParticle {
+public class RoyalExplosionParticles extends TextureSheetParticle {
 
     private SpriteSet spriteSet;
 
-    protected BloodSlash(ClientLevel pLevel, double pX, double pY, double pZ, SpriteSet spriteSet, double pXSpeed, double pYSpeed, double pZSpeed) {
+    protected RoyalExplosionParticles(ClientLevel pLevel, double pX, double pY, double pZ, SpriteSet spriteSet, double pXSpeed, double pYSpeed, double pZSpeed) {
         super(pLevel, pX, pY, pZ, pXSpeed, pYSpeed, pZSpeed);
         this.age = 0;
         this.lifetime = 13;
-        this.quadSize = 3F;
+        this.quadSize = 6F;
         this.spriteSet = spriteSet;
         this.rCol = 1f;
         this.gCol = 1f;
@@ -85,7 +85,7 @@ public class BloodSlash extends TextureSheetParticle {
 
         @Override
         public Particle createParticle(SimpleParticleType particleType, ClientLevel level, double x, double y, double z, double dx, double dy, double dz) {
-            return new BloodSlash(level, x, y, z, this.spriteSet, dx, dy, dz);
+            return new RoyalExplosionParticles(level, x, y, z, this.spriteSet, dx, dy, dz);
         }
     }
 }

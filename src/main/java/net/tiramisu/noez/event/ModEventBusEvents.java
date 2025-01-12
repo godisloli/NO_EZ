@@ -37,12 +37,17 @@ public class ModEventBusEvents {
 
         event.registerSpriteSet(
                 NoezParticles.BLOOD_SLASH.get(),
-                spriteSet -> new BloodSlash.Provider(spriteSet)
+                spriteSet -> new BloodSlashParticles.Provider(spriteSet)
         );
 
         event.registerSpriteSet(
                 NoezParticles.BLEED.get(),
-                spriteSet -> new Bleed.Provider(spriteSet)
+                spriteSet -> new BleedParticles.Provider(spriteSet)
+        );
+
+        event.registerSpriteSet(
+                NoezParticles.ROYAL_EXPLOSION.get(),
+                spriteSet -> new RoyalExplosionParticles.Provider(spriteSet)
         );
     }
 

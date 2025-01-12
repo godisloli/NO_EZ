@@ -6,8 +6,8 @@ import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
-public class Bleed extends TextureSheetParticle {
-    protected Bleed(ClientLevel pLevel, double pX, double pY, double pZ, SpriteSet spriteSet, double pXSpeed, double pYSpeed, double pZSpeed) {
+public class BleedParticles extends TextureSheetParticle {
+    protected BleedParticles(ClientLevel pLevel, double pX, double pY, double pZ, SpriteSet spriteSet, double pXSpeed, double pYSpeed, double pZSpeed) {
         super(pLevel, pX, pY, pZ, pXSpeed, pYSpeed, pZSpeed);
         this.lifetime = 20 + this.random.nextInt(10);
         this.gravity = 1F;
@@ -39,7 +39,7 @@ public class Bleed extends TextureSheetParticle {
         }
 
         public Particle createParticle(SimpleParticleType particleType, ClientLevel level, double x, double y, double z, double dx, double dy, double dz){
-            return new Bleed(level, x, y, z, this.spriteSet, dx, dy, dz);
+            return new BleedParticles(level, x, y, z, this.spriteSet, dx, dy, dz);
         }
     }
 }

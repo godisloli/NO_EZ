@@ -14,6 +14,9 @@ public enum NoezArmorTier implements ArmorMaterial {
     ECHO("echo", 25, new int[]{4, 9, 7, 4}, 15,
             SoundEvents.SCULK_CATALYST_PLACE, 4.0F, 0.2F, () -> Ingredient.of(NoezItems.WARDEN_HEART.get())),
 
+    ROYAL_GUARD("royal_guard", 27, new int[]{3, 9, 8, 3}, 0,
+            SoundEvents.ARMOR_EQUIP_NETHERITE, 4.0F, 0.3F, () -> Ingredient.EMPTY),
+
     GUARDIAN_ANGEL("guardian_angel", 22, new int[]{3, 8, 7, 3}, 15,
             SoundEvents.ARMOR_EQUIP_NETHERITE, 2.0F, 0.2F, () -> Ingredient.EMPTY),
 

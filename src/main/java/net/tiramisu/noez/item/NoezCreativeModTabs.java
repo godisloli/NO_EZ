@@ -115,6 +115,10 @@ public class NoezCreativeModTabs {
                         pOutput.accept(NoezItems.DRUID_CHESTPLATE.get());
                         pOutput.accept(NoezItems.DRUID_LEGGINGS.get());
                         pOutput.accept(NoezItems.DRUID_BOOTS.get());
+                        pOutput.accept(NoezItems.ROYAL_GUARD_HELMET.get());
+                        pOutput.accept(NoezItems.ROYAL_GUARD_CHESTPLATE.get());
+                        pOutput.accept(NoezItems.ROYAL_GUARD_LEGGINGS.get());
+                        pOutput.accept(NoezItems.ROYAL_GUARD_BOOTS.get());
                     })
                     .build());
 

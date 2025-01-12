@@ -88,5 +88,25 @@
         "name": "noez:execution"
       }
     ]
+  },
+  "guardian": {
+    "sounds": [
+      {
+        "name": "noez:guardian_1",
+        "weight": 1
+      },
+      {
+        "name": "noez:guardian_2",
+        "weight": 1
+      },
+      {
+        "name": "noez:guardian_3",
+        "weight": 1
+      },
+      {
+        "name": "noez:guardian_4",
+        "weight": 1
+      }
+    ]
   }
 }
