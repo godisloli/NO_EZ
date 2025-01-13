@@ -13,7 +13,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(DynamicTexture.class)
 public class DynamicTextureMixin implements TextureAccess {
     @Shadow
-    NativeImage pixels;
+    private NativeImage pixels;
 
     private boolean enableHook = false;
 
