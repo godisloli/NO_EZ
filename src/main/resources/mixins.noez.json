@@ -11,16 +11,21 @@
     "ItemStackMixin",
     "LivingEntityMixin",
     "MilkBucketMixin",
+    "MobEffectInstanceAccessor",
     "MobMixin",
     "MouseHandlerMixin",
     "PlayerMixin",
     "ServerPlayerMixin",
     "SwordItemMixin",
     "VillagerMixin",
-    "VillagerTradeMixin",
-    "MobEffectInstanceAccessor"
+    "VillagerTradeMixin"
   ],
   "injectors": {
     "defaultRequire": 1
-  }
+  },
+  "client": [
+    "DynamicTextureMixin",
+    "GameRendererMixin",
+    "LightTextureMixin"
+  ]
 }
