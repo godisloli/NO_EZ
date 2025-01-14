@@ -36,7 +36,7 @@ public enum NoezArmorTier implements ArmorMaterial {
             SoundEvents.ARMOR_EQUIP_NETHERITE, 4, 0.5F, () -> Ingredient.of(Items.NETHERITE_INGOT)),
 
     SYLVAN("sylvan", 27, new int[]{3, 8, 6, 3}, 0,
-            SoundEvents.SNOW_PLACE, 5.0F, 0.5F, () -> Ingredient.EMPTY),
+            SoundEvents.ARMOR_EQUIP_LEATHER, 5.0F, 0.5F, () -> Ingredient.EMPTY),
 
     CACTUS("cactus", 14, new int[]{1, 3, 2, 1}, 0,
             SoundEvents.ARMOR_EQUIP_LEATHER, 0, 0, () -> Ingredient.of(Items.CACTUS)),
