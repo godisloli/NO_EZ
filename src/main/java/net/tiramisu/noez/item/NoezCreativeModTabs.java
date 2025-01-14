@@ -119,6 +119,10 @@ public class NoezCreativeModTabs {
                         pOutput.accept(NoezItems.ROYAL_GUARD_CHESTPLATE.get());
                         pOutput.accept(NoezItems.ROYAL_GUARD_LEGGINGS.get());
                         pOutput.accept(NoezItems.ROYAL_GUARD_BOOTS.get());
+                        pOutput.accept(NoezItems.SYLVAN_HELMET.get());
+                        pOutput.accept(NoezItems.SYLVAN_CHESTPLATE.get());
+                        pOutput.accept(NoezItems.SYLVAN_LEGGINGS.get());
+                        pOutput.accept(NoezItems.SYLVAN_BOOTS.get());
                     })
                     .build());
 

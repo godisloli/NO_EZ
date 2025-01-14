@@ -33,6 +33,9 @@ public class NoezParticles {
     public static final RegistryObject<SimpleParticleType> ROYAL_EXPLOSION = PARTICLES.register("royal_explode",
             () -> new SimpleParticleType(true));
 
+    public static final RegistryObject<SimpleParticleType> SYLVAN_ROOT= PARTICLES.register("sylvan_root",
+            () -> new SimpleParticleType(true));
+
     public static void register(IEventBus eventBus) {
         PARTICLES.register(eventBus);
     }

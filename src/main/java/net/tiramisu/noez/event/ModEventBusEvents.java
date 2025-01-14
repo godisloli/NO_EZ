@@ -49,6 +49,11 @@ public class ModEventBusEvents {
                 NoezParticles.ROYAL_EXPLOSION.get(),
                 spriteSet -> new RoyalExplosionParticles.Provider(spriteSet)
         );
+
+        event.registerSpriteSet(
+                NoezParticles.SYLVAN_ROOT.get(),
+                spriteSet -> new SylvanRootParticles.Provider(spriteSet)
+        );
     }
 
     @SubscribeEvent

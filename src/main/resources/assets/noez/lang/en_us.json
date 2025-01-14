@@ -88,6 +88,10 @@
   "item.noez.royal_guard_chestplate": "§bRoyal Guard Chestplate",
   "item.noez.royal_guard_helmet": "§bRoyal Guard Helmet",
   "item.noez.royal_guard_leggings": "§bRoyal Guard Leggings",
+  "item.noez.sylvan_boots": "§2Sylvan Boots",
+  "item.noez.sylvan_chestplate": "§2Sylvan Chestplate",
+  "item.noez.sylvan_helmet": "§2Sylvan Helmet",
+  "item.noez.sylvan_leggings": "§2Sylvan Leggings",
 
   "noez.relocator.tooltip1": "§6§lOn use:§r Blink to a short distance where you facing",
   "noez.relocator.tooltip2": "§6§lCooldown:§r 8 seconds",
@@ -181,6 +185,13 @@
   "noez.royal_guard_full.tooltip1": "§5§lHalf Set:§r Releases a shockwave, damages and pushes enemies back upon taking enough damage",
   "noez.royal_guard_full.tooltip2": "§4§lFull Set:§r Gain §eAbsorption§r on low health",
   "noez.royal_guard_cooldown.tooltip": "§6§lCooldown: §r%s seconds",
+  "noez.sylvan_none.tooltip1": "§5§lHalf Set:§7 If you have 30 or more health, constantly regenerate health points increase by lost health in day time",
+  "noez.sylvan_none.tooltip2": "§4§lFull Set:§7 Deal damage to all monsters around you and §eRoot§7 them",
+  "noez.sylvan_half.tooltip1": "§5§lHalf Set:§r If you have 30 or more health, constantly regenerate health points increase by lost health in day time",
+  "noez.sylvan_half.tooltip2": "§4§lFull Set:§7 Deal damage to all monsters around you and §eRoot§7 them",
+  "noez.sylvan_full.tooltip1": "§5§lHalf Set:§r If you have 30 or more health, constantly regenerate health points increase by lost health in day time",
+  "noez.sylvan_full.tooltip2": "§4§lFull Set:§r Deal damage to all monsters around you and §eRoot§r them",
+  "noez.sylvan_cooldown.tooltip": "§6§lCooldown: §r%s seconds",
 
   "wip": "§7========WORK IN PROGRESS========"
 }

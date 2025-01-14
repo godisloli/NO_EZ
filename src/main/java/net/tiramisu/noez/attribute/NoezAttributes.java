@@ -94,6 +94,7 @@ public class NoezAttributes {
                             0,
                             95
                     ));
+
     public static void register(IEventBus eventBus) {
         ATTRIBUTES.register(eventBus);
     }

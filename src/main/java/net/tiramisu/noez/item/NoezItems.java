@@ -230,6 +230,18 @@ public class NoezItems {
     public static final RegistryObject<Item> ROYAL_GUARD_BOOTS = ITEMS.register("royal_guard_boots",
             () -> new RoyalGuardArmor(NoezArmorTier.ROYAL_GUARD, ArmorItem.Type.BOOTS, new Item.Properties()));
 
+    public static final RegistryObject<Item> SYLVAN_HELMET = ITEMS.register("sylvan_helmet",
+            () -> new SylvanArmor(NoezArmorTier.SYLVAN, ArmorItem.Type.HELMET, new Item.Properties()));
+
+    public static final RegistryObject<Item> SYLVAN_CHESTPLATE = ITEMS.register("sylvan_chestplate",
+            () -> new SylvanArmor(NoezArmorTier.SYLVAN, ArmorItem.Type.CHESTPLATE, new Item.Properties()));
+
+    public static final RegistryObject<Item> SYLVAN_LEGGINGS = ITEMS.register("sylvan_leggings",
+            () -> new SylvanArmor(NoezArmorTier.SYLVAN, ArmorItem.Type.LEGGINGS, new Item.Properties()));
+
+    public static final RegistryObject<Item> SYLVAN_BOOTS = ITEMS.register("sylvan_boots",
+            () -> new SylvanArmor(NoezArmorTier.SYLVAN, ArmorItem.Type.BOOTS, new Item.Properties()));
+
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
     }
