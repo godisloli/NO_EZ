@@ -123,6 +123,10 @@ public class NoezCreativeModTabs {
                         pOutput.accept(NoezItems.SYLVAN_CHESTPLATE.get());
                         pOutput.accept(NoezItems.SYLVAN_LEGGINGS.get());
                         pOutput.accept(NoezItems.SYLVAN_BOOTS.get());
+                        pOutput.accept(NoezItems.END_WALKER_HELMET.get());
+                        pOutput.accept(NoezItems.END_WALKER_CHESTPLATE.get());
+                        pOutput.accept(NoezItems.END_WALKER_LEGGINGS.get());
+                        pOutput.accept(NoezItems.END_WALKER_BOOTS.get());
                     })
                     .build());
 

@@ -1,6 +1,9 @@
 package net.tiramisu.noez.item.armors;
 
+import net.minecraft.core.particles.ParticleOptions;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -17,6 +20,7 @@ import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.event.entity.ProjectileImpactEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 import net.tiramisu.noez.attribute.NoezAttributes;
 import net.tiramisu.noez.item.ArmorAttribute;
 import org.jetbrains.annotations.NotNull;
@@ -25,6 +29,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 import java.util.UUID;
 
+@Mod.EventBusSubscriber
 public class EndWalkerArmor extends ArmorItem implements ArmorAttribute {
     private String toolTipId = "none";
     private static final float HELMET_VALUE = 0.25f;
@@ -35,8 +40,10 @@ public class EndWalkerArmor extends ArmorItem implements ArmorAttribute {
     private static final UUID CHESTPLATE_BONUS = UUID.fromString("23225222-2222-2222-2222-222223222222");
     private static final UUID LEGGINGS_BONUS = UUID.fromString("34333373-3333-3333-3333-333333383333");
     private static final UUID BOOTS_BONUS = UUID.fromString("42445444-4444-4444-4444-444444454444");
-    private static final UUID HALF_SET_BONUS = UUID.fromString("13112413-7222-3233-4434-555556555555");
-    
+    private static final UUID HALF_SET_BONUS_1 = UUID.fromString("13112413-7222-3233-4434-555556555555");
+    private static final UUID HALF_SET_BONUS_2 = UUID.fromString("13142413-7223-3231-4434-555556555555");
+
+
     public EndWalkerArmor(ArmorMaterial pMaterial, Type pType, Properties pProperties) {
         super(pMaterial, pType, pProperties);
     }
@@ -73,7 +80,8 @@ public class EndWalkerArmor extends ArmorItem implements ArmorAttribute {
 
         if (!hasHalfEndWalkerArmorSet(player) && !hasFullEndWalkerArmorSet(player)) {
             setTooltipID("none");
-            removeModifier(player.getAttribute(NoezAttributes.CRIT_DAMAGE.get()), HALF_SET_BONUS);
+            removeModifier(player.getAttribute(NoezAttributes.CRIT_DAMAGE.get()), HALF_SET_BONUS_1);
+            removeModifier(player.getAttribute(NoezAttributes.CRIT_CHANCE.get()), HALF_SET_BONUS_2);
         }
 
         if (!level.isClientSide) {
@@ -93,7 +101,7 @@ public class EndWalkerArmor extends ArmorItem implements ArmorAttribute {
                 MobEffectInstance currentEffect = serverPlayer.getEffect(MobEffects.DAMAGE_BOOST);
                 if (currentEffect != null) {
                     int currentAmplifier = currentEffect.getAmplifier();
-                    serverPlayer.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 100, Math.min(currentAmplifier + 1, 3)));
+                    serverPlayer.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 100, Math.min(currentAmplifier + 1, 2)));
                 } else {
                     serverPlayer.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 100, 0));
                 }
@@ -103,11 +111,29 @@ public class EndWalkerArmor extends ArmorItem implements ArmorAttribute {
 
     private void halfSetBonus(Player player) {
         if (player.getHealth() < player.getMaxHealth() * 0.5) {
-            AttributeInstance attributeInstance;
-            AttributeModifier modifier;
-            attributeInstance = player.getAttribute(NoezAttributes.CRIT_DAMAGE.get());
-            modifier = new AttributeModifier(HALF_SET_BONUS, "End Walker half set bonus", 0.5, AttributeModifier.Operation.ADDITION);
-            applyModifier(attributeInstance, modifier);
+            AttributeInstance attributeInstance1;
+            AttributeModifier modifier1;
+            attributeInstance1 = player.getAttribute(NoezAttributes.CRIT_DAMAGE.get());
+            modifier1 = new AttributeModifier(HALF_SET_BONUS_1, "End Walker half set bonus 1", 0.25, AttributeModifier.Operation.ADDITION);
+            applyModifier(attributeInstance1, modifier1);
+
+            AttributeInstance attributeInstance2;
+            AttributeModifier modifier2;
+            attributeInstance2 = player.getAttribute(NoezAttributes.CRIT_CHANCE.get());
+            modifier2 = new AttributeModifier(HALF_SET_BONUS_2, "End Walker half set bonus 2", 0.25, AttributeModifier.Operation.ADDITION);
+            applyModifier(attributeInstance2, modifier2);
+
+            if (player.level() instanceof ServerLevel serverLevel) {
+                serverLevel.sendParticles(
+                        ParticleTypes.REVERSE_PORTAL,
+                        player.getX(),
+                        player.getY(),
+                        player.getZ(),
+                        3,
+                        0.5, 0.5, 0.5,
+                        0.1
+                );
+            }
         }
     }
 
@@ -198,27 +224,27 @@ public class EndWalkerArmor extends ArmorItem implements ArmorAttribute {
 
     @Override
     public String helmetTooltip() {
-        return "";
+        return "noez.attack_speed_bonus";
     }
 
     @Override
     public String chesplateTooltip() {
-        return "";
+        return "noez.damage_bonus";
     }
 
     @Override
     public String leggingsTooltip() {
-        return "";
+        return "noez.crit_damage_bonus";
     }
 
     @Override
     public String bootsTooltip() {
-        return "";
+        return "noez.crit_bonus";
     }
 
     @Override
     public float helmetValue() {
-        return HELMET_VALUE;
+        return HELMET_VALUE * 100;
     }
 
     @Override
