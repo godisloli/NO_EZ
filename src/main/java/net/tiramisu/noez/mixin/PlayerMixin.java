@@ -56,12 +56,16 @@ public abstract class PlayerMixin {
             Item mainHandItem = mainHandStack.getItem();
             if (mainHandItem instanceof Critable) {
                 double critChance = Math.max(0,((Critable) mainHandItem).getCritChance() + (player.getAttribute(NoezAttributes.CRIT_CHANCE.get()).getValue() / 100));
+                double extraDamage = 0;
+                if (critChance > 1) {
+                    extraDamage = 1 - critChance;
+                }
                 double random = player.level().getRandom().nextDouble();
                 boolean isCrit = random < critChance || ((Critable) mainHandItem).isAlwaysCrit() || targetEntity.hasEffect(NoezEffects.FROSTBITE.get());
                 if (isCrit) {
                     mainHandItem.hurtEnemy(mainHandStack, targetEntity, player);
                     float baseDamage = (float) player.getAttribute(Attributes.ATTACK_DAMAGE).getValue() + (float) (player.getAttribute(NoezAttributes.CRIT_DAMAGE.get()).getValue() / 100);
-                    float critDamage = baseDamage * (float) ((Critable) mainHandItem).getCritDamageAmplifier();
+                    float critDamage = baseDamage * ((float) ((Critable) mainHandItem).getCritDamageAmplifier() + (float) extraDamage);
                     targetEntity.hurt(player.damageSources().playerAttack(player), critDamage);
                     player.level().playSound(null, player.getX(), player.getY(), player.getZ(),
                             SoundEvents.PLAYER_ATTACK_CRIT, SoundSource.PLAYERS, 1.0f, 1.0f);

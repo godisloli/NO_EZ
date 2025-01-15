@@ -11,6 +11,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.SwordItem;
 import net.minecraft.world.level.block.state.BlockState;
 import net.tiramisu.noez.attribute.NoezAttributes;
 import net.tiramisu.noez.effect.NoezEffects;
@@ -36,12 +37,19 @@ public abstract class LivingEntityMixin extends Entity {
         super(entityType, world);
     }
 
-    @Inject(method = "hurt", at = @At("HEAD"), cancellable = true)
-    private void reduceIFrames(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
+    @Inject(method = "hurt", at = @At("HEAD"))
+    private void reduceArrowIFrames(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
         if (source.getDirectEntity() instanceof AbstractArrow arrow) {
             if (arrow.getOwner() instanceof LivingEntity) {
                 this.invulnerableTime = 1;
             }
+        }
+    }
+
+    @Inject(method = "hurt", at = @At("HEAD"))
+    private void reduceSwordIFrames(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
+        if (source.getDirectEntity() instanceof Player player) {
+            this.invulnerableTime = 1;
         }
     }
 

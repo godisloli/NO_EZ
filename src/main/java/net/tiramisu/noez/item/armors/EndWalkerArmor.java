@@ -34,8 +34,8 @@ public class EndWalkerArmor extends ArmorItem implements ArmorAttribute {
     private String toolTipId = "none";
     private static final float HELMET_VALUE = 0.25f;
     private static final int CHESTPLATE_VALUE = 2;
-    private static final float LEGGINGS_VALUE = 0.25f;
-    private static final float BOOTS_VALUE = 0.15f;
+    private static final float LEGGINGS_VALUE = 25f;
+    private static final float BOOTS_VALUE = 25f;
     private static final UUID HELMET_BONUS = UUID.fromString("12111311-1111-1111-1111-111111141111");
     private static final UUID CHESTPLATE_BONUS = UUID.fromString("23225222-2222-2222-2222-222223222222");
     private static final UUID LEGGINGS_BONUS = UUID.fromString("34333373-3333-3333-3333-333333383333");
@@ -92,6 +92,9 @@ public class EndWalkerArmor extends ArmorItem implements ArmorAttribute {
                 removeBonus(player, slot);
             }
         }
+
+        System.out.println(player.getAttributeValue(NoezAttributes.CRIT_DAMAGE.get()) + "crit damage");
+        System.out.println(player.getAttributeValue(NoezAttributes.CRIT_CHANCE.get()) + "crit chance");
     }
 
     @SubscribeEvent
@@ -114,13 +117,13 @@ public class EndWalkerArmor extends ArmorItem implements ArmorAttribute {
             AttributeInstance attributeInstance1;
             AttributeModifier modifier1;
             attributeInstance1 = player.getAttribute(NoezAttributes.CRIT_DAMAGE.get());
-            modifier1 = new AttributeModifier(HALF_SET_BONUS_1, "End Walker half set bonus 1", 0.25, AttributeModifier.Operation.ADDITION);
+            modifier1 = new AttributeModifier(HALF_SET_BONUS_1, "End Walker half set bonus 1", 25, AttributeModifier.Operation.ADDITION);
             applyModifier(attributeInstance1, modifier1);
 
             AttributeInstance attributeInstance2;
             AttributeModifier modifier2;
             attributeInstance2 = player.getAttribute(NoezAttributes.CRIT_CHANCE.get());
-            modifier2 = new AttributeModifier(HALF_SET_BONUS_2, "End Walker half set bonus 2", 0.25, AttributeModifier.Operation.ADDITION);
+            modifier2 = new AttributeModifier(HALF_SET_BONUS_2, "End Walker half set bonus 2", 50, AttributeModifier.Operation.ADDITION);
             applyModifier(attributeInstance2, modifier2);
 
             if (player.level() instanceof ServerLevel serverLevel) {
@@ -254,11 +257,11 @@ public class EndWalkerArmor extends ArmorItem implements ArmorAttribute {
 
     @Override
     public float leggingsValue() {
-        return LEGGINGS_VALUE * 100;
+        return LEGGINGS_VALUE;
     }
 
     @Override
     public float bootsValue() {
-        return BOOTS_VALUE * 100;
+        return BOOTS_VALUE;
     }
 }

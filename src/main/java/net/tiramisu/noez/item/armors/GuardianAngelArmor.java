@@ -32,7 +32,7 @@ public class GuardianAngelArmor extends ArmorItem implements ArmorAttribute {
     private static final int HELMET_VALUE = 1;
     private static final int CHESTPLATE_VALUE = 20;
     private static final int LEGGINGS_VALUE = 4;
-    private static final float BOOTS_VALUE = 20f;
+    private static final float BOOTS_VALUE = 20;
     private static final UUID HELMET_BONUS = UUID.fromString("12111111-1111-1111-1111-111111111111");
     private static final UUID CHESTPLATE_BONUS = UUID.fromString("23222222-2222-2222-2222-222222222222");
     private static final UUID LEGGINGS_BONUS = UUID.fromString("34333333-3333-3333-3333-333333333333");
@@ -197,7 +197,7 @@ public class GuardianAngelArmor extends ArmorItem implements ArmorAttribute {
                 applyModifier(attributeInstance, modifier);
                 break;
             case CHEST:
-                attributeInstance = player.getAttribute(NoezAttributes.MAGIC_REDUCTION.get());
+                attributeInstance = player.getAttribute(NoezAttributes.CRIT_CHANCE.get());
                 modifier = new AttributeModifier(CHESTPLATE_BONUS, "Guardian Angel chestplate bonus", CHESTPLATE_VALUE, AttributeModifier.Operation.ADDITION);
                 applyModifier(attributeInstance, modifier);
                 break;
@@ -207,7 +207,7 @@ public class GuardianAngelArmor extends ArmorItem implements ArmorAttribute {
                 applyModifier(attributeInstance, modifier);
                 break;
             case FEET:
-                attributeInstance = player.getAttribute(NoezAttributes.CRIT_CHANCE.get());
+                attributeInstance = player.getAttribute(NoezAttributes.MAGIC_REDUCTION.get());
                 modifier = new AttributeModifier(BOOTS_BONUS, "Guardian Angel boots bonus", BOOTS_VALUE, AttributeModifier.Operation.ADDITION);
                 applyModifier(attributeInstance, modifier);
                 break;
@@ -223,7 +223,7 @@ public class GuardianAngelArmor extends ArmorItem implements ArmorAttribute {
                 removeModifier(attributeInstance, HELMET_BONUS);
                 break;
             case CHEST:
-                attributeInstance = player.getAttribute(NoezAttributes.MAGIC_REDUCTION.get());
+                attributeInstance = player.getAttribute(NoezAttributes.CRIT_CHANCE.get());
                 removeModifier(attributeInstance, CHESTPLATE_BONUS);
                 break;
             case LEGS:
@@ -231,7 +231,7 @@ public class GuardianAngelArmor extends ArmorItem implements ArmorAttribute {
                 removeModifier(attributeInstance, LEGGINGS_BONUS);
                 break;
             case FEET:
-                attributeInstance = player.getAttribute(NoezAttributes.CRIT_CHANCE.get());
+                attributeInstance = player.getAttribute(NoezAttributes.MAGIC_REDUCTION.get());
                 removeModifier(attributeInstance, BOOTS_BONUS);
                 break;
         }
@@ -274,7 +274,7 @@ public class GuardianAngelArmor extends ArmorItem implements ArmorAttribute {
     }
 
     public String chesplateTooltip() {
-        return "noez.magic_resistant_bonus";
+        return "noez.crit_bonus";
     }
 
     public String leggingsTooltip() {
@@ -282,6 +282,6 @@ public class GuardianAngelArmor extends ArmorItem implements ArmorAttribute {
     }
 
     public String bootsTooltip() {
-        return "noez.crit_bonus";
+        return "noez.magic_resistant_bonus";
     }
 }
