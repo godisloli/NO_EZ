@@ -64,7 +64,7 @@ public class NoezAttributes {
                             "attribute.name.generic.crit_chance",
                             0.0,
                             0.0,
-                            100.0
+                            999.0
                     ).setSyncable(true));
 
     public static final RegistryObject<Attribute> CRIT_DAMAGE =
