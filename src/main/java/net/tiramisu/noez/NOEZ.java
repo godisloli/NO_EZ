@@ -122,6 +122,7 @@ public class NOEZ
                 renderer.addLayer(new EchoHelmetRenderer<>(renderer, event.getEntityModels()));
                 renderer.addLayer(new GuardianAngelHelmetRenderer<>(renderer, event.getEntityModels()));
                 renderer.addLayer(new EchoElytraRenderer<>(renderer, event.getEntityModels()));
+                renderer.addLayer(new EndWalkerElytraRenderer<>(renderer, event.getEntityModels()));
             });
         }
     }

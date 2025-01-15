@@ -16,8 +16,8 @@
   "item.noez.moonsilver_sword": "Moonsilver Sword",
   "item.noez.natura_blade" :"§2Natura Blade",
   "item.noez.obsidian_shard": "Obsidian Shard",
-  "item.noez.imperialite": "§5Imperialite",
-  "item.noez.imperialite_sword": "§5Imperialite Sword",
+  "item.noez.brilliance_crystal": "§5Brilliance Crystal",
+  "item.noez.brilliance_sword": "§5Brilliance Sword",
   "item.noez.iridescent_bow": "§dIridescent Bow",
   "item.noez.void_stalker": "§5Void Stalker",
   "item.noez.obsidian_blade": "Obsidian Blade",
@@ -82,7 +82,7 @@
   "item.noez.twilight_witch_hat": "Twilight Witch Hat",
   "item.noez.druid_boots": "Druid Boots",
   "item.noez.druid_chestplate": "Druid Chestplate",
-  "item.noez.druid_helmet": "Druid Helmet",
+  "item.noez.druid_helmet": "Druid Garland",
   "item.noez.druid_leggings": "Druid Leggings",
   "item.noez.royal_guard_boots": "§bRoyal Guard Boots",
   "item.noez.royal_guard_chestplate": "§bRoyal Guard Chestplate",
@@ -96,6 +96,7 @@
   "item.noez.end_walker_chestplate": "§3End Walker Chestplate",
   "item.noez.end_walker_helmet": "§3End Walker Helmet",
   "item.noez.end_walker_leggings": "§3End Walker Leggings",
+  "item.noez.end_walker_elytra": "§3End Walker Elytra",
 
   "noez.relocator.tooltip1": "§6§lOn use:§r Blink to a short distance where you facing",
   "noez.relocator.tooltip2": "§6§lCooldown:§r 8 seconds",
@@ -204,6 +205,7 @@
   "noez.end_walker_half.tooltip2": "§4§lFull Set:§7 After teleport with Ender Pearl, gain a level up of §cStrength",
   "noez.end_walker_full.tooltip1": "§5§lHalf Set:§r Gain Critical damage and Critical Chance while your health is half or lower",
   "noez.end_walker_full.tooltip2": "§4§lFull Set:§r After teleport with Ender Pearl, gain a level up of §cStrength",
+  "end_walker_elytra_tooltip": "§6§lPassive:§r Grant you §bInfinite Flight§r in §3§lEnd Dimension",
 
   "wip": "§7========WORK IN PROGRESS========"
 }

@@ -14,14 +14,14 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class ImperialiteSword extends ProjectileSword implements Critable {
+public class BrillianceSword extends ProjectileSword implements Critable {
     private static final double CRIT_CHANCE = 0.15;
     private static final double CRIT_DAMAGE = 1.5;
     private static final float ONHIT_DAMAGE = 4;
     private static final int ONHIT_MANA_CONSUME = 2;
     private boolean ALWAYS_CRIT = false;
 
-    public ImperialiteSword() {
+    public BrillianceSword() {
         super(
                 new Properties().stacksTo(1).durability(320),
                 0,
@@ -35,13 +35,13 @@ public class ImperialiteSword extends ProjectileSword implements Critable {
     @Override
     public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
         super.appendHoverText(pStack, pLevel, pTooltipComponents, pIsAdvanced);
-        pTooltipComponents.add(Component.translatable("noez.imperialite_sword.tooltip1"));
+        pTooltipComponents.add(Component.translatable("noez.brilliance_sword.tooltip1"));
         pTooltipComponents.add(Component.translatable("wip"));
     }
 
     @Override
     public boolean matches(ItemStack stack) {
-        return stack.getItem() instanceof ImperialiteSword;
+        return stack.getItem() instanceof BrillianceSword;
     }
 
     @Override

@@ -26,7 +26,7 @@ public class NoezCreativeModTabs {
                         pOutput.accept(NoezItems.ROSEGOLD_INGOT.get());
                         pOutput.accept(NoezItems.INFUSED_COPPER.get());
                         pOutput.accept(NoezItems.OBSIDIAN_SHARD.get());
-                        pOutput.accept(NoezItems.IMPERIALITE.get());
+                        pOutput.accept(NoezItems.BRILLIANCE_CRYSTAL.get());
                     })
                     .build());
 
@@ -63,7 +63,7 @@ public class NoezCreativeModTabs {
                         pOutput.accept(NoezItems.MASTERCRAFT_NETHERITE_SWORD.get());
                         pOutput.accept(NoezItems.DRUVIS_STAFF.get());
                         pOutput.accept(NoezItems.CRIMSON_SOUL_EATER.get());
-                        pOutput.accept(NoezItems.IMPERIALITE_SWORD.get());
+                        pOutput.accept(NoezItems.BRILLIANCE_SWORD.get());
                         pOutput.accept(NoezItems.NATURA_BLADE.get());
                         pOutput.accept(NoezItems.OBSIDIAN_BLADE.get());
                         pOutput.accept(NoezItems.HELLFIRE_SWORD.get());
@@ -111,6 +111,11 @@ public class NoezCreativeModTabs {
                         pOutput.accept(NoezItems.CACTUS_CHESTPLATE.get());
                         pOutput.accept(NoezItems.CACTUS_LEGGINGS.get());
                         pOutput.accept(NoezItems.CACTUS_BOOTS.get());
+                        pOutput.accept(NoezItems.END_WALKER_HELMET.get());
+                        pOutput.accept(NoezItems.END_WALKER_CHESTPLATE.get());
+                        pOutput.accept(NoezItems.END_WALKER_LEGGINGS.get());
+                        pOutput.accept(NoezItems.END_WALKER_BOOTS.get());
+                        pOutput.accept(NoezItems.END_WALKER_ELYTRA.get());
                         pOutput.accept(NoezItems.DRUID_HELMET.get());
                         pOutput.accept(NoezItems.DRUID_CHESTPLATE.get());
                         pOutput.accept(NoezItems.DRUID_LEGGINGS.get());
@@ -123,10 +128,6 @@ public class NoezCreativeModTabs {
                         pOutput.accept(NoezItems.SYLVAN_CHESTPLATE.get());
                         pOutput.accept(NoezItems.SYLVAN_LEGGINGS.get());
                         pOutput.accept(NoezItems.SYLVAN_BOOTS.get());
-                        pOutput.accept(NoezItems.END_WALKER_HELMET.get());
-                        pOutput.accept(NoezItems.END_WALKER_CHESTPLATE.get());
-                        pOutput.accept(NoezItems.END_WALKER_LEGGINGS.get());
-                        pOutput.accept(NoezItems.END_WALKER_BOOTS.get());
                     })
                     .build());
 
