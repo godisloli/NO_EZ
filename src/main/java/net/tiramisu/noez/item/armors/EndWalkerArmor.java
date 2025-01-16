@@ -92,9 +92,6 @@ public class EndWalkerArmor extends ArmorItem implements ArmorAttribute {
                 removeBonus(player, slot);
             }
         }
-
-        System.out.println(player.getAttributeValue(NoezAttributes.CRIT_DAMAGE.get()) + "crit damage");
-        System.out.println(player.getAttributeValue(NoezAttributes.CRIT_CHANCE.get()) + "crit chance");
     }
 
     @SubscribeEvent

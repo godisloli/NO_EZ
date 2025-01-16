@@ -1,7 +1,7 @@
 {
   "parent": "item/handheld",
   "textures": {
-    "layer0": "noez:item/imperialite_sword"
+    "layer0": "noez:item/brilliance_sword"
   },
   "display": {
     "thirdperson_righthand": {

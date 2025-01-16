@@ -11,44 +11,47 @@ import net.tiramisu.noez.NOEZ;
 import java.util.function.Supplier;
 
 public enum NoezArmorTier implements ArmorMaterial {
-    ECHO("echo", 25, new int[]{4, 9, 7, 4}, 15,
-            SoundEvents.SCULK_CATALYST_PLACE, 4.0F, 0.2F, () -> Ingredient.of(NoezItems.WARDEN_HEART.get())),
+    ECHO("echo", 42, new int[]{5, 10, 9, 4}, 0,
+            SoundEvents.SCULK_CATALYST_PLACE, 5.0F, 0.2F, () -> Ingredient.of(NoezItems.WARDEN_HEART.get())),
 
-    ROYAL_GUARD("royal_guard", 27, new int[]{3, 9, 8, 3}, 0,
+    ROYAL_GUARD("royal_guard", 36, new int[]{4, 9, 8, 3}, 0,
             SoundEvents.ARMOR_EQUIP_NETHERITE, 4.0F, 0.3F, () -> Ingredient.EMPTY),
 
-    GUARDIAN_ANGEL("guardian_angel", 22, new int[]{3, 8, 7, 3}, 15,
-            SoundEvents.ARMOR_EQUIP_NETHERITE, 2.0F, 0.2F, () -> Ingredient.EMPTY),
+    GUARDIAN_ANGEL("guardian_angel", 32, new int[]{4, 9, 7, 4}, 0,
+            SoundEvents.ARMOR_EQUIP_NETHERITE, 3.0F, 0.2F, () -> Ingredient.EMPTY),
 
-    TWILIGHT_WITCH_HAT("twilight_witch_hat",22, new int[]{1, 0, 0, 0}, 15,
+    TWILIGHT_WITCH_HAT("twilight_witch_hat",22, new int[]{1, 0, 0, 0}, 0,
             SoundEvents.ARMOR_EQUIP_LEATHER, 0, 0, () -> Ingredient.EMPTY),
 
-    MASTERCRAFT_IRON("mastercraft_iron", 20, new int[]{3, 7, 6, 3}, 15,
+    MASTERCRAFT_IRON("mastercraft_iron", 26, new int[]{3, 7, 6, 3}, 0,
             SoundEvents.ARMOR_EQUIP_IRON, 1.0F, 0, () -> Ingredient.of(Items.IRON_INGOT)),
 
-    MASTERCRAFT_GOLD("mastercraft_gold", 23, new int[]{2,8,5,4}, 15,
+    MASTERCRAFT_GOLD("mastercraft_gold", 23, new int[]{2, 8, 5, 4}, 0,
             SoundEvents.ARMOR_EQUIP_GOLD, 2.0F, 0, () -> Ingredient.of(Items.GOLD_INGOT)),
 
-    MASTERCRAFT_DIAMOND("mastercraft_diamond", 26, new int[]{4, 9, 7, 4}, 15,
+    MASTERCRAFT_DIAMOND("mastercraft_diamond", 29, new int[]{4, 9, 7, 4}, 0,
             SoundEvents.ARMOR_EQUIP_DIAMOND, 3.0F, 0.2F, () -> Ingredient.of(Items.DIAMOND)),
 
-    MASTERCRAFT_NETHERITE("master_netherite", 32, new int[]{5, 10 ,8, 5}, 15,
-            SoundEvents.ARMOR_EQUIP_NETHERITE, 4, 0.5F, () -> Ingredient.of(Items.NETHERITE_INGOT)),
+    MASTERCRAFT_NETHERITE("master_netherite", 32, new int[]{5, 10 ,8, 5}, 0,
+            SoundEvents.ARMOR_EQUIP_NETHERITE, 4.0F, 0.5F, () -> Ingredient.of(Items.NETHERITE_INGOT)),
 
-    SYLVAN("sylvan", 27, new int[]{3, 8, 6, 3}, 0,
-            SoundEvents.ARMOR_EQUIP_LEATHER, 5.0F, 0.5F, () -> Ingredient.EMPTY),
+    SYLVAN("sylvan", 41, new int[]{3, 8, 6, 3}, 0,
+            SoundEvents.ARMOR_EQUIP_LEATHER, 4.0F, 0.5F, () -> Ingredient.EMPTY),
 
-    CACTUS("cactus", 14, new int[]{1, 3, 2, 1}, 0,
+    CACTUS("cactus", 16, new int[]{1, 3, 2, 1}, 0,
             SoundEvents.ARMOR_EQUIP_LEATHER, 0, 0, () -> Ingredient.of(Items.CACTUS)),
 
-    DRUID("druid", 16, new int[]{2, 3, 2, 1}, 0,
+    DRUID("druid", 22, new int[]{2, 3, 2, 1}, 0,
             SoundEvents.ARMOR_EQUIP_LEATHER, 0, 0, () -> Ingredient.EMPTY),
 
-    KITSUNE("kitsune", 25, new int[] {2, 1, 1, 1}, 15,
+    KITSUNE("kitsune", 44, new int[]{2, 1, 1, 1}, 0,
             SoundEvents.ALLAY_AMBIENT_WITH_ITEM, 2.0F, 0.0f, () -> Ingredient.EMPTY),
 
-    END_WALKER("end_walker", 21, new int[]{2, 5, 4, 2}, 0,
-            SoundEvents.ENDERMAN_AMBIENT, 2F, 0.5F, () -> Ingredient.of(Items.ENDER_PEARL));
+    EXPLORER("explorer", 21, new int[]{2, 4, 3, 1}, 0,
+            SoundEvents.ARMOR_EQUIP_LEATHER, 0F, 0F, () -> Ingredient.of(Items.LEATHER)),
+
+    END_WALKER("end_walker", 48, new int[]{2, 5, 4, 2}, 0,
+            SoundEvents.ENDERMAN_AMBIENT, 2.0F, 0.5F, () -> Ingredient.of(Items.ENDER_PEARL));
 
     private static final int[] BASE_DURABILITY = {13, 18, 16, 11};
     private final String name;

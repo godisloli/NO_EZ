@@ -257,6 +257,18 @@ public class NoezItems {
     public static final RegistryObject<Item> END_WALKER_ELYTRA = ITEMS.register("end_walker_elytra",
             () -> new EndWalkerElytra(new Item.Properties().stacksTo(1).fireResistant().durability(1702)));
 
+    public static final RegistryObject<Item> EXPLORER_HELMET = ITEMS.register("explorer_helmet",
+            () -> new ExplorerArmor(NoezArmorTier.EXPLORER, ArmorItem.Type.HELMET, new Item.Properties()));
+
+    public static final RegistryObject<Item> EXPLORER_CHESTPLATE = ITEMS.register("explorer_chestplate",
+            () -> new ExplorerArmor(NoezArmorTier.EXPLORER, ArmorItem.Type.CHESTPLATE, new Item.Properties()));
+
+    public static final RegistryObject<Item> EXPLORER_LEGGINGS = ITEMS.register("explorer_leggings",
+            () -> new ExplorerArmor(NoezArmorTier.EXPLORER, ArmorItem.Type.LEGGINGS, new Item.Properties()));
+
+    public static final RegistryObject<Item> EXPLORER_BOOTS = ITEMS.register("explorer_boots",
+            () -> new ExplorerArmor(NoezArmorTier.EXPLORER, ArmorItem.Type.BOOTS, new Item.Properties()));
+
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
     }

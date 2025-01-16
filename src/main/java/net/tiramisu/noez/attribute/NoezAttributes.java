@@ -19,7 +19,7 @@ public class NoezAttributes {
                             "attribute.name.generic.projectile_reduction",
                             0.0,
                             0.0,
-                            90.0
+                            95.0
                     ).setSyncable(true));
 
     public static final RegistryObject<Attribute> MAGIC_REDUCTION =
@@ -28,7 +28,7 @@ public class NoezAttributes {
                             "attribute.name.generic.magic_reduction",
                             0.0,
                             0.0,
-                            90.0
+                            95.0
                     ).setSyncable(true));
 
     public static final RegistryObject<Attribute> MAGIC_DAMAGE =

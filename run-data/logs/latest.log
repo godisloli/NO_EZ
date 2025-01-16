@@ -1,25 +1,55 @@
-[15Jan2025 11:14:00.219] [main/INFO] [cpw.mods.modlauncher.Launcher/MODLAUNCHER]: ModLauncher running: args [--launchTarget, forgedatauserdev, --assetIndex, 5, --assetsDir, C:\Users\pc\.gradle\caches\forge_gradle\assets, --gameDir, ., --fml.forgeVersion, 47.3.12, --fml.mcVersion, 1.20.1, --fml.forgeGroup, net.minecraftforge, --fml.mcpVersion, 20230612.114412, --mod, noez, --all, --output, D:\Mod Data\NO_EZ\src\generated\resources, --existing, D:\Mod Data\NO_EZ\src\main\resources, --mixin.config, mixins.noez.json]
-[15Jan2025 11:14:00.219] [main/INFO] [cpw.mods.modlauncher.Launcher/MODLAUNCHER]: ModLauncher 10.0.9+10.0.9+main.dcd20f30 starting: java version 17.0.13 by Amazon.com Inc.; OS Windows 10 arch amd64 version 10.0
-[15Jan2025 11:14:00.329] [main/INFO] [net.minecraftforge.fml.loading.ImmediateWindowHandler/]: ImmediateWindowProvider not loading because launch target is forgedatauserdev
-[15Jan2025 11:14:00.376] [main/INFO] [mixin/]: SpongePowered MIXIN Subsystem Version=0.8.5 Source=union:/C:/Users/pc/.gradle/caches/modules-2/files-2.1/org.spongepowered/mixin/0.8.5/9d1c0c3a304ae6697ecd477218fa61b850bf57fc/mixin-0.8.5.jar%23128!/ Service=ModLauncher Env=CLIENT
-[15Jan2025 11:14:00.737] [main/WARN] [net.minecraftforge.fml.loading.moddiscovery.ModFileParser/LOADING]: Mod file C:\Users\pc\.gradle\caches\modules-2\files-2.1\net.minecraftforge\javafmllanguage\1.20.1-47.3.12\f6b9f7f45e33548b47f78d9f54c7b4eb1e94e9bd\javafmllanguage-1.20.1-47.3.12.jar is missing mods.toml file
-[15Jan2025 11:14:00.737] [main/WARN] [net.minecraftforge.fml.loading.moddiscovery.ModFileParser/LOADING]: Mod file C:\Users\pc\.gradle\caches\modules-2\files-2.1\net.minecraftforge\lowcodelanguage\1.20.1-47.3.12\81de74e1180787af25604b6ecb3728fc485bd3c7\lowcodelanguage-1.20.1-47.3.12.jar is missing mods.toml file
-[15Jan2025 11:14:00.737] [main/WARN] [net.minecraftforge.fml.loading.moddiscovery.ModFileParser/LOADING]: Mod file C:\Users\pc\.gradle\caches\modules-2\files-2.1\net.minecraftforge\mclanguage\1.20.1-47.3.12\1ff4ed058e0774b82d8da352d9e051e6d2a154eb\mclanguage-1.20.1-47.3.12.jar is missing mods.toml file
-[15Jan2025 11:14:00.737] [main/WARN] [net.minecraftforge.fml.loading.moddiscovery.ModFileParser/LOADING]: Mod file C:\Users\pc\.gradle\caches\modules-2\files-2.1\net.minecraftforge\fmlcore\1.20.1-47.3.12\9a4d9f99e106aa2358cdbe6777921855d353371\fmlcore-1.20.1-47.3.12.jar is missing mods.toml file
-[15Jan2025 11:14:00.878] [main/INFO] [net.minecraftforge.fml.loading.moddiscovery.JarInJarDependencyLocator/]: Found 1 dependencies adding them to mods collection
-[15Jan2025 11:14:02.098] [main/WARN] [mixin/]: Compatibility level JAVA_17 specified by mixins.noez.json is higher than the maximum level supported by this version of mixin (JAVA_13).
-[15Jan2025 11:14:02.098] [main/INFO] [mixin/]: Compatibility level set to JAVA_17
-[15Jan2025 11:14:02.098] [main/INFO] [cpw.mods.modlauncher.LaunchServiceHandler/MODLAUNCHER]: Launching target 'forgedatauserdev' with arguments [--gameDir, ., --assetsDir, C:\Users\pc\.gradle\caches\forge_gradle\assets, --assetIndex, 5, --mod, noez, --all, --output, D:\Mod Data\NO_EZ\src\generated\resources, --existing, D:\Mod Data\NO_EZ\src\main\resources]
-[15Jan2025 11:14:02.145] [main/INFO] [mixin/]: Attempting to load Fernflower decompiler (Threaded mode)
-[15Jan2025 11:14:02.145] [main/INFO] [mixin/]: Fernflower could not be loaded, exported classes will not be decompiled. NoClassDefFoundError: org/jetbrains/java/decompiler/main/extern/IResultSaver
-[15Jan2025 11:14:02.160] [main/INFO] [mixin/]: Preparing mixins for MixinEnvironment[DEFAULT]
-[15Jan2025 11:14:02.160] [main/INFO] [mixin/]: Selecting config mixins.noez.json
-[15Jan2025 11:14:02.160] [main/INFO] [mixin/]: Selecting config geckolib.mixins.json
-[15Jan2025 11:14:02.457] [main/INFO] [mixin/]: Remapping refMap geckolib.refmap.json using D:\Mod Data\NO_EZ\build\createSrgToMcp\output.srg
-[15Jan2025 11:14:02.457] [main/INFO] [mixin/]: Preparing mixins.noez.json (18)
-[15Jan2025 11:14:02.767] [main/INFO] [mixin/]: Preparing geckolib.mixins.json (1)
-[15Jan2025 11:14:02.798] [main/INFO] [mixin/]: Prepared 19 mixins in 0.638 sec (33.6ms avg) (0ms load, 0ms transform, 0ms plugin)
-[15Jan2025 11:14:03.008] [main/INFO] [net.minecraftforge.data.loading.DatagenModLoader/]: Initializing Data Gatherer for mods [noez]
-[15Jan2025 11:14:03.111] [main/INFO] [mixin/]: Mixing EntityMixin from mixins.noez.json into net.minecraft.world.entity.Entity
-[15Jan2025 11:14:03.158] [main/INFO] [mixin/]: Mixing LivingEntityMixin from mixins.noez.json into net.minecraft.world.entity.LivingEntity
-[15Jan2025 11:14:03.383] [main/INFO] [mixin/]: Mixing PlayerMixin from mixins.noez.json into net.minecraft.world.entity.player.Player
+[16Jan2025 21:38:12.064] [main/INFO] [cpw.mods.modlauncher.Launcher/MODLAUNCHER]: ModLauncher running: args [--launchTarget, forgedatauserdev, --assetIndex, 5, --assetsDir, C:\Users\pc\.gradle\caches\forge_gradle\assets, --gameDir, ., --fml.forgeVersion, 47.3.12, --fml.mcVersion, 1.20.1, --fml.forgeGroup, net.minecraftforge, --fml.mcpVersion, 20230612.114412, --mod, noez, --all, --output, D:\Mod Data\NO_EZ\src\generated\resources, --existing, D:\Mod Data\NO_EZ\src\main\resources, --mixin.config, mixins.noez.json]
+[16Jan2025 21:38:12.068] [main/INFO] [cpw.mods.modlauncher.Launcher/MODLAUNCHER]: ModLauncher 10.0.9+10.0.9+main.dcd20f30 starting: java version 17.0.13 by Amazon.com Inc.; OS Windows 10 arch amd64 version 10.0
+[16Jan2025 21:38:12.172] [main/INFO] [net.minecraftforge.fml.loading.ImmediateWindowHandler/]: ImmediateWindowProvider not loading because launch target is forgedatauserdev
+[16Jan2025 21:38:12.256] [main/INFO] [mixin/]: SpongePowered MIXIN Subsystem Version=0.8.5 Source=union:/C:/Users/pc/.gradle/caches/modules-2/files-2.1/org.spongepowered/mixin/0.8.5/9d1c0c3a304ae6697ecd477218fa61b850bf57fc/mixin-0.8.5.jar%23128!/ Service=ModLauncher Env=CLIENT
+[16Jan2025 21:38:12.622] [main/WARN] [net.minecraftforge.fml.loading.moddiscovery.ModFileParser/LOADING]: Mod file C:\Users\pc\.gradle\caches\modules-2\files-2.1\net.minecraftforge\javafmllanguage\1.20.1-47.3.12\f6b9f7f45e33548b47f78d9f54c7b4eb1e94e9bd\javafmllanguage-1.20.1-47.3.12.jar is missing mods.toml file
+[16Jan2025 21:38:12.624] [main/WARN] [net.minecraftforge.fml.loading.moddiscovery.ModFileParser/LOADING]: Mod file C:\Users\pc\.gradle\caches\modules-2\files-2.1\net.minecraftforge\lowcodelanguage\1.20.1-47.3.12\81de74e1180787af25604b6ecb3728fc485bd3c7\lowcodelanguage-1.20.1-47.3.12.jar is missing mods.toml file
+[16Jan2025 21:38:12.624] [main/WARN] [net.minecraftforge.fml.loading.moddiscovery.ModFileParser/LOADING]: Mod file C:\Users\pc\.gradle\caches\modules-2\files-2.1\net.minecraftforge\mclanguage\1.20.1-47.3.12\1ff4ed058e0774b82d8da352d9e051e6d2a154eb\mclanguage-1.20.1-47.3.12.jar is missing mods.toml file
+[16Jan2025 21:38:12.624] [main/WARN] [net.minecraftforge.fml.loading.moddiscovery.ModFileParser/LOADING]: Mod file C:\Users\pc\.gradle\caches\modules-2\files-2.1\net.minecraftforge\fmlcore\1.20.1-47.3.12\9a4d9f99e106aa2358cdbe6777921855d353371\fmlcore-1.20.1-47.3.12.jar is missing mods.toml file
+[16Jan2025 21:38:12.806] [main/INFO] [net.minecraftforge.fml.loading.moddiscovery.JarInJarDependencyLocator/]: Found 1 dependencies adding them to mods collection
+[16Jan2025 21:38:14.078] [main/WARN] [mixin/]: Compatibility level JAVA_17 specified by mixins.noez.json is higher than the maximum level supported by this version of mixin (JAVA_13).
+[16Jan2025 21:38:14.078] [main/INFO] [mixin/]: Compatibility level set to JAVA_17
+[16Jan2025 21:38:14.088] [main/INFO] [cpw.mods.modlauncher.LaunchServiceHandler/MODLAUNCHER]: Launching target 'forgedatauserdev' with arguments [--gameDir, ., --assetsDir, C:\Users\pc\.gradle\caches\forge_gradle\assets, --assetIndex, 5, --mod, noez, --all, --output, D:\Mod Data\NO_EZ\src\generated\resources, --existing, D:\Mod Data\NO_EZ\src\main\resources]
+[16Jan2025 21:38:14.129] [main/INFO] [mixin/]: Attempting to load Fernflower decompiler (Threaded mode)
+[16Jan2025 21:38:14.131] [main/INFO] [mixin/]: Fernflower could not be loaded, exported classes will not be decompiled. NoClassDefFoundError: org/jetbrains/java/decompiler/main/extern/IResultSaver
+[16Jan2025 21:38:14.141] [main/INFO] [mixin/]: Preparing mixins for MixinEnvironment[DEFAULT]
+[16Jan2025 21:38:14.141] [main/INFO] [mixin/]: Selecting config mixins.noez.json
+[16Jan2025 21:38:14.144] [main/INFO] [mixin/]: Selecting config geckolib.mixins.json
+[16Jan2025 21:38:14.457] [main/INFO] [mixin/]: Remapping refMap geckolib.refmap.json using D:\Mod Data\NO_EZ\build\createSrgToMcp\output.srg
+[16Jan2025 21:38:14.457] [main/INFO] [mixin/]: Preparing mixins.noez.json (18)
+[16Jan2025 21:38:14.759] [main/INFO] [mixin/]: Preparing geckolib.mixins.json (1)
+[16Jan2025 21:38:14.774] [main/INFO] [mixin/]: Prepared 19 mixins in 0.633 sec (33.3ms avg) (0ms load, 0ms transform, 0ms plugin)
+[16Jan2025 21:38:14.997] [main/INFO] [net.minecraftforge.data.loading.DatagenModLoader/]: Initializing Data Gatherer for mods [noez]
+[16Jan2025 21:38:15.090] [main/INFO] [mixin/]: Mixing EntityMixin from mixins.noez.json into net.minecraft.world.entity.Entity
+[16Jan2025 21:38:15.137] [main/INFO] [mixin/]: Mixing LivingEntityMixin from mixins.noez.json into net.minecraft.world.entity.LivingEntity
+[16Jan2025 21:38:15.344] [main/INFO] [mixin/]: Mixing PlayerMixin from mixins.noez.json into net.minecraft.world.entity.player.Player
+[16Jan2025 21:38:16.275] [main/INFO] [mixin/]: Mixing MobMixin from mixins.noez.json into net.minecraft.world.entity.Mob
+[16Jan2025 21:38:16.276] [main/INFO] [mixin/]: Renaming synthetic method lambda$neutralPillagers$0(Lnet/minecraft/world/entity/Mob;)Z to md62c59d$lambda$neutralPillagers$0$0 in mixins.noez.json:MobMixin
+[16Jan2025 21:38:16.348] [main/INFO] [mixin/]: Mixing EnchantmentMenuMixin from mixins.noez.json into net.minecraft.world.inventory.EnchantmentMenu
+[16Jan2025 21:38:16.363] [main/INFO] [mixin/]: Mixing ItemStackMixin from mixins.noez.json into net.minecraft.world.item.ItemStack
+[16Jan2025 21:38:16.363] [main/INFO] [mixin/]: Renaming synthetic method lambda$armorTooltip$8(Lnet/minecraft/network/chat/Style;)Lnet/minecraft/network/chat/Style; to md62c59d$lambda$armorTooltip$8$0 in mixins.noez.json:ItemStackMixin
+[16Jan2025 21:38:16.363] [main/INFO] [mixin/]: Renaming synthetic method lambda$armorTooltip$7(Lnet/minecraft/network/chat/Style;)Lnet/minecraft/network/chat/Style; to md62c59d$lambda$armorTooltip$7$1 in mixins.noez.json:ItemStackMixin
+[16Jan2025 21:38:16.363] [main/INFO] [mixin/]: Renaming synthetic method lambda$armorTooltip$6(Lnet/minecraft/network/chat/Style;)Lnet/minecraft/network/chat/Style; to md62c59d$lambda$armorTooltip$6$2 in mixins.noez.json:ItemStackMixin
+[16Jan2025 21:38:16.363] [main/INFO] [mixin/]: Renaming synthetic method lambda$armorTooltip$5(Lnet/minecraft/network/chat/Style;)Lnet/minecraft/network/chat/Style; to md62c59d$lambda$armorTooltip$5$3 in mixins.noez.json:ItemStackMixin
+[16Jan2025 21:38:16.363] [main/INFO] [mixin/]: Renaming synthetic method lambda$critableTooltip$4(Lnet/minecraft/network/chat/Style;)Lnet/minecraft/network/chat/Style; to md62c59d$lambda$critableTooltip$4$4 in mixins.noez.json:ItemStackMixin
+[16Jan2025 21:38:16.363] [main/INFO] [mixin/]: Renaming synthetic method lambda$critableTooltip$3(Lnet/minecraft/network/chat/Style;)Lnet/minecraft/network/chat/Style; to md62c59d$lambda$critableTooltip$3$5 in mixins.noez.json:ItemStackMixin
+[16Jan2025 21:38:16.363] [main/INFO] [mixin/]: Renaming synthetic method lambda$critableTooltip$2(Lnet/minecraft/network/chat/Style;)Lnet/minecraft/network/chat/Style; to md62c59d$lambda$critableTooltip$2$6 in mixins.noez.json:ItemStackMixin
+[16Jan2025 21:38:16.363] [main/INFO] [mixin/]: Renaming synthetic method lambda$staffTooltip$1(Lnet/minecraft/network/chat/Style;)Lnet/minecraft/network/chat/Style; to md62c59d$lambda$staffTooltip$1$7 in mixins.noez.json:ItemStackMixin
+[16Jan2025 21:38:16.363] [main/INFO] [mixin/]: Renaming synthetic method lambda$staffTooltip$0(Lnet/minecraft/network/chat/Style;)Lnet/minecraft/network/chat/Style; to md62c59d$lambda$staffTooltip$0$8 in mixins.noez.json:ItemStackMixin
+[16Jan2025 21:38:16.488] [main/INFO] [mixin/]: Mixing AnvilMenuMixin from mixins.noez.json into net.minecraft.world.inventory.AnvilMenu
+[16Jan2025 21:38:16.953] [main/INFO] [mixin/]: Mixing SwordItemMixin from mixins.noez.json into net.minecraft.world.item.SwordItem
+[16Jan2025 21:38:16.986] [main/INFO] [mixin/]: Mixing MilkBucketMixin from mixins.noez.json into net.minecraft.world.item.MilkBucketItem
+[16Jan2025 21:38:18.014] [main/INFO] [mixin/]: Mixing ServerPlayerMixin from mixins.noez.json into net.minecraft.server.level.ServerPlayer
+[16Jan2025 21:38:18.205] [main/INFO] [mixin/]: Mixing VillagerMixin from mixins.noez.json into net.minecraft.world.entity.npc.Villager
+[16Jan2025 21:38:18.272] [main/INFO] [mixin/]: Mixing MobEffectInstanceAccessor from mixins.noez.json into net.minecraft.world.effect.MobEffectInstance
+[16Jan2025 21:38:20.223] [modloading-worker-0/INFO] [net.minecraftforge.common.ForgeMod/FORGEMOD]: Forge mod loading, version 47.3.12, for MC 1.20.1 with MCP 20230612.114412
+[16Jan2025 21:38:20.226] [modloading-worker-0/INFO] [net.minecraftforge.common.MinecraftForge/FORGE]: MinecraftForge v47.3.12 Initialized
+[16Jan2025 21:38:20.426] [modloading-worker-0/WARN] [software.bernie.geckolib.GeckoLib/]: Minecraft.getInstance() was null, could not register reload listeners
+[16Jan2025 21:38:21.262] [main/WARN] [net.minecraft.server.packs.VanillaPackResourcesBuilder/]: Assets URL 'union:/C:/Users/pc/.gradle/caches/forge_gradle/minecraft_user_repo/net/minecraftforge/forge/1.20.1-47.3.12_mapped_parchment_2023.09.03-1.20.1/forge-1.20.1-47.3.12_mapped_parchment_2023.09.03-1.20.1.jar%23191!/assets/.mcassetsroot' uses unexpected schema
+[16Jan2025 21:38:21.262] [main/WARN] [net.minecraft.server.packs.VanillaPackResourcesBuilder/]: Assets URL 'union:/C:/Users/pc/.gradle/caches/forge_gradle/minecraft_user_repo/net/minecraftforge/forge/1.20.1-47.3.12_mapped_parchment_2023.09.03-1.20.1/forge-1.20.1-47.3.12_mapped_parchment_2023.09.03-1.20.1.jar%23191!/data/.mcassetsroot' uses unexpected schema
+[16Jan2025 21:38:21.403] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Languages: en_us
+[16Jan2025 21:38:21.412] [main/INFO] [net.minecraft.data.DataGenerator/]: Languages: en_us finished after 8 ms
+[16Jan2025 21:38:21.412] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Item Models: noez
+[16Jan2025 21:38:21.423] [main/INFO] [net.minecraft.data.DataGenerator/]: Item Models: noez finished after 11 ms
+[16Jan2025 21:38:21.423] [main/INFO] [net.minecraft.data.DataGenerator/]: All providers took: 20 ms
+[16Jan2025 21:38:21.427] [main/INFO] [net.minecraft.data.HashCache/]: Caching: total files: 5, old count: 5, new count: 6, removed stale: 0, written: 5

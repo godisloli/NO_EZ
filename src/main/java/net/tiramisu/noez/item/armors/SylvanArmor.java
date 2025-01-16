@@ -32,7 +32,7 @@ public class SylvanArmor extends ArmorItem implements ArmorAttribute {
     private static final int CHESTPLATE_VALUE = 6;
     private static final int LEGGINGS_VALUE = 4;
     private static final float BOOTS_VALUE = 1;
-    private static float MAX_HEALTH_CAP = 30;
+    private static float MAX_HEALTH_CAP = 40;
     private static final UUID HELMET_BONUS = UUID.fromString("12111161-1111-1111-1111-111111111111");
     private static final UUID CHESTPLATE_BONUS = UUID.fromString("23722222-2222-2222-2222-222222222222");
     private static final UUID LEGGINGS_BONUS = UUID.fromString("34335333-3333-3333-3333-333333333333");
@@ -48,7 +48,7 @@ public class SylvanArmor extends ArmorItem implements ArmorAttribute {
     @Override
     public void appendHoverText(@NotNull ItemStack pStack, @Nullable Level pLevel, @NotNull List<Component> pTooltipComponents, @NotNull TooltipFlag pIsAdvanced) {
         super.appendHoverText(pStack, pLevel, pTooltipComponents, pIsAdvanced);
-        pTooltipComponents.add(Component.translatable("noez.sylvan_" + toolTipId + ".tooltip1"));
+        pTooltipComponents.add(Component.translatable("noez.sylvan_" + toolTipId + ".tooltip1", MAX_HEALTH_CAP));
         pTooltipComponents.add(Component.translatable("noez.sylvan_" + toolTipId + ".tooltip2"));
         pTooltipComponents.add(Component.translatable("noez.sylvan_cooldown.tooltip", COOLDOWN / 20));
     }

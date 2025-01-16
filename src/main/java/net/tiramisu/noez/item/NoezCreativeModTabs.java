@@ -128,6 +128,10 @@ public class NoezCreativeModTabs {
                         pOutput.accept(NoezItems.SYLVAN_CHESTPLATE.get());
                         pOutput.accept(NoezItems.SYLVAN_LEGGINGS.get());
                         pOutput.accept(NoezItems.SYLVAN_BOOTS.get());
+                        pOutput.accept(NoezItems.EXPLORER_HELMET.get());
+                        pOutput.accept(NoezItems.EXPLORER_CHESTPLATE.get());
+                        pOutput.accept(NoezItems.EXPLORER_LEGGINGS.get());
+                        pOutput.accept(NoezItems.EXPLORER_BOOTS.get());
                     })
                     .build());
 

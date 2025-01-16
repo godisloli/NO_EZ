@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "noez:item/imperialite"
+    "layer0": "noez:item/brilliance_crystal"
   }
 }

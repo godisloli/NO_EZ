@@ -2,5 +2,13 @@
   "parent": "item/generated",
   "textures": {
     "layer0": "noez:item/end_walker_elytra"
-  }
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "broken": 1
+      },
+      "model": "noez:item/end_walker_elytra"
+    }
+  ]
 }
