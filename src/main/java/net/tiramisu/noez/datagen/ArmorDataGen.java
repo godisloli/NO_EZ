@@ -19,10 +19,10 @@ public class ArmorDataGen {
 
         @Override
         protected void addTranslations() {
-            addArmorSet("explorer_helmet", "Explorer Helmet");
-            addArmorSet("explorer_chestplate", "Explorer Chestplate");
-            addArmorSet("explorer_leggings", "Explorer Leggings");
-            addArmorSet("explorer_boots", "Explorer Boots");
+            addArmorSet("infiltrator_helmet", "Infiltrator Helmet");
+            addArmorSet("infiltrator_chestplate", "Infiltrator Chestplate");
+            addArmorSet("infiltrator_leggings", "Infiltrator Leggings");
+            addArmorSet("infiltrator_boots", "Infiltrator Boots");
         }
 
         private void addArmorSet(String key, String name) {
@@ -37,10 +37,10 @@ public class ArmorDataGen {
 
         @Override
         protected void registerModels() {
-            armorModel("explorer_helmet");
-            armorModel("explorer_chestplate");
-            armorModel("explorer_leggings");
-            armorModel("explorer_boots");
+            armorModel("infiltrator_helmet");
+            armorModel("infiltrator_chestplate");
+            armorModel("infiltrator_leggings");
+            armorModel("infiltrator_boots");
         }
 
         private void armorModel(String name) {

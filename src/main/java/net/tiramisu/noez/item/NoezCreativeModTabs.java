@@ -132,6 +132,10 @@ public class NoezCreativeModTabs {
                         pOutput.accept(NoezItems.EXPLORER_CHESTPLATE.get());
                         pOutput.accept(NoezItems.EXPLORER_LEGGINGS.get());
                         pOutput.accept(NoezItems.EXPLORER_BOOTS.get());
+                        pOutput.accept(NoezItems.INFILTRATOR_CLOAK.get());
+                        pOutput.accept(NoezItems.INFILTRATOR_CHESTPLATE.get());
+                        pOutput.accept(NoezItems.INFILTRATOR_LEGGINGS.get());
+                        pOutput.accept(NoezItems.INFILTRATOR_BOOTS.get());
                     })
                     .build());
 

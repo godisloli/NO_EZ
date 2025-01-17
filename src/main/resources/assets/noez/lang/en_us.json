@@ -101,6 +101,10 @@
   "item.noez.explorer_chestplate": "Explorer Chestplate",
   "item.noez.explorer_leggings": "Explorer Leggings",
   "item.noez.explorer_boots": "Explorer Boots",
+  "item.noez.infiltrator_boots": "Infiltrator Boots",
+  "item.noez.infiltrator_chestplate": "Infiltrator Chestplate",
+  "item.noez.infiltrator_helmet": "Infiltrator Cloak",
+  "item.noez.infiltrator_leggings": "Infiltrator Leggings",
 
   "noez.relocator.tooltip1": "§6§lOn use:§r Blink to a short distance where you facing",
   "noez.relocator.tooltip2": "§6§lCooldown:§r 8 seconds",

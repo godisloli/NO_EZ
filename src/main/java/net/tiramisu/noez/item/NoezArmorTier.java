@@ -50,6 +50,9 @@ public enum NoezArmorTier implements ArmorMaterial {
     EXPLORER("explorer", 27, new int[]{2, 4, 3, 2}, 0,
             SoundEvents.ARMOR_EQUIP_LEATHER, 0F, 0F, () -> Ingredient.of(Items.LEATHER)),
 
+    INFILTRATOR("infiltrator", 31, new int[]{3, 5, 4, 2}, 0,
+            SoundEvents.ARMOR_EQUIP_LEATHER, 2F, 0, () -> Ingredient.of(Items.LEATHER)),
+
     END_WALKER("end_walker", 48, new int[]{3, 5, 4, 2}, 0,
             SoundEvents.ENDERMAN_AMBIENT, 4.0F, 0.5F, () -> Ingredient.of(Items.ENDER_PEARL));
 

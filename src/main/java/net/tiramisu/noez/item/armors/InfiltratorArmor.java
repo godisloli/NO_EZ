@@ -17,6 +17,7 @@ import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingFallEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 import net.tiramisu.noez.attribute.NoezAttributes;
 import net.tiramisu.noez.item.ArmorAttribute;
 import org.jetbrains.annotations.NotNull;
@@ -26,7 +27,7 @@ import java.util.List;
 import java.util.UUID;
 import java.util.HashMap;
 
-
+@Mod.EventBusSubscriber
 public class InfiltratorArmor extends ArmorItem implements ArmorAttribute {
     private String toolTipId = "none";
     private static final float HELMET_VALUE = 0.02f;
@@ -77,7 +78,7 @@ public class InfiltratorArmor extends ArmorItem implements ArmorAttribute {
 
     @SubscribeEvent
     public static void onFall(LivingFallEvent event) {
-        if (event.getEntity() instanceof Player player && hasHalfInfiltratorArmorSet(player) && hasFullInfiltratorArmorSet(player)) {
+        if (event.getEntity() instanceof Player player && (hasHalfInfiltratorArmorSet(player) || hasFullInfiltratorArmorSet(player))) {
             event.setCanceled(true);
             player.fallDistance = 0;
         }
