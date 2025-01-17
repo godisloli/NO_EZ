@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "combat",
+  "pattern": [
+    "LPL",
+    "L L"
+  ],
+  "key": {
+    "P": {
+      "item": "minecraft:pitcher_plant"
+    },
+    "L": {
+      "item":"minecraft:leather"
+    }
+  },
+  "result": {
+    "item": "noez:explorer_helmet"
+  }
+}

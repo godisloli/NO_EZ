@@ -47,11 +47,11 @@ public enum NoezArmorTier implements ArmorMaterial {
     KITSUNE("kitsune", 44, new int[]{2, 1, 1, 1}, 0,
             SoundEvents.ALLAY_AMBIENT_WITH_ITEM, 2.0F, 0.0f, () -> Ingredient.EMPTY),
 
-    EXPLORER("explorer", 21, new int[]{2, 4, 3, 1}, 0,
+    EXPLORER("explorer", 27, new int[]{2, 4, 3, 2}, 0,
             SoundEvents.ARMOR_EQUIP_LEATHER, 0F, 0F, () -> Ingredient.of(Items.LEATHER)),
 
-    END_WALKER("end_walker", 48, new int[]{2, 5, 4, 2}, 0,
-            SoundEvents.ENDERMAN_AMBIENT, 2.0F, 0.5F, () -> Ingredient.of(Items.ENDER_PEARL));
+    END_WALKER("end_walker", 48, new int[]{3, 5, 4, 2}, 0,
+            SoundEvents.ENDERMAN_AMBIENT, 4.0F, 0.5F, () -> Ingredient.of(Items.ENDER_PEARL));
 
     private static final int[] BASE_DURABILITY = {13, 18, 16, 11};
     private final String name;
