@@ -235,7 +235,7 @@ public class InfiltratorArmor extends ArmorItem implements ArmorAttribute {
 
     @Override
     public float helmetValue() {
-        return HELMET_VALUE;
+        return HELMET_VALUE * 100;
     }
 
     @Override
