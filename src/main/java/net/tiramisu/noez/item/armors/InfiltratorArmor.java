@@ -34,10 +34,12 @@ public class InfiltratorArmor extends ArmorItem implements ArmorAttribute {
     private static final int CHESTPLATE_VALUE = 25;
     private static final int LEGGINGS_VALUE = 15;
     private static final int BOOTS_VALUE = 20;
+    private static final float HALF_SET_VALUE = 75;
     private static final UUID HELMET_BONUS = UUID.fromString("12113111-1121-1111-1111-111111111111");
     private static final UUID CHESTPLATE_BONUS = UUID.fromString("23222422-2622-2222-2222-122222225222");
     private static final UUID LEGGINGS_BONUS = UUID.fromString("34333363-3363-3333-3333-333333336333");
     private static final UUID BOOTS_BONUS = UUID.fromString("42445444-4444-4444-4444-444444244444");
+    private static final UUID HALF_SET_BONUS = UUID.fromString("52445444-5544-5544-5445-555544244444");
     private static final HashMap<UUID, Integer> invisibilityTimers = new HashMap<>();
 
     public InfiltratorArmor(ArmorMaterial pMaterial, Type pType, Properties pProperties) {
@@ -64,6 +66,7 @@ public class InfiltratorArmor extends ArmorItem implements ArmorAttribute {
 
         if (!hasHalfInfiltratorArmorSet(player) && !hasFullInfiltratorArmorSet(player)) {
             setTooltipID("none");
+            removeModifier(player.getAttribute(NoezAttributes.CRIT_DAMAGE.get()), HALF_SET_BONUS);
         }
 
         if (!level.isClientSide) {
@@ -74,6 +77,11 @@ public class InfiltratorArmor extends ArmorItem implements ArmorAttribute {
                 removeBonus(player, slot);
             }
         }
+    }
+
+    private void halfSetBonus(Player player) {
+        AttributeModifier attributeModifier = new AttributeModifier(HALF_SET_BONUS, "Infiltrator half set bonus", HALF_SET_VALUE, AttributeModifier.Operation.ADDITION);
+        applyModifier(player.getAttribute(NoezAttributes.CRIT_DAMAGE.get()), attributeModifier);
     }
 
     @SubscribeEvent
@@ -103,7 +111,7 @@ public class InfiltratorArmor extends ArmorItem implements ArmorAttribute {
         if (invisibilityTimers.containsKey(playerUUID)) {
             int remainingTicks = invisibilityTimers.get(playerUUID);
 
-            applyInvisibility(player,  5 * 20);
+            applyInvisibility(player);
 
             if (remainingTicks <= 1) {
                 invisibilityTimers.remove(playerUUID);
@@ -113,8 +121,8 @@ public class InfiltratorArmor extends ArmorItem implements ArmorAttribute {
         }
     }
 
-    private static void applyInvisibility(Player player, int durationTicks) {
-        player.addEffect(new MobEffectInstance(MobEffects.INVISIBILITY, durationTicks, 0));
+    private static void applyInvisibility(Player player) {
+        player.addEffect(new MobEffectInstance(MobEffects.INVISIBILITY, 100, 0));
     }
 
     private static boolean hasFullInfiltratorArmorSet(Player player) {
