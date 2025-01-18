@@ -67,7 +67,7 @@ public class EchoArmor extends ArmorItem implements ArmorAttribute {
     }
 
     public float chesplateValue() {
-        return CHESTPLATE_VALUE * 10;
+        return CHESTPLATE_VALUE;
     }
 
     public float leggingsValue(){
