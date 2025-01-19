@@ -215,11 +215,11 @@
   "noez.end_walker_full.tooltip2": "§4§lFull Set:§r After teleport with Ender Pearl, gain a level up of §cStrength",
   "end_walker_elytra_tooltip": "§6§lPassive:§r Grant you §bInfinite Flight§r in §3§lEnd Dimension",
   "noez.infiltrator_none.tooltip1": "§5§lHalf Set:§7 Immune to fall damage, your critical hit deals a lot of damage while invisible",
-  "noez.infiltrator_none.tooltip2": "§4§lFull Set:§7 Killing an enemy heal and grant you §bInvisibitily",
+  "noez.infiltrator_none.tooltip2": "§4§lFull Set:§7 Killing an enemy heal and grant you §bInvisibility",
   "noez.infiltrator_half.tooltip1": "§5§lHalf Set:§r Immune to fall damage, your critical hit deals a lot of damage while invisible",
-  "noez.infiltrator_half.tooltip2": "§4§lFull Set:§7 Killing an enemy heal and grant you §bInvisibitily",
+  "noez.infiltrator_half.tooltip2": "§4§lFull Set:§7 Killing an enemy heal and grant you §bInvisibility",
   "noez.infiltrator_full.tooltip1": "§5§lHalf Set:§r Immune to fall damage, your critical hit deals a lot of damage while invisible",
-  "noez.infiltrator_full.tooltip2": "§4§lFull Set:§r Killing an enemy heal and grant you §bInvisibitily",
+  "noez.infiltrator_full.tooltip2": "§4§lFull Set:§r Killing an enemy heal and grant you §bInvisibility",
 
   "wip": "§7========WORK IN PROGRESS========"
 }
