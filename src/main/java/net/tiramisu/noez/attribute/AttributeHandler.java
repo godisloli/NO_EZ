@@ -60,6 +60,7 @@ public class AttributeHandler {
     public static void highReputationTrade(VillagerTradesEvent event) {
         if (event.getType() == VillagerProfession.ARMORER) {
             List<VillagerTrades.ItemListing> level3Trades = event.getTrades().get(3);
+            List<VillagerTrades.ItemListing> level4Trades = event.getTrades().get(4);
 
         level3Trades.add((entity, random) -> {
             if (entity instanceof Player player) {
@@ -125,9 +126,72 @@ public class AttributeHandler {
                 }
                 return null;
             });
+
+            level4Trades.add((entity, random) -> {
+                if (entity instanceof Player player) {
+                    AttributeInstance reputation = player.getAttribute(NoezAttributes.REPUTATION.get());
+                    if (reputation != null && reputation.getValue() > 600) {
+                        return new MerchantOffer(
+                                new ItemStack(Items.EMERALD, 25),
+                                new ItemStack(NoezItems.MASTERCRAFTED_GOLD_HELMET.get(), 1),
+                                1,
+                                30,
+                                0.05F
+                        );
+                    }
+                }
+                return null;
+            });
+
+            level4Trades.add((entity, random) -> {
+                if (entity instanceof Player player) {
+                    AttributeInstance reputation = player.getAttribute(NoezAttributes.REPUTATION.get());
+                    if (reputation != null && reputation.getValue() > 600) {
+                        return new MerchantOffer(
+                                new ItemStack(Items.EMERALD, 41),
+                                new ItemStack(NoezItems.MASTERCRAFTED_GOLD_CHESTPLATE.get(), 1),
+                                1,
+                                30,
+                                0.05F
+                        );
+                    }
+                }
+                return null;
+            });
+
+            level4Trades.add((entity, random) -> {
+                if (entity instanceof Player player) {
+                    AttributeInstance reputation = player.getAttribute(NoezAttributes.REPUTATION.get());
+                    if (reputation != null && reputation.getValue() > 600) {
+                        return new MerchantOffer(
+                                new ItemStack(Items.EMERALD, 32),
+                                new ItemStack(NoezItems.MASTERCRAFTED_GOLD_LEGGINGS.get(), 1),
+                                1,
+                                30,
+                                0.05F
+                        );
+                    }
+                }
+                return null;
+            });
+
+            level4Trades.add((entity, random) -> {
+                if (entity instanceof Player player) {
+                    AttributeInstance reputation = player.getAttribute(NoezAttributes.REPUTATION.get());
+                    if (reputation != null && reputation.getValue() > 600) {
+                        return new MerchantOffer(
+                                new ItemStack(Items.EMERALD, 19),
+                                new ItemStack(NoezItems.MASTERCRAFTED_GOLD_BOOTS.get(), 1),
+                                1,
+                                30,
+                                0.05F
+                        );
+                    }
+                }
+                return null;
+            });
         }
     }
-
 
     @SubscribeEvent
     public static void ironGolemHelpPlayer(LivingHurtEvent event) {
