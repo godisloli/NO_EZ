@@ -6,9 +6,15 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.animal.IronGolem;
 import net.minecraft.world.entity.npc.Villager;
+import net.minecraft.world.entity.npc.VillagerProfession;
+import net.minecraft.world.entity.npc.VillagerTrades;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.trading.MerchantOffer;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
@@ -16,9 +22,11 @@ import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.entity.player.TradeWithVillagerEvent;
+import net.minecraftforge.event.village.VillagerTradesEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.tiramisu.noez.item.NoezItems;
 import net.tiramisu.noez.util.NoezTags;
 
 import java.util.List;
@@ -47,6 +55,79 @@ public class AttributeHandler {
             }
         }
     }
+
+    @SubscribeEvent
+    public static void highReputationTrade(VillagerTradesEvent event) {
+        if (event.getType() == VillagerProfession.ARMORER) {
+            List<VillagerTrades.ItemListing> level3Trades = event.getTrades().get(3);
+
+        level3Trades.add((entity, random) -> {
+            if (entity instanceof Player player) {
+                AttributeInstance reputation = player.getAttribute(NoezAttributes.REPUTATION.get());
+                if (reputation != null && reputation.getValue() > 600) {
+                    return new MerchantOffer(
+                            new ItemStack(Items.EMERALD, 18),
+                            new ItemStack(NoezItems.MASTERCRAFTED_IRON_HELMET.get(), 1),
+                            1,
+                            25,
+                            0.05F
+                    );
+                }
+            }
+            return null;
+        });
+
+            level3Trades.add((entity, random) -> {
+                if (entity instanceof Player player) {
+                    AttributeInstance reputation = player.getAttribute(NoezAttributes.REPUTATION.get());
+                    if (reputation != null && reputation.getValue() > 600) {
+                        return new MerchantOffer(
+                                new ItemStack(Items.EMERALD, 36),
+                                new ItemStack(NoezItems.MASTERCRAFTED_IRON_CHESTPLATE.get(), 1),
+                                1,
+                                25,
+                                0.05F
+                        );
+                    }
+                }
+                return null;
+            });
+
+            level3Trades.add((entity, random) -> {
+                if (entity instanceof Player player) {
+                    AttributeInstance reputation = player.getAttribute(NoezAttributes.REPUTATION.get());
+                    if (reputation != null && reputation.getValue() > 600) {
+                        return new MerchantOffer(
+                                new ItemStack(Items.EMERALD, 24),
+                                new ItemStack(NoezItems.MASTERCRAFTED_IRON_LEGGINGS.get(), 1),
+                                1,
+                                25,
+                                0.05F
+                        );
+                    }
+                }
+                return null;
+
+            });
+
+            level3Trades.add((entity, random) -> {
+                if (entity instanceof Player player) {
+                    AttributeInstance reputation = player.getAttribute(NoezAttributes.REPUTATION.get());
+                    if (reputation != null && reputation.getValue() > 600) {
+                        return new MerchantOffer(
+                                new ItemStack(Items.EMERALD, 15),
+                                new ItemStack(NoezItems.MASTERCRAFTED_IRON_BOOTS.get(), 1),
+                                1,
+                                25,
+                                0.05F
+                        );
+                    }
+                }
+                return null;
+            });
+        }
+    }
+
 
     @SubscribeEvent
     public static void ironGolemHelpPlayer(LivingHurtEvent event) {

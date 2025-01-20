@@ -58,10 +58,12 @@ public class InfiltratorArmor extends ArmorItem implements ArmorAttribute {
         super.onInventoryTick(stack, level, player, slotIndex, selectedIndex);
         if (hasFullInfiltratorArmorSet(player)) {
             setTooltipID("full");
+            halfSetBonus(player);
         }
 
         if (hasHalfInfiltratorArmorSet(player)) {
             setTooltipID("half");
+            halfSetBonus(player);
         }
 
         if (!hasHalfInfiltratorArmorSet(player) && !hasFullInfiltratorArmorSet(player)) {
