@@ -18,7 +18,7 @@
     "ServerPlayerMixin",
     "SwordItemMixin",
     "VillagerMixin",
-    "VillagerTradeMixin"
+    "VillagerTradesMixin"
   ],
   "injectors": {
     "defaultRequire": 1
