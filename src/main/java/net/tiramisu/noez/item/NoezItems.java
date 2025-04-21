@@ -281,9 +281,6 @@ public class NoezItems {
     public static final RegistryObject<Item> INFILTRATOR_BOOTS = ITEMS.register("infiltrator_boots",
             () -> new InfiltratorArmor(NoezArmorTier.INFILTRATOR, ArmorItem.Type.BOOTS, new Item.Properties()));
 
-    public static final RegistryObject<Item> LANCE = ITEMS.register("lance",
-            () -> new );
-
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
     }

@@ -14,11 +14,12 @@
     "MobEffectInstanceAccessor",
     "MobMixin",
     "MouseHandlerMixin",
+    "NoEnchantedBook",
+    "NoEnchantedItem",
     "PlayerMixin",
     "ServerPlayerMixin",
     "SwordItemMixin",
-    "VillagerMixin",
-    "VillagerTradesMixin"
+    "VillagerMixin"
   ],
   "injectors": {
     "defaultRequire": 1

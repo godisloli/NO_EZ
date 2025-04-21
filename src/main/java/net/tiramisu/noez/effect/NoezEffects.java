@@ -35,6 +35,7 @@ public class NoezEffects {
 
     public static final RegistryObject<MobEffect> NECROSIS = EFFECTS.register("necrosis", Necrosis::new);
 
+    public static final RegistryObject<MobEffect> MALICE = EFFECTS.register("malice", Malice::new);
 
     public static void register(IEventBus eventBus) {
         EFFECTS.register(eventBus);
