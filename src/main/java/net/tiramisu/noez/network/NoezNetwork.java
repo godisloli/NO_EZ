@@ -5,6 +5,7 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraftforge.network.NetworkRegistry;
 import net.minecraftforge.network.PacketDistributor;
 import net.minecraftforge.network.simple.SimpleChannel;
+import net.tiramisu.noez.network.packet.ArtifactSyncS2CPacket;
 import net.tiramisu.noez.network.packet.ManaDataSyncS2CPacket;
 import net.tiramisu.noez.network.packet.PlayerMovementC2SPacket;
 import net.tiramisu.noez.network.packet.SwingC2SPacket;
@@ -41,6 +42,15 @@ public class NoezNetwork {
                 PlayerMovementC2SPacket::new,
                 PlayerMovementC2SPacket::handle
         );
+
+        CHANNEL.registerMessage(
+                packetId++,
+                ArtifactSyncS2CPacket.class,
+                ArtifactSyncS2CPacket::toBytes,
+                ArtifactSyncS2CPacket::new,
+                ArtifactSyncS2CPacket::handle
+        );
+
     }
 
     public static <MSG>  void sendDataToClient(ServerPlayer player, MSG message) {
