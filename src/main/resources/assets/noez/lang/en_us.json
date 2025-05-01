@@ -162,6 +162,7 @@
   "creativetab.noez_tab_armor": "Armors",
   "creativetab.noez_tab_treasures": "Treasures",
   "creativetab.noez_tab_tool": "Tools",
+  "creativetab.noez_tab_artifact": "Artifact",
 
   "noez.echo_none.tooltip1": "§5§lHalf Set:§7 Reveal all entities around you",
   "noez.echo_none.tooltip2": "§4§lFull Set:§7 Gain Absorption occasionally",
@@ -220,6 +221,8 @@
   "noez.infiltrator_half.tooltip2": "§4§lFull Set:§7 Killing an enemy heal and grant you §bInvisibility",
   "noez.infiltrator_full.tooltip1": "§5§lHalf Set:§r Immune to fall damage, your critical hit deals a lot of damage while invisible",
   "noez.infiltrator_full.tooltip2": "§4§lFull Set:§r Killing an enemy heal and grant you §bInvisibility",
+
+  "item.noez.phoenix_feather": "Phoenix Feather",
 
   "wip": "§7========WORK IN PROGRESS========"
 }

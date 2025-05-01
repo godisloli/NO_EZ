@@ -8,6 +8,7 @@ import net.minecraftforge.registries.RegistryObject;
 import net.tiramisu.noez.NOEZ;
 import net.tiramisu.noez.item.armors.*;
 import net.tiramisu.noez.item.arsenal.*;
+import net.tiramisu.noez.item.artifacts.PhoenixFeather;
 import net.tiramisu.noez.item.consumables.ManaPotion;
 import net.tiramisu.noez.item.consumables.SoulPearl;
 import net.tiramisu.noez.item.consumables.VitalWrap;
@@ -280,6 +281,9 @@ public class NoezItems {
 
     public static final RegistryObject<Item> INFILTRATOR_BOOTS = ITEMS.register("infiltrator_boots",
             () -> new InfiltratorArmor(NoezArmorTier.INFILTRATOR, ArmorItem.Type.BOOTS, new Item.Properties()));
+
+    public static final RegistryObject<Item> PHOENIX_FEATHER = ITEMS.register("phoenix_feather",
+            () -> new PhoenixFeather(new Item.Properties().stacksTo(1).fireResistant()));
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);

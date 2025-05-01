@@ -1,38 +1,49 @@
 package net.tiramisu.noez.item;
 
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.tiramisu.noez.network.packet.ArtifactSyncS2CPacket;
+import net.minecraftforge.event.TickEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Optional;
 import java.util.UUID;
 
+@Mod.EventBusSubscriber
 public class ArtifactManager {
     private static final Map<UUID, ItemStack> activeArtifacts = new HashMap<>();
 
     public static void setActiveArtifact(ServerPlayer player, ItemStack artifact) {
-        UUID playerId = player.getUUID();
-        removeCurrentArtifact(player);
-
-        if (artifact.getItem() instanceof NoezArtifacts artifactItem) {
-            activeArtifacts.put(playerId, artifact.copy());
-            artifactItem.applyEffect(player);
-            ArtifactSyncS2CPacket.send(player, artifact);
+        activeArtifacts.put(player.getUUID(), artifact.copy());
+        if (artifact.getItem() instanceof ArtifactItem ai) {
+            ai.playSound(player.level(), player);
         }
     }
 
-    public static void removeCurrentArtifact(ServerPlayer player) {
-        UUID playerId = player.getUUID();
-        ItemStack previous = activeArtifacts.remove(playerId);
-        if (previous != null && previous.getItem() instanceof NoezArtifacts artifactItem) {
-            artifactItem.removeEffect(player);
+    public static void removeArtifact(ServerPlayer player) {
+        UUID uuid = player.getUUID();
+        ItemStack old = activeArtifacts.remove(uuid);
+        if (old != null && old.getItem() instanceof ArtifactItem ai) {
+            ai.removeEffect(player);
         }
     }
 
-    public static Optional<ItemStack> getActiveArtifact(Player player) {
-        return Optional.ofNullable(activeArtifacts.get(player.getUUID()));
+    public static void tickArtifacts(ServerLevel level) {
+        for (ServerPlayer player : level.getPlayers(p -> true)) {
+            ItemStack artifact = activeArtifacts.get(player.getUUID());
+            if (artifact != null && artifact.getItem() instanceof ArtifactItem ai) {
+                ai.applyEffect(player);
+            }
+        }
+    }
+
+    @SubscribeEvent
+    public static void onServerTick(TickEvent.LevelTickEvent event) {
+        if (!event.level.isClientSide && event.phase == TickEvent.Phase.END && event.level instanceof ServerLevel serverLevel) {
+            ArtifactManager.tickArtifacts(serverLevel);
+        }
     }
 }
+

@@ -148,6 +148,14 @@ public class NoezCreativeModTabs {
                     })
                     .build());
 
+    public static final RegistryObject<CreativeModeTab> NOEZ_TAB_ARTIFACT = CREATIVE_MODE_TABS.register("noez_tab_artifact",
+            () -> CreativeModeTab.builder().icon(() -> new ItemStack(NoezItems.PHOENIX_FEATHER.get()))
+                    .title(Component.translatable("creativetab.noez_tab_artifact"))
+                    .displayItems((pParameters, pOutput) -> {
+                        pOutput.accept(NoezItems.PHOENIX_FEATHER.get());
+                    })
+                    .build());
+
     public static void register(IEventBus eventBus) {
         CREATIVE_MODE_TABS.register(eventBus);
     }
